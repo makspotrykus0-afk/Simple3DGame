@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveNugetPackages>false</ResolveNugetPackages>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|win32">
+      <Configuration>Debug</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|win32">
+      <Configuration>Release</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CA5779CC-6D19-3793-9571-2610FE796D59}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Platform>win32</Platform>
+    <ProjectName>ZERO_CHECK</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\Simple3DGame\build\CMakeFiles\0a22e081088e48a5ae6dc04cc8ac388d\generate.stamp.rule">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">setlocal
+F:\cmake\bin\cmake.exe -SF:/Simple3DGame -BF:/Simple3DGame/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file F:/Simple3DGame/build/Simple3DGame.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">F:\Simple3DGame\CMakeLists.txt;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeCCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeCXXCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeRCCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeSystem.cmake;F:\Simple3DGame\raylib\CMakeLists.txt;F:\Simple3DGame\raylib\CMakeOptions.txt;F:\Simple3DGame\raylib\cmake\AddIfFlagCompiles.cmake;F:\Simple3DGame\raylib\cmake\CompileDefinitions.cmake;F:\Simple3DGame\raylib\cmake\CompilerFlags.cmake;F:\Simple3DGame\raylib\cmake\EnumOption.cmake;F:\Simple3DGame\raylib\cmake\GlfwImport.cmake;F:\Simple3DGame\raylib\cmake\InstallConfigurations.cmake;F:\Simple3DGame\raylib\cmake\JoinPaths.cmake;F:\Simple3DGame\raylib\cmake\LibraryConfigurations.cmake;F:\Simple3DGame\raylib\cmake\LibraryPathToLinkerFlags.cmake;F:\Simple3DGame\raylib\cmake\PackConfigurations.cmake;F:\Simple3DGame\raylib\cmake\ParseConfigHeader.cmake;F:\Simple3DGame\raylib\cmake\PopulateConfigVariablesLocally.cmake;F:\Simple3DGame\raylib\cmake\raylib-config-version.cmake;F:\Simple3DGame\raylib\cmake\raylib-config.cmake;F:\Simple3DGame\raylib\raylib.pc.in;F:\Simple3DGame\raylib\src\CMakeLists.txt;F:\Simple3DGame\raylib\src\external\glfw\CMake\glfw3.pc.in;F:\Simple3DGame\raylib\src\external\glfw\CMake\glfw3Config.cmake.in;F:\Simple3DGame\raylib\src\external\glfw\CMakeLists.txt;F:\Simple3DGame\raylib\src\external\glfw\src\CMakeLists.txt;F:\cmake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;F:\cmake\share\cmake-4.2\Modules\CMakeCInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeDependentOption.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;F:\cmake\share\cmake-4.2\Modules\CPack.cmake;F:\cmake\share\cmake-4.2\Modules\CPackComponent.cmake;F:\cmake\share\cmake-4.2\Modules\CheckCCompilerFlag.cmake;F:\cmake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;F:\cmake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;F:\cmake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\FindOpenGL.cmake;F:\cmake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;F:\cmake\share\cmake-4.2\Modules\FindPackageMessage.cmake;F:\cmake\share\cmake-4.2\Modules\FindThreads.cmake;F:\cmake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckCompilerFlag.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckFlagCommonConfig.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;F:\cmake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;F:\cmake\share\cmake-4.2\Templates\CPackConfig.cmake.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">F:\Simple3DGame\build\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\external\glfw\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\external\glfw\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">false</LinkObjects>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Release|win32'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|win32'">setlocal
+F:\cmake\bin\cmake.exe -SF:/Simple3DGame -BF:/Simple3DGame/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file F:/Simple3DGame/build/Simple3DGame.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">F:\Simple3DGame\CMakeLists.txt;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeCCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeCXXCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeRCCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeSystem.cmake;F:\Simple3DGame\raylib\CMakeLists.txt;F:\Simple3DGame\raylib\CMakeOptions.txt;F:\Simple3DGame\raylib\cmake\AddIfFlagCompiles.cmake;F:\Simple3DGame\raylib\cmake\CompileDefinitions.cmake;F:\Simple3DGame\raylib\cmake\CompilerFlags.cmake;F:\Simple3DGame\raylib\cmake\EnumOption.cmake;F:\Simple3DGame\raylib\cmake\GlfwImport.cmake;F:\Simple3DGame\raylib\cmake\InstallConfigurations.cmake;F:\Simple3DGame\raylib\cmake\JoinPaths.cmake;F:\Simple3DGame\raylib\cmake\LibraryConfigurations.cmake;F:\Simple3DGame\raylib\cmake\LibraryPathToLinkerFlags.cmake;F:\Simple3DGame\raylib\cmake\PackConfigurations.cmake;F:\Simple3DGame\raylib\cmake\ParseConfigHeader.cmake;F:\Simple3DGame\raylib\cmake\PopulateConfigVariablesLocally.cmake;F:\Simple3DGame\raylib\cmake\raylib-config-version.cmake;F:\Simple3DGame\raylib\cmake\raylib-config.cmake;F:\Simple3DGame\raylib\raylib.pc.in;F:\Simple3DGame\raylib\src\CMakeLists.txt;F:\Simple3DGame\raylib\src\external\glfw\CMake\glfw3.pc.in;F:\Simple3DGame\raylib\src\external\glfw\CMake\glfw3Config.cmake.in;F:\Simple3DGame\raylib\src\external\glfw\CMakeLists.txt;F:\Simple3DGame\raylib\src\external\glfw\src\CMakeLists.txt;F:\cmake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;F:\cmake\share\cmake-4.2\Modules\CMakeCInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeDependentOption.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;F:\cmake\share\cmake-4.2\Modules\CPack.cmake;F:\cmake\share\cmake-4.2\Modules\CPackComponent.cmake;F:\cmake\share\cmake-4.2\Modules\CheckCCompilerFlag.cmake;F:\cmake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;F:\cmake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;F:\cmake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\FindOpenGL.cmake;F:\cmake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;F:\cmake\share\cmake-4.2\Modules\FindPackageMessage.cmake;F:\cmake\share\cmake-4.2\Modules\FindThreads.cmake;F:\cmake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckCompilerFlag.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckFlagCommonConfig.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;F:\cmake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;F:\cmake\share\cmake-4.2\Templates\CPackConfig.cmake.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">F:\Simple3DGame\build\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\external\glfw\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\external\glfw\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|win32'">false</LinkObjects>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">setlocal
+F:\cmake\bin\cmake.exe -SF:/Simple3DGame -BF:/Simple3DGame/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file F:/Simple3DGame/build/Simple3DGame.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">F:\Simple3DGame\CMakeLists.txt;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeCCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeCXXCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeRCCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeSystem.cmake;F:\Simple3DGame\raylib\CMakeLists.txt;F:\Simple3DGame\raylib\CMakeOptions.txt;F:\Simple3DGame\raylib\cmake\AddIfFlagCompiles.cmake;F:\Simple3DGame\raylib\cmake\CompileDefinitions.cmake;F:\Simple3DGame\raylib\cmake\CompilerFlags.cmake;F:\Simple3DGame\raylib\cmake\EnumOption.cmake;F:\Simple3DGame\raylib\cmake\GlfwImport.cmake;F:\Simple3DGame\raylib\cmake\InstallConfigurations.cmake;F:\Simple3DGame\raylib\cmake\JoinPaths.cmake;F:\Simple3DGame\raylib\cmake\LibraryConfigurations.cmake;F:\Simple3DGame\raylib\cmake\LibraryPathToLinkerFlags.cmake;F:\Simple3DGame\raylib\cmake\PackConfigurations.cmake;F:\Simple3DGame\raylib\cmake\ParseConfigHeader.cmake;F:\Simple3DGame\raylib\cmake\PopulateConfigVariablesLocally.cmake;F:\Simple3DGame\raylib\cmake\raylib-config-version.cmake;F:\Simple3DGame\raylib\cmake\raylib-config.cmake;F:\Simple3DGame\raylib\raylib.pc.in;F:\Simple3DGame\raylib\src\CMakeLists.txt;F:\Simple3DGame\raylib\src\external\glfw\CMake\glfw3.pc.in;F:\Simple3DGame\raylib\src\external\glfw\CMake\glfw3Config.cmake.in;F:\Simple3DGame\raylib\src\external\glfw\CMakeLists.txt;F:\Simple3DGame\raylib\src\external\glfw\src\CMakeLists.txt;F:\cmake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;F:\cmake\share\cmake-4.2\Modules\CMakeCInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeDependentOption.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;F:\cmake\share\cmake-4.2\Modules\CPack.cmake;F:\cmake\share\cmake-4.2\Modules\CPackComponent.cmake;F:\cmake\share\cmake-4.2\Modules\CheckCCompilerFlag.cmake;F:\cmake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;F:\cmake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;F:\cmake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\FindOpenGL.cmake;F:\cmake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;F:\cmake\share\cmake-4.2\Modules\FindPackageMessage.cmake;F:\cmake\share\cmake-4.2\Modules\FindThreads.cmake;F:\cmake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckCompilerFlag.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckFlagCommonConfig.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;F:\cmake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;F:\cmake\share\cmake-4.2\Templates\CPackConfig.cmake.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">F:\Simple3DGame\build\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\external\glfw\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\external\glfw\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">false</LinkObjects>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">setlocal
+F:\cmake\bin\cmake.exe -SF:/Simple3DGame -BF:/Simple3DGame/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file F:/Simple3DGame/build/Simple3DGame.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">F:\Simple3DGame\CMakeLists.txt;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeCCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeCXXCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeRCCompiler.cmake;F:\Simple3DGame\build\CMakeFiles\4.2.0-rc4\CMakeSystem.cmake;F:\Simple3DGame\raylib\CMakeLists.txt;F:\Simple3DGame\raylib\CMakeOptions.txt;F:\Simple3DGame\raylib\cmake\AddIfFlagCompiles.cmake;F:\Simple3DGame\raylib\cmake\CompileDefinitions.cmake;F:\Simple3DGame\raylib\cmake\CompilerFlags.cmake;F:\Simple3DGame\raylib\cmake\EnumOption.cmake;F:\Simple3DGame\raylib\cmake\GlfwImport.cmake;F:\Simple3DGame\raylib\cmake\InstallConfigurations.cmake;F:\Simple3DGame\raylib\cmake\JoinPaths.cmake;F:\Simple3DGame\raylib\cmake\LibraryConfigurations.cmake;F:\Simple3DGame\raylib\cmake\LibraryPathToLinkerFlags.cmake;F:\Simple3DGame\raylib\cmake\PackConfigurations.cmake;F:\Simple3DGame\raylib\cmake\ParseConfigHeader.cmake;F:\Simple3DGame\raylib\cmake\PopulateConfigVariablesLocally.cmake;F:\Simple3DGame\raylib\cmake\raylib-config-version.cmake;F:\Simple3DGame\raylib\cmake\raylib-config.cmake;F:\Simple3DGame\raylib\raylib.pc.in;F:\Simple3DGame\raylib\src\CMakeLists.txt;F:\Simple3DGame\raylib\src\external\glfw\CMake\glfw3.pc.in;F:\Simple3DGame\raylib\src\external\glfw\CMake\glfw3Config.cmake.in;F:\Simple3DGame\raylib\src\external\glfw\CMakeLists.txt;F:\Simple3DGame\raylib\src\external\glfw\src\CMakeLists.txt;F:\cmake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;F:\cmake\share\cmake-4.2\Modules\CMakeCInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeDependentOption.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;F:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;F:\cmake\share\cmake-4.2\Modules\CPack.cmake;F:\cmake\share\cmake-4.2\Modules\CPackComponent.cmake;F:\cmake\share\cmake-4.2\Modules\CheckCCompilerFlag.cmake;F:\cmake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;F:\cmake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;F:\cmake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\FindOpenGL.cmake;F:\cmake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;F:\cmake\share\cmake-4.2\Modules\FindPackageMessage.cmake;F:\cmake\share\cmake-4.2\Modules\FindThreads.cmake;F:\cmake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckCompilerFlag.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckFlagCommonConfig.cmake;F:\cmake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Linker\MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\Windows.cmake;F:\cmake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;F:\cmake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;F:\cmake\share\cmake-4.2\Templates\CPackConfig.cmake.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">F:\Simple3DGame\build\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\external\glfw\CMakeFiles\generate.stamp;F:\Simple3DGame\build\raylib\raylib\external\glfw\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
