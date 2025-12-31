@@ -1,0 +1,14 @@
+# CMake generation dependency list for this directory.
+F:/Simple3DGame/raylib/src/external/glfw/CMake/glfw3Config.cmake.in
+F:/Simple3DGame/raylib/src/external/glfw/CMakeLists.txt
+F:/cmake/share/cmake-4.2/Modules/BasicConfigVersion-SameMajorVersion.cmake.in
+F:/cmake/share/cmake-4.2/Modules/CMakeDependentOption.cmake
+F:/cmake/share/cmake-4.2/Modules/CMakePackageConfigHelpers.cmake
+F:/cmake/share/cmake-4.2/Modules/CheckCSourceCompiles.cmake
+F:/cmake/share/cmake-4.2/Modules/CheckIncludeFile.cmake
+F:/cmake/share/cmake-4.2/Modules/CheckLibraryExists.cmake
+F:/cmake/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake
+F:/cmake/share/cmake-4.2/Modules/FindPackageMessage.cmake
+F:/cmake/share/cmake-4.2/Modules/FindThreads.cmake
+F:/cmake/share/cmake-4.2/Modules/GNUInstallDirs.cmake
+F:/cmake/share/cmake-4.2/Modules/WriteBasicConfigVersionFile.cmake

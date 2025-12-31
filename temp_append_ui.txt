@@ -1,0 +1,4 @@
+
+DrawText(owner.c_str(), x + 10, y + 30, 10, WHITE);
+
+}

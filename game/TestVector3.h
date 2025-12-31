@@ -1,0 +1,2 @@
+// Plik game/TestVector3.h został zaktualizowany, aby zawierał tylko komentarz potwierdzający brak potrzeby jego istnienia.
+// Wszelkie niestandardowe definicje wektorów zostały usunięte lub zastąpione przez typy z raylib.h.

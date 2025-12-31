@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="F:\Simple3DGame\build_test\CMakeFiles\29ee95885c66bdd798b05be30415ad91\update_mappings.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="F:\Simple3DGame\raylib\src\external\glfw\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="F:\Simple3DGame\raylib\src\external\glfw\src\mappings.h.in">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="F:\Simple3DGame\raylib\src\external\glfw\CMake\GenerateMappings.cmake" />
+    <None Include="F:\Simple3DGame\build_test\raylib\raylib\external\glfw\src\CMakeFiles\update_mappings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{3F5AA3D6-A3E8-3C46-B1A6-0A7724C37AF2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{AD7E14C6-7A7B-3B30-BE95-663C6CBC7332}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

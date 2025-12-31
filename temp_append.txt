@@ -1,0 +1,4 @@
+
+m_state = SettlerState::IDLE;
+
+}

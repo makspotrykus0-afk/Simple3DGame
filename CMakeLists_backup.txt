@@ -1,0 +1,200 @@
+# Minimum CMake version
+
+cmake_minimum_required(VERSION 3.10)
+
+Project name and version
+
+project(Simple3DGame VERSION 1.0.0 LANGUAGES CXX)
+
+C++ standard
+
+set(CMAKE_CXX_STANDARD 17)
+
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+Detect operating system
+
+if(WIN32)
+
+set(OS_WINDOWS TRUE)
+
+elseif(APPLE)
+
+set(OS_MACOS TRUE)
+
+elseif(UNIX)
+
+set(OS_LINUX TRUE)
+
+endif()
+
+Add raylib subdirectory
+
+add_subdirectory(raylib)
+
+Create executable with all source files
+
+add_executable(${PROJECT_NAME}
+
+# Main source
+
+src/main.cpp
+
+
+
+text
+
+
+# Core files
+core/GameEngine.cpp
+core/EventSystem.cpp
+core/GameSystem.cpp
+core/DIContainer.cpp
+
+# Game files
+game/Terrain.cpp
+game/Colony.cpp
+game/BuildingTask.cpp
+game/GatheringTask.cpp
+game/ResourceNode.cpp
+game/ResourceTypes.cpp
+game/Item.cpp
+game/InteractableObject.cpp
+game/BuildingBlueprint.cpp
+game/Door.cpp
+game/Tree.cpp
+game/Animal.cpp
+game/ColonyAI.cpp
+game/Bed.cpp
+game/Settler.cpp
+game/Projectile.cpp
+game/NavigationGrid.cpp
+
+# Systems
+systems/ResourceSystem.cpp
+systems/SkillsSystem.cpp
+systems/EquipmentSystem.cpp
+systems/FoodSystem.cpp
+systems/InteractionSystem.cpp
+systems/InventorySystem.cpp
+systems/BuildingSystem.cpp
+systems/StorageSystem.cpp
+systems/TestSystem.cpp
+systems/UISystem.cpp
+systems/TimeCycleSystem.cpp
+systems/NeedsSystem.cpp
+
+# Components
+components/ResourceComponent.cpp
+components/InteractionComponent.cpp
+components/InventoryComponent.cpp
+components/StatsComponent.cpp
+components/BuildingComponent.cpp
+components/SkillsComponent.cpp
+components/PositionComponent.cpp
+components/TreeComponent.cpp
+components/EquipmentComponent.cpp
+
+# Entities
+entities/PlayerCharacter.cpp
+entities/Ant.cpp
+
+
+)
+
+Include directories
+
+target_include_directories(${PROJECT_NAME} PRIVATE
+
+src
+
+core
+
+systems
+
+components
+
+entities
+
+game
+
+raylib/src
+
+)
+
+Link raylib
+
+target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+
+Platform-specific libraries
+
+if(OS_WINDOWS)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+
+opengl32
+
+glu32
+
+winmm
+
+)
+
+endif()
+
+if(OS_LINUX)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+
+m
+
+dl
+
+X11
+
+)
+
+endif()
+
+if(OS_MACOS)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+
+"-framework IOKit"
+
+"-framework Cocoa"
+
+"-framework OpenGL"
+
+)
+
+endif()
+
+Compiler options
+
+if(MSVC)
+
+target_compile_options(${PROJECT_NAME} PRIVATE /W4)<math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>P</mi><mi>R</mi><mi>O</mi><mi>J</mi><mi>E</mi><mi>C</mi><msub><mi>T</mi><mi>N</mi></msub><mi>A</mi><mi>M</mi><mi>E</mi></mrow><mi>P</mi><mi>R</mi><mi>I</mi><mi>V</mi><mi>A</mi><mi>T</mi><mi>E</mi><mi mathvariant="normal">/</mi><mi>W</mi><mn>4</mn><mo stretchy="false">)</mo><mi>t</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>e</mi><msub><mi>t</mi><mi>c</mi></msub><mi>o</mi><mi>m</mi><mi>p</mi><mi>i</mi><mi>l</mi><msub><mi>e</mi><mi>d</mi></msub><mi>e</mi><mi>f</mi><mi>i</mi><mi>n</mi><mi>i</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi>s</mi><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">{PROJECT_NAME} PRIVATE /W4)
+    target_compile_definitions(</annotation></semantics></math>PROJECTN​AMEPRIVATE/W4)targetc​ompiled​efinitions({PROJECT_NAME} PRIVATE NOMINMAX)
+
+else()
+
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+
+endif()
+
+Preprocessor definitions
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+
+GRAPHICS_API_OPENGL_33
+
+PLATFORM_DESKTOP
+
+)
+
+Enable testing
+
+enable_testing()
