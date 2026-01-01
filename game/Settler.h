@@ -262,6 +262,12 @@ void OnJobConfigurationChanged();
 bool isHandFree() const { return m_heldItem == nullptr; }
 void setHeldItem(std::unique_ptr<Item> item) { m_heldItem = std::move(item); }
 const Item* getHeldItem() const { return m_heldItem.get(); }
+    // Player control methods
+    void setPlayerControlled(bool controlled);
+    bool isPlayerControlled() const { return m_isPlayerControlled; }
+    void setRotationFromMouse(float yaw);
+    float getRotation() const { return m_rotation; }
+    Vector3 getForwardVector() const;
 // Preferences
 int preferredHouseSize = 4;
 std::string actionState;
@@ -289,6 +295,7 @@ SkillsComponent m_skills;
 float m_moveSpeed;
 Vector3 m_targetPosition;
 float m_rotation;
+    bool m_isPlayerControlled = false;
 std::vector<Vector3> m_currentPath;
 int m_currentPathIndex;
 std::deque<Action> m_actionQueue;

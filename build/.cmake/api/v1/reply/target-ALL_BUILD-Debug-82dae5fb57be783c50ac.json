@@ -5,7 +5,7 @@
 		"commands" : [],
 		"files" : 
 		[
-			"CMakeLists.txt"
+			"raylib/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -22,13 +22,10 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "Simple3DGame::@6890427a1f51a3e7e1df"
+			"id" : "raylib::@7d429ebd5d102775094d"
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
-		},
-		{
-			"id" : "raylib::@7d429ebd5d102775094d"
 		},
 		{
 			"id" : "glfw::@a896dd99b4a5c6eab3d9"
@@ -38,14 +35,11 @@
 	{
 		"name" : "CMakePredefinedTargets"
 	},
-	"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+	"id" : "ALL_BUILD::@5003b8f497eeabc0006e",
 	"isGeneratorProvided" : true,
 	"name" : "ALL_BUILD",
 	"orderDependencies" : 
 	[
-		{
-			"id" : "Simple3DGame::@6890427a1f51a3e7e1df"
-		},
 		{
 			"id" : "raylib::@7d429ebd5d102775094d"
 		},
@@ -55,8 +49,8 @@
 	],
 	"paths" : 
 	{
-		"build" : ".",
-		"source" : "."
+		"build" : "raylib",
+		"source" : "raylib"
 	},
 	"sources" : [],
 	"type" : "UTILITY"

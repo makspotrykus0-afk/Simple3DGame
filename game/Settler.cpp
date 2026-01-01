@@ -141,6 +141,11 @@ const std::vector<std::unique_ptr<Animal>>& animals,
 
 const std::vector<std::unique_ptr<ResourceNode>>& resourceNodes) {
     
+    // Skip AI logic if player-controlled
+    if (m_isPlayerControlled) {
+        return; // Player handles movement/actions
+    }
+    
     // Update Animation Timer (Global)
     if (m_attackAnimTimer > 0.0f) {
         float prevTimer = m_attackAnimTimer;
@@ -3025,4 +3030,28 @@ void Settler::UpdateSkinning(float deltaTime) {
         // Optional: Trigger Haul check immediately?
         // Logic in IDLE loop will pick up 'haulToStorage' task if we have resources/food.
     }
+}
+
+
+// Player control methods implementation
+void Settler::setPlayerControlled(bool controlled) {
+    m_isPlayerControlled = controlled;
+    if (controlled) {
+        // Clear AI tasks when player takes control
+        clearTasks();
+        clearPath();
+        m_state = SettlerState::IDLE;
+        std::cout << "[Settler] " << m_name << " is now under player control (AI disabled)" << std::endl;
+    } else {
+        std::cout << "[Settler] " << m_name << " released from player control (AI re-enabled)" << std::endl;
+    }
+}
+
+void Settler::setRotationFromMouse(float yaw) {
+    m_rotation = yaw * RAD2DEG;
+}
+
+Vector3 Settler::getForwardVector() const {
+    float angleRad = m_rotation * DEG2RAD;
+    return Vector3{sinf(angleRad), 0.0f, cosf(angleRad)};
 }

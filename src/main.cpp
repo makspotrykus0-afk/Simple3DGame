@@ -31,10 +31,19 @@
 #include "../game/NavigationGrid.h"
 const int SCREEN_WIDTH  = 1200;
 const int SCREEN_HEIGHT = 800;
-Camera3D sceneCamera;
-Camera3D settlerCamera;
-float    deltaTime  = 0.0f;
-bool     cameraMode = false;
+
+// Camera view mode enum for 3 camera types (CameraMode conflicts with raylib)
+enum class CameraViewMode {
+    ISOMETRIC,  // Free isometric camera (default)
+    TPS,        // Third Person - behind settler
+    FPS         // First Person - from settler's eyes
+};
+
+Camera3D       sceneCamera;
+Camera3D       settlerCamera;
+float          deltaTime           = 0.0f;
+CameraViewMode currentCameraMode   = CameraViewMode::ISOMETRIC;
+Settler*       controlledSettler   = nullptr; // Settler under player control
 class CameraController {
 public:
 CameraController(Camera3D* camera)
@@ -208,10 +217,10 @@ if (t > 0) { return Vector3Add(ray.position, Vector3Scale(ray.direction, t)); }
 return ray.position;
 }
 void renderScene() {
-Camera3D currentCam = cameraMode ? settlerCamera : sceneCamera;
+Camera3D currentCam = sceneCamera;
 BeginMode3D(currentCam);
 terrain.render();
-colony.render(cameraMode, selectedCharacter);
+colony.render(currentCameraMode == CameraViewMode::FPS, controlledSettler);
 const std::vector<WorldItem>& droppedItems = colony.getDroppedItems();
 for (const auto& wItem : droppedItems) {
 if (wItem.item) {
@@ -249,7 +258,7 @@ if (g_interactionSystem) { g_interactionSystem->renderUI(currentCam); }
 
 }
 void processInput() {
-Camera3D currentCam = cameraMode ? settlerCamera : sceneCamera;
+Camera3D currentCam = sceneCamera;
 // UI clicks handling
 if (g_uiSystem && g_uiSystem->IsMouseOverUI()) {
 if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
@@ -334,11 +343,7 @@ if (IsKeyPressed(KEY_F3)) {
 g_drawDebugGrid = !g_drawDebugGrid;
 }
 // Camera controller updates
-if (cameraMode) {
-if (settlerCameraController) settlerCameraController->update(deltaTime);
-} else {
-if (freeCameraController) freeCameraController->update(deltaTime);
-}
+if (currentCameraMode == CameraViewMode::ISOMETRIC) { if (freeCameraController) freeCameraController->update(deltaTime); }
 }
 int main() {
 InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Simple 3D Game");
@@ -448,7 +453,7 @@ int wood = 0;
 int food = 0;
 int stone = 0;
 g_uiSystem->DrawResourceBar(wood, food, stone, SCREEN_WIDTH);
-g_uiSystem->DrawBottomPanel(isBuildingMode, cameraMode, SCREEN_WIDTH, SCREEN_HEIGHT);
+g_uiSystem->DrawBottomPanel(isBuildingMode, currentCameraMode != CameraViewMode::ISOMETRIC, SCREEN_WIDTH, SCREEN_HEIGHT);
 auto selectedSettlers = colony.getSelectedSettlers();
 if (!selectedSettlers.empty()) {
 g_uiSystem->DrawSelectionInfo(selectedSettlers, SCREEN_WIDTH, SCREEN_HEIGHT);
