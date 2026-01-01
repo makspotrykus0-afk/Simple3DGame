@@ -34,6 +34,17 @@ std::cout << "Colony initializing..." << std::endl;
     }
 addSettler({ 20.0f, 0.0f, 0.0f }, "Alice", SettlerProfession::NONE);
 addSettler({ 40.0f, 0.0f, 0.0f }, "John", SettlerProfession::NONE);
+addSettler({ -20.0f, 0.0f, -20.0f }, "Independent", SettlerProfession::BUILDER);
+if (!settlers.empty()) {
+    Settler* indep = settlers.back();
+    if (indep->getName() == "Independent") {
+        indep->setIndependent(true);
+        indep->preferredHouseSize = 6; // He wants something decent
+        indep->gatherWood = true; // He will do it himself anyway, but flags help AI hints
+        indep->gatherStone = true;
+        indep->performBuilding = true;
+    }
+}
 // Add berry bushes nearby
 for (int i = 0; i < 10; ++i) {
 float angle = (float)(rand() % 360) * DEG2RAD;
@@ -95,6 +106,7 @@ b->setOwner("Colony");
 
 // Generate starter houses for settlers
 for (auto* settler : settlers) {
+    if (settler->isIndependent()) continue; // HE BUILDS IT HIMSELF
 std::string blueprintId = "house_4"; // Default size
 if (settler->preferredHouseSize == 6) blueprintId = "house_6";
 else if (settler->preferredHouseSize == 9) blueprintId = "house_9";
@@ -233,6 +245,7 @@ bush->regrowthTimer = 0.0f;
 void Colony::render(bool isFPSMode, Settler* selectedSettler) {
 for (auto* settler : settlers) {
 if (isFPSMode && settler == selectedSettler) {
+    settler->renderFPS(); // Render only hands/weapon
 continue;
 }
 settler->render();

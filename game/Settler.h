@@ -156,6 +156,7 @@ const std::vector<BuildingInstance*>& buildings,
 const std::vector<std::unique_ptr<Animal>>& animals,
 const std::vector<std::unique_ptr<ResourceNode>>& resourceNodes);
 void render() override;
+void renderFPS(); // Special render for FPS hands/weapon
 Vector3 getPosition() const override { return position; }
 void setPosition(const Vector3& pos) override { position = pos; }
 InteractionResult interact(GameEntity* player) override;
@@ -254,6 +255,13 @@ Vector3 myHousePos() const;
 void SetSelected(bool sel) { setSelected(sel); }
 bool IsSelected() const { return isSelected(); }
 SettlerState GetState() const { return getState(); }
+    
+    // Independent builder logic
+    void setIndependent(bool independent) { m_isIndependentBuilder = independent; }
+    bool isIndependent() const { return m_isIndependentBuilder; }
+    BuildTask* getPrivateBuildTask() const { return m_myPrivateBuildTask; }
+    void setPrivateBuildTask(BuildTask* task) { m_myPrivateBuildTask = task; }
+
 void ForceGatherTarget(GameEntity* target) { forceGatherTarget(target); }
 void AssignBuildTask(BuildTask* task) { assignBuildTask(task); }
 void ClearBuildTask() { clearBuildTask(); }
@@ -268,6 +276,8 @@ const Item* getHeldItem() const { return m_heldItem.get(); }
     void setRotationFromMouse(float yaw);
     float getRotation() const { return m_rotation; }
     Vector3 getForwardVector() const;
+    void setScoping(bool scoping) { m_isScoping = scoping; }
+    bool isScoping() const { return m_isScoping; }
 // Preferences
 int preferredHouseSize = 4;
 std::string actionState;
@@ -296,6 +306,8 @@ float m_moveSpeed;
 Vector3 m_targetPosition;
 float m_rotation;
     bool m_isPlayerControlled = false;
+    bool m_isScoping = false;
+    float m_adsLerp = 0.0f; // 0.0 = Hip, 1.0 = ADS
 std::vector<Vector3> m_currentPath;
 int m_currentPathIndex;
 std::deque<Action> m_actionQueue;
@@ -303,6 +315,10 @@ BuildTask* m_currentBuildTask;
 GatheringTask* m_currentGatherTask;
 BuildingInstance* m_targetStorage;
 BuildingInstance* m_targetWorkshop; // Warsztat do craftingu
+    
+    // Independent builder state
+    bool m_isIndependentBuilder = false;
+    BuildTask* m_myPrivateBuildTask = nullptr;
 
 Bush* m_currentGatherBush;
 Tree* m_currentTree = nullptr;

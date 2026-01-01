@@ -44,6 +44,12 @@ Camera3D       settlerCamera;
 float          deltaTime           = 0.0f;
 CameraViewMode currentCameraMode   = CameraViewMode::ISOMETRIC;
 Settler*       controlledSettler   = nullptr; // Settler under player control
+float          tpsYaw              = PI;      // TPS Camera Orbit Yaw (starting behind)
+float          tpsPitch            = 0.3f;    // TPS Camera Orbit Pitch
+float          tpsRadius           = 5.0f;    // TPS Camera Orbit Radius
+float          fpsPitch            = 0.0f;    // FPS Camera Looking Pitch
+bool           tpsIsRotating       = false;   // TPS Camera Orbit State
+float          g_fovyZoom          = 45.0f;   // Camera FOV for Zoom/Scope
 class CameraController {
 public:
 CameraController(Camera3D* camera)
@@ -255,6 +261,23 @@ EndMode3D();
 // Call UI render (debug)
 if (g_interactionSystem) { g_interactionSystem->renderUI(currentCam); }
 
+// Draw Crosshair in TPS/FPS modes
+if (currentCameraMode == CameraViewMode::TPS || currentCameraMode == CameraViewMode::FPS) {
+    int centerX = GetScreenWidth() / 2;
+    int centerY = GetScreenHeight() / 2;
+    
+    // Outer circle
+    DrawCircleLines(centerX, centerY, 10, BLACK);
+    // Inner dot
+    DrawCircle(centerX, centerY, 2, RED);
+    
+    // Lines
+    DrawLine(centerX - 15, centerY, centerX - 5, centerY, BLACK);
+    DrawLine(centerX + 5, centerY, centerX + 15, centerY, BLACK);
+    DrawLine(centerX, centerY - 15, centerX, centerY - 5, BLACK);
+    DrawLine(centerX, centerY + 5, centerX, centerY + 15, BLACK);
+}
+
 
 }
 void processInput() {
@@ -338,12 +361,163 @@ if (IsKeyPressed(KEY_C) && g_craftingSystem) {
 int taskId = g_craftingSystem->queueTask("stone_axe");
 (void)taskId;
 }
+
+    // Camera mode switching with V key
+    if (IsKeyPressed(KEY_V)) {
+        // Cycle through camera modes: ISOMETRIC -> TPS -> FPS -> ISOMETRIC
+        if (currentCameraMode == CameraViewMode::ISOMETRIC) {
+            currentCameraMode = CameraViewMode::TPS;
+            // Select first settler if none selected
+            auto settlers = colony.getSettlers();
+            if (!settlers.empty() && !controlledSettler) {
+                controlledSettler = settlers[0];
+            }
+            // Enable player control
+            if (controlledSettler) {
+                controlledSettler->setPlayerControlled(true);
+                std::cout << "[CAMERA] Switched to TPS mode - Player control ENABLED" << std::endl;
+            }
+        } else if (currentCameraMode == CameraViewMode::TPS) {
+            currentCameraMode = CameraViewMode::FPS;
+            DisableCursor(); // Hide mouse in FPS
+            std::cout << "[CAMERA] Switched to FPS mode - Mouse HIDDEN" << std::endl;
+        } else if (currentCameraMode == CameraViewMode::FPS) {
+            currentCameraMode = CameraViewMode::ISOMETRIC;
+            EnableCursor(); // Show mouse back
+            // Disable player control
+            if (controlledSettler) {
+                controlledSettler->setPlayerControlled(false);
+                std::cout << "[CAMERA] Switched to ISOMETRIC mode - Player control DISABLED" << std::endl;
+            }
+            controlledSettler = nullptr;
+        }
+    }
+
 // Toggle debug grid with F3
 if (IsKeyPressed(KEY_F3)) {
 g_drawDebugGrid = !g_drawDebugGrid;
 }
-// Camera controller updates
-if (currentCameraMode == CameraViewMode::ISOMETRIC) { if (freeCameraController) freeCameraController->update(deltaTime); }
+
+    // Player input for settler control in TPS/FPS modes
+    if ((currentCameraMode == CameraViewMode::TPS || currentCameraMode == CameraViewMode::FPS) && controlledSettler) {
+        float settlerRot = controlledSettler->getRotation();
+        
+        // MMB Camera Orbiting in TPS mode (also rotates settler)
+        if (currentCameraMode == CameraViewMode::TPS && IsMouseButtonDown(MOUSE_BUTTON_MIDDLE)) {
+            if (!tpsIsRotating) { tpsIsRotating = true; HideCursor(); }
+            Vector2 delta = GetMouseDelta();
+            tpsYaw += delta.x * 0.003f;
+            tpsPitch -= delta.y * 0.003f;
+            tpsPitch = Clamp(tpsPitch, -0.2f, 1.2f); // Limit vertical orbit
+            
+            // Sync settler rotation with camera yaw (so body turns with camera)
+            // Offset PI because tpsYaw=PI is behind the player (looking forward)
+            controlledSettler->setRotationFromMouse(tpsYaw - PI);
+        } else if (tpsIsRotating && currentCameraMode == CameraViewMode::TPS) {
+            tpsIsRotating = false;
+            ShowCursor();
+        }
+
+        // Mouse rotation in FPS mode (full look, cursor hidden)
+        if (currentCameraMode == CameraViewMode::FPS) {
+            Vector2 mouseDelta = GetMouseDelta();
+            if (mouseDelta.x != 0 || mouseDelta.y != 0) {
+                // Yaw rotates the settler body - inverted sense to match mouse movement
+                float yawChange = -mouseDelta.x * 0.003f; 
+                controlledSettler->setRotationFromMouse((controlledSettler->getRotation() * DEG2RAD) + yawChange);
+                
+                // Pitch rotates only the camera view - inverted sign to match mouse movement
+                fpsPitch += mouseDelta.y * 0.003f; 
+                fpsPitch = Clamp(fpsPitch, -1.4f, 1.4f); // Limit up/down
+            }
+        }
+
+        // Scope/Zoom handling with Right Mouse Button
+        static float currentFov = 45.0f;
+        float targetFov = 45.0f;
+
+        if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+            targetFov = 10.0f; // Stronger zoom (4.5x)
+            controlledSettler->setScoping(true);
+        } else {
+            targetFov = 45.0f;
+            controlledSettler->setScoping(false);
+        }
+        
+        // Płynne FOV (Lerp) - dopasowane do lerpa broni (10.0f)
+        currentFov += (targetFov - currentFov) * 10.0f * deltaTime;
+        sceneCamera.fovy = currentFov;
+
+        // WASD movement for settler
+        Vector3 settlerPos = controlledSettler->getPosition();
+        Vector3 moveDir = {0, 0, 0};
+        float moveSpeed = 5.0f * deltaTime;
+
+        // Calculate direction relative to camera view
+        Vector3 camForward = Vector3Normalize(Vector3Subtract(sceneCamera.target, sceneCamera.position));
+        camForward.y = 0.0f; // Flatten to ground plane
+        camForward = Vector3Normalize(camForward);
+        Vector3 camRight = Vector3Normalize(Vector3CrossProduct(camForward, {0.0f, 1.0f, 0.0f}));
+
+        if (IsKeyDown(KEY_W)) moveDir = Vector3Add(moveDir, camForward);
+        if (IsKeyDown(KEY_S)) moveDir = Vector3Subtract(moveDir, camForward);
+        if (IsKeyDown(KEY_A)) moveDir = Vector3Add(moveDir, camRight);
+        if (IsKeyDown(KEY_D)) moveDir = Vector3Subtract(moveDir, camRight);
+
+        // Apply movement
+        if (Vector3Length(moveDir) > 0.001f) {
+            moveDir = Vector3Normalize(moveDir);
+            Vector3 newPos = Vector3Add(settlerPos, Vector3Scale(moveDir, moveSpeed));
+            controlledSettler->setPosition(newPos);
+            
+            // In TPS, if we move without holding MMB, we might want to face movement?
+            // User requested settler rotates with camera, so we keep MMB sync or just general sync.
+            // If NOT orbiting, we can face movement direction:
+            if (!tpsIsRotating && currentCameraMode == CameraViewMode::TPS) {
+                 float targetRot = atan2f(moveDir.x, moveDir.z);
+                 controlledSettler->setRotationFromMouse(targetRot);
+                 // Keep tpsYaw in sync so camera stays behind when we start orbiting again
+                 tpsYaw = targetRot + PI;
+            }
+            
+            controlledSettler->setState(SettlerState::MOVING);
+        } else {
+            controlledSettler->setState(SettlerState::IDLE);
+        }
+    }
+
+// Camera controller updates based on current mode
+if (currentCameraMode == CameraViewMode::ISOMETRIC) {
+if (freeCameraController) freeCameraController->update(deltaTime);
+    } else if (currentCameraMode == CameraViewMode::TPS && controlledSettler) {
+        // Third-person camera: orbiting around settler
+        Vector3 settlerPos = controlledSettler->getPosition();
+        Vector3 pivot = Vector3Add(settlerPos, {0.0f, 1.5f, 0.0f}); // Look at settler's head
+        
+        float xz = tpsRadius * cosf(tpsPitch);
+        sceneCamera.position.x = pivot.x + xz * sinf(tpsYaw);
+        sceneCamera.position.y = pivot.y + tpsRadius * sinf(tpsPitch);
+        sceneCamera.position.z = pivot.z + xz * cosf(tpsYaw);
+        sceneCamera.target = pivot;
+    } else if (currentCameraMode == CameraViewMode::FPS && controlledSettler) {
+        // First-person camera: from settler's eyes
+        Vector3 settlerPos = controlledSettler->getPosition();
+        float settlerRot = controlledSettler->getRotation();
+        
+        // Camera at settler's eye height
+        Vector3 eyePos = settlerPos;
+        eyePos.y += 1.7f; // Eye height
+        
+        // Look direction calculated from settler rotation and fpsPitch
+        Vector3 lookDir;
+        // Correct forward calculation (sync with getForwardVector)
+        lookDir.x = -sinf(settlerRot * DEG2RAD) * cosf(fpsPitch);
+        lookDir.y = -sinf(fpsPitch); // Up/Down
+        lookDir.z = -cosf(settlerRot * DEG2RAD) * cosf(fpsPitch);
+        
+        sceneCamera.position = eyePos;
+        sceneCamera.target = Vector3Add(eyePos, lookDir);
+}
 }
 int main() {
 InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Simple 3D Game");

@@ -116,7 +116,7 @@ for (auto* settler : settlers) {
 
 // Phase 2: Find new homes for homeless
 for (auto* settler : settlers) {
-    if (settler->hasHouse) continue; 
+    if (settler->hasHouse || settler->isIndependent()) continue; 
     
     // SKIP IF SLEEPING or TIRED - don't interrupt rest with assignment logic that might trigger moves
     if (settler->GetState() == SettlerState::SLEEPING || settler->actionState == "Going to Sleep") {
