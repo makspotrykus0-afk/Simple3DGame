@@ -89,8 +89,8 @@ void NavigationGrid::UpdateGrid(const std::vector<BuildingInstance*>& buildings,
     for (const auto* building : buildings) {
         if (!building) continue;
         
-        // Ignore floor - it's walkable
-        if (building->getBlueprintId() == "floor") continue;
+        // Ignore floor and simple_storage - they are walkable
+        if (building->getBlueprintId() == "floor" || building->getBlueprintId() == "simple_storage") continue;
 
         const BuildingBlueprint* bp = building->getBlueprint();
 

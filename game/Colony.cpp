@@ -22,7 +22,16 @@ cleanup();
 void Colony::initialize() {
 std::cout << "Colony initializing..." << std::endl;
 // Spawn initial settlers with more spacing to avoid collision with future houses
-addSettler({ 0.0f, 0.0f, 0.0f }, "Bob", SettlerProfession::NONE);
+    addSettler({ 0.0f, 0.0f, 0.0f }, "Bob", SettlerProfession::HUNTER);
+    if (!settlers.empty()) {
+        Settler* bob = settlers.back();
+        bob->huntAnimals = true;
+        bob->haulToStorage = true;
+        
+        // Give Sniper Rifle (Held Item for logic/visuals)
+        auto rifle = std::make_unique<WeaponItem>("Sniper Rifle", EquipmentItem::EquipmentSlot::MAIN_HAND, 80.0f, 20.0f, 2.0f, "High caliber sniper rifle.");
+        bob->setHeldItem(std::move(rifle));
+    }
 addSettler({ 20.0f, 0.0f, 0.0f }, "Alice", SettlerProfession::NONE);
 addSettler({ 40.0f, 0.0f, 0.0f }, "John", SettlerProfession::NONE);
 // Add berry bushes nearby
@@ -195,8 +204,7 @@ if (proj->isActive()) {
                 
                 if (animal->isDead()) {
                     std::cout << "Animal killed by projectile." << std::endl;
-                    // Spawn meat via addDroppedItem
-                    addDroppedItem(std::make_unique<ConsumableItem>("Raw Meat", "Fresh raw meat."), animal->getPosition());
+                    // Meat spawn removed - handled by skinning
                 }
                 break;
             }

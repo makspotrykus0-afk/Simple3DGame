@@ -413,6 +413,12 @@ public:
     bool use(GameEntity* user) override;
 
     /**
+     * @brief Renderuje przedmiot w świecie gry
+     * @param position Pozycja renderowania
+     */
+    void render(Vector3 position);
+
+    /**
      * @brief Klonuje przedmiot
      * @return Nowa instancja
      */

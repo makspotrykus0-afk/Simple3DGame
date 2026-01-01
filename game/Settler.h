@@ -86,8 +86,9 @@ PICKING_UP,
 WANDER,
 
 WAITING,
-
-CRAFTING
+CRAFTING,
+SKINNING,
+MOVING_TO_SKIN
 
 };
 enum class TaskType {
@@ -239,6 +240,8 @@ void UpdateCrafting(float deltaTime);
 float GetCraftingProgress01() const;
 void UpdateHauling(float deltaTime, const std::vector<BuildingInstance*>& buildings, std::vector<WorldItem>& worldItems);
 void UpdateHunting(float deltaTime, const std::vector<std::unique_ptr<Animal>>& animals, const std::vector<BuildingInstance*>& buildings);
+void UpdateSkinning(float deltaTime);
+void UpdateMovingToSkin(float deltaTime, const std::vector<BuildingInstance*>& buildings);
 void CraftTool(const std::string& toolName);
 bool PickupItem(Item* item);
 void DropItem(int slotIndex);
@@ -337,6 +340,7 @@ float m_huntingTimer = 0.0f;
 int m_attackCount = 0;
 float m_attackAnimTimer = 0.0f;  // Timer dla animacji uderzenia (0.0-1.0)
 bool m_waitingToDealDamage = false; // Flaga opóźnienia obrażeń (czekamy na 'hit frame')
+float m_skinningTimer = 0.0f;
 // Przedmiot trzymany w ręce (nóż)
 std::unique_ptr<Item> m_heldItem;
 bool IsStateInterruptible() const;

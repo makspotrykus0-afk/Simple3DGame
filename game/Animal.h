@@ -28,7 +28,7 @@ public:
     
     // Helper to access position from component or base
     Vector3 getPosition() const override;
-    bool isActive() const override;
+
 
     // Game Logic
     void takeDamage(float amount);
@@ -36,9 +36,18 @@ public:
     bool isDead() const;
     AnimalType getType() const { return m_type; }
 
+    // Skinning system
+    bool isSkinned() const { return m_isSkinned; }
+    void setSkinned(bool skinned) { m_isSkinned = skinned; }
+    
+    // Override isActive to keep body visible until skinned
+    bool isActive() const override;
+
 private:
     AnimalType m_type;
     std::unique_ptr<StatsComponent> m_stats;
+    bool m_isSkinned = false; // New flag
+    float m_deathRoll = 0.0f; // Losowa rotacja przy śmierci
     
     // AI State
     Vector3 m_targetPosition;

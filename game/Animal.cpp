@@ -46,12 +46,36 @@ void Animal::render() {
     // Zastosuj rotację - zapisz stan macierzy
     rlPushMatrix();
     rlTranslatef(pos.x, 0.0f, pos.z);  // Przesuń do pozycji
-    rlRotatef(m_rotation * RAD2DEG, 0.0f, 1.0f, 0.0f);  // Obróć wokół osi Y
-    rlTranslatef(-pos.x, 0.0f, -pos.z);  // Przesuń z powrotem
+    
+    // Kolejność transformacji (od dołu stosu / lokalnie):
+    // 1. Roll (na bok)
+    // 2. Rotation (kierunek Y)
+    // 3. Translation (World Pos) - robione przez pierwsze rlTranslate
+    
+    // W Raylib/OpenGL, wywołania są w odwrotnej kolejności logicznej dla wierzchołka?
+    // M = T * R_y * R_z
+    
+    // Najpierw (w kodzie - czyli ostatnie w macierzy): Kierunek Y
+    rlRotatef(m_rotation * RAD2DEG, 0.0f, 1.0f, 0.0f); 
+
+    // Potem: Przewrót na bok (jeśli martwy)
+    if (isDead()) {
+        // Przesunięcie w dół (w układzie obróconym już o Y, ale przed Z)
+        // Jeśli obrót Z jest "lokalny" dla modelu, to translation powinno być po nim?
+        // Eksperyment: T_y * R_roll.
+        
+        // rlTranslatef(0.0f, -0.25f, 0.0f); // REMOVED: Caused bunny to be buried underground (invisible).
+        // Bez translacji pivot (0,0,0) zostaje w 0,0,0. Czyli nogi w 0,0,0.
+        // Po obrocie, ciało leży bokiem na ziemi.
+        
+        rlRotatef(m_deathRoll, 0.0f, 0.0f, 1.0f); 
+    }
     
     if (m_type == AnimalType::RABBIT) {
         // Królik - bardziej rozpoznawalny model (Z ROTACJĄ)
-        Vector3 bodyPos = pos;
+        // ... (bez zmian)
+        // ... (bez zmian)
+        Vector3 bodyPos = {0.0f, 0.0f, 0.0f};
         bodyPos.y += 0.25f;
         DrawCube(bodyPos, 0.6f, 0.5f, 0.8f, BROWN);
         DrawCubeWires(bodyPos, 0.6f, 0.5f, 0.8f, BLACK);
@@ -78,7 +102,7 @@ void Animal::render() {
     } else {
         // Jeleń
         Vector3 size = Vector3{1.0f, 1.5f, 2.0f};
-        Vector3 drawPos = pos;
+        Vector3 drawPos = {0.0f, 0.0f, 0.0f};
         drawPos.y += size.y / 2.0f;
         DrawCube(drawPos, size.x, size.y, size.z, color);
         DrawCubeWires(drawPos, size.x, size.y, size.z, BLACK);
@@ -86,8 +110,8 @@ void Animal::render() {
     
     rlPopMatrix();  // Przywróć stan macierzy
     
-    // Health bar - TYLKO GDY HP < 100%
-    if (m_stats && m_stats->getCurrentHealth() < m_stats->getMaxHealth()) {
+    // Health bar - TYLKO GDY HP < 100% ORAZ JEŚLI ŻYJE
+    if (m_stats && m_stats->isAlive() && m_stats->getCurrentHealth() < m_stats->getMaxHealth()) {
         Vector3 barPos = { pos.x, pos.y + 1.2f, pos.z };
         float healthPct = m_stats->getCurrentHealth() / m_stats->getMaxHealth();
         if (healthPct < 0.0f) healthPct = 0.0f;
@@ -99,6 +123,19 @@ void Animal::render() {
         DrawCube(greenBarPos, healthPct * 1.0f, 0.15f, 0.06f, GREEN);
         DrawCubeWires(barPos, 1.0f, 0.15f, 0.05f, BLACK);
     }
+}
+
+// ... (methods) ...
+
+void Animal::die() {
+    // NO MEAT SPAWN HERE anymore.
+    // Body remains active until skinned.
+    
+    // Ustaw losową stronę upadku (lewo/prawo)
+    m_deathRoll = (GetRandomValue(0, 1) == 0) ? 90.0f : -90.0f;
+    
+    Vector3 deathPos = getPosition();
+    std::cout << "[Animal] Died at " << deathPos.x << "," << deathPos.z << ". Body remains for skinning. Roll: " << m_deathRoll << std::endl;
 }
 
 InteractionResult Animal::interact(GameEntity* interactor) {
@@ -131,12 +168,17 @@ Vector3 Animal::getPosition() const {
 }
 
 bool Animal::isActive() const {
-    return m_stats && m_stats->isAlive();
+    // Active if alive OR dead but not skinned (so body is visible)
+    if (!m_stats) return false;
+    return m_stats->isAlive() || !m_isSkinned;
 }
 
 void Animal::takeDamage(float amount) {
     if (!m_stats) return;
     
+    // If already dead, ignore damage (or maybe gib?)
+    if (!m_stats->isAlive()) return;
+
     std::cout << "[Animal] Taking damage: " << amount << ", HP before: " << m_stats->getCurrentHealth() << std::endl;
     
     m_stats->modifyHealth(-amount);
@@ -147,12 +189,12 @@ void Animal::takeDamage(float amount) {
         std::cout << "[Animal] DYING - calling die()" << std::endl;
         die();
     } else {
-        // Flee logic - zwiększona odległość ucieczki
+        // Flee logic
         m_isMoving = true;
         Vector3 currentPos = getPosition();
         
         float angle = (float)GetRandomValue(0, 360) * DEG2RAD;
-        float fleeDistance = 15.0f;  // Zwiększone z 10.0f do 15.0f
+        float fleeDistance = 15.0f;
         m_targetPosition.x = currentPos.x + cos(angle) * fleeDistance;
         m_targetPosition.z = currentPos.z + sin(angle) * fleeDistance;
         m_targetPosition.y = currentPos.y;
@@ -163,12 +205,12 @@ void Animal::takeDamage(float amount) {
 }
 
 void Animal::scareAway(Vector3 threatPosition) {
-    // Uciekaj w przeciwnym kierunku od zagrożenia
+    if (isDead()) return; // Dead animals don't flee
+    
     m_isMoving = true;
     Vector3 currentPos = getPosition();
     Vector3 fleeDir = Vector3Subtract(currentPos, threatPosition);
     if (Vector3Length(fleeDir) < 0.01f) {
-        // Jeśli za blisko, wybierz losowy kierunek
         float angle = (float)GetRandomValue(0, 360) * DEG2RAD;
         fleeDir.x = cos(angle);
         fleeDir.z = sin(angle);
@@ -176,7 +218,7 @@ void Animal::scareAway(Vector3 threatPosition) {
         fleeDir = Vector3Normalize(fleeDir);
     }
     
-    float fleeDistance = 8.0f;  // Królik ucieka na 8 jednostek
+    float fleeDistance = 8.0f;
     m_targetPosition = Vector3Add(currentPos, Vector3Scale(fleeDir, fleeDistance));
     m_targetPosition.y = currentPos.y;
     
@@ -188,6 +230,7 @@ bool Animal::isDead() const {
 }
 
 void Animal::updateAI(float deltaTime) {
+    // If dead, do no update movement (body stays still)
     if (!m_stats || !m_stats->isAlive()) return;
 
     Vector3 currentPos = getPosition();
@@ -201,10 +244,8 @@ void Animal::updateAI(float deltaTime) {
             m_idleTimer = (float)GetRandomValue(2, 5);
         } else {
             dir = Vector3Normalize(dir);
-            
-            // OBLICZ ROTACJĘ z kierunku ruchu
-            // UWAGA: Model królika ma głowę na -Z, więc odwracamy rotację
-            m_rotation = atan2f(-dir.x, -dir.z);  // Odwrócona rotacja dla poprawnego kierunku
+            // Model orientation
+            m_rotation = atan2f(-dir.x, -dir.z);
             
             Vector3 newPos = Vector3Add(currentPos, Vector3Scale(dir, m_moveSpeed * deltaTime));
             newPos.y = 0.0f;
@@ -228,16 +269,3 @@ void Animal::updateAI(float deltaTime) {
     }
 }
 
-void Animal::die() {
-    extern Colony colony;
-    
-    Vector3 deathPos = getPosition();
-    std::cout << "[Animal] DIE() called at position: " << deathPos.x << "," << deathPos.y << "," << deathPos.z << std::endl;
-    
-    auto meat = std::make_unique<ConsumableItem>("Surowe Mies", "Swieze mieso ze zwierzecia.");
-    std::cout << "[Animal] Created meat item, calling colony.addDroppedItem..." << std::endl;
-    
-    colony.addDroppedItem(std::move(meat), deathPos);
-    
-    std::cout << "[Animal] Meat dropped successfully!" << std::endl;
-}

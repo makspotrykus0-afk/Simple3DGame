@@ -164,8 +164,7 @@ const std::vector<std::unique_ptr<ResourceNode>>& resourceNodes) {
                 
                 if (m_currentTargetAnimal->isDead()) {
                     std::cout << "[Settler] Target killed on hit frame." << std::endl;
-                    // Przejście do PICKING_UP obsłużymy w następnym cyklu UpdateHunting
-                    // lub tutaj, ale UpdateHunting bezpieczniej
+                    // Meat spawn removed - handled by skinning
                 }
             }
             m_waitingToDealDamage = false; // Damage zadany raz na atak
@@ -222,6 +221,12 @@ switch (m_state) {
         break;
     case SettlerState::HUNTING:
         UpdateHunting(deltaTime, animals, buildings);
+        break;
+    case SettlerState::SKINNING:
+        UpdateSkinning(deltaTime);
+        break;
+    case SettlerState::MOVING_TO_SKIN:
+        UpdateMovingToSkin(deltaTime, buildings);
         break;
     case SettlerState::GATHERING:
         UpdateGathering(deltaTime, worldItems, buildings);
@@ -344,11 +349,12 @@ switch (m_state) {
                 if (m_state != SettlerState::IDLE) return; // If we switched state, exit.
             }
 
-            // Determine if we have resources
+
+            // Determine if we have resources or food
             bool hasResources = false;
             const auto& items = m_inventory.getItems();
             for(const auto& item : items) {
-                if (item && item->item && item->item->getItemType() == ItemType::RESOURCE) {
+                if (item && item->item && (item->item->getItemType() == ItemType::RESOURCE || item->item->getItemType() == ItemType::CONSUMABLE)) {
                     hasResources = true;
                     break;
                 }
@@ -372,12 +378,12 @@ switch (m_state) {
                             const auto& invItems = m_inventory.getItems();
                             for (size_t i = 0; i < invItems.size(); ++i) {
                                 const auto& invItem = invItems[i];
-                                if (!invItem || !invItem->item || invItem->item->getItemType() != ItemType::RESOURCE) continue;
-                                ResourceItem* resItem = dynamic_cast<ResourceItem*>(invItem->item.get());
-                                if (!resItem) continue;
-                                // Stwórz kopię przedmiotu dla każdej jednostki
+                                if (!invItem || !invItem->item || (invItem->item->getItemType() != ItemType::RESOURCE && invItem->item->getItemType() != ItemType::CONSUMABLE)) continue;
+                                Item* rawItem = invItem->item.get();
+                                // Try casting to ResourceItem or ConsumableItem just to be safe, or just drop it.
+                                // We clone it for world item.
                                 for (int q = 0; q < invItem->quantity; ++q) {
-                                    auto droppedItem = std::make_unique<ResourceItem>(resItem->getResourceType(), resItem->getDisplayName(), resItem->getDescription());
+                                    auto droppedItem = rawItem->clone();
                                     // Upuść na ziemię w pobliżu settlera
                                     if (GameEngine::dropItemCallback) {
                                         Vector3 dropPos = position;
@@ -497,6 +503,22 @@ switch (m_state) {
                         taskFound = true;
                     }
                 }
+                 else if (huntAnimals) {
+                    float minDist = 200.0f;
+                    Animal* nearest = nullptr;
+                    for(const auto& animPtr : animals) {
+                        if(animPtr && animPtr->isActive() && !animPtr->isDead()) {
+                             float d = Vector3Distance(position, animPtr->getPosition());
+                             if(d < minDist) { minDist = d; nearest = animPtr.get(); }
+                        }
+                    }
+                    if(nearest) {
+                        m_currentTargetAnimal = nearest;
+                        m_state = SettlerState::HUNTING;
+                        m_huntingTimer = 0.0f;
+                        taskFound = true;
+                    }
+                }
                 // CRAFTING LOGIC (Simplified: Job Acquisition Only)
                 else if (craftItems) {
                     if (m_currentCraftTaskId == -1) {
@@ -570,8 +592,17 @@ void Settler::render() {
     if (m_state == SettlerState::MOVING || m_state == SettlerState::MOVING_TO_STORAGE || 
         m_state == SettlerState::MOVING_TO_FOOD || m_state == SettlerState::MOVING_TO_BED ||
         m_state == SettlerState::GATHERING || m_state == SettlerState::HAULING ||
-        m_state == SettlerState::HUNTING) {  // Dodano HUNTING dla animacji podczas polowania
+        m_state == SettlerState::HUNTING || m_state == SettlerState::MOVING_TO_SKIN) {  // Dodano MOVING_TO_SKIN
         limbSwing = sinf(GetTime() * animSpeed) * 0.2f;
+    }
+
+    // DEBUG: Draw line to target animal
+    if (m_state == SettlerState::HUNTING && m_currentTargetAnimal) {
+        Vector3 targetPos = m_currentTargetAnimal->getPosition();
+        DrawLine3D(position, targetPos, RED);
+        DrawSphere(targetPos, 0.2f, RED);
+        
+        // Debug Text - Console only (Camera not accessible here)
     }
     
     // Matrix Transformation for proper rotation
@@ -588,13 +619,66 @@ void Settler::render() {
     // Head (at bodyY + 0.8)
     DrawCube({0, bodyY + 0.8f, 0}, 0.25f, 0.25f, 0.25f, skinColor); 
     
-    // Legs 
+    // Legs - freeze only when hunting and not moving (aiming)
+    if (m_state == SettlerState::HUNTING && !isMoving()) {
+        limbSwing = 0.0f;
+    }
     DrawCube({ -0.12f, bodyY - 0.2f, limbSwing }, 0.15f, 0.5f, 0.15f, pantsColor);
     DrawCube({ 0.12f, bodyY - 0.2f, -limbSwing }, 0.15f, 0.5f, 0.15f, pantsColor);
     
+    // WEAPON CHECK FOR VISUALS
+    bool hasSniperRifle = false;
+    if (m_heldItem && m_heldItem->getDisplayName() == "Sniper Rifle") {
+        hasSniperRifle = true;
+    }
+
+    // Precise Aiming Check: Must be Hunting, have Rifle, and Timer running (meaning we stopped moving)
+    bool isAiming = false;
+    if (m_state == SettlerState::HUNTING && hasSniperRifle && m_huntingTimer > 0.05f) {
+        isAiming = true;
+        limbSwing = 0.0f; // Freeze legs while aiming
+    }
+
     // Arms
-    // Lewa ręka - POWRÓT do 0.4f (bo prawa ma pivot na 0.6 i wisi w dół do 0.4)
-    DrawCube({ -0.3f, bodyY + 0.4f, -limbSwing }, 0.12f, 0.4f, 0.12f, skinColor);
+    // Arms
+
+    // Check if carrying Meat
+    bool carryingMeat = false;
+    for(const auto& slot : m_inventory.getItems()) {
+        if (slot && slot->item && slot->item->getDisplayName() == "Raw Meat") {
+            carryingMeat = true;
+            break;
+        }
+    }
+
+    // Lewa ręka
+    rlPushMatrix();
+    // Pivot w barku (lewy)
+    rlTranslatef(-0.3f, bodyY + 0.6f, 0.0f); 
+    
+    float leftArmAngle = -limbSwing * 20.0f; 
+    
+    if (isAiming) {
+        // SNIPER STANCE: Left hand supports the barrel
+        leftArmAngle = -85.0f; // Raise horizontal
+        rlRotatef(30.0f, 0.0f, 1.0f, 0.0f); // Angle inward slightly
+    }
+    else if (carryingMeat) {
+        leftArmAngle = -30.0f + (sinf(GetTime() * 10.0f) * 5.0f); 
+    }
+
+    rlRotatef(leftArmAngle, 1.0f, 0.0f, 0.0f);
+    
+    // Rysowanie ręki
+    DrawCube({ 0.0f, -0.2f, 0.0f }, 0.12f, 0.4f, 0.12f, skinColor);
+    
+    // Rysowanie mięsa w dłoni
+    if (carryingMeat) {
+         DrawCube({ 0.0f, -0.45f, 0.1f }, 0.25f, 0.25f, 0.25f, RED); 
+         DrawCubeWires({ 0.0f, -0.45f, 0.1f }, 0.25f, 0.25f, 0.25f, MAROON);
+    }
+
+    rlPopMatrix();
     
     // Prawa ręka - ZŁOŻONA ANIMACJA 5 FAZ (Pivot w barku)
     rlPushMatrix();
@@ -603,7 +687,12 @@ void Settler::render() {
     
     float armAngle = 0.0f; // Domyślnie w dół (0)
     
-    if (m_attackAnimTimer > 0.0f) {
+    // SNIPER AIMING OVERRIDE isAiming calculated earlier
+    if (isAiming) {
+        armAngle = -90.0f; // Raise to horizontal
+    }
+    // MELEE ATTACK ANIMATION
+    else if (m_attackAnimTimer > 0.0f) {
         // 5 FAZ ANIMACJI (Timer 1.0 -> 0.0)
         if (m_attackAnimTimer > 0.8f) {
             // FAZA 1: Windup (1.0-0.8) - Unoszenie do tyłu
@@ -637,8 +726,31 @@ void Settler::render() {
     rlRotatef(armAngle, 1.0f, 0.0f, 0.0f); // Obrót wokół osi X
     
     // Rysowanie ręki (przesuniętej tak, by pivot był na górze sześcianu)
-    // Sześcian ma wysokość 0.4, więc środek jest w -0.2
     DrawCube({ 0.0f, -0.2f, 0.0f }, 0.12f, 0.4f, 0.12f, skinColor);
+    
+    // Draw Held Item Visuals attached to hand
+    if (m_heldItem) {
+        rlPushMatrix();
+        rlTranslatef(0.0f, -0.45f, 0.0f); // Attach to hand
+        
+        if (hasSniperRifle) {
+             // RIFLE MODEL aiming forward relative to hand
+             // Hand is rotated by armAngle. 
+             // If arm is -90 (horizontal), hand is horizontal.
+             // We want rifle processing forward.
+             rlRotatef(90.0f, 1.0f, 0.0f, 0.0f); // Align with arm direction
+             
+             // Barrel
+             DrawCube({0, 0, 0.4f}, 0.05f, 0.05f, 0.8f, BLACK); 
+             // Stock
+             DrawCube({0, -0.1f, -0.2f}, 0.08f, 0.15f, 0.4f, BROWN);
+             // Scope
+             DrawCube({0, 0.08f, 0.1f}, 0.06f, 0.06f, 0.2f, DARKGRAY);
+        } else {
+             // Generic Item logic (can be expanded later)
+        }
+        rlPopMatrix();
+    }
     
     rlPopMatrix();
     
@@ -690,6 +802,9 @@ void Settler::render() {
     }
     else if (m_state == SettlerState::CRAFTING) {
          DrawProgressBar3D(position, m_craftingTimer / 5.0f, GREEN); 
+    }
+    else if (m_state == SettlerState::SKINNING) {
+         DrawProgressBar3D(position, m_skinningTimer / 2.0f, RED);
     }
 }
 InteractionResult Settler::interact(GameEntity* player) {
@@ -756,6 +871,10 @@ case SettlerState::WANDER: return "Wędruje";
 case SettlerState::WAITING: return "Czeka";
 
 case SettlerState::CRAFTING: return "Tworzy";
+
+case SettlerState::SKINNING: return "Skoruje";
+
+case SettlerState::MOVING_TO_SKIN: return "Idzie do ciala";
 
 default: return "Nieznany";
 }
@@ -1160,8 +1279,15 @@ return;
 }
 }
 // Bez ścieżki lub po jej zakończeniu: ruch bezpośredni do celu
-Vector3 direction = Vector3Subtract(m_targetPosition, position);
-float distance = Vector3Length(direction);
+    Vector3 direction = Vector3Subtract(m_targetPosition, position);
+    float distance = Vector3Length(direction);
+
+    // FIX: Wall Clipping Prevention
+    if (m_currentPath.empty() && distance > 2.0f) {
+        std::cout << "[Settler] No path to target (" << distance << "m away). Stopping to avoid wall clip." << std::endl;
+        m_state = SettlerState::IDLE;
+        return;
+    }
 if (distance < 0.5f) {
 // Jeśli szliśmy do warsztatu, przełącz na crafting
 if (m_state == SettlerState::MOVING && m_targetWorkshop && m_currentCraftTaskId != -1) {
@@ -1256,9 +1382,10 @@ return;
 Vector3 direction = Vector3Subtract(m_targetPosition, position);
 float distance = Vector3Length(direction);
 
-    // Epsilon dla dotarcia
-    if (distance < 1.0f) {
-        std::cout << "[Settler] Dotarłem do magazynu." << std::endl;
+    // Epsilon dla dotarcia - ZWIĘKSZONY dystans (3.0f) aby nie wchodzić do magazynu
+    if (distance < 3.0f) {
+        Stop(); // Zatrzymaj się przed wejściem
+        std::cout << "[Settler] Dotarłem do magazynu (dystans < 3.0)." << std::endl;
         
         // CZY TO JEST MISJA CRAFTINGOWA? (Pobranie surowców)
         if (m_currentCraftTaskId != -1) {
@@ -1316,11 +1443,8 @@ std::cout << "[Settler] MovingToStorage: pos=(" << position.x << "," << position
 lastMoveLog = GetTime();
 }
 
-direction = Vector3Normalize(direction);
-
-Vector3 movement = Vector3Scale(direction, m_moveSpeed * deltaTime);
-
-position = Vector3Add(position, movement);
+    // Use centralized movement logic to respect pathfinding and walls
+    UpdateMovement(deltaTime, {}, buildings);
 
 }
 void Settler::UpdateDepositing(float deltaTime, const std::vector<BuildingInstance*>& buildings) {
@@ -1963,22 +2087,38 @@ for (auto* b : buildings) {
     const auto& items = m_inventory.getItems();
 
     for (const auto& invItem : items) {
-        if (!invItem || !invItem->item || invItem->item->getItemType() != ItemType::RESOURCE) continue;
-        ResourceItem* resItem = dynamic_cast<ResourceItem*>(invItem->item.get());
-        if (!resItem) continue;
-        std::string typeStr = resItem->getResourceType();
-        Resources::ResourceType type = Resources::ResourceType::None;
-        if (typeStr == "Wood") type = Resources::ResourceType::Wood;
-        else if (typeStr == "Stone") type = Resources::ResourceType::Stone;
-        else if (typeStr == "Food") type = Resources::ResourceType::Food;
-        else if (typeStr == "Metal") type = Resources::ResourceType::Metal;
-        else if (typeStr == "Gold") type = Resources::ResourceType::Gold;
+        if (!invItem || !invItem->item || (invItem->item->getItemType() != ItemType::RESOURCE && invItem->item->getItemType() != ItemType::CONSUMABLE)) continue;
+        
+        // Handle Resources
+        if (invItem->item->getItemType() == ItemType::RESOURCE) {
+             ResourceItem* resItem = dynamic_cast<ResourceItem*>(invItem->item.get());
+             if (!resItem) continue;
+             std::string typeStr = resItem->getResourceType();
+             Resources::ResourceType type = Resources::ResourceType::None;
+             if (typeStr == "Wood") type = Resources::ResourceType::Wood;
+             else if (typeStr == "Stone") type = Resources::ResourceType::Stone;
+             else if (typeStr == "Food") type = Resources::ResourceType::Food;
+             else if (typeStr == "Metal") type = Resources::ResourceType::Metal;
+             else if (typeStr == "Gold") type = Resources::ResourceType::Gold;
 
-        if (type != Resources::ResourceType::None) {
-            if (storageSys->canAddResource(storageId, type, invItem->quantity)) {
-                canAcceptAny = true;
-                break;
-            }
+             if (type != Resources::ResourceType::None) {
+                 if (storageSys->canAddResource(storageId, type, invItem->quantity)) {
+                     canAcceptAny = true;
+                     break;
+                 }
+             }
+        }
+        // Handle Consumables (Food/Meat)
+        else if (invItem->item->getItemType() == ItemType::CONSUMABLE) {
+             // For now, assume storehouses accept food if they have slots.
+             // Or use specific Food type if available in StorageSystem.
+             // We'll rely on slot check inside storageSys or just generic slot check below.
+             // Check if storage allows 'Food' resource type mapping?
+             // Simplest: Check if storage has "Food" capacity or free slots.
+             if (storageSys->canAddResource(storageId, Resources::ResourceType::Food, invItem->quantity)) {
+                 canAcceptAny = true;
+                 break;
+             }
         }
     }
 
@@ -2397,6 +2537,8 @@ case SettlerState::HUNTING:
 
 case SettlerState::MOVING_TO_STORAGE:
 
+case SettlerState::SKINNING:
+
 default:
 
 return false;
@@ -2587,21 +2729,63 @@ void Settler::UpdateHunting(float deltaTime,
             // Brak zwierząt w zasięgu
             m_state = SettlerState::IDLE;
             std::cout << "[Settler] " << m_name << " - no animals found, going IDLE" << std::endl;
+            m_state = SettlerState::IDLE;
             return;
         }
     }
 
-    // Sprawdź czy zwierzę jeszcze żyje
-    if (!m_currentTargetAnimal || !m_currentTargetAnimal->isActive() || m_currentTargetAnimal->isDead()) {
-        std::cout << "[Settler] Target animal died or disappeared. Picking up meat..." << std::endl;
-        if (m_currentTargetAnimal) {
-            m_targetPosition = m_currentTargetAnimal->getPosition();
+    // VALIDATE CURRENT TARGET POINTER
+    if (m_currentTargetAnimal) {
+        bool stillExists = false;
+        for (const auto& animalPtr : animals) {
+            Animal* animal = animalPtr.get();
+            if (animal == m_currentTargetAnimal) {
+                 stillExists = true;
+                 break;
+            }
         }
-        m_state = SettlerState::PICKING_UP;
+        if (!stillExists) {
+             std::cout << "[Settler] Target animal invalid/deleted. Forgetting." << std::endl;
+             m_currentTargetAnimal = nullptr;
+             m_state = SettlerState::IDLE;
+             return;
+        }
+    }
+
+    // Sprawdź czy zwierzę jeszcze żyje LUB czy jest to martwe ciało do oskórowania
+    // If target is dead, we want to proceed to skinning IF state is HUNTING.
+    // But if we are just looking for target, we verify isActive.
+    // If dead AND !skinned, it isActive()==true.
+    if (!m_currentTargetAnimal || !m_currentTargetAnimal->isActive()) {
+        std::cout << "[Settler] Target animal disappeared/removed." << std::endl;
+        m_state = SettlerState::IDLE;
         m_currentTargetAnimal = nullptr;
-        m_attackCount = 0;
-        m_huntingTimer = 0.0f;
         return;
+    }
+    
+    // DEBUG: Check for zero position ghost
+    if (Vector3Length(m_currentTargetAnimal->getPosition()) < 0.1f) {
+         // Suspect ghost at 0,0,0
+         std::cout << "[Settler] Ignoring target at 0,0,0 (Ghost)." << std::endl;
+         m_currentTargetAnimal = nullptr;
+         return;
+    }
+    
+    // If already dead (body), move to skinning logic
+    if (m_currentTargetAnimal->isDead()) {
+         // Move to body if far
+         float d = Vector3Distance(position, m_currentTargetAnimal->getPosition());
+         if (d > 1.0f) {
+             MoveTo(m_currentTargetAnimal->getPosition());
+             // Fix: Set state to MOVING_TO_SKIN so we don't go IDLE on arrival
+             m_state = SettlerState::MOVING_TO_SKIN;
+             return;
+         } else {
+             m_state = SettlerState::SKINNING;
+             m_skinningTimer = 0.0f;
+             std::cout << "[Settler] Arrived at body. Starting skinning." << std::endl;
+             return;
+         }
     }
 
     // Podążaj za zwierzęciem (aktualizuj cel)
@@ -2623,62 +2807,222 @@ void Settler::UpdateHunting(float deltaTime,
     
     // ZAWSZE inkrementuj timer (ładuj atak podczas biegu)
     m_huntingTimer += deltaTime;
+    
+    // Debug log for distance
+    static float logTimer = 0.0f;
+    logTimer += deltaTime;
+    if (logTimer > 1.0f) {
+         Vector3 tPos = m_currentTargetAnimal->getPosition();
+         std::cout << "[DEBUG HUNT] Target: " << (m_currentTargetAnimal->getType() == AnimalType::RABBIT ? "Rabbit" : "Deer")
+                   << " | Pos: (" << tPos.x << ", " << tPos.y << ", " << tPos.z << ")"
+                   << " | Dist: " << distToAnimal 
+                   << " | Active: " << m_currentTargetAnimal->isActive()
+                   << " | Dead: " << m_currentTargetAnimal->isDead()
+                   << " | Skinned: " << m_currentTargetAnimal->isSkinned() // Need getter?
+                   << std::endl;
+         logTimer = 0.0f;
+    }
 
-    if (distToAnimal > attackRange) {
-        // Ruch w kierunku zwierzęcia Z COLLISION DETECTION
-        Vector3 direction = Vector3Subtract(animalPos, position);
-        direction = Vector3Normalize(direction);
-        Vector3 movement = Vector3Scale(direction, m_moveSpeed * deltaTime);
-        Vector3 newPos = Vector3Add(position, movement);
-        
-        // COLLISION DETECTION
-        bool blocked = false;
+    // WEAPON CHECK
+    bool hasSniperRifle = false;
+    if (m_heldItem && m_heldItem->getDisplayName() == "Sniper Rifle") {
+        hasSniperRifle = true;
+    }
+
+    float currentAttackRange = hasSniperRifle ? 15.0f : 1.0f;
+    
+    // LINE OF SIGHT CHECK (Sniper Only)
+    bool hasLineOfSight = true;
+    if (hasSniperRifle && distToAnimal <= currentAttackRange) {
+        // Only check LOS if within range (optimization)
+        Ray ray;
+        ray.position = {position.x, position.y + 1.5f, position.z}; // Eye level
+        Vector3 targetCenter = {animalPos.x, animalPos.y + 0.3f, animalPos.z}; // Animal center estimate
+        Vector3 diff = Vector3Subtract(targetCenter, ray.position);
+        ray.direction = Vector3Normalize(diff);
+        float distToTarget = Vector3Length(diff);
+
         for (const auto* building : buildings) {
             if (!building) continue;
-            if (building->CheckCollision(newPos, 0.5f)) {
-                blocked = true;
-                break;
+            // Ignore storage ghosting?
+            // If user says "don't shoot through walls", we MUST check storage.
+            // But if we are IN storage (ghosting), we can't shoot out?
+            // Let's assume hitting simple_storage blocks the shot.
+            
+            RayCollision col = GetRayCollisionBox(ray, building->getBoundingBox());
+            if (col.hit) {
+                // Check if hit is closer than target (and not behind)
+                if (col.distance < distToTarget - 0.5f) { // -0.5 tolerance
+                    hasLineOfSight = false;
+                    break;
+                }
             }
         }
+    }
+
+    if (distToAnimal > currentAttackRange || (hasSniperRifle && !hasLineOfSight)) {
+        // MOVEMENT PHASE: Use Pathfinding to reach target or better position
         
-        if (!blocked) position = newPos;
+        // Recalculate path if target moved significantly (optimization to avoid pathfinding every frame)
+        if (Vector3Distance(m_targetPosition, animalPos) > 1.0f || !hasPath()) {
+            MoveTo(animalPos);
+            // MoveTo sets m_targetPosition to animalPos
+        }
+
+        // Use standard movement logic (respects walls, NavGrid)
+        UpdateMovement(deltaTime, {}, buildings);
+
+        // Explicitly un-stick if stuck? UpdateMovement handles it slightly.
+        // Also ensure rotation follows path, not locked to animal yet.
+        
+        // RESET AIM IF MOVING
+        m_huntingTimer = 0.0f;
+        m_attackAnimTimer = 0.0f; // Reset attack sequence
+        m_waitingToDealDamage = false; 
         
     } else {
-        // W zasięgu ataku - STOP i ATAK
+        // AIMING / ATTACK PHASE
+        // We are in range and have LOS.
         
-        if (m_huntingTimer >= 1.5f) {  // Atak gotowy
-            // TRIGGER ANIMACJI UDERZENIA (Start)
-            if (m_attackAnimTimer == 0.0f) { // Rozpocznij tylko jak poprzednia się skończyła
+        // Ensure we stop moving
+        clearPath(); // Stop following path
+        // m_state remains HUNTING.
+        
+        float attackDelay = hasSniperRifle ? 2.0f : 1.5f;
+
+        // ... Rest of logic stays same ...
+        if (m_huntingTimer >= attackDelay) { 
+             // TRIGGER ANIMACJI / STRZAŁU
+            if (m_attackAnimTimer == 0.0f) { 
                 m_attackAnimTimer = 1.0f;  
-                m_waitingToDealDamage = true; // Czekaj na hit frame
+                m_waitingToDealDamage = true; 
                 
-                // Atak logiczny - reset timerów
                 m_huntingTimer = 0.0f; 
                 m_attackCount++;
                 
-                std::cout << "[Settler] " << m_name << " starts attack sequence..." << std::endl;
+                if (hasSniperRifle) {
+                    std::cout << "[Settler] " << m_name << " FIRES Sniper Rifle at " << distToAnimal << "m!" << std::endl;
+                } else {
+                    // Melee logic
+                }
             }
             
-            // UWAGA: Damage jest teraz zadawany w Update() gdy timer osiągnie 0.4f
-            
-            // Sprawdź czy zwierzę umarło (mogło umrzeć od innego osadnika lub poprzedniego hita)
+            // Sprawdź czy zwierzę umarło
             if (m_currentTargetAnimal->isDead() && !m_waitingToDealDamage) {
-                std::cout << "[Settler] Target eliminated. Moving to pickup." << std::endl;
+                std::cout << "[Settler] Target eliminated. Moving to body for skinning." << std::endl;
                 m_targetPosition = m_currentTargetAnimal->getPosition();
-                m_state = SettlerState::PICKING_UP;
-                m_currentTargetAnimal = nullptr;
+                if (Vector3Distance(position, m_targetPosition) <= 1.0f) {
+                     m_state = SettlerState::SKINNING;
+                     m_skinningTimer = 0.0f;
+                } else {
+                     MoveTo(m_targetPosition);
+                     m_state = SettlerState::MOVING_TO_SKIN; 
+                }
                 m_attackCount = 0;
                 m_huntingTimer = 0.0f;
                 return;
             }
+        } else {
+             // AIMING PHASE (Sniper) or CHARGING (Melee)
+             // Increment Timer (Aiming duration)
+             m_huntingTimer += deltaTime;
+             
+             if (hasSniperRifle) {
+                 // Rotate to target
+                 Vector3 dir = Vector3Subtract(animalPos, position);
+                 float ang = atan2(dir.x, dir.z) * RAD2DEG;
+                 
+                 // Smooth rotation or Snap? Snap is fine for aiming.
+                 m_rotation = ang;
+             }
         }
     }
+} // End UpdateHunting
+
+void Settler::UpdateMovingToSkin(float deltaTime, const std::vector<BuildingInstance*>& buildings) {
+    if (!m_currentTargetAnimal) {
+        m_state = SettlerState::IDLE;
+        return;
+    }
     
-    // LOGIKA UCIECZKI KRÓLIKA
-    // Detection < Attack (0.8 < 1.0) -> Ucieka DOPIERO jak osadnik podejdzie na pewny range
-    // Ale > 0.5f (żeby nie wchodził w model)
-    const float detectionRange = 0.8f; 
-    if (m_currentTargetAnimal && distToAnimal < detectionRange) {
-        m_currentTargetAnimal->scareAway(position);
+    // Check if close enough
+    if (Vector3Distance(position, m_currentTargetAnimal->getPosition()) <= 1.0f) {
+         // Stop movement first (resets to IDLE)
+         Stop(); 
+         
+         // THEN set state to SKINNING
+         m_state = SettlerState::SKINNING;
+         m_skinningTimer = 0.0f;
+         std::cout << "[Settler] Arrived at body (MovingToSkin). Starting skinning." << std::endl;
+         return;
+    }
+    
+    // Update movement logic (path follow)
+    UpdateMovement(deltaTime, {}, buildings);
+    
+    // Also re-check state, because UpdateMovement might switch to IDLE if path finished but we are slightly off?
+    // But Stop() sets IDLE.
+    // If UpdateMovement finishes path, it calls Stop().
+    // So we need to catch that.
+    if (m_state == SettlerState::IDLE) {
+         // If we went IDLE but still have target, maybe we are stuck or arrived?
+         if (m_currentTargetAnimal && Vector3Distance(position, m_currentTargetAnimal->getPosition()) <= 1.5f) {
+             m_state = SettlerState::SKINNING;
+             m_skinningTimer = 0.0f;
+         } else {
+             // Failed to reach?
+             std::cout << "[Settler] Failed to reach body (stuck?). Resetting." << std::endl;
+             m_currentTargetAnimal = nullptr;
+         }
+    } else {
+        // Force state back to MOVING_TO_SKIN in case UpdateMovement set it to MOVING?
+        // UpdateMovement DOES NOT check m_state to set it MOVING. It assumes it is called.
+        // It only sets IDLE on finish.
+        // So we are good, just ensure we restart loop as MOVING_TO_SKIN if not finished.
+        if (m_state != SettlerState::SKINNING) m_state = SettlerState::MOVING_TO_SKIN;
+    }
+}
+
+void Settler::UpdateSkinning(float deltaTime) {
+    if (!m_currentTargetAnimal) {
+        m_state = SettlerState::IDLE;
+        return;
+    }
+    
+    // Check if body still exists (didn't disappear/removed by system?)
+    // Note: Colony checks isActive. We modified isActive to return true if dead but not skinned.
+    // However, we should be careful.
+    
+    m_skinningTimer += deltaTime;
+    
+    // Visuals: Maybe rotate settler to look at body?
+    Vector3 targetPos = m_currentTargetAnimal->getPosition();
+    Vector3 dir = Vector3Subtract(targetPos, position);
+    if (Vector3Length(dir) > 0.01f) {
+         dir = Vector3Normalize(dir);
+         float targetAngle = atan2f(dir.x, dir.z) * RAD2DEG;
+         float angleDiff = targetAngle - m_rotation;
+         while (angleDiff > 180) angleDiff -= 360;
+         while (angleDiff < -180) angleDiff += 360;
+         m_rotation += angleDiff * 5.0f * deltaTime;
+    }
+    
+    if (m_skinningTimer >= 2.0f) { // 2 seconds to skin
+        std::cout << "[Settler] Skinning complete." << std::endl;
+        
+        // Mark animal as skinned (so it disappears from world)
+        m_currentTargetAnimal->setSkinned(true);
+        
+        // Add meat to INVENTORY directly
+        auto meatItem = std::make_unique<ConsumableItem>("Raw Meat", "Fresh raw meat from hunt.");
+        m_inventory.addItem(std::move(meatItem));
+        std::cout << "[Settler] Collected Raw Meat in inventory." << std::endl;
+        
+        // Cleanup
+        m_currentTargetAnimal = nullptr;
+        m_state = SettlerState::IDLE;
+        
+        // Optional: Trigger Haul check immediately?
+        // Logic in IDLE loop will pick up 'haulToStorage' task if we have resources/food.
     }
 }
