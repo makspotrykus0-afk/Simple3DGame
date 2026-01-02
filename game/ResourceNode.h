@@ -38,6 +38,9 @@ public:
     Resources::ResourceType getResourceType() const;
     float harvest(float amount);
 
+    // Collision detection
+    BoundingBox getBoundingBox() const;
+
     // GameEntity implementation
     void setPosition(const Vector3& position) override;
 

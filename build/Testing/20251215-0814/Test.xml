@@ -25,11 +25,11 @@
 	ProcessorClockFrequency="3401"
 	>
 	<Testing>
-		<StartDateTime>Jan 01 22:29 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas stand.</StartDateTime>
-		<StartTestTime>1767302992</StartTestTime>
+		<StartDateTime>Jan 02 03:06 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas stand.</StartDateTime>
+		<StartTestTime>1767319598</StartTestTime>
 		<TestList/>
-		<EndDateTime>Jan 01 22:29 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas stand.</EndDateTime>
-		<EndTestTime>1767302992</EndTestTime>
+		<EndDateTime>Jan 02 03:06 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas stand.</EndDateTime>
+		<EndTestTime>1767319598</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

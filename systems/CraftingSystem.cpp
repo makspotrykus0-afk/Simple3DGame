@@ -40,6 +40,19 @@ void CraftingSystem::initialize() {
     stoneKnife.ingredients.push_back({"Stone", 1});
     registerRecipe(stoneKnife);
 
+    // Kamienna siekiera (Stone Axe)
+    CraftingRecipe stoneAxe;
+    stoneAxe.id = "stone_axe";
+    stoneAxe.name = "Stone Axe";
+    stoneAxe.description = "A rudimentary axe for chopping wood faster.";
+    stoneAxe.craftingTime = 5.0f;
+    stoneAxe.resultItemId = "Stone Axe";
+    stoneAxe.resultType = ItemType::TOOL; 
+    stoneAxe.resultAmount = 1;
+    stoneAxe.ingredients.push_back({"Wood", 3});
+    stoneAxe.ingredients.push_back({"Stone", 2});
+    registerRecipe(stoneAxe);
+
     // Receptura "knife" (alias dla stone_knife, zgodnie ze specyfikacją)
     CraftingRecipe knife;
     knife.id = "knife";

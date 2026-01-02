@@ -26,9 +26,11 @@
 class BuildTask;
 class Terrain;
 class BuildingInstance;
+class Door;
 class Settler; // Forward declaration of Settler (defined in Settler.h)
 #include "Settler.h" // Include the full definition of Settler
 #include "ColonyAI.h" // Include full definition for unique_ptr
+
 
 // Structure representing an item dropped in the world
 class WorldItem {
@@ -50,7 +52,6 @@ public:
     bool hasFruit;
     float regrowthTimer;
     float maxRegrowthTime;
-
     Bush(Vector3 pos) : position(pos), hasFruit(true), regrowthTimer(0.0f), maxRegrowthTime(30.0f) {}
 };
 class Colony {
@@ -64,6 +65,14 @@ std::vector<WorldItem> m_droppedItemsStorage;
 std::unique_ptr<ColonyAI> m_ai;
 std::vector<BuildingInstance*> m_storageBuildings;
 std::unordered_map<std::string, int> m_activeGatheringTasks; // resource type -> count
+    std::vector<Door*> m_doors; // Registered doors
+
+// Tree Respawn Logic
+float m_treeRespawnTimer = 0.0f;
+const int MAX_TREES = 50;
+
+// Helper to find valid spawn position
+Vector3 FindValidTreeSpawnPos();
 
 
 public:
@@ -91,13 +100,18 @@ void cleanup();
 void update(float deltaTime, const std::vector<std::unique_ptr<Tree>>& trees, const std::vector<BuildingInstance*>& buildings);
 
 const std::vector<WorldItem>& getDroppedItems() const { return m_droppedItemsStorage; }
-
 void addDroppedItem(std::unique_ptr<Item> item, Vector3 position);
+std::unique_ptr<Item> takeDroppedItem(size_t index);
 void registerHouse(Vector3 pos, int size, bool occupied);
 
 void registerStorageBuilding(BuildingInstance* b);
 const std::vector<BuildingInstance*>& getStorageBuildings() const;
+
+void registerDoor(Door* door);
+const std::vector<Door*>& getDoors() const;
+
 Settler* getSettlerAt(Vector3 position, float radius = 2.0f);
+
 std::vector<Settler*> getSelectedSettlers() const;
 void clearSelection();
 bool checkHit(Ray ray, float range, std::string& hitInfo);

@@ -87,6 +87,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>F:\Simple3DGame\src;F:\Simple3DGame\core;F:\Simple3DGame\systems;F:\Simple3DGame\components;F:\Simple3DGame\entities;F:\Simple3DGame\game;F:\Simple3DGame\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /FS</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -144,6 +145,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>F:\Simple3DGame\src;F:\Simple3DGame\core;F:\Simple3DGame\systems;F:\Simple3DGame\components;F:\Simple3DGame\entities;F:\Simple3DGame\game;F:\Simple3DGame\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /FS</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -202,6 +204,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>F:\Simple3DGame\src;F:\Simple3DGame\core;F:\Simple3DGame\systems;F:\Simple3DGame\components;F:\Simple3DGame\entities;F:\Simple3DGame\game;F:\Simple3DGame\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /FS</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -260,6 +263,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>F:\Simple3DGame\src;F:\Simple3DGame\core;F:\Simple3DGame\systems;F:\Simple3DGame\components;F:\Simple3DGame\entities;F:\Simple3DGame\game;F:\Simple3DGame\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /FS</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -393,6 +397,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="F:\Simple3DGame\game\BuildingInstance.cpp" />
     <ClCompile Include="F:\Simple3DGame\game\Bed.cpp" />
     <ClCompile Include="F:\Simple3DGame\game\Settler.cpp" />
+    <ClCompile Include="F:\Simple3DGame\game\DebugConsole.cpp" />
     <ClCompile Include="F:\Simple3DGame\game\Projectile.cpp" />
     <ClCompile Include="F:\Simple3DGame\game\NavigationGrid.cpp" />
     <ClCompile Include="F:\Simple3DGame\systems\ResourceSystem.cpp" />

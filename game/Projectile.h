@@ -17,9 +17,11 @@ public:
 
 private:
     Vector3 position;
-    Vector3 direction;
-    float speed;
+    Vector3 velocity; // Changed from direction/speed to velocity for physics
+    float speed;      // Kept for initial calculation or reference if needed
     float damage;
     bool active;
     float lifeTime;
+
+    static constexpr float GRAVITY = 9.81f;
 };

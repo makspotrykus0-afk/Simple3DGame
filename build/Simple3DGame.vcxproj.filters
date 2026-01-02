@@ -64,6 +64,9 @@
     <ClCompile Include="F:\Simple3DGame\game\Settler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="F:\Simple3DGame\game\DebugConsole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="F:\Simple3DGame\game\Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

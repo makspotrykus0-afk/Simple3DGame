@@ -202,7 +202,7 @@ for (auto* settler : settlers) {
     if (settler->getStats().getCurrentEnergy() < 20.0f || settler->getStats().getCurrentHunger() < 20.0f) continue;
 
     // Priority 1: Building
-    if (!buildTasks.empty()) {
+    if (settler->performBuilding && !buildTasks.empty()) {
         BuildTask* bestTask = nullptr;
         float minTaskDistSq = 999999.0f;
         Vector3 settlerPos = settler->getPosition();
@@ -237,7 +237,7 @@ for (auto* settler : settlers) {
 
     // Priority 2: Gathering
     // Check if there is a global request for Wood
-    if (m_colony->isGatheringTaskActive("Wood")) {
+    if (settler->gatherWood && m_colony->isGatheringTaskActive("Wood")) {
         // Find nearest unreserved tree
         Tree* bestTree = nullptr;
         float minDistSq = 99999.0f;

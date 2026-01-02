@@ -9,6 +9,7 @@
 #include "../core/GameSystem.h"
 #include "../game/ColonyAI.h"
 #include "../game/BuildingInstance.h"
+#include "Terrain.h"
 #include "../systems/StorageSystem.h"
 // Access global building system to check for collisions on spawn
 extern BuildingSystem* g_buildingSystem;
@@ -100,71 +101,60 @@ b->setOwner("Colony");
     }
     
     // Register as a storage building
+    // Register as a storage building
     registerStorageBuilding(b);
 }
 
+// FORCE SPAWN AXE
+auto axe = std::make_unique<EquipmentItem>("Stone Axe", EquipmentItem::EquipmentSlot::MAIN_HAND, "A simple stone axe.");
+addDroppedItem(std::move(axe), {12.0f, 0.5f, 12.0f});
+std::cout << "DEBUG: Spawned Stone Axe at (12, 0.5, 12)" << std::endl;
 
-// Generate starter houses for settlers
-for (auto* settler : settlers) {
-    if (settler->isIndependent()) continue; // HE BUILDS IT HIMSELF
-std::string blueprintId = "house_4"; // Default size
-if (settler->preferredHouseSize == 6) blueprintId = "house_6";
-else if (settler->preferredHouseSize == 9) blueprintId = "house_9";
 
-g_buildingSystem->ensureBlueprintExists(blueprintId);
 
-Vector3 startPos = settler->getPosition();
-Vector3 housePos = startPos;
-bool placed = false;
+    // Initialize Houses for Settlers
+    if (g_buildingSystem) {
+        // Ensure blueprints exist
+        g_buildingSystem->ensureBlueprintExists("house_4");
+        g_buildingSystem->ensureBlueprintExists("house_6");
 
-// Search for a valid spot near the settler
-float searchRadius = 5.0f;
-for (int i = 0; i < 20; ++i) {
-    float angle = (float)(rand() % 360) * DEG2RAD;
-    float dist = 3.0f + (float)(rand() % 100) / 100.0f * searchRadius;
-    Vector3 tryPos = Vector3Add(startPos, { cosf(angle) * dist, 0.0f, sinf(angle) * dist });
-    
-    // Round to grid if needed, BuildingSystem handles snap but let's be nice
-    tryPos.x = roundf(tryPos.x);
-    tryPos.z = roundf(tryPos.z);
+        for (auto* settler : settlers) {
+            Vector3 housePos = settler->getPosition();
+            
+            // Offset house position to avoid standing inside it
+            // Adjust positions to avoid colliding with Storehouse (10,0,10) and SimpleStorage (20,0,10)
+            // Settlers are at X: 0, 20, 40, -20.
+            // If we put houses at Z = -10, we are safe.
+            housePos.z -= 10.0f; 
 
-    if (g_buildingSystem->canBuild(blueprintId, tryPos)) {
-        housePos = tryPos;
-        placed = true;
-        break;
-    }
-    
-    if (i % 5 == 0) searchRadius += 2.0f;
-}
+            std::string bpId = "house_4";
+            if (settler->preferredHouseSize > 4) bpId = "house_6";
 
-if (placed) {
-    bool buildSuccess = false;
-    // Instant build
-    g_buildingSystem->startBuilding(blueprintId, housePos, settler, 0.0f, true, false, true, &buildSuccess);
-    
-    if (buildSuccess) {
-        std::cout << "Generated starter house for " << settler->getName() << " at " << housePos.x << ", " << housePos.z << std::endl;
-        // Find the newly created building instance to verify owner (startBuilding doesn't return it for instant builds currently, but sets owner internally)
-        // We can also explicitly find it if needed, but startBuilding(..., settler, ...) handles setOwner.
-        
-        // Optional: assign bed explicitly if Settler logic requires it immediately
-        // BuildingSystem::startBuilding with instant=true creates the building and puts it in m_buildings.
-        // We'd need to query it if we wanted to call settler->assignBed(), but currently Settler finds bed via AI or we trust the system.
-        // Let's try to link it for robustness:
-        BuildingInstance* house = g_buildingSystem->getBuildingAt(housePos);
-        if (house) {
-            settler->assignBed(house); // Assuming house acts as bed container or has a bed component
-            house->setOwner(settler->getName()); // Reinforce ownership
+            bool isIndependent = (settler->getName() == "Independent");
+            bool instantBuild = !isIndependent; 
+
+            bool success = false;
+            BuildTask* task = g_buildingSystem->startBuilding(bpId, housePos, settler, 0.0f, false, false, instantBuild, &success);
+
+            if (success) {
+                if (instantBuild) {
+                    settler->hasHouse = true;
+                    std::cout << "Initialized COMPLETE house for " << settler->getName() << " at (" << housePos.x << ", " << housePos.z << ")" << std::endl;
+                    // Register house functionality (beds etc are handled inside startBuilding for instant)
+                    registerHouse(housePos, settler->preferredHouseSize, true);
+                } else {
+                    // Independent settler gets a task
+                    settler->setIndependent(true); // Should be already set, but ensure
+                    settler->setPrivateBuildTask(task);
+                    settler->performBuilding = true; // Ensure he builds it
+                    std::cout << "Initialized PENDING house task for " << settler->getName() << " at (" << housePos.x << ", " << housePos.z << ")" << std::endl;
+                }
+            } else {
+                std::cout << "Failed to initialize house for " << settler->getName() << " (collision?)" << std::endl;
+            }
         }
-    } else {
-        std::cout << "Failed to build starter house for " << settler->getName() << std::endl;
     }
-} else {
-    std::cout << "Could not find space for starter house for " << settler->getName() << std::endl;
-}
 
-
-}
 }
     // Initialize ColonyAI
     m_ai = std::make_unique<ColonyAI>(this, g_buildingSystem);
@@ -240,7 +230,31 @@ bush->hasFruit = true;
 bush->regrowthTimer = 0.0f;
 }
 }
-}
+    }
+
+    // Tree Respawn Logic
+    m_treeRespawnTimer -= deltaTime;
+    if (m_treeRespawnTimer <= 0.0f) {
+        // Count active trees only (ignore stumps)
+        size_t activeTreeCount = 0;
+        for (const auto& t : trees) {
+            if (t->isActive()) activeTreeCount++;
+        }
+
+        if (activeTreeCount < (size_t)MAX_TREES) {
+             Vector3 spawnPos = FindValidTreeSpawnPos();
+             if (Vector3Length(spawnPos) > 0.1f) {
+                 Terrain* terrain = GameSystem::getTerrain();
+                 if (terrain) {
+                     PositionComponent posComp(spawnPos);
+                     auto newTree = std::make_unique<Tree>(posComp, 100.0f, 50.0f);
+                     terrain->addTree(std::move(newTree));
+                     std::cout << "[Nature] A new tree sprouted at " << spawnPos.x << ", " << spawnPos.z << std::endl;
+                 }
+             }
+        }
+        m_treeRespawnTimer = 10.0f; // Check every 10 seconds
+    }
 }
 void Colony::render(bool isFPSMode, Settler* selectedSettler) {
 for (auto* settler : settlers) {
@@ -437,7 +451,21 @@ const std::vector<BuildingInstance*>& Colony::getStorageBuildings() const {
 return m_storageBuildings;
 }
 
+void Colony::registerDoor(Door* door) {
+    if (!door) return;
+    // Avoid duplicates
+    for (Door* existing : m_doors) {
+        if (existing == door) return;
+    }
+    m_doors.push_back(door);
+}
+
+const std::vector<Door*>& Colony::getDoors() const {
+    return m_doors;
+}
+
 bool Colony::isGatheringTaskActive(const std::string& resourceType) const {
+
     auto it = m_activeGatheringTasks.find(resourceType);
     return it != m_activeGatheringTasks.end() && it->second > 0;
 }
@@ -460,4 +488,59 @@ void Colony::unregisterGatheringTask(const std::string& resourceType) {
                       << " (remaining: " << it->second << ")" << std::endl;
         }
     }
+}
+
+std::unique_ptr<Item> Colony::takeDroppedItem(size_t index) {
+    if (index >= m_droppedItemsStorage.size()) return nullptr;
+    
+    // Move item out
+    std::unique_ptr<Item> item = std::move(m_droppedItemsStorage[index].item);
+    
+    // Remove from vector (swap and pop for efficiency, but order might change... acceptable for loose items)
+    // Actually, std::remove_if logic in update cleans up "pendingRemoval", but here we take it instantly.
+    // Let's iterate erasure.
+    return item;
+}
+
+Vector3 Colony::FindValidTreeSpawnPos() {
+    if (!g_buildingSystem) return {0,0,0};
+    
+    // Try random positions
+    for (int i = 0; i < 20; ++i) {
+        float angle = (float)(rand() % 360) * DEG2RAD;
+        float dist = 20.0f + (float)(rand() % 80); // 20-100m range
+        Vector3 pos = { cosf(angle) * dist, 0.0f, sinf(angle) * dist };
+        
+        bool collision = false;
+        
+        // 1. Check Buildings
+        auto buildings = g_buildingSystem->getBuildingsInRange(pos, 5.0f);
+        for (auto* b : buildings) {
+             // Treat all buildings as blockers for trees, even floors
+             if (b->getBoundingBox().min.x == 0 && b->getBoundingBox().max.x == 0) continue; // Invalid box check?
+
+             if (CheckCollisionBoxSphere(b->getBoundingBox(), pos, 1.0f)) { // 1.0f tree radius
+                 collision = true;
+                 break;
+             }
+        }
+        if (collision) continue;
+        
+        // 2. Check Existing Resources/Bushes (simple dist check)
+        for (const auto& node : m_resourceNodes) {
+            if (Vector3Distance(pos, node->getPosition()) < 2.0f) { collision = true; break; }
+        }
+        if (collision) continue;
+        
+        // 3. Check Bushes
+        for (const auto* bush : bushes) {
+            if (Vector3Distance(pos, bush->position) < 2.0f) { collision = true; break; }
+        }
+        if (collision) continue;
+        
+        // Valid!
+        return pos;
+    }
+    
+    return {0,0,0}; // Failed
 }

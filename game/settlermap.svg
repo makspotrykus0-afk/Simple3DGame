@@ -1,0 +1,833 @@
+
+<svg class="callgraph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 422.3900146484375 5424">
+  <style>:root{--background-color: #f5fffa;--selected-color: #4fe1f4;--edge-color: #548f9e;--edge-incoming-color: #698b69;--edge-outgoing-color: #008acd;--edge-incoming-outgoing-color: black;--cluster-label-bg-color: #e8eaed;--node-bg-color: #f4f5f1;--symbol-default-bg-color: var(--node-bg-color);--symbol-default-border-color: #889f4e;--symbol-default-text-color: #363636;--interface-bg-color: #fff8dc;--interface-border-color: #a69348;--module-bg-color: #ffebcd;--module-border-color: #a67e43;--constructor-bg-color: #ffdab9;--constructor-border-color: #a66e3c;--method-bg-color: #fff8c5;--method-border-color: #d4a72c;--function-bg-color: #bafbd0;--function-border-color: #4ac26b;--struct-bg-color: #ddf4ff;--struct-border-color: #54aeff;--type-icon-color: #8969da;--property-icon-color: #5f9348}.callgraph{--bold-border: 3.2;width:100%;height:100%;outline:none;cursor:default;-webkit-user-select:none;user-select:none}.callgraph>#graph0>polygon:first-of-type{fill:var(--background-color)}.callgraph>#graph0>#faded-group>:where(.node,.cluster){opacity:.2}.callgraph>#graph0>#faded-group>.edge{opacity:.05}.callgraph .edge>path:not(.hover-path){stroke:var(--edge-color);stroke-width:3}.callgraph .edge>polygon{stroke:var(--edge-color);fill:var(--edge-color)}.callgraph .edge>path.hover-path{stroke:transparent;stroke-width:15}.callgraph .edge.impl>path{stroke-dasharray:8,3}.callgraph .edge.impl>polygon{stroke-width:2;fill:none!important}.callgraph .edge:hover{--edge-color: var(--selected-color)}.callgraph .edge.incoming{--edge-color: var(--edge-incoming-color)}.callgraph .edge.outgoing{--edge-color: var(--edge-outgoing-color)}.callgraph .edge.incoming.outgoing{--edge-color: var(--edge-incoming-outgoing-color)}.callgraph .cluster polygon{stroke-width:1.6}.callgraph .cluster .cluster-label{cursor:pointer;fill:var(--cluster-label-bg-color);rx:18px}.callgraph .cluster text{pointer-events:none}.callgraph .cluster.selected{--cluster-label-bg-color: color-mix(in srgb, var(--selected-color) 30%, transparent)}.callgraph .cluster.selected polygon{stroke-width:var(--bold-border);stroke:var(--selected-color)}.callgraph .node>rect{rx:20px;fill:var(--node-bg-color);filter:url(#shadow)}.callgraph .node.selected>rect{stroke:var(--selected-color);stroke-width:var(--bold-border)}.callgraph .node>.title{cursor:pointer}.callgraph .node>.title>text{font-weight:700}.callgraph .cell{--bg-color: var(--symbol-default-bg-color);--border-color: var(--symbol-default-border-color);--border-width: 1.6}.callgraph .cell>rect{rx:10px;fill:var(--bg-color);stroke:var(--border-color);stroke-width:var(--border-width)}.callgraph .cell>text{fill:var(--symbold-default-text-color)}.callgraph .cell:where(.highlight,.selected,:not(:has(>.cell:hover)):hover){--border-width: var(--bold-border)}.callgraph .cell.highlight>rect{stroke:url(#highlightGradient)}.callgraph .cell.selected>rect{filter:drop-shadow(3px 3px 6px var(--border-color))}.callgraph .cell.interface{--bg-color: var(--interface-bg-color);--border-color: var(--interface-border-color)}.callgraph .cell.interface>rect{stroke-dasharray:7,5}.callgraph .cell.module{--bg-color: var(--module-bg-color);--border-color: var(--module-border-color)}.callgraph .cell.constructor{--bg-color: var(--constructor-bg-color);--border-color: var(--constructor-border-color)}.callgraph .cell.function{--bg-color: var(--function-bg-color);--border-color: var(--function-border-color)}.callgraph .cell.method{--bg-color: var(--method-bg-color);--border-color: var(--method-border-color)}.callgraph .cell:where(.class,.struct,.enum){--bg-color: var(--struct-bg-color);--border-color: var(--struct-border-color)}.callgraph .cell:where(.class,.struct,.enum)>rect{rx:unset}.callgraph .cell:where(.class,.struct,.enum)>text{transform:translateY(1.5px)}.callgraph .cell:where(.class,.struct,.enum)>text:first-of-type{fill:var(--type-icon-color)}.callgraph .cell:where(.field,.property)>rect{rx:unset}.callgraph .cell:where(.field,.property)>text:first-of-type{font-style:italic;fill:var(--property-icon-color)}
+</style>
+  
+<g id="graph0" class="graph" transform="translate(0 5424)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-5420 418.39,-5420 418.39,4 -4,4"></polygon>
+<g id="clust1" class="cluster">
+
+<polygon fill="none" stroke="black" points="127.13,-8 127.13,-5408 406.39,-5408 406.39,-8 127.13,-8"></polygon>
+<rect x="180.05999755859375" y="-5404" width="173.39999389648438" height="35.2001953125" class="cluster-label"></rect>
+<text text-anchor="start" x="188.06" y="-5381.6" font-family="Arial" font-size="16.00">Simple3DGame/game</text>
+</g>
+<!-- 1 -->
+<g id="1" class="node" data-path="/F:/Simple3DGame/game/Settler.h">
+
+<rect x="135.1300048828125" y="-5356.5" width="263.260009765625" height="5341"></rect>
+<g id="1_0" class="title">
+<text text-anchor="start" x="183.62" y="-5324.1" font-family="Arial" font-size="16.00"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Settler.h &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text>
+
+</g>
+<g id="1:29_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-5305.2998046875" width="231.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="240.09" y="-5287.9" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="251.64" y="-5287.9" font-family="Arial" font-size="16.00"> &#160;Tree</text>
+
+</g>
+<g id="1:30_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-5270.10009765625" width="231.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="197.83" y="-5252.7" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="209.38" y="-5252.7" font-family="Arial" font-size="16.00"> &#160;BuildingInstance</text>
+
+</g>
+<g id="1:31_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-5234.89990234375" width="231.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="220.09" y="-5217.5" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="231.64" y="-5217.5" font-family="Arial" font-size="16.00"> &#160;WorldItem</text>
+
+</g>
+<g id="1:32_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-5199.7001953125" width="231.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="238.3" y="-5182.3" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="249.86" y="-5182.3" font-family="Arial" font-size="16.00"> &#160;Bush</text>
+
+</g>
+<g id="1:33_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-5164.5" width="231.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="232.08" y="-5147.1" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="243.64" y="-5147.1" font-family="Arial" font-size="16.00"> &#160;Animal</text>
+
+</g>
+<g id="1:34_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-5129.2998046875" width="231.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="240.98" y="-5111.9" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="252.53" y="-5111.9" font-family="Arial" font-size="16.00"> &#160;Item</text>
+
+</g>
+<g id="1:35_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-5094.10009765625" width="231.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="203.17" y="-5076.7" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="214.73" y="-5076.7" font-family="Arial" font-size="16.00"> &#160;ResourceNode</text>
+
+</g>
+<g id="1:36_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-5058.89990234375" width="231.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="221.41" y="-5041.5" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="232.96" y="-5041.5" font-family="Arial" font-size="16.00"> &#160;BuildTask</text>
+
+</g>
+<g id="1:37_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-5023.7001953125" width="231.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="204.07" y="-5006.3" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="215.62" y="-5006.3" font-family="Arial" font-size="16.00"> &#160;GatheringTask</text>
+
+</g>
+<g id="1:38_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-4988.5" width="231.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="223.63" y="-4971.1" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="235.19" y="-4971.1" font-family="Arial" font-size="16.00"> &#160;Projectile</text>
+
+</g>
+<g id="1:39_7" data-kind="23" class="cell struct">
+<rect x="151.1300048828125" y="-4953.2998046875" width="231.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="211.63" y="-4935.9" font-family="Arial" font-weight="bold" font-size="16.00">S</text>
+<text text-anchor="start" x="222.3" y="-4935.9" font-family="Arial" font-size="16.00"> &#160;CraftingTask</text>
+
+</g>
+<g id="1:40_11" data-kind="10" class="cell enum">
+<rect x="151.1300048828125" y="-4918.10009765625" width="231.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="196.06" y="-4900.7" font-family="Arial" font-weight="bold" font-size="16.00">E</text>
+<text text-anchor="start" x="206.73" y="-4900.7" font-family="Arial" font-size="16.00"> &#160;SettlerProfession</text>
+
+</g>
+<g id="1:52_11" data-kind="10" class="cell enum">
+<rect x="151.1300048828125" y="-4882.89990234375" width="231.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="215.18" y="-4865.5" font-family="Arial" font-weight="bold" font-size="16.00">E</text>
+<text text-anchor="start" x="225.85" y="-4865.5" font-family="Arial" font-size="16.00"> &#160;SettlerState</text>
+
+</g>
+<g id="1:93_11" data-kind="10" class="cell enum">
+<rect x="151.1300048828125" y="-4847.7001953125" width="231.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="221.86" y="-4830.3" font-family="Arial" font-weight="bold" font-size="16.00">E</text>
+<text text-anchor="start" x="232.53" y="-4830.3" font-family="Arial" font-size="16.00"> &#160;TaskType</text>
+
+</g>
+<g id="1:113_7" data-kind="23" class="cell struct">
+<rect x="151.1300048828125" y="-4812.5" width="231.260009765625" height="113.60009765625"></rect>
+<text text-anchor="start" x="234.74" y="-4787.1" font-family="Arial" font-weight="bold" font-size="16.00">S</text>
+<text text-anchor="start" x="245.41" y="-4787.1" font-family="Arial" font-size="16.00"> &#160;Action</text>
+<g id="1:125_14" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4769.2998046875" width="215.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="247.2" y="-4750.9" font-family="Arial" font-size="16.00">Move</text>
+
+</g>
+<g id="1:131_14" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4734.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="242.75" y="-4715.7" font-family="Arial" font-size="16.00">Pickup</text>
+
+</g>
+
+</g>
+<g id="1:138_7" data-kind="23" class="cell struct">
+<rect x="151.1300048828125" y="-4690.89990234375" width="231.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="216.96" y="-4673.5" font-family="Arial" font-weight="bold" font-size="16.00">S</text>
+<text text-anchor="start" x="227.63" y="-4673.5" font-family="Arial" font-size="16.00"> &#160;SavedTask</text>
+
+</g>
+<g id="1:145_6" data-kind="5" class="cell class">
+<rect x="151.1300048828125" y="-4655.7001953125" width="231.260009765625" height="4619.2001953125"></rect>
+<text text-anchor="start" x="233.41" y="-4630.3" font-family="Arial" font-weight="bold" font-size="16.00">C</text>
+<text text-anchor="start" x="244.97" y="-4630.3" font-family="Arial" font-size="16.00"> &#160;Settler</text>
+<g id="1:148_0" data-kind="9" class="cell constructor">
+<rect x="159.1300048828125" y="-4612.5" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="243.64" y="-4594.1" font-family="Arial" font-size="16.00">Settler</text>
+
+</g>
+<g id="1:149_8" data-kind="9" class="cell constructor">
+<rect x="159.1300048828125" y="-4577.2998046875" width="215.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="238.96" y="-4558.9" font-family="Arial" font-size="16.00">~Settler</text>
+
+</g>
+<g id="1:150_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4542.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="240.96" y="-4523.7" font-family="Arial" font-size="16.00">Update</text>
+
+</g>
+<g id="1:157_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4506.89990234375" width="215.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="243.63" y="-4488.5" font-family="Arial" font-size="16.00">render</text>
+
+</g>
+<g id="1:158_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4471.7001953125" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="228.07" y="-4453.3" font-family="Arial" font-size="16.00">renderFPS</text>
+
+</g>
+<g id="1:159_8" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4436.5" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="227.18" y="-4418.1" font-family="Arial" font-size="16.00">getPosition</text>
+
+</g>
+<g id="1:160_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4401.2998046875" width="215.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="227.62" y="-4382.9" font-family="Arial" font-size="16.00">setPosition</text>
+
+</g>
+<g id="1:161_18" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4366.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="240.52" y="-4347.7" font-family="Arial" font-size="16.00">interact</text>
+
+</g>
+<g id="1:162_16" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4330.89990234375" width="215.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="216.06" y="-4312.5" font-family="Arial" font-size="16.00">getDisplayInfo</text>
+
+</g>
+<g id="1:163_12" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4295.7001953125" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="234.3" y="-4277.3" font-family="Arial" font-size="16.00">getName</text>
+
+</g>
+<g id="1:164_16" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4260.5" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="200.5" y="-4242.1" font-family="Arial" font-size="16.00">getInteractionType</text>
+
+</g>
+<g id="1:165_6" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4225.2998046875" width="215.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="194.71" y="-4206.9" font-family="Arial" font-size="16.00">getInteractionRange</text>
+
+</g>
+<g id="1:166_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4190.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="227.18" y="-4171.7" font-family="Arial" font-size="16.00">canInteract</text>
+
+</g>
+<g id="1:167_13" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4154.89990234375" width="215.260009765625" height="27.19970703125"></rect>
+<text text-anchor="start" x="236.96" y="-4136.5" font-family="Arial" font-size="16.00">getState</text>
+
+</g>
+<g id="1:168_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4119.7001953125" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="237.41" y="-4101.3" font-family="Arial" font-size="16.00">setState</text>
+
+</g>
+<g id="1:169_12" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4084.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="214.29" y="-4066.1" font-family="Arial" font-size="16.00">GetStateString</text>
+
+</g>
+<g id="1:170_18" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4049.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="217.84" y="-4030.9" font-family="Arial" font-size="16.00">getProfession</text>
+
+</g>
+<g id="1:171_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-4014.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="218.29" y="-3995.7" font-family="Arial" font-size="16.00">setProfession</text>
+
+</g>
+<g id="1:172_12" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3978.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="195.17" y="-3960.5" font-family="Arial" font-size="16.00">GetProfessionString</text>
+
+</g>
+<g id="1:173_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3943.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="226.3" y="-3925.3" font-family="Arial" font-size="16.00">assignTask</text>
+
+</g>
+<g id="1:174_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3908.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="228.08" y="-3890.1" font-family="Arial" font-size="16.00">clearTasks</text>
+
+</g>
+<g id="1:175_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3873.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="232.52" y="-3854.9" font-family="Arial" font-size="16.00">hasTasks</text>
+
+</g>
+<g id="1:176_26" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3838.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="214.28" y="-3819.7" font-family="Arial" font-size="16.00">getTaskQueue</text>
+
+</g>
+<g id="1:177_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3802.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="237.86" y="-3784.5" font-family="Arial" font-size="16.00">MoveTo</text>
+
+</g>
+<g id="1:178_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3767.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="213.39" y="-3749.3" font-family="Arial" font-size="16.00">setMoveSpeed</text>
+
+</g>
+<g id="1:179_6" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3732.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="212.94" y="-3714.1" font-family="Arial" font-size="16.00">getMoveSpeed</text>
+
+</g>
+<g id="1:180_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3697.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="235.19" y="-3678.9" font-family="Arial" font-size="16.00">isMoving</text>
+
+</g>
+<g id="1:181_8" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3662.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="204.05" y="-3643.7" font-family="Arial" font-size="16.00">getTargetPosition</text>
+
+</g>
+<g id="1:182_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3626.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="250.3" y="-3608.5" font-family="Arial" font-size="16.00">Stop</text>
+
+</g>
+<g id="1:183_20" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3591.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="222.73" y="-3573.3" font-family="Arial" font-size="16.00">getInventory</text>
+
+</g>
+<g id="1:184_26" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3556.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="222.73" y="-3538.1" font-family="Arial" font-size="16.00">getInventory</text>
+
+</g>
+<g id="1:185_16" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3521.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="237.41" y="-3502.9" font-family="Arial" font-size="16.00">getStats</text>
+
+</g>
+<g id="1:186_22" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3486.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="237.41" y="-3467.7" font-family="Arial" font-size="16.00">getStats</text>
+
+</g>
+<g id="1:187_17" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3450.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="236.97" y="-3432.5" font-family="Arial" font-size="16.00">getSkills</text>
+
+</g>
+<g id="1:188_23" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3415.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="236.97" y="-3397.3" font-family="Arial" font-size="16.00">getSkills</text>
+
+</g>
+<g id="1:189_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3380.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="234.75" y="-3362.1" font-family="Arial" font-size="16.00">setName</text>
+
+</g>
+<g id="1:190_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3345.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="229.85" y="-3326.9" font-family="Arial" font-size="16.00">isSelected</text>
+
+</g>
+<g id="1:191_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3310.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="224.95" y="-3291.7" font-family="Arial" font-size="16.00">setSelected</text>
+
+</g>
+<g id="1:193_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3274.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="216.52" y="-3256.5" font-family="Arial" font-size="16.00">setTargetTree</text>
+
+</g>
+<g id="1:194_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3239.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="204.5" y="-3221.3" font-family="Arial" font-size="16.00">setTargetBuilding</text>
+
+</g>
+<g id="1:195_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3204.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="214.73" y="-3186.1" font-family="Arial" font-size="16.00">setTargetBush</text>
+
+</g>
+<g id="1:196_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3169.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="208.51" y="-3150.9" font-family="Arial" font-size="16.00">setTargetAnimal</text>
+
+</g>
+<g id="1:197_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3134.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="196.52" y="-3115.7" font-family="Arial" font-size="16.00">setTargetWorldItem</text>
+
+</g>
+<g id="1:198_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3098.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="179.6" y="-3080.5" font-family="Arial" font-size="16.00">setTargetResourceNode</text>
+
+</g>
+<g id="1:199_6" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3063.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="216.07" y="-3045.3" font-family="Arial" font-size="16.00">getTargetTree</text>
+
+</g>
+<g id="1:200_18" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-3028.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="204.05" y="-3010.1" font-family="Arial" font-size="16.00">getTargetBuilding</text>
+
+</g>
+<g id="1:201_6" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2993.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="214.28" y="-2974.9" font-family="Arial" font-size="16.00">getTargetBush</text>
+
+</g>
+<g id="1:202_8" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2958.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="208.06" y="-2939.7" font-family="Arial" font-size="16.00">getTargetAnimal</text>
+
+</g>
+<g id="1:203_11" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2922.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="196.07" y="-2904.5" font-family="Arial" font-size="16.00">getTargetWorldItem</text>
+
+</g>
+<g id="1:204_14" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2887.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="179.15" y="-2869.3" font-family="Arial" font-size="16.00">getTargetResourceNode</text>
+
+</g>
+<g id="1:205_6" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2852.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="204.96" y="-2834.1" font-family="Arial" font-size="16.00">getWorkProgress</text>
+
+</g>
+<g id="1:206_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2817.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="205.41" y="-2798.9" font-family="Arial" font-size="16.00">setWorkProgress</text>
+
+</g>
+<g id="1:207_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2782.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="239.63" y="-2763.7" font-family="Arial" font-size="16.00">setPath</text>
+
+</g>
+<g id="1:208_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2746.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="237.4" y="-2728.5" font-family="Arial" font-size="16.00">hasPath</text>
+
+</g>
+<g id="1:209_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2711.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="232.96" y="-2693.3" font-family="Arial" font-size="16.00">clearPath</text>
+
+</g>
+<g id="1:210_10" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2676.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="193.4" y="-2658.1" font-family="Arial" font-size="16.00">serializeCurrentTask</text>
+
+</g>
+<g id="1:211_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2641.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="211.18" y="-2622.9" font-family="Arial" font-size="16.00">deserializeTask</text>
+
+</g>
+<g id="1:212_6" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2606.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="215.18" y="-2587.7" font-family="Arial" font-size="16.00">getDistanceTo</text>
+
+</g>
+<g id="1:213_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2570.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="224.96" y="-2552.5" font-family="Arial" font-size="16.00">isAtPosition</text>
+
+</g>
+<g id="1:214_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2535.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="219.16" y="-2517.3" font-family="Arial" font-size="16.00">updateNeeds</text>
+
+</g>
+<g id="1:215_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2500.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="226.73" y="-2482.1" font-family="Arial" font-size="16.00">needsFood</text>
+
+</g>
+<g id="1:216_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2465.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="224.5" y="-2446.9" font-family="Arial" font-size="16.00">needsSleep</text>
+
+</g>
+<g id="1:217_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2430.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="221.4" y="-2411.7" font-family="Arial" font-size="16.00">takeDamage</text>
+
+</g>
+<g id="1:218_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2394.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="241.86" y="-2376.5" font-family="Arial" font-size="16.00">isDead</text>
+
+</g>
+<g id="1:219_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2359.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="229.4" y="-2341.3" font-family="Arial" font-size="16.00">assignBed</text>
+
+</g>
+<g id="1:220_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2324.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="208.51" y="-2306.1" font-family="Arial" font-size="16.00">assignBuildTask</text>
+
+</g>
+<g id="1:221_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2289.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="214.29" y="-2270.9" font-family="Arial" font-size="16.00">clearBuildTask</text>
+
+</g>
+<g id="1:222_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2254.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="215.17" y="-2235.7" font-family="Arial" font-size="16.00">assignToChop</text>
+
+</g>
+<g id="1:223_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2218.89990234375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="216.96" y="-2200.5" font-family="Arial" font-size="16.00">assignToMine</text>
+
+</g>
+<g id="1:224_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2183.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="201.39" y="-2165.3" font-family="Arial" font-size="16.00">forceGatherTarget</text>
+
+</g>
+<g id="1:225_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2148.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="199.17" y="-2130.1" font-family="Arial" font-size="16.00">ExecuteNextAction</text>
+
+</g>
+<g id="1:226_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2113.300048828125" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="203.61" y="-2094.9" font-family="Arial" font-size="16.00">UpdateMovement</text>
+
+</g>
+<g id="1:228_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2078.10009765625" width="215.260009765625" height="27.2001953125"></rect>
+<text text-anchor="start" x="205.83" y="-2059.7" font-family="Arial" font-size="16.00">UpdateGathering</text>
+
+</g>
+<g id="1:229_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2042.9000244140625" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="212.5" y="-2024.5" font-family="Arial" font-size="16.00">UpdateBuilding</text>
+
+</g>
+<g id="1:230_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-2007.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="209.82" y="-1989.3" font-family="Arial" font-size="16.00">UpdateSleeping</text>
+
+</g>
+<g id="1:231_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1972.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="177.82" y="-1954.1" font-family="Arial" font-size="16.00">UpdateMovingToStorage</text>
+
+</g>
+<g id="1:232_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1937.300048828125" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="203.16" y="-1918.9" font-family="Arial" font-size="16.00">UpdateDepositing</text>
+
+</g>
+<g id="1:233_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1902.0999755859375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="204.95" y="-1883.7" font-family="Arial" font-size="16.00">UpdatePickingUp</text>
+
+</g>
+<g id="1:234_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1866.9000244140625" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="174.7" y="-1848.5" font-family="Arial" font-size="16.00">UpdateSearchingForFood</text>
+
+</g>
+<g id="1:235_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1831.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="187.6" y="-1813.3" font-family="Arial" font-size="16.00">UpdateMovingToFood</text>
+
+</g>
+<g id="1:236_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1796.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="218.28" y="-1778.1" font-family="Arial" font-size="16.00">UpdateEating</text>
+
+</g>
+<g id="1:237_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1761.300048828125" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="191.6" y="-1742.9" font-family="Arial" font-size="16.00">UpdateMovingToBed</text>
+
+</g>
+<g id="1:238_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1726.0999755859375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="206.71" y="-1707.7" font-family="Arial" font-size="16.00">UpdateChopping</text>
+
+</g>
+<g id="1:239_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1690.9000244140625" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="217.39" y="-1672.5" font-family="Arial" font-size="16.00">UpdateMining</text>
+
+</g>
+<g id="1:240_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1655.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="212.95" y="-1637.3" font-family="Arial" font-size="16.00">UpdateCrafting</text>
+
+</g>
+<g id="1:241_6" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1620.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="184.94" y="-1602.1" font-family="Arial" font-size="16.00">GetCraftingProgress01</text>
+
+</g>
+<g id="1:242_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1585.300048828125" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="213.83" y="-1566.9" font-family="Arial" font-size="16.00">UpdateHauling</text>
+
+</g>
+<g id="1:243_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1550.0999755859375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="213.39" y="-1531.7" font-family="Arial" font-size="16.00">UpdateHunting</text>
+
+</g>
+<g id="1:244_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1514.9000244140625" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="210.27" y="-1496.5" font-family="Arial" font-size="16.00">UpdateSkinning</text>
+
+</g>
+<g id="1:245_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1479.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="190.27" y="-1461.3" font-family="Arial" font-size="16.00">UpdateMovingToSkin</text>
+
+</g>
+<g id="1:246_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1444.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="233.86" y="-1426.1" font-family="Arial" font-size="16.00">CraftTool</text>
+
+</g>
+<g id="1:247_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1409.300048828125" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="227.19" y="-1390.9" font-family="Arial" font-size="16.00">PickupItem</text>
+
+</g>
+<g id="1:248_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1374.0999755859375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="233.86" y="-1355.7" font-family="Arial" font-size="16.00">DropItem</text>
+
+</g>
+<g id="1:249_18" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1338.9000244140625" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="195.16" y="-1320.5" font-family="Arial" font-size="16.00">FindNearestStorage</text>
+
+</g>
+<g id="1:250_18" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1303.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="187.17" y="-1285.3" font-family="Arial" font-size="16.00">FindNearestWorkshop</text>
+
+</g>
+<g id="1:251_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1268.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="216.5" y="-1250.1" font-family="Arial" font-size="16.00">ignoreStorage</text>
+
+</g>
+<g id="1:252_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1233.300048828125" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="205.83" y="-1214.9" font-family="Arial" font-size="16.00">isStorageIgnored</text>
+
+</g>
+<g id="1:253_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1198.0999755859375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="188.49" y="-1179.7" font-family="Arial" font-size="16.00">ClearIgnoredStorages</text>
+
+</g>
+<g id="1:254_8" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1162.9000244140625" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="219.18" y="-1144.5" font-family="Arial" font-size="16.00">myHousePos</text>
+
+</g>
+<g id="1:255_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1127.699951171875" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="223.62" y="-1109.3" font-family="Arial" font-size="16.00">SetSelected</text>
+
+</g>
+<g id="1:256_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1092.5" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="229.4" y="-1074.1" font-family="Arial" font-size="16.00">IsSelected</text>
+
+</g>
+<g id="1:257_13" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1057.300048828125" width="215.260009765625" height="27.2000732421875"></rect>
+<text text-anchor="start" x="235.18" y="-1038.9" font-family="Arial" font-size="16.00">GetState</text>
+
+</g>
+<g id="1:260_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-1022.0999755859375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="211.6" y="-1003.7" font-family="Arial" font-size="16.00">setIndependent</text>
+
+</g>
+<g id="1:261_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-986.9000244140625" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="216.49" y="-968.5" font-family="Arial" font-size="16.00">isIndependent</text>
+
+</g>
+<g id="1:262_15" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-951.7000122070312" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="195.61" y="-933.3" font-family="Arial" font-size="16.00">getPrivateBuildTask</text>
+
+</g>
+<g id="1:263_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-916.5" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="196.06" y="-898.1" font-family="Arial" font-size="16.00">setPrivateBuildTask</text>
+
+</g>
+<g id="1:265_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-881.2999877929688" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="198.73" y="-862.9" font-family="Arial" font-size="16.00">ForceGatherTarget</text>
+
+</g>
+<g id="1:266_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-846.0999755859375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="207.62" y="-827.7" font-family="Arial" font-size="16.00">AssignBuildTask</text>
+
+</g>
+<g id="1:267_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-810.9000244140625" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="212.52" y="-792.5" font-family="Arial" font-size="16.00">ClearBuildTask</text>
+
+</g>
+<g id="1:268_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-775.7000122070312" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="163.13" y="-757.3" font-family="Arial" font-size="16.00">OnJobConfigurationChanged</text>
+
+</g>
+<g id="1:270_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-740.5" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="225.41" y="-722.1" font-family="Arial" font-size="16.00">isHandFree</text>
+
+</g>
+<g id="1:271_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-705.2999877929688" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="224.07" y="-686.9" font-family="Arial" font-size="16.00">setHeldItem</text>
+
+</g>
+<g id="1:272_12" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-670.0999755859375" width="215.260009765625" height="27.199951171875"></rect>
+<text text-anchor="start" x="223.62" y="-651.7" font-family="Arial" font-size="16.00">getHeldItem</text>
+
+</g>
+<g id="1:274_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-634.9000244140625" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="196.95" y="-616.5" font-family="Arial" font-size="16.00">setPlayerControlled</text>
+
+</g>
+<g id="1:275_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-599.7000122070312" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="201.84" y="-581.3" font-family="Arial" font-size="16.00">isPlayerControlled</text>
+
+</g>
+<g id="1:276_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-564.5" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="183.61" y="-546.1" font-family="Arial" font-size="16.00">setRotationFromMouse</text>
+
+</g>
+<g id="1:277_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-529.2999877929688" width="215.260009765625" height="27.199981689453125"></rect>
+<text text-anchor="start" x="226.29" y="-510.9" font-family="Arial" font-size="16.00">setRotation</text>
+
+</g>
+<g id="1:283_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-494.1000061035156" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="221.85" y="-475.7" font-family="Arial" font-size="16.00">useHeldItem</text>
+
+</g>
+<g id="1:285_10" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-458.8999938964844" width="215.260009765625" height="27.199981689453125"></rect>
+<text text-anchor="start" x="225.84" y="-440.5" font-family="Arial" font-size="16.00">getRotation</text>
+
+</g>
+<g id="1:286_12" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-423.70001220703125" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="203.18" y="-405.3" font-family="Arial" font-size="16.00">getForwardVector</text>
+
+</g>
+<g id="1:287_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-388.5" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="227.18" y="-370.1" font-family="Arial" font-size="16.00">setScoping</text>
+
+</g>
+<g id="1:288_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-353.29998779296875" width="215.260009765625" height="27.199981689453125"></rect>
+<text text-anchor="start" x="232.07" y="-334.9" font-family="Arial" font-size="16.00">isScoping</text>
+
+</g>
+<g id="1:291_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-318.1000061035156" width="215.260009765625" height="27.20001220703125"></rect>
+<text text-anchor="start" x="247.19" y="-299.7" font-family="Arial" font-size="16.00">shoot</text>
+
+</g>
+<g id="1:292_12" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-282.8999938964844" width="215.260009765625" height="27.199996948242188"></rect>
+<text text-anchor="start" x="201.84" y="-264.5" font-family="Arial" font-size="16.00">getMuzzlePosition</text>
+
+</g>
+<g id="1:295_9" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-247.6999969482422" width="215.260009765625" height="27.199996948242188"></rect>
+<text text-anchor="start" x="180.95" y="-229.3" font-family="Arial" font-size="16.00">ProcessActiveBuildTask</text>
+
+</g>
+<g id="1:357_4" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-212.5" width="215.260009765625" height="27.199996948242188"></rect>
+<text text-anchor="start" x="203.62" y="-194.1" font-family="Arial" font-size="16.00">getCraftingTaskId</text>
+
+</g>
+<g id="1:394_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-177.3000030517578" width="215.260009765625" height="27.199996948242188"></rect>
+<text text-anchor="start" x="199.61" y="-158.9" font-family="Arial" font-size="16.00">IsStateInterruptible</text>
+
+</g>
+<g id="1:395_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-142.10000610351562" width="215.260009765625" height="27.20000457763672"></rect>
+<text text-anchor="start" x="168.94" y="-123.7" font-family="Arial" font-size="16.00">CheckForJobFlagActivation</text>
+
+</g>
+<g id="1:396_5" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-106.9000015258789" width="215.260009765625" height="27.20000457763672"></rect>
+<text text-anchor="start" x="188.05" y="-88.5" font-family="Arial" font-size="16.00">InterruptCurrentAction</text>
+
+</g>
+<g id="1:397_6" data-kind="6" class="cell method">
+<rect x="159.1300048828125" y="-71.69999694824219" width="215.260009765625" height="27.199996948242188"></rect>
+<text text-anchor="start" x="204.95" y="-53.3" font-family="Arial" font-size="16.00">FindNearestFood</text>
+
+</g>
+
+</g>
+</g>
+<!-- 1&#45;&gt;1 -->
+<g id="1:255_5-1:191_5" class="edge" data-from="1:255_5" data-to="1:191_5">
+
+<path fill="none" stroke="black" d="M185.9,-1127.63C100.18,-1178.23 3.5,-1388.75 3.5,-2205.3 3.5,-2979.59 90.43,-3208.96 172.52,-3273.76"></path>
+<polygon fill="black" stroke="black" points="169.32,-3277.94 184.65,-3282.11 175.27,-3269.28 169.32,-3277.94"></polygon>
+<text text-anchor="middle" x="1.75" y="-2681.8" font-family="Times,serif" font-size="14.00"> </text>
+<path fill="none" stroke="black" d="M185.9,-1127.63C100.18,-1178.23 3.5,-1388.75 3.5,-2205.3 3.5,-2979.59 90.43,-3208.96 172.52,-3273.76" class="hover-path"></path></g>
+<!-- 1&#45;&gt;1 -->
+<g id="1:256_5-1:190_5" class="edge" data-from="1:256_5" data-to="1:190_5">
+
+<path fill="none" stroke="black" d="M186.91,-1092.42C100.94,-1143.66 3.5,-1359.29 3.5,-2205.3 3.5,-3007.52 91.11,-3242.93 173.49,-3308.83"></path>
+<polygon fill="black" stroke="black" points="170.36,-3313.05 185.67,-3317.31 176.36,-3304.44 170.36,-3313.05"></polygon>
+<text text-anchor="middle" x="1.75" y="-2681.8" font-family="Times,serif" font-size="14.00"> </text>
+<path fill="none" stroke="black" d="M186.91,-1092.42C100.94,-1143.66 3.5,-1359.29 3.5,-2205.3 3.5,-3007.52 91.11,-3242.93 173.49,-3308.83" class="hover-path"></path></g>
+<!-- 1&#45;&gt;1 -->
+<g id="1:265_5-1:224_5" class="edge" data-from="1:265_5" data-to="1:224_5">
+
+<path fill="none" stroke="black" d="M167.84,-881.25C87.16,-921.97 3.5,-1063.08 3.5,-1518.9 3.5,-1948.01 77.65,-2098.21 153.65,-2148.32"></path>
+<polygon fill="black" stroke="black" points="150.92,-2152.81 166.53,-2155.79 156.19,-2143.72 150.92,-2152.81"></polygon>
+<text text-anchor="middle" x="1.75" y="-2681.8" font-family="Times,serif" font-size="14.00"> </text>
+<path fill="none" stroke="black" d="M167.84,-881.25C87.16,-921.97 3.5,-1063.08 3.5,-1518.9 3.5,-1948.01 77.65,-2098.21 153.65,-2148.32" class="hover-path"></path></g>
+<!-- 1&#45;&gt;1 -->
+<g id="1:257_13-1:167_13" class="edge" data-from="1:257_13" data-to="1:167_13">
+
+<path fill="none" stroke="black" d="M196.33,-1057.2C108.22,-1115.35 3.5,-1389.16 3.5,-2592.5 3.5,-3737.08 98.25,-4040.69 183.32,-4117.66"></path>
+<polygon fill="black" stroke="black" points="180.08,-4121.79 195.13,-4126.87 186.53,-4113.51 180.08,-4121.79"></polygon>
+<text text-anchor="middle" x="1.75" y="-2681.8" font-family="Times,serif" font-size="14.00"> </text>
+<path fill="none" stroke="black" d="M196.33,-1057.2C108.22,-1115.35 3.5,-1389.16 3.5,-2592.5 3.5,-3737.08 98.25,-4040.69 183.32,-4117.66" class="hover-path"></path></g>
+<!-- 1&#45;&gt;1 -->
+<g id="1:267_5-1:221_5" class="edge" data-from="1:267_5" data-to="1:221_5">
+
+<path fill="none" stroke="black" d="M172.63,-810.83C90.51,-853.81 3.5,-1009.69 3.5,-1536.5 3.5,-2033.47 80.93,-2200.34 158.65,-2253.74"></path>
+<polygon fill="black" stroke="black" points="155.78,-2258.14 171.33,-2261.39 161.2,-2249.15 155.78,-2258.14"></polygon>
+<text text-anchor="middle" x="1.75" y="-2681.8" font-family="Times,serif" font-size="14.00"> </text>
+<path fill="none" stroke="black" d="M172.63,-810.83C90.51,-853.81 3.5,-1009.69 3.5,-1536.5 3.5,-2033.47 80.93,-2200.34 158.65,-2253.74" class="hover-path"></path></g>
+<!-- 1&#45;&gt;1 -->
+<g id="1:266_5-1:220_5" class="edge" data-from="1:266_5" data-to="1:220_5">
+
+<path fill="none" stroke="black" d="M172.63,-846.03C90.51,-889.01 3.5,-1044.89 3.5,-1571.7 3.5,-2068.67 80.93,-2235.54 158.65,-2288.94"></path>
+<polygon fill="black" stroke="black" points="155.78,-2293.34 171.33,-2296.59 161.2,-2284.35 155.78,-2293.34"></polygon>
+<text text-anchor="middle" x="1.75" y="-2681.8" font-family="Times,serif" font-size="14.00"> </text>
+<path fill="none" stroke="black" d="M172.63,-846.03C90.51,-889.01 3.5,-1044.89 3.5,-1571.7 3.5,-2068.67 80.93,-2235.54 158.65,-2288.94" class="hover-path"></path></g>
+<g id="faded-group"></g></g>
+<defs><filter id="shadow"><feDropShadow dx="0" dy="0" stdDeviation="4" flood-opacity="0.5"></feDropShadow></filter>
+    <linearGradient id="highlightGradient">
+      <stop offset="0%" stop-color="var(--edge-incoming-color)"></stop>
+      <stop offset="100%" stop-color="var(--edge-outgoing-color)"></stop>
+    </linearGradient></defs>
+</svg>

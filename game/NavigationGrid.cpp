@@ -223,7 +223,7 @@ void NavigationGrid::UpdateGrid(const std::vector<BuildingInstance*>& buildings,
     float combinedRadius = treeRadius * 1.6f; // Zwiekszony promien (0.8m) zeby pathfinding omijal szeroko
 
     for (const auto* tree : trees) {
-        if (!tree) continue;
+        if (!tree || !tree->isActive() || tree->isStump()) continue;
         
         Vector3 pos = tree->getPosition();
         
@@ -244,7 +244,7 @@ void NavigationGrid::UpdateGrid(const std::vector<BuildingInstance*>& buildings,
     float combinedResRadius = resourceRadius * 0.8f; // Zmniejszony promień
 
     for (const auto& resource : resources) {
-        if (!resource || !resource->isActive()) continue;
+        if (!resource || !resource->isActive() || resource->isDepleted()) continue;
         
         Vector3 pos = resource->getPosition();
         

@@ -65,6 +65,8 @@ game/Bed.cpp
 
 game/Settler.cpp
 
+game/DebugConsole.cpp
+
 game/Projectile.cpp
 
 game/NavigationGrid.cpp
@@ -178,7 +180,7 @@ endif()
 if(MSVC)
 
 if(MSVC)
-target_compile_options(Simple3DGame PRIVATE /W4 /EHsc)
+target_compile_options(Simple3DGame PRIVATE /W4 /EHsc /FS)
 target_compile_definitions(Simple3DGame PRIVATE NOMINMAX)
 else()
 target_compile_options(Simple3DGame PRIVATE -Wall -Wextra -Wpedantic)

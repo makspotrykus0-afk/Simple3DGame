@@ -156,3 +156,13 @@ float ResourceNode::harvest(float amount) {
 
     return actualHarvested;
 }
+
+BoundingBox ResourceNode::getBoundingBox() const {
+    // Kamień jako sześcian 1.5x1.5x1.5m
+    float size = 1.5f;
+    Vector3 pos = getPosition();
+    return BoundingBox{
+        Vector3{ pos.x - size/2, pos.y, pos.z - size/2 },
+        Vector3{ pos.x + size/2, pos.y + size, pos.z + size/2 }
+    };
+}
