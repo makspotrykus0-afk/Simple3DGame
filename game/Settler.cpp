@@ -79,12 +79,12 @@ static void DrawProgressBar3D(Vector3 position, float progress, Color color) {
              color); // Slightly thicker freq or just diff color
   }
 }
-// Static Init (FPS Editor Limits)
-float Settler::s_fpsUserFwd = 0.45f;
-float Settler::s_fpsUserRight = 0.05f;
-float Settler::s_fpsUserUp = -0.15f;
-float Settler::s_fpsYaw = 35.0f;
-float Settler::s_fpsPitch = -80.0f;
+// Static Init (FPS Editor Limits) - Corrected after World/Local position fix
+float Settler::s_fpsUserFwd = 0.55f;    // Forward (was 1.52f = too far due to editor bug)
+float Settler::s_fpsUserRight = 0.18f;  // Right side (correct)
+float Settler::s_fpsUserUp = -0.18f;    // Height (correct)
+float Settler::s_fpsYaw = -1.0f;        // Rotation (correct)
+float Settler::s_fpsPitch = -80.0f;     // Unchanged
 
 Settler::Settler(const std::string &name, const Vector3 &pos, SettlerProfession profession)
     : GameEntity(name), m_name(name), m_profession(profession), m_isSelected(false),
@@ -116,9 +116,18 @@ Settler::Settler(const std::string &name, const Vector3 &pos, SettlerProfession 
       m_isIndependentBuilder(false), m_myPrivateBuildTask(nullptr) {
 
   position = pos;
-  addComponent(std::make_shared<PositionComponent>(position));
+  auto posComp = std::make_shared<PositionComponent>(position);
+  addComponent(posComp);
+  
+  // Register components in the official list for getComponent<> access
   addComponent(std::make_shared<EnergyComponent>());
-
+  
+  // We need to pointer to m_stats but StatsComponent is a member. 
+  // Better: make m_stats a shared_ptr or just add it as a facade.
+  // Actually, StatsComponent inherits from IComponent.
+  // We can't easily add 'this->m_stats' because addComponent expects shared_ptr.
+  // Fix: addComponent a proxy or just change UISystem to use getStats().
+  
   m_skills.addSkill(SkillType::WOODCUTTING, 1);
   m_skills.addSkill(SkillType::MINING, 1);
   m_skills.addSkill(SkillType::BUILDING, 1);
@@ -340,6 +349,15 @@ void Settler::Update(
   }
 
   m_stats.update(deltaTime);
+
+  // LOGISTYKA: Bonus Studni (Well) - regeneracja energii
+  if (g_colony && m_stats.getCurrentEnergy() < 100.0f) {
+      // Well bonus is only in radius (logic inside modifier if we extend it, 
+      // but here we check for specific 'well' buildings nearby)
+      if (g_colony->getEfficiencyModifier(position, SettlerState::IDLE) > 1.05f) { // Reuse IDLE check for Well
+          m_stats.modifyEnergy(deltaTime * 2.0f); // 2 energy per sec bonus
+      }
+  }
 
   // Aktualizacja cooldownów snu i jedzenia
   if (m_sleepCooldownTimer > 0.0f)
@@ -1065,7 +1083,8 @@ void Settler::ProcessActiveBuildTask(
              }
         }
 
-        std::cout << "[Settler] No resources and no storage found. Going IDLE." << std::endl;
+        std::cout << "[Settler] No resources and no storage found. Releasing task commitment." << std::endl;
+        clearBuildTask(); // CRITICAL: Release task so ColonyAI can reassign or others can try
         m_state = SettlerState::IDLE;
         return;
     }
@@ -1327,22 +1346,28 @@ bool Settler::needsSleep() const { return m_stats.isExhausted(); }
 void Settler::takeDamage(float damage) {
 
   float current = m_stats.getCurrentHealth();
-
   m_stats.setHealth(current - damage);
 }
 void Settler::assignBed(BuildingInstance *bed) { m_assignedBed = bed; }
 void Settler::assignBuildTask(BuildTask *task) {
-
   m_currentBuildTask = task;
-
   if (task) {
-
+    task->addWorker(this); // Ensure bidirectional link
     MoveTo(task->getPosition());
-
     m_state = SettlerState::MOVING;
   }
 }
-void Settler::clearBuildTask() { m_currentBuildTask = nullptr; }
+
+void Settler::clearBuildTask() {
+  if (m_currentBuildTask) {
+    m_currentBuildTask->removeWorker(this); // Cleanup bidirectional link
+  }
+  m_currentBuildTask = nullptr;
+}
+
+bool Settler::isCommittedToTask() const {
+  return m_currentBuildTask != nullptr && m_currentBuildTask->isActive();
+}
 void Settler::assignToChop(GameEntity *tree) {
 
   if (tree) {
@@ -2107,27 +2132,69 @@ void Settler::UpdatePickingUp(
       // UpdateCrafting(). But we want to ensure we don't pick up something else
       // or get distracted.
       m_state = SettlerState::IDLE;
-    } else if ((m_currentBuildTask && m_currentBuildTask->isActive()) ||
-               (m_myPrivateBuildTask && m_myPrivateBuildTask->isActive())) {
-      // PRIORITY: BUILDING
-      // If we are building, don't haul to storage. Go IDLE so Update() can see
-      // we have resources and trigger ProcessActiveBuildTask (or fetch more if
-      // needed).
-      std::cout << "[Settler] Item picked up. Priority: BUILDING (Active "
-                   "Task). Returning to IDLE."
-                << std::endl;
-      m_state = SettlerState::IDLE;
     } else {
-      // Normal mode: Haul to storage
-      BuildingInstance *storage = FindNearestStorage(buildings);
-      if (storage) {
-        m_targetStorage = storage;
-        MoveTo(storage->getPosition());
-        m_state = SettlerState::MOVING_TO_STORAGE;
+      // PRIORITY: BUILDING (Global Check)
+      // If we don't have a current task or it doesn't need this, check IF WE OWN any task that needs it
+      BuildTask* myTaskNeedingThis = nullptr;
+      if (g_buildingSystem) {
+          auto allTasks = g_buildingSystem->getActiveBuildTasks();
+          for (auto* task : allTasks) {
+              if (task->getBuilder() == this) {
+                  auto missing = task->getMissingResources();
+                  for (const auto& req : missing) {
+                      if (m_inventory.getResourceAmount(req.resourceType) > 0) {
+                          myTaskNeedingThis = task;
+                          break;
+                      }
+                  }
+              }
+              if (myTaskNeedingThis) break;
+          }
+      }
+
+      if (myTaskNeedingThis) {
+          std::cout << "[Settler] Item picked up. Priority: OWN BUILDING TASK. Returning to IDLE." << std::endl;
+          if (m_currentBuildTask != myTaskNeedingThis) {
+              assignBuildTask(myTaskNeedingThis);
+          }
+          m_state = SettlerState::IDLE;
+      } else if (m_currentBuildTask && m_currentBuildTask->isActive()) {
+          // Check if current task needs it (already assigned)
+          bool neededForBuild = false;
+          auto missing = m_currentBuildTask->getMissingResources();
+          for (const auto& req : missing) {
+            if (m_inventory.getResourceAmount(req.resourceType) > 0) {
+              neededForBuild = true;
+              break;
+            }
+          }
+
+          if (neededForBuild) {
+              std::cout << "[Settler] Item picked up. Priority: CURRENT BUILDING TASK. Returning to IDLE." << std::endl;
+              m_state = SettlerState::IDLE;
+          } else {
+              // Haul to storage
+              BuildingInstance *storage = FindNearestStorage(buildings);
+              if (storage) {
+                m_targetStorage = storage;
+                MoveTo(storage->getPosition());
+                m_state = SettlerState::MOVING_TO_STORAGE;
+              } else {
+                m_state = SettlerState::IDLE;
+              }
+          }
       } else {
-        std::cout << "[Settler] No storage found, dropping item." << std::endl;
-        m_inventory.clear(); // Drop logic simplified for now
-        m_state = SettlerState::IDLE;
+          // Normal mode: Haul to storage
+          BuildingInstance *storage = FindNearestStorage(buildings);
+          if (storage) {
+            m_targetStorage = storage;
+            MoveTo(storage->getPosition());
+            m_state = SettlerState::MOVING_TO_STORAGE;
+          } else {
+            std::cout << "[Settler] No storage found, dropping item." << std::endl;
+            m_inventory.clear(); 
+            m_state = SettlerState::IDLE;
+          }
       }
     }
   } else {
@@ -2885,6 +2952,11 @@ void Settler::UpdateChopping(float deltaTime) {
       chopPower = 20.0f;
     }
 
+    // LOGISTYKA: Modyfikator wydajności (Tartak, Kuźnia)
+    if (g_colony) {
+        chopPower *= g_colony->getEfficiencyModifier(position, SettlerState::CHOPPING);
+    }
+
     float woodAmount = m_currentTree->harvest(chopPower);
 
     (void)woodAmount;
@@ -2952,7 +3024,13 @@ void Settler::UpdateMining(float deltaTime) {
       return;
     }
 
-    float minedAmount = m_currentResourceNode->harvest(10.0f);
+    float minePower = 10.0f;
+    // LOGISTYKA: Modyfikator wydajności (Kuźnia)
+    if (g_colony) {
+        minePower *= g_colony->getEfficiencyModifier(position, SettlerState::MINING);
+    }
+
+    float minedAmount = m_currentResourceNode->harvest(minePower);
     (void)minedAmount;
     // Debug logging for mining progress
     // std::cout << "[Settler] Mining tick. Remaining: " <<

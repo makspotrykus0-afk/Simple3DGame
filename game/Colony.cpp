@@ -619,3 +619,78 @@ Vector3 Colony::FindValidTreeSpawnPos() {
 
   return {0, 0, 0}; // Failed
 }
+
+float Colony::getEfficiencyModifier(Vector3 pos, SettlerState state) const {
+    float modifier = 1.0f;
+    bool hasGlobalBlacksmith = false;
+
+    // Pobierz wszystkie budynki z BuildingSystem (przez extern lub DI)
+    if (!g_buildingSystem) return 1.0f;
+
+    // Optymalizacja: Sprawdzamy budynki w relatywnie dużym zasięgu (max zdefiniowany to 40m dla sawmill)
+    auto nearbyBuildings = g_buildingSystem->getBuildingsInRange(pos, 45.0f);
+
+    for (auto* building : nearbyBuildings) {
+        if (!building->isBuilt()) continue;
+
+        std::string bid = building->getBlueprintId();
+        float dist = Vector3Distance(pos, building->getPosition());
+
+        // 1. TARTAK (Sawmill) -> Bonus do wycinania
+        if (bid == "sawmill" && state == SettlerState::CHOPPING && dist < 40.0f) {
+            modifier += 0.5f;
+        }
+
+        // 2. KUŹNIA (Blacksmith) -> Bonus globalny (sprawdzamy zasięg 100m dla "globalności" w tej skali mapy)
+        if (bid == "blacksmith") {
+            hasGlobalBlacksmith = true; // Flaga, żeby nie dodawać wielokrotnie
+        }
+
+        // 3. STUDNIA (Well) -> Bonus do regeneracji (używamy flagi dla Update)
+        if (bid == "well" && dist < 25.0f) {
+            modifier += 0.1f; // Mały bonus do modifiera, żeby Update wiedziało o Studni
+        }
+    }
+
+    if (hasGlobalBlacksmith && (state == SettlerState::CHOPPING || state == SettlerState::MINING)) {
+        modifier += 0.2f;
+    }
+
+    return modifier;
+}
+
+int Colony::getWood() const {
+    StorageSystem* storageSys = GameEngine::getInstance().getSystem<StorageSystem>();
+    if (!storageSys) return 0;
+    int total = 0;
+    for (auto* b : m_storageBuildings) {
+        if (!b->getStorageId().empty()) {
+            total += storageSys->getResourceAmount(b->getStorageId(), Resources::ResourceType::Wood);
+        }
+    }
+    return total;
+}
+
+int Colony::getStone() const {
+    StorageSystem* storageSys = GameEngine::getInstance().getSystem<StorageSystem>();
+    if (!storageSys) return 0;
+    int total = 0;
+    for (auto* b : m_storageBuildings) {
+        if (!b->getStorageId().empty()) {
+            total += storageSys->getResourceAmount(b->getStorageId(), Resources::ResourceType::Stone);
+        }
+    }
+    return total;
+}
+
+int Colony::getFood() const {
+    StorageSystem* storageSys = GameEngine::getInstance().getSystem<StorageSystem>();
+    if (!storageSys) return 0;
+    int total = 0;
+    for (auto* b : m_storageBuildings) {
+        if (!b->getStorageId().empty()) {
+            total += storageSys->getResourceAmount(b->getStorageId(), Resources::ResourceType::Food);
+        }
+    }
+    return total;
+}

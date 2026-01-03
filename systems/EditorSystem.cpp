@@ -1,12 +1,15 @@
 #include "EditorSystem.h"
+#include "UISystem.h"
 #include "../game/BuildingInstance.h"
 #include "../game/Settler.h"
 #include "../game/Tree.h"
+#include "../game/Colony.h"
+#include "../core/GameEngine.h"
 #include "raymath.h"
 #include "rlgl.h"
-#include <iomanip>
+#include "raymath.h"
+#include "rlgl.h"
 #include <iostream>
-#include <sstream>
 
 // ==================================================================================
 // Wrappers
@@ -150,7 +153,7 @@ public:
   }
 
   std::string GetName() const override {
-      return "FPS Arm Config";
+      return "FPS Arm Config (Local Offsets)";
   }
 
   EditorObjectType GetType() const override {
@@ -161,9 +164,12 @@ public:
      Vector3 p = GetPosition();
      return {{p.x-0.1f, p.y-0.1f, p.z-0.1f}, {p.x+0.1f, p.y+0.1f, p.z+0.1f}};
   }
+  
+  // Custom: Return LOCAL offset for UI display (not world position)
+  Vector3 GetLocalOffset() const {
+      return {Settler::s_fpsUserFwd, Settler::s_fpsUserUp, Settler::s_fpsUserRight};
+  }
 };
-
-// ... existing code ...
 
 void EditorSystem::StartFpsArmEdit(Settler* settler) {
     if (!settler) return;
@@ -439,9 +445,17 @@ void EditorSystem::Render3D(const Camera3D &camera) {
 }
 
 void EditorSystem::RenderGUI() {
-  if (m_selectedObject) {
-    DrawAttributePanel();
+  if (!m_selectedObject) return;
+
+  // MUTEX: If HUD is active for any settler, or colony stats/crafting is visible,
+  // suppress Editor Panel to avoid clutter (Art Director Rule: No Overlap)
+  extern Colony* g_colony;
+  auto ui = GameEngine::getInstance().getSystem<UISystem>();
+  if (ui && (ui->IsCraftingPanelVisible() || (g_colony && !g_colony->getSelectedSettlers().empty()) || ui->IsBuildingSelectionPanelVisible())) {
+      return; 
   }
+
+  DrawAttributePanel();
 }
 
 void EditorSystem::DrawGizmos(const Camera3D &camera) {
@@ -476,37 +490,45 @@ void EditorSystem::DrawGizmos(const Camera3D &camera) {
 
 void EditorSystem::DrawAttributePanel() {
   int screenW = GetScreenWidth();
-  int infoX = screenW - 300;
-  int infoY = 10;
+  int width = 300;
+  int height = 220;
+  Rectangle rec = { (float)screenW - width - 10, 10, (float)width, (float)height };
 
-  DrawRectangle(infoX, infoY, 290, 200, Fade(BLACK, 0.8f));
-  DrawRectangleLines(infoX, infoY, 290, 200, DARKGRAY);
+  // Use Centralized Premium Drawing System
+  auto ui = GameEngine::getInstance().getSystem<UISystem>();
+  if (ui) {
+      ui->DrawPremiumPanel(rec, "EDITOR ATTRIBUTES", 0.85f);
+  } else {
+      DrawRectangleRec(rec, Fade(BLACK, 0.8f));
+      DrawRectangleLinesEx(rec, 1.0f, DARKGRAY);
+      DrawText("EDITOR ATTRIBUTES", (int)rec.x + 10, (int)rec.y + 10, 20, WHITE);
+  }
 
-  int textX = infoX + 10;
-  int textY = infoY + 10;
-  int spacing = 25;
+  int textX = (int)rec.x + 25;
+  int textY = (int)rec.y + 60;
+  int spacing = 22;
 
-  DrawText("EDITOR ATTRIBUTES", textX, textY, 20, WHITE);
-  textY += spacing + 5;
-
-  DrawText(TextFormat("Name: %s", m_selectedObject->GetName().c_str()), textX,
-           textY, 10, LIGHTGRAY);
+  DrawText(TextFormat("OBJECT: %s", m_selectedObject->GetName().c_str()), textX, textY, 10, ui ? ui->GetThemeColor("teal") : SKYBLUE);
   textY += spacing;
 
-  Vector3 pos = m_selectedObject->GetPosition();
-  DrawText(TextFormat("Pos: %.2f, %.2f, %.2f", pos.x, pos.y, pos.z), textX,
-           textY, 10, LIGHTGRAY);
+  FpsArmWrapper* fpsArm = dynamic_cast<FpsArmWrapper*>(m_selectedObject.get());
+  if (fpsArm) {
+      Vector3 local = fpsArm->GetLocalOffset();
+      DrawText(TextFormat("FWD: %.2f | RIGHT: %.2f | UP: %.2f", local.x, local.z, local.y), textX, textY, 11, ui ? ui->GetThemeColor("gold") : YELLOW);
+  } else {
+      Vector3 pos = m_selectedObject->GetPosition();
+      DrawText(TextFormat("POS: %.2f, %.2f, %.2f", pos.x, pos.y, pos.z), textX, textY, 10, LIGHTGRAY);
+  }
   textY += spacing;
 
   float rot = m_selectedObject->GetRotation();
-  DrawText(TextFormat("Rot: %.2f", rot), textX, textY, 10, LIGHTGRAY);
-  textY += spacing;
+  DrawText(TextFormat("ROT: %.2f", rot), textX, textY, 10, LIGHTGRAY);
+  textY += spacing + 5;
 
-  DrawText("Controls:", textX, textY, 10, GRAY);
-  textY += spacing;
-  DrawText("- Drag Axis: Move", textX, textY, 10, GRAY);
-  textY += spacing;
-  DrawText("- Drag Center: Rotate", textX, textY, 10, GRAY);
+  DrawLineEx({rec.x + 20, (float)textY}, {rec.x + width - 20, (float)textY}, 1.0f, Fade(ui ? ui->GetThemeColor("teal") : SKYBLUE, 0.3f));
+  textY += 10;
+
+  DrawText("INPUT_DRAG: MOVE // CENTER: ROT", textX, textY, 9, Fade(GRAY, 0.7f));
 }
 
 void EditorSystem::LogChange(const std::string &objectName,
@@ -515,3 +537,4 @@ void EditorSystem::LogChange(const std::string &objectName,
                              const std::string &newValue) {
   m_changeLog.push_back({objectName, changeType, oldValue, newValue});
 }
+

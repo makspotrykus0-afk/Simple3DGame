@@ -11,19 +11,11 @@
 
 #include "../core/GameEngine.h"
 
-#include "ResourceSystem.h"
-
-#include "FoodSystem.h"
-
 #include "../game/Colony.h"
 
 #include "../game/BuildingBlueprint.h"
 
-#include "../systems/InventorySystem.h"
-
 #include "../systems/BuildingSystem.h"
-
-#include "../systems/CraftingSystem.h"
 
 #include <memory>
 
@@ -389,14 +381,13 @@ struct UISystemStats {
 };
 
 UISystemStats getStats() const;
-void DrawResourceBar(int wood, int food, int stone, int screenWidth);
-void DrawBottomPanel(bool isBuildingMode, bool cameraMode, int screenWidth, int screenHeight);
-void DrawBuildingSelectionPanel(const std::vector<BuildingBlueprint*>& blueprints, const std::string& selectedId, int screenWidth, int screenHeight);
+void DrawBottomPanel(bool isBuildingMode, bool cameraMode, int screenWidth);
+void DrawBuildingSelectionPanel(const std::vector<BuildingBlueprint*>& blueprints, const std::string& selectedId, int screenWidth);
 void DrawSelectionInfo(const std::vector<Settler*>& selectedSettlers, int screenWidth, int screenHeight);
 void DrawSettlerStatsOverlay(const std::vector<Settler*>& settlers, Camera3D camera, int screenWidth, int screenHeight);
 void DrawSettlersStatsPanel(const std::vector<Settler*>& settlers, int screenWidth, int screenHeight);
 void DrawSettlerOverheadUI(const Settler& settler, const Camera& camera);
-void ShowBuildingInfo(BuildingInstance* building, int screenWidth, int screenHeight);
+void ShowBuildingInfo(BuildingInstance* building, int screenWidth);
 bool HandleSelectionPanelClick(int screenWidth, int screenHeight);
 std::string HandleBuildingSelectionPanelClick(const std::vector<BuildingBlueprint*>& blueprints, int screenWidth, int screenHeight);
 void DrawCraftingPanel(int screenWidth, int screenHeight);
@@ -408,7 +399,20 @@ void setSelectedBuilding(BuildingInstance* building) { m_selectedBuilding = buil
 BuildingInstance* getSelectedBuilding() const { return m_selectedBuilding; }
 void DeselectBuilding() { m_selectedBuilding = nullptr; }
 bool IsMouseOverUI();
-void SetBuildingMode(bool active) { m_isBuildingMode = active; }
+    void SetBuildingMode(bool active) { m_isBuildingMode = active; }
+    
+    // Premium UI Methods
+    void DrawPremiumPanel(Rectangle rec, const char* title, float opacity = 0.8f);
+    void DrawSettlerSelectedPanel(Settler* settler, int screenWidth, int screenHeight);
+    void DrawReactiveLogConsole(int screenWidth, int screenHeight);
+    void DrawPremiumResourceBar(int wood, int food, int stone, int population, int screenWidth);
+    
+    void DrawColonyStatsPanel(int screenWidth);
+    bool IsBuildingSelectionPanelVisible() const { return m_isBuildingMode; }
+    void toggleColonyStats() { m_showColonyStats = !m_showColonyStats; }
+    void toggleMissionLog() { m_showMissionLog = !m_showMissionLog; }
+    bool isMissionLogVisible() const { return m_showMissionLog; }
+    Color GetThemeColor(const std::string& name, float alpha = 1.0f);
 
 
 private:
@@ -492,9 +496,24 @@ class NeedsSystem* m_needsSystem = nullptr;
 
 bool m_isBuildingMode = false;
 
-bool m_isCraftingPanelVisible = false;
+    bool m_isCraftingPanelVisible = false;
+    bool m_showColonyStats = false;
+    bool m_showMissionLog = true;
 public:
 
-void setNeedsSystem(class NeedsSystem* system) { m_needsSystem = system; }
+    void setNeedsSystem(class NeedsSystem* system) { m_needsSystem = system; }
 
+private:
+    // UI Theme Colors
+    const Color COLOR_GLASS_BG = { 20, 25, 30, 200 };
+    const Color COLOR_NEON_TEAL = { 0, 255, 230, 255 };
+    const Color COLOR_NEON_GOLD = { 255, 215, 0, 255 };
+    const Color COLOR_NEON_ORANGE = { 255, 140, 0, 255 };
+    const Color COLOR_UI_BORDER = { 100, 110, 120, 255 };
+    
+    float m_logScrollOffset = 0.0f;
+    float m_uiAnimationTime = 0.0f;
+    
+    Texture2D m_iconsTexture;
+    bool m_isIconsLoaded = false;
 };

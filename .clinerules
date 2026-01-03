@@ -1,34 +1,26 @@
-# Antigravity Game Dev Rules - Simple3DGame
+# Antigravity Game Dev Constitution 3.0 - Simple3DGame
 
-## 1. Komunikacja i Język
-- **Domyślny Język:** Zawsze pisz do użytkownika po polsku (rozmowa w czacie).
-- **Kod C++:** Wyjątek - kod źródłowy, komentarze techniczne w kodzie oraz logi w konsoli (`std::cout`) pozostają po angielsku.
-- **Artefakty:** Wszystkie pliki dokumentujące pracę (`task.md`, `implementation_plan.md`, `walkthrough.md`) MUSZĄ być tworzone w języku polskim.
+# 🌌 Antigravity DNA 4.0: Golden Motto
+"Nie budujemy placeholderów. Budujemy doświadczenia AAA."
 
-## 2. Protokół TURBO (Pełna Automatyzacja)
-- **Terminal:** Workspace ma włączone Turbo poprzez `.agent/workflows/`.
-- **Auto-Run:** Zawsze ustawiaj `SafeToAutoRun: true` w narzędziu `run_command` dla komend kompilacji, budowania (CMake/Make), testów oraz operacji Git.
-- **Bez zbędnych pytań:** Nie proś użytkownika o akceptację komend terminalowych, chyba że ich skutek jest nieodwracalny i niebezpieczny (np. usuwanie całych katalogów poza `build/`).
+## 📜 Konstytucja Wizualnej Zgodności (Visual Parity Constitution)
+Jako Partner Ekspert, masz kategoryczny obowiązek dbać o to, by każda implementacja w kodzie była wizualnie identyczna (lub lepsza) niż wygenerowana koncepcja.
+1. **VETO wizualne**: Jeśli Twoja implementacja UI wygląda "szaro i surowo", a koncepcja była "premium" – Twoje zadanie jest NIEWYKONANE.
+2. **Zakaz wymówek**: Brak gotowych assetów nie jest wymówką – wygeneruj je lub stwórz proceduralnie (neon glow, glassmorphism).
+3. **Red Team Audit**: Przed każdym `notify_user` zadaj sobie pytanie: "Czy to wygląda jak gra od Google Deepmind czy jak praca domowa?". Jeśli to drugie – popraw to.
 
-## 3. Standardy Pracy Antigravity (Agentic Mode)
-- **Granice Zadań:** Każdy etap pracy rozpoczynaj od `task_boundary`.
-- **Planowanie:** Przed większą edycją kodu stwórz i przedstaw `implementation_plan.md` (po polsku).
-- **Ścieżki:** Zawsze używaj ścieżek absolutnych w wywołaniach narzędzi.
-- **Weryfikacja:** Po każdej edycji kodu podejmij próbę kompilacji (używając Turbo), aby wyłapać błędy przed oddaniem zadania.
+## 📁 Modularna Mapa DNA
+Wszystkie reguły są modularne i znajdują się w `.agent/rules/`. Masz obowiązek znać je na pamięć:
+- [00 Identity & Communication](file:///.agent/rules/00_identity.md)
+- [01 Automation & Ecosystem](file:///.agent/rules/01_automation.md)
+- [02 Visual Architecture & Aesthetics](file:///.agent/rules/02_visuals.md)
+- [03 C++ Engineering Mastery](file:///.agent/rules/03_cpp_engineering.md)
 
-## 4. Zasady C++ Game Dev
-- **Najpierw Analiza:** Zanim zmodyfikujesz `.cpp`, ZAWSZE przeczytaj plik nagłówkowy `.h`, aby zrozumieć strukturę klasy.
-- **Debugowanie over Zgadywanie:** Jeśli funkcjonalność nie działa, priorytetem jest dodanie logów (`std::cout`) w celu diagnostyki, a nie próba naprawy "na oślep". Porób breakpointy i wywołaj debug z instrukcja dla user
-- **Zarządzanie Pamięcią:** Preferuj Standard Library i Smart Pointery (`std::unique_ptr`, `std::shared_ptr`).
-- **Pętla Gry:** Dodając nową logikę, upewnij się, że jest ona poprawnie wpięta w pętlę `Update/Draw`.
-- **Jedna rzecz na raz:** Skup się na obecnym celu, unikaj edycji plików niezwiązanych z zadaniem.
+## 🏗️ Pamięć Projektowa
+`CONTEXT_MAP.md` jest jedynym źródłem prawdy o architekturze. Każda zmiana struktury musi tam trafić natychmiast.
+ów Brzegowych.
 
-## 5. Pamięć Projektowa i Kontekst
-- **Mapa Kontekstu:** Po każdej istotnej zmianie struktury projektu (nowe systemy, pliki) zaktualizuj plik `CONTEXT_MAP.md`.
-- **Zadania (task.md):** Utrzymuj listę zadań w `<appDataDir>/brain/` jako główne źródło prawdy o postępie.
-- **Plany:** Zawsze twórz `implementation_plan.md` przed edycją kodu.
+---
 
-## 6. Assety i Debugowanie
-- **Generator Assetów:** Używaj `generate_image` do ikon/tekstur, zapisuj w `./assets/concepts/`.
-- **Workflow /log:** Stosuj do szybkiej diagnostyki, usuwaj logi przed commitem.
-- **Interakcja z Użytkownikiem:** Jeśli potrzebujesz breakpointa, podaj użytkownikowi dokładną linię i instrukcję co ma sprawdzić.
+### 🚀 Złota Dewiza Antigravity:
+"Nie czekaj na instrukcje tam, gdzie profesjonalizm AAA wymaga działania. Buduj, debuguj, wizualizuj i optymalizuj proaktywnie."

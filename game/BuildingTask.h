@@ -58,6 +58,12 @@ public:
   void removeWorker(Settler *worker);
   int getWorkerCount() const { return static_cast<int>(m_workers.size()); }
   const std::vector<Settler *> &getWorkers() const { return m_workers; }
+  
+  // Task commitment helpers
+  bool hasWorker(Settler *settler) const;
+  bool isFullyStaffed() const { return getWorkerCount() >= m_maxWorkers; }
+  int getMaxWorkers() const { return m_maxWorkers; }
+  void setMaxWorkers(int max) { m_maxWorkers = max; }
 
 private:
   BuildingBlueprint *m_blueprint;
@@ -70,5 +76,6 @@ private:
 
   std::unordered_map<std::string, int> m_collectedResources;
   std::vector<Settler *> m_workers;
+  int m_maxWorkers = 3; // Maximum concurrent workers per task
   float m_lastLogProgress = 0.0f;
 };

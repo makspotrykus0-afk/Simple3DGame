@@ -116,9 +116,17 @@ std::vector<Settler*> getSelectedSettlers() const;
 void clearSelection();
 bool checkHit(Ray ray, float range, std::string& hitInfo);
 
+// Logistyka Kolonii - Bonusy
+float getEfficiencyModifier(Vector3 pos, SettlerState state) const;
+
 bool isGatheringTaskActive(const std::string& resourceType) const;
 void registerGatheringTask(const std::string& resourceType);
-void unregisterGatheringTask(const std::string& resourceType);
+    void unregisterGatheringTask(const std::string& resourceType);
+
+    // Zasoby - Gettery dla UI (sumują zasoby z magazynów)
+    int getWood() const;
+    int getStone() const;
+    int getFood() const;
 
 };
 #endif

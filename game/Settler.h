@@ -293,6 +293,9 @@ public:
   BuildTask *getPrivateBuildTask() const { return m_myPrivateBuildTask; }
   void setPrivateBuildTask(BuildTask *task) { m_myPrivateBuildTask = task; }
   BuildTask *getCurrentBuildTask() const { return m_currentBuildTask; }
+  
+  // Task commitment - prevents premature task switching
+  bool isCommittedToTask() const;
 
   void ForceGatherTarget(GameEntity *target) { forceGatherTarget(target); }
   void AssignBuildTask(BuildTask *task) { assignBuildTask(task); }

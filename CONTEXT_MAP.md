@@ -243,6 +243,16 @@ ColonyAI → przydziela → [GatheringTasks, BuildingTasks]
 - Fix: użycie prawidłowego parametru `resourceNodes` w `Settler::FindNearestResourceNode()`
 - Dodano logi debugujące
 
+### Logistyka Kolonii i Budynki Funkcyjne (03.01.2026)
+
+- Wprowadzono system **Logistyki Kolonii** w `Colony.cpp`.
+- Dodano nowe budynki w `BuildingSystem.cpp`:
+    - **Tartak (Sawmill)**: +50% do szybkości rąbania drewna (zasięg 40m).
+    - **Kuźnia (Blacksmith)**: Globalny bonus +20% do wydajności narzędzi.
+    - **Studnia (Well)**: Pasywna regeneracja energii dla osadników w promieniu 25m.
+- Metoda `Colony::getEfficiencyModifier` zarządza kalkulacją bonusów na podstawie pozycji i stanu osadnika.
+- Zintegrowano bonusy w `Settler::Update` (regeneracja energii) oraz `UpdateChopping` i `UpdateMining`.
+
 ## 11. TODO / Planowane Rozszerzenia
 
 - [ ] **Serializacja**: Zapisywanie/ładowanie stanu gry do pliku
@@ -272,3 +282,17 @@ Dla konkretnych zadań:
 - **Crafting**: `systems/CraftingSystem.cpp`, `game/Item.cpp`
 - **UI**: `systems/UISystem.cpp`
 - **Potrzeby**: `systems/NeedsSystem.cpp`, `systems/FoodSystem.cpp`
+
+## 14. Standardy Pracy AI (Antigravity DNA 3.5 - Advanced Awareness)
+
+Projekt wykorzystuje najwyższy stopień autonomii AI (Partner Ekspert):
+- **Role i Tożsamość:** Agent działa jako **[ARCHITEKT]** / **[PROJEKTANT]** / **[DEBUGGER]** z pełną odpowiedzialnością za projekt.
+- **Protokół "Red Team":** Automatyczna autokrytyka i symulacja błędów przed wdrożeniem zmian.
+- **Protokół "Juice Advisor":** Proaktywne sugerowanie ulepszeń wizualnych, animacji i efektów "Wow Factor".
+- **Protokół "R&D Sandbox":** Samodzielne prototypowanie nowych mechanik w plikach `.experimental`.
+- **Decyzyjność:** Obowiązkowa analiza **Pros & Cons** dla każdej istotnej zmiany architektonicznej.
+- **Wizualizacja:** Obowiązkowe schematy (`generate_image`) dla zadań o PredictedTaskSize > 5.
+- **Turbo:** Pełna autonomia terminalowa i protokół Silent Fix.
+
+- **Pamięć:** AI ma obowiązek aktualizować `CONTEXT_MAP.md` i `task.md` po każdej sesji.
+

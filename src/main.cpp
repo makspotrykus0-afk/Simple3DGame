@@ -534,6 +534,10 @@ void processInput() {
     DebugConsole::getInstance().toggle();
   }
 
+  if (IsKeyPressed(KEY_TAB)) {
+    if (g_uiSystem) g_uiSystem->toggleColonyStats();
+  }
+
   if (DebugConsole::getInstance().isVisible()) {
     DebugConsole::getInstance().update();
     return; // Block other input
@@ -699,14 +703,12 @@ void processInput() {
     g_drawDebugGrid = !g_drawDebugGrid;
   }
   
-  // FPS ARM EDITOR (F2) - Disabled
-  // if (IsKeyPressed(KEY_F2)) {
-  //     if (controlledSettler) {
-  //         g_editorSystem.StartFpsArmEdit(controlledSettler);
-  //     } else {
-  //         std::cout << "[Main] Cannot edit Arm: No settler controlled!" << std::endl;
-  //     }
-  // }
+  // FPS ARM EDITOR (F2)
+  if (IsKeyPressed(KEY_F2)) {
+      if (controlledSettler) {
+          g_editorSystem.StartFpsArmEdit(controlledSettler);
+      }
+  }
 
   // Player input for settler control in TPS/FPS modes
   if ((currentCameraMode == CameraViewMode::TPS ||
@@ -1110,21 +1112,7 @@ int main() {
     ClearBackground(RAYWHITE);
     renderScene();
     engine.render();
-    // Draw UI elements
-    if (g_uiSystem) {
-      int wood = 0;
-      int food = 0;
-      int stone = 0;
-      g_uiSystem->DrawResourceBar(wood, food, stone, SCREEN_WIDTH);
-      g_uiSystem->DrawBottomPanel(
-          isBuildingMode, currentCameraMode != CameraViewMode::ISOMETRIC,
-          SCREEN_WIDTH, SCREEN_HEIGHT);
-      auto selectedSettlers = colony.getSelectedSettlers();
-      if (!selectedSettlers.empty()) {
-        g_uiSystem->DrawSelectionInfo(selectedSettlers, SCREEN_WIDTH,
-                                      SCREEN_HEIGHT);
-      }
-    }
+    // Note: All UI is now handled by UISystem::render() called from engine.render() above
     if (freeCameraController && freeCameraController->isDebugEnabled()) {
       freeCameraController->renderDebug();
     }

@@ -1,7 +1,8 @@
+﻿---
+description: Zarządzanie logami technicznymi (Czysty Kod)
 ---
-description: Manage debug logs in C++ code
----
-// turbo-all
-1. Add logs: Use `std::cout << "[DEBUG] " << ... << std::endl;` to trace logic.
-2. Remove logs: Use `grep` or `find` to locate and remove all `[DEBUG]` entries.
-3. Temporary UI logs: Use `DrawText()` for in-game visualization.
+# /log - Protokół Diagnostyczny
+
+1. Dodaj celowe logowanie `std::cout` w "hot path" dla debugowania.
+2. Rozwiąż problem używając `/debug`.
+3. Usuń logi diagnostyczne przed zakończeniem zadania (Rygor Boy Scout 3.0).

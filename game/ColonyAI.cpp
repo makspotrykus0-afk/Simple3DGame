@@ -173,7 +173,7 @@ void ColonyAI::checkNeeds()
       if (buildPos.y > -500.0f) {
         bool success = false; // Add success tracking
         BuildTask *task = m_buildingSystem->startBuilding(
-            bpId, buildPos, nullptr, 0.0f, false, false, false, &success);
+            bpId, buildPos, settler, 0.0f, false, false, false, &success);
 
         if (task || success) { // Modified check: task might be null for
                                // composite, but success is true
@@ -223,15 +223,26 @@ void ColonyAI::assignJobs() {
 
     // Priority 1: Building
     if (settler->performBuilding && !buildTasks.empty()) {
+      // CRITICAL: Task Commitment Guard - don't assign new task if already committed
+      if (settler->isCommittedToTask()) {
+        continue; // Settler is still working on existing task
+      }
+      
       BuildTask *bestTask = nullptr;
       float minTaskDistSq = 999999.0f;
       Vector3 settlerPos = settler->getPosition();
 
       for (auto *task : buildTasks) {
-        // Limit workers per task to avoid crowding (e.g., 3 workers per
-        // building)
-        if (task->getWorkerCount() >= 3)
+        // Check if task has max workers (use encapsulated method)
+        if (task->isFullyStaffed())
           continue;
+
+        // HIGH PRIORITY: If this is my own house (I am the builder), prioritize it!
+        if (task->getBuilder() == settler) {
+          std::cout << "ColonyAI: Found OWN building task for " << settler->getName() << ". Prioritizing!" << std::endl;
+          bestTask = task;
+          break; // Found our primary goal
+        }
 
         float distSq = Vector3DistanceSqr(settlerPos, task->getPosition());
         if (distSq < minTaskDistSq) {

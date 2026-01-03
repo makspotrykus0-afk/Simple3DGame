@@ -29,7 +29,7 @@ bool ColorEqual(Color c1, Color c2) {
 }
 
 // Static model for rendering cubes
-static Model cubeModel = {0};
+static Model cubeModel = { 0 };
 static bool cubeModelLoaded = false;
 // Helper function to ensure storage is created for a building instance
 void BuildingSystem::EnsureStorageForBuildingInstance(
@@ -80,6 +80,10 @@ void BuildTask::removeWorker(Settler *worker) {
   if (it != m_workers.end()) {
     m_workers.erase(it, m_workers.end());
   }
+}
+
+bool BuildTask::hasWorker(Settler *settler) const {
+  return std::find(m_workers.begin(), m_workers.end(), settler) != m_workers.end();
 }
 
 void BuildTask::update(float deltaTime) { (void)deltaTime; }
@@ -348,6 +352,23 @@ void BuildingSystem::registerDefaultBlueprints() {
   ensureBlueprintExists("house_6");
   ensureBlueprintExists("house_9");
 
+  auto sawmill = std::make_unique<BuildingBlueprint>("sawmill", "Sawmill", BuildingCategory::PRODUCTION);
+  sawmill->addCost(Resources::ResourceType::Wood, 50);
+  sawmill->setSize({3.0f, 3.2f, 3.0f});
+  registerBlueprint(std::move(sawmill));
+
+  auto blacksmith = std::make_unique<BuildingBlueprint>("blacksmith", "Blacksmith", BuildingCategory::PRODUCTION);
+  blacksmith->addCost(Resources::ResourceType::Wood, 40);
+  blacksmith->addCost(Resources::ResourceType::Metal, 20);
+  blacksmith->setSize({3.0f, 3.2f, 3.0f});
+  registerBlueprint(std::move(blacksmith));
+
+  auto well = std::make_unique<BuildingBlueprint>("well", "Well", BuildingCategory::PRODUCTION);
+  well->addCost(Resources::ResourceType::Wood, 20);
+  well->addCost(Resources::ResourceType::Stone, 30);
+  well->setSize({2.0f, 2.0f, 2.0f});
+  registerBlueprint(std::move(well));
+
   auto stockpile = std::make_unique<BuildingBlueprint>(
       "stockpile", "Stockpile", BuildingCategory::STORAGE);
   stockpile->setModelPath("resources/models/floor.obj");
@@ -380,7 +401,7 @@ void BuildingSystem::loadBlueprints(const std::string &filepath) {
 }
 
 bool BuildingSystem::canBuild(const std::string &blueprintId,
-                              Vector3 position) {
+                              Vector3 /*position*/) {
   const_cast<BuildingSystem *>(this)->ensureBlueprintExists(blueprintId);
   if (m_blueprints.find(blueprintId) == m_blueprints.end())
     return false;
@@ -892,11 +913,12 @@ void BuildingSystem::render() {
         if (itemCounter > 50)
           break; // Limit to avoid clutter
 
-        // Stack logic: 3x3 piles
-        int stackIndex = itemCounter / 9; // Layer
-        int floorIndex = itemCounter % 9; // Position in 3x3
-        int row = floorIndex / 3;
-        int col = floorIndex % 3;
+        // Stack logic: itemsPerRow x itemsPerRow piles
+        int itemsPerFloor = itemsPerRow * itemsPerRow;
+        int stackIndex = itemCounter / itemsPerFloor; // Layer
+        int floorIndex = itemCounter % itemsPerFloor; // Position in grid
+        int row = floorIndex / itemsPerRow;
+        int col = floorIndex % itemsPerRow;
 
         // Position relative to build center, but offset to side or corner?
         // Let's put them inside the bounding box but scattered.
@@ -914,9 +936,7 @@ void BuildingSystem::render() {
     }
 
     // Draw Building Name
-    std::string name = blueprint->getName();
     // Simple 3D feedback for started build
-    Vector3 textPos = Vector3Add(pos, {0, 3.5f, 0});
     // Visual indicator (Box where text would be, or just the bars are enough if
     // clear) But let's actually make the bars better.
 

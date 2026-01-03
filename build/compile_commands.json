@@ -1,0 +1,464 @@
+[
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\src\\main.cpp.obj -c F:\\Simple3DGame\\src\\main.cpp",
+  "file": "F:/Simple3DGame/src/main.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/src/main.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\core\\GameEngine.cpp.obj -c F:\\Simple3DGame\\core\\GameEngine.cpp",
+  "file": "F:/Simple3DGame/core/GameEngine.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\core\\EventSystem.cpp.obj -c F:\\Simple3DGame\\core\\EventSystem.cpp",
+  "file": "F:/Simple3DGame/core/EventSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\core\\GameSystem.cpp.obj -c F:\\Simple3DGame\\core\\GameSystem.cpp",
+  "file": "F:/Simple3DGame/core/GameSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\core\\DIContainer.cpp.obj -c F:\\Simple3DGame\\core\\DIContainer.cpp",
+  "file": "F:/Simple3DGame/core/DIContainer.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Terrain.cpp.obj -c F:\\Simple3DGame\\game\\Terrain.cpp",
+  "file": "F:/Simple3DGame/game/Terrain.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Colony.cpp.obj -c F:\\Simple3DGame\\game\\Colony.cpp",
+  "file": "F:/Simple3DGame/game/Colony.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Colony.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\BuildingTask.cpp.obj -c F:\\Simple3DGame\\game\\BuildingTask.cpp",
+  "file": "F:/Simple3DGame/game/BuildingTask.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\GatheringTask.cpp.obj -c F:\\Simple3DGame\\game\\GatheringTask.cpp",
+  "file": "F:/Simple3DGame/game/GatheringTask.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\ResourceNode.cpp.obj -c F:\\Simple3DGame\\game\\ResourceNode.cpp",
+  "file": "F:/Simple3DGame/game/ResourceNode.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\ResourceTypes.cpp.obj -c F:\\Simple3DGame\\game\\ResourceTypes.cpp",
+  "file": "F:/Simple3DGame/game/ResourceTypes.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Item.cpp.obj -c F:\\Simple3DGame\\game\\Item.cpp",
+  "file": "F:/Simple3DGame/game/Item.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Item.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\InteractableObject.cpp.obj -c F:\\Simple3DGame\\game\\InteractableObject.cpp",
+  "file": "F:/Simple3DGame/game/InteractableObject.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\BuildingBlueprint.cpp.obj -c F:\\Simple3DGame\\game\\BuildingBlueprint.cpp",
+  "file": "F:/Simple3DGame/game/BuildingBlueprint.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Door.cpp.obj -c F:\\Simple3DGame\\game\\Door.cpp",
+  "file": "F:/Simple3DGame/game/Door.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Tree.cpp.obj -c F:\\Simple3DGame\\game\\Tree.cpp",
+  "file": "F:/Simple3DGame/game/Tree.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Tree.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Animal.cpp.obj -c F:\\Simple3DGame\\game\\Animal.cpp",
+  "file": "F:/Simple3DGame/game/Animal.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\ColonyAI.cpp.obj -c F:\\Simple3DGame\\game\\ColonyAI.cpp",
+  "file": "F:/Simple3DGame/game/ColonyAI.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\BuildingInstance.cpp.obj -c F:\\Simple3DGame\\game\\BuildingInstance.cpp",
+  "file": "F:/Simple3DGame/game/BuildingInstance.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Bed.cpp.obj -c F:\\Simple3DGame\\game\\Bed.cpp",
+  "file": "F:/Simple3DGame/game/Bed.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Settler.cpp.obj -c F:\\Simple3DGame\\game\\Settler.cpp",
+  "file": "F:/Simple3DGame/game/Settler.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\DebugConsole.cpp.obj -c F:\\Simple3DGame\\game\\DebugConsole.cpp",
+  "file": "F:/Simple3DGame/game/DebugConsole.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Projectile.cpp.obj -c F:\\Simple3DGame\\game\\Projectile.cpp",
+  "file": "F:/Simple3DGame/game/Projectile.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\NavigationGrid.cpp.obj -c F:\\Simple3DGame\\game\\NavigationGrid.cpp",
+  "file": "F:/Simple3DGame/game/NavigationGrid.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\EditorSystem.cpp.obj -c F:\\Simple3DGame\\systems\\EditorSystem.cpp",
+  "file": "F:/Simple3DGame/systems/EditorSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\ResourceSystem.cpp.obj -c F:\\Simple3DGame\\systems\\ResourceSystem.cpp",
+  "file": "F:/Simple3DGame/systems/ResourceSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\SkillsSystem.cpp.obj -c F:\\Simple3DGame\\systems\\SkillsSystem.cpp",
+  "file": "F:/Simple3DGame/systems/SkillsSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\EquipmentSystem.cpp.obj -c F:\\Simple3DGame\\systems\\EquipmentSystem.cpp",
+  "file": "F:/Simple3DGame/systems/EquipmentSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\FoodSystem.cpp.obj -c F:\\Simple3DGame\\systems\\FoodSystem.cpp",
+  "file": "F:/Simple3DGame/systems/FoodSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\InteractionSystem.cpp.obj -c F:\\Simple3DGame\\systems\\InteractionSystem.cpp",
+  "file": "F:/Simple3DGame/systems/InteractionSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\InventorySystem.cpp.obj -c F:\\Simple3DGame\\systems\\InventorySystem.cpp",
+  "file": "F:/Simple3DGame/systems/InventorySystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\BuildingSystem.cpp.obj -c F:\\Simple3DGame\\systems\\BuildingSystem.cpp",
+  "file": "F:/Simple3DGame/systems/BuildingSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\StorageSystem.cpp.obj -c F:\\Simple3DGame\\systems\\StorageSystem.cpp",
+  "file": "F:/Simple3DGame/systems/StorageSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\TestSystem.cpp.obj -c F:\\Simple3DGame\\systems\\TestSystem.cpp",
+  "file": "F:/Simple3DGame/systems/TestSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\UISystem.cpp.obj -c F:\\Simple3DGame\\systems\\UISystem.cpp",
+  "file": "F:/Simple3DGame/systems/UISystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\TimeCycleSystem.cpp.obj -c F:\\Simple3DGame\\systems\\TimeCycleSystem.cpp",
+  "file": "F:/Simple3DGame/systems/TimeCycleSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\NeedsSystem.cpp.obj -c F:\\Simple3DGame\\systems\\NeedsSystem.cpp",
+  "file": "F:/Simple3DGame/systems/NeedsSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\systems\\CraftingSystem.cpp.obj -c F:\\Simple3DGame\\systems\\CraftingSystem.cpp",
+  "file": "F:/Simple3DGame/systems/CraftingSystem.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\ResourceComponent.cpp.obj -c F:\\Simple3DGame\\components\\ResourceComponent.cpp",
+  "file": "F:/Simple3DGame/components/ResourceComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\InteractionComponent.cpp.obj -c F:\\Simple3DGame\\components\\InteractionComponent.cpp",
+  "file": "F:/Simple3DGame/components/InteractionComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\InventoryComponent.cpp.obj -c F:\\Simple3DGame\\components\\InventoryComponent.cpp",
+  "file": "F:/Simple3DGame/components/InventoryComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\StatsComponent.cpp.obj -c F:\\Simple3DGame\\components\\StatsComponent.cpp",
+  "file": "F:/Simple3DGame/components/StatsComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\BuildingComponent.cpp.obj -c F:\\Simple3DGame\\components\\BuildingComponent.cpp",
+  "file": "F:/Simple3DGame/components/BuildingComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\SkillsComponent.cpp.obj -c F:\\Simple3DGame\\components\\SkillsComponent.cpp",
+  "file": "F:/Simple3DGame/components/SkillsComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\PositionComponent.cpp.obj -c F:\\Simple3DGame\\components\\PositionComponent.cpp",
+  "file": "F:/Simple3DGame/components/PositionComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\TreeComponent.cpp.obj -c F:\\Simple3DGame\\components\\TreeComponent.cpp",
+  "file": "F:/Simple3DGame/components/TreeComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\EquipmentComponent.cpp.obj -c F:\\Simple3DGame\\components\\EquipmentComponent.cpp",
+  "file": "F:/Simple3DGame/components/EquipmentComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\entities\\PlayerCharacter.cpp.obj -c F:\\Simple3DGame\\entities\\PlayerCharacter.cpp",
+  "file": "F:/Simple3DGame/entities/PlayerCharacter.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\entities\\Ant.cpp.obj -c F:\\Simple3DGame\\entities\\Ant.cpp",
+  "file": "F:/Simple3DGame/entities/Ant.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib",
+  "command": "F:\\11\\bin\\gcc.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS @CMakeFiles/raylib.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=gnu99 -o CMakeFiles\\raylib.dir\\raudio.c.obj -c F:\\Simple3DGame\\raylib\\src\\raudio.c",
+  "file": "F:/Simple3DGame/raylib/src/raudio.c",
+  "output": "raylib/raylib/CMakeFiles/raylib.dir/raudio.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib",
+  "command": "F:\\11\\bin\\gcc.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS @CMakeFiles/raylib.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=gnu99 -o CMakeFiles\\raylib.dir\\rcore.c.obj -c F:\\Simple3DGame\\raylib\\src\\rcore.c",
+  "file": "F:/Simple3DGame/raylib/src/rcore.c",
+  "output": "raylib/raylib/CMakeFiles/raylib.dir/rcore.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib",
+  "command": "F:\\11\\bin\\gcc.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS @CMakeFiles/raylib.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=gnu99 -o CMakeFiles\\raylib.dir\\rmodels.c.obj -c F:\\Simple3DGame\\raylib\\src\\rmodels.c",
+  "file": "F:/Simple3DGame/raylib/src/rmodels.c",
+  "output": "raylib/raylib/CMakeFiles/raylib.dir/rmodels.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib",
+  "command": "F:\\11\\bin\\gcc.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS @CMakeFiles/raylib.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=gnu99 -o CMakeFiles\\raylib.dir\\rshapes.c.obj -c F:\\Simple3DGame\\raylib\\src\\rshapes.c",
+  "file": "F:/Simple3DGame/raylib/src/rshapes.c",
+  "output": "raylib/raylib/CMakeFiles/raylib.dir/rshapes.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib",
+  "command": "F:\\11\\bin\\gcc.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS @CMakeFiles/raylib.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=gnu99 -o CMakeFiles\\raylib.dir\\rtext.c.obj -c F:\\Simple3DGame\\raylib\\src\\rtext.c",
+  "file": "F:/Simple3DGame/raylib/src/rtext.c",
+  "output": "raylib/raylib/CMakeFiles/raylib.dir/rtext.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib",
+  "command": "F:\\11\\bin\\gcc.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS @CMakeFiles/raylib.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=gnu99 -o CMakeFiles\\raylib.dir\\rtextures.c.obj -c F:\\Simple3DGame\\raylib\\src\\rtextures.c",
+  "file": "F:/Simple3DGame/raylib/src/rtextures.c",
+  "output": "raylib/raylib/CMakeFiles/raylib.dir/rtextures.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib",
+  "command": "F:\\11\\bin\\gcc.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS @CMakeFiles/raylib.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=gnu99 -o CMakeFiles\\raylib.dir\\utils.c.obj -c F:\\Simple3DGame\\raylib\\src\\utils.c",
+  "file": "F:/Simple3DGame/raylib/src/utils.c",
+  "output": "raylib/raylib/CMakeFiles/raylib.dir/utils.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\context.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\context.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/context.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\init.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\init.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/init.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\input.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\input.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/input.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\monitor.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\monitor.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/monitor.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\platform.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\platform.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/platform.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\vulkan.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\vulkan.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/vulkan.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\window.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\window.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/window.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\egl_context.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\egl_context.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/egl_context.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\osmesa_context.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\osmesa_context.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/osmesa_context.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\null_init.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\null_init.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/null_init.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\null_monitor.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\null_monitor.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/null_monitor.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\null_window.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\null_window.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/null_window.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\null_joystick.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\null_joystick.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/null_joystick.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_module.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\win32_module.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/win32_module.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_time.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\win32_time.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/win32_time.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_thread.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\win32_thread.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/win32_thread.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_init.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\win32_init.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/win32_init.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_joystick.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\win32_joystick.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/win32_joystick.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_monitor.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\win32_monitor.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/win32_monitor.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\win32_window.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\win32_window.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/win32_window.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build/raylib/raylib/external/glfw/src",
+  "command": "F:\\11\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE @CMakeFiles/glfw.dir/includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -O3 -DNDEBUG -std=c99 -Wall -o CMakeFiles\\glfw.dir\\wgl_context.c.obj -c F:\\Simple3DGame\\raylib\\src\\external\\glfw\\src\\wgl_context.c",
+  "file": "F:/Simple3DGame/raylib/src/external/glfw/src/wgl_context.c",
+  "output": "raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj"
+}
+]

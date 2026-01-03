@@ -4,7 +4,6 @@
 #include "raylib.h"
 #include "raymath.h"
 #include <string>
-#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -38,14 +37,14 @@ struct BlueprintComponent {
 class BuildingBlueprint {
 public:
   BuildingBlueprint(std::string id, std::string name, BuildingCategory category)
-      : m_id(id), m_name(name), m_category(category), m_walkable(false),
-        m_model({0}) {}
+      : m_id(id), m_name(name), m_category(category), m_model({}),
+        m_walkable(false) {}
 
   // Keep old constructor for compatibility if needed
   BuildingBlueprint(std::string id, std::string name, std::string description)
       : m_id(id), m_name(name), m_description(description),
-        m_category(BuildingCategory::STRUCTURE), m_walkable(false),
-        m_model({0}) {}
+        m_category(BuildingCategory::STRUCTURE), m_model({}),
+        m_walkable(false) {}
 
   ~BuildingBlueprint() { unloadModel(); }
 
@@ -57,6 +56,8 @@ public:
   void setModelPath(const std::string &path) { m_modelPath = path; }
   const std::string &getModelPath() const { return m_modelPath; }
 
+  void setDescription(const std::string &desc) { m_description = desc; }
+
   void loadModel() {
     if (!m_modelPath.empty() && m_model.meshCount == 0) {
       m_model = LoadModel(m_modelPath.c_str());
@@ -66,7 +67,7 @@ public:
   void unloadModel() {
     if (m_model.meshCount > 0) {
       UnloadModel(m_model);
-      m_model = {0};
+      m_model = {};
     }
   }
 

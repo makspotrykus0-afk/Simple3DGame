@@ -76,735 +76,735 @@ CMakeFiles/Simple3DGame.dir/src/main.cpp.obj: CMakeFiles/Simple3DGame.dir/includ
 CMakeFiles/Simple3DGame.dir/src/main.cpp.obj: F:/Simple3DGame/src/main.cpp
 CMakeFiles/Simple3DGame.dir/src/main.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Simple3DGame.dir/src/main.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/src/main.cpp.obj -MF CMakeFiles\Simple3DGame.dir\src\main.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\src\main.cpp.obj -c F:\Simple3DGame\src\main.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/src/main.cpp.obj -MF CMakeFiles\Simple3DGame.dir\src\main.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\src\main.cpp.obj -c F:\Simple3DGame\src\main.cpp
 
 CMakeFiles/Simple3DGame.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/src/main.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\src\main.cpp > CMakeFiles\Simple3DGame.dir\src\main.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\src\main.cpp > CMakeFiles\Simple3DGame.dir\src\main.cpp.i
 
 CMakeFiles/Simple3DGame.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/src/main.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\src\main.cpp -o CMakeFiles\Simple3DGame.dir\src\main.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\src\main.cpp -o CMakeFiles\Simple3DGame.dir\src\main.cpp.s
 
 CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.obj: F:/Simple3DGame/core/GameEngine.cpp
 CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.obj -MF CMakeFiles\Simple3DGame.dir\core\GameEngine.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\core\GameEngine.cpp.obj -c F:\Simple3DGame\core\GameEngine.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.obj -MF CMakeFiles\Simple3DGame.dir\core\GameEngine.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\core\GameEngine.cpp.obj -c F:\Simple3DGame\core\GameEngine.cpp
 
 CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\core\GameEngine.cpp > CMakeFiles\Simple3DGame.dir\core\GameEngine.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\core\GameEngine.cpp > CMakeFiles\Simple3DGame.dir\core\GameEngine.cpp.i
 
 CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/core/GameEngine.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\core\GameEngine.cpp -o CMakeFiles\Simple3DGame.dir\core\GameEngine.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\core\GameEngine.cpp -o CMakeFiles\Simple3DGame.dir\core\GameEngine.cpp.s
 
 CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.obj: F:/Simple3DGame/core/EventSystem.cpp
 CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\core\EventSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\core\EventSystem.cpp.obj -c F:\Simple3DGame\core\EventSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\core\EventSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\core\EventSystem.cpp.obj -c F:\Simple3DGame\core\EventSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\core\EventSystem.cpp > CMakeFiles\Simple3DGame.dir\core\EventSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\core\EventSystem.cpp > CMakeFiles\Simple3DGame.dir\core\EventSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/core/EventSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\core\EventSystem.cpp -o CMakeFiles\Simple3DGame.dir\core\EventSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\core\EventSystem.cpp -o CMakeFiles\Simple3DGame.dir\core\EventSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.obj: F:/Simple3DGame/core/GameSystem.cpp
 CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\core\GameSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\core\GameSystem.cpp.obj -c F:\Simple3DGame\core\GameSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\core\GameSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\core\GameSystem.cpp.obj -c F:\Simple3DGame\core\GameSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\core\GameSystem.cpp > CMakeFiles\Simple3DGame.dir\core\GameSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\core\GameSystem.cpp > CMakeFiles\Simple3DGame.dir\core\GameSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/core/GameSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\core\GameSystem.cpp -o CMakeFiles\Simple3DGame.dir\core\GameSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\core\GameSystem.cpp -o CMakeFiles\Simple3DGame.dir\core\GameSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.obj: F:/Simple3DGame/core/DIContainer.cpp
 CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.obj -MF CMakeFiles\Simple3DGame.dir\core\DIContainer.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\core\DIContainer.cpp.obj -c F:\Simple3DGame\core\DIContainer.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.obj -MF CMakeFiles\Simple3DGame.dir\core\DIContainer.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\core\DIContainer.cpp.obj -c F:\Simple3DGame\core\DIContainer.cpp
 
 CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\core\DIContainer.cpp > CMakeFiles\Simple3DGame.dir\core\DIContainer.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\core\DIContainer.cpp > CMakeFiles\Simple3DGame.dir\core\DIContainer.cpp.i
 
 CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/core/DIContainer.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\core\DIContainer.cpp -o CMakeFiles\Simple3DGame.dir\core\DIContainer.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\core\DIContainer.cpp -o CMakeFiles\Simple3DGame.dir\core\DIContainer.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.obj: F:/Simple3DGame/game/Terrain.cpp
 CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Terrain.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Terrain.cpp.obj -c F:\Simple3DGame\game\Terrain.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Terrain.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Terrain.cpp.obj -c F:\Simple3DGame\game\Terrain.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Terrain.cpp > CMakeFiles\Simple3DGame.dir\game\Terrain.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Terrain.cpp > CMakeFiles\Simple3DGame.dir\game\Terrain.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Terrain.cpp -o CMakeFiles\Simple3DGame.dir\game\Terrain.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Terrain.cpp -o CMakeFiles\Simple3DGame.dir\game\Terrain.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/Colony.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/Colony.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Colony.cpp.obj: F:/Simple3DGame/game/Colony.cpp
 CMakeFiles/Simple3DGame.dir/game/Colony.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Colony.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Colony.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Colony.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Colony.cpp.obj -c F:\Simple3DGame\game\Colony.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Colony.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Colony.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Colony.cpp.obj -c F:\Simple3DGame\game\Colony.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Colony.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/Colony.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Colony.cpp > CMakeFiles\Simple3DGame.dir\game\Colony.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Colony.cpp > CMakeFiles\Simple3DGame.dir\game\Colony.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/Colony.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/Colony.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Colony.cpp -o CMakeFiles\Simple3DGame.dir\game\Colony.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Colony.cpp -o CMakeFiles\Simple3DGame.dir\game\Colony.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.obj: F:/Simple3DGame/game/BuildingTask.cpp
 CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\BuildingTask.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\BuildingTask.cpp.obj -c F:\Simple3DGame\game\BuildingTask.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\BuildingTask.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\BuildingTask.cpp.obj -c F:\Simple3DGame\game\BuildingTask.cpp
 
 CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\BuildingTask.cpp > CMakeFiles\Simple3DGame.dir\game\BuildingTask.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\BuildingTask.cpp > CMakeFiles\Simple3DGame.dir\game\BuildingTask.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\BuildingTask.cpp -o CMakeFiles\Simple3DGame.dir\game\BuildingTask.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\BuildingTask.cpp -o CMakeFiles\Simple3DGame.dir\game\BuildingTask.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.obj: F:/Simple3DGame/game/GatheringTask.cpp
 CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\GatheringTask.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\GatheringTask.cpp.obj -c F:\Simple3DGame\game\GatheringTask.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\GatheringTask.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\GatheringTask.cpp.obj -c F:\Simple3DGame\game\GatheringTask.cpp
 
 CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\GatheringTask.cpp > CMakeFiles\Simple3DGame.dir\game\GatheringTask.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\GatheringTask.cpp > CMakeFiles\Simple3DGame.dir\game\GatheringTask.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\GatheringTask.cpp -o CMakeFiles\Simple3DGame.dir\game\GatheringTask.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\GatheringTask.cpp -o CMakeFiles\Simple3DGame.dir\game\GatheringTask.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.obj: F:/Simple3DGame/game/ResourceNode.cpp
 CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\ResourceNode.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\ResourceNode.cpp.obj -c F:\Simple3DGame\game\ResourceNode.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\ResourceNode.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\ResourceNode.cpp.obj -c F:\Simple3DGame\game\ResourceNode.cpp
 
 CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\ResourceNode.cpp > CMakeFiles\Simple3DGame.dir\game\ResourceNode.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\ResourceNode.cpp > CMakeFiles\Simple3DGame.dir\game\ResourceNode.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/ResourceNode.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\ResourceNode.cpp -o CMakeFiles\Simple3DGame.dir\game\ResourceNode.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\ResourceNode.cpp -o CMakeFiles\Simple3DGame.dir\game\ResourceNode.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.obj: F:/Simple3DGame/game/ResourceTypes.cpp
 CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\ResourceTypes.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\ResourceTypes.cpp.obj -c F:\Simple3DGame\game\ResourceTypes.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\ResourceTypes.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\ResourceTypes.cpp.obj -c F:\Simple3DGame\game\ResourceTypes.cpp
 
 CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\ResourceTypes.cpp > CMakeFiles\Simple3DGame.dir\game\ResourceTypes.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\ResourceTypes.cpp > CMakeFiles\Simple3DGame.dir\game\ResourceTypes.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\ResourceTypes.cpp -o CMakeFiles\Simple3DGame.dir\game\ResourceTypes.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\ResourceTypes.cpp -o CMakeFiles\Simple3DGame.dir\game\ResourceTypes.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/Item.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/Item.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Item.cpp.obj: F:/Simple3DGame/game/Item.cpp
 CMakeFiles/Simple3DGame.dir/game/Item.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Item.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Item.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Item.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Item.cpp.obj -c F:\Simple3DGame\game\Item.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Item.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Item.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Item.cpp.obj -c F:\Simple3DGame\game\Item.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Item.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/Item.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Item.cpp > CMakeFiles\Simple3DGame.dir\game\Item.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Item.cpp > CMakeFiles\Simple3DGame.dir\game\Item.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/Item.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/Item.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Item.cpp -o CMakeFiles\Simple3DGame.dir\game\Item.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Item.cpp -o CMakeFiles\Simple3DGame.dir\game\Item.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.obj: F:/Simple3DGame/game/InteractableObject.cpp
 CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\InteractableObject.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\InteractableObject.cpp.obj -c F:\Simple3DGame\game\InteractableObject.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\InteractableObject.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\InteractableObject.cpp.obj -c F:\Simple3DGame\game\InteractableObject.cpp
 
 CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\InteractableObject.cpp > CMakeFiles\Simple3DGame.dir\game\InteractableObject.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\InteractableObject.cpp > CMakeFiles\Simple3DGame.dir\game\InteractableObject.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/InteractableObject.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\InteractableObject.cpp -o CMakeFiles\Simple3DGame.dir\game\InteractableObject.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\InteractableObject.cpp -o CMakeFiles\Simple3DGame.dir\game\InteractableObject.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.obj: F:/Simple3DGame/game/BuildingBlueprint.cpp
 CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\BuildingBlueprint.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\BuildingBlueprint.cpp.obj -c F:\Simple3DGame\game\BuildingBlueprint.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\BuildingBlueprint.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\BuildingBlueprint.cpp.obj -c F:\Simple3DGame\game\BuildingBlueprint.cpp
 
 CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\BuildingBlueprint.cpp > CMakeFiles\Simple3DGame.dir\game\BuildingBlueprint.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\BuildingBlueprint.cpp > CMakeFiles\Simple3DGame.dir\game\BuildingBlueprint.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/BuildingBlueprint.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\BuildingBlueprint.cpp -o CMakeFiles\Simple3DGame.dir\game\BuildingBlueprint.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\BuildingBlueprint.cpp -o CMakeFiles\Simple3DGame.dir\game\BuildingBlueprint.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj: F:/Simple3DGame/game/Door.cpp
 CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Door.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Door.cpp.obj -c F:\Simple3DGame\game\Door.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Door.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Door.cpp.obj -c F:\Simple3DGame\game\Door.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Door.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/Door.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Door.cpp > CMakeFiles\Simple3DGame.dir\game\Door.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Door.cpp > CMakeFiles\Simple3DGame.dir\game\Door.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/Door.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/Door.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Door.cpp -o CMakeFiles\Simple3DGame.dir\game\Door.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Door.cpp -o CMakeFiles\Simple3DGame.dir\game\Door.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/Tree.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/Tree.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Tree.cpp.obj: F:/Simple3DGame/game/Tree.cpp
 CMakeFiles/Simple3DGame.dir/game/Tree.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Tree.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Tree.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Tree.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Tree.cpp.obj -c F:\Simple3DGame\game\Tree.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Tree.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Tree.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Tree.cpp.obj -c F:\Simple3DGame\game\Tree.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Tree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/Tree.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Tree.cpp > CMakeFiles\Simple3DGame.dir\game\Tree.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Tree.cpp > CMakeFiles\Simple3DGame.dir\game\Tree.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/Tree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/Tree.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Tree.cpp -o CMakeFiles\Simple3DGame.dir\game\Tree.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Tree.cpp -o CMakeFiles\Simple3DGame.dir\game\Tree.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj: F:/Simple3DGame/game/Animal.cpp
 CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Animal.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Animal.cpp.obj -c F:\Simple3DGame\game\Animal.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Animal.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Animal.cpp.obj -c F:\Simple3DGame\game\Animal.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Animal.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/Animal.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Animal.cpp > CMakeFiles\Simple3DGame.dir\game\Animal.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Animal.cpp > CMakeFiles\Simple3DGame.dir\game\Animal.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/Animal.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/Animal.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Animal.cpp -o CMakeFiles\Simple3DGame.dir\game\Animal.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Animal.cpp -o CMakeFiles\Simple3DGame.dir\game\Animal.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj: F:/Simple3DGame/game/ColonyAI.cpp
 CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\ColonyAI.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\ColonyAI.cpp.obj -c F:\Simple3DGame\game\ColonyAI.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\ColonyAI.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\ColonyAI.cpp.obj -c F:\Simple3DGame\game\ColonyAI.cpp
 
 CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\ColonyAI.cpp > CMakeFiles\Simple3DGame.dir\game\ColonyAI.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\ColonyAI.cpp > CMakeFiles\Simple3DGame.dir\game\ColonyAI.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\ColonyAI.cpp -o CMakeFiles\Simple3DGame.dir\game\ColonyAI.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\ColonyAI.cpp -o CMakeFiles\Simple3DGame.dir\game\ColonyAI.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj: F:/Simple3DGame/game/BuildingInstance.cpp
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\BuildingInstance.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\BuildingInstance.cpp.obj -c F:\Simple3DGame\game\BuildingInstance.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\BuildingInstance.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\BuildingInstance.cpp.obj -c F:\Simple3DGame\game\BuildingInstance.cpp
 
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\BuildingInstance.cpp > CMakeFiles\Simple3DGame.dir\game\BuildingInstance.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\BuildingInstance.cpp > CMakeFiles\Simple3DGame.dir\game\BuildingInstance.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\BuildingInstance.cpp -o CMakeFiles\Simple3DGame.dir\game\BuildingInstance.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\BuildingInstance.cpp -o CMakeFiles\Simple3DGame.dir\game\BuildingInstance.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj: F:/Simple3DGame/game/Bed.cpp
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Bed.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Bed.cpp.obj -c F:\Simple3DGame\game\Bed.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Bed.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Bed.cpp.obj -c F:\Simple3DGame\game\Bed.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/Bed.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Bed.cpp > CMakeFiles\Simple3DGame.dir\game\Bed.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Bed.cpp > CMakeFiles\Simple3DGame.dir\game\Bed.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/Bed.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Bed.cpp -o CMakeFiles\Simple3DGame.dir\game\Bed.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Bed.cpp -o CMakeFiles\Simple3DGame.dir\game\Bed.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: F:/Simple3DGame/game/Settler.cpp
 CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Settler.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Settler.cpp.obj -c F:\Simple3DGame\game\Settler.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Settler.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Settler.cpp.obj -c F:\Simple3DGame\game\Settler.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Settler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/Settler.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Settler.cpp > CMakeFiles\Simple3DGame.dir\game\Settler.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Settler.cpp > CMakeFiles\Simple3DGame.dir\game\Settler.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/Settler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/Settler.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Settler.cpp -o CMakeFiles\Simple3DGame.dir\game\Settler.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Settler.cpp -o CMakeFiles\Simple3DGame.dir\game\Settler.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj: F:/Simple3DGame/game/DebugConsole.cpp
 CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\DebugConsole.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\DebugConsole.cpp.obj -c F:\Simple3DGame\game\DebugConsole.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\DebugConsole.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\DebugConsole.cpp.obj -c F:\Simple3DGame\game\DebugConsole.cpp
 
 CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\DebugConsole.cpp > CMakeFiles\Simple3DGame.dir\game\DebugConsole.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\DebugConsole.cpp > CMakeFiles\Simple3DGame.dir\game\DebugConsole.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\DebugConsole.cpp -o CMakeFiles\Simple3DGame.dir\game\DebugConsole.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\DebugConsole.cpp -o CMakeFiles\Simple3DGame.dir\game\DebugConsole.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj: F:/Simple3DGame/game/Projectile.cpp
 CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Projectile.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Projectile.cpp.obj -c F:\Simple3DGame\game\Projectile.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Projectile.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Projectile.cpp.obj -c F:\Simple3DGame\game\Projectile.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Projectile.cpp > CMakeFiles\Simple3DGame.dir\game\Projectile.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Projectile.cpp > CMakeFiles\Simple3DGame.dir\game\Projectile.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Projectile.cpp -o CMakeFiles\Simple3DGame.dir\game\Projectile.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Projectile.cpp -o CMakeFiles\Simple3DGame.dir\game\Projectile.cpp.s
 
 CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj: F:/Simple3DGame/game/NavigationGrid.cpp
 CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\NavigationGrid.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\NavigationGrid.cpp.obj -c F:\Simple3DGame\game\NavigationGrid.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\NavigationGrid.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\NavigationGrid.cpp.obj -c F:\Simple3DGame\game\NavigationGrid.cpp
 
 CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\NavigationGrid.cpp > CMakeFiles\Simple3DGame.dir\game\NavigationGrid.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\NavigationGrid.cpp > CMakeFiles\Simple3DGame.dir\game\NavigationGrid.cpp.i
 
 CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\NavigationGrid.cpp -o CMakeFiles\Simple3DGame.dir\game\NavigationGrid.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\NavigationGrid.cpp -o CMakeFiles\Simple3DGame.dir\game\NavigationGrid.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj: F:/Simple3DGame/systems/EditorSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\EditorSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\EditorSystem.cpp.obj -c F:\Simple3DGame\systems\EditorSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\EditorSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\EditorSystem.cpp.obj -c F:\Simple3DGame\systems\EditorSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\EditorSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\EditorSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\EditorSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\EditorSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\EditorSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\EditorSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\EditorSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\EditorSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj: F:/Simple3DGame/systems/ResourceSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\ResourceSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\ResourceSystem.cpp.obj -c F:\Simple3DGame\systems\ResourceSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\ResourceSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\ResourceSystem.cpp.obj -c F:\Simple3DGame\systems\ResourceSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\ResourceSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\ResourceSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\ResourceSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\ResourceSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\ResourceSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\ResourceSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\ResourceSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\ResourceSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj: F:/Simple3DGame/systems/SkillsSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\SkillsSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\SkillsSystem.cpp.obj -c F:\Simple3DGame\systems\SkillsSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\SkillsSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\SkillsSystem.cpp.obj -c F:\Simple3DGame\systems\SkillsSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\SkillsSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\SkillsSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\SkillsSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\SkillsSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\SkillsSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\SkillsSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\SkillsSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\SkillsSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj: F:/Simple3DGame/systems/EquipmentSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\EquipmentSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\EquipmentSystem.cpp.obj -c F:\Simple3DGame\systems\EquipmentSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\EquipmentSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\EquipmentSystem.cpp.obj -c F:\Simple3DGame\systems\EquipmentSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\EquipmentSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\EquipmentSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\EquipmentSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\EquipmentSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\EquipmentSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\EquipmentSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\EquipmentSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\EquipmentSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj: F:/Simple3DGame/systems/FoodSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\FoodSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\FoodSystem.cpp.obj -c F:\Simple3DGame\systems\FoodSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\FoodSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\FoodSystem.cpp.obj -c F:\Simple3DGame\systems\FoodSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\FoodSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\FoodSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\FoodSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\FoodSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\FoodSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\FoodSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\FoodSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\FoodSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: F:/Simple3DGame/systems/InteractionSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\InteractionSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\InteractionSystem.cpp.obj -c F:\Simple3DGame\systems\InteractionSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\InteractionSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\InteractionSystem.cpp.obj -c F:\Simple3DGame\systems\InteractionSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\InteractionSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\InteractionSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\InteractionSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\InteractionSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\InteractionSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\InteractionSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\InteractionSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\InteractionSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj: F:/Simple3DGame/systems/InventorySystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\InventorySystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\InventorySystem.cpp.obj -c F:\Simple3DGame\systems\InventorySystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\InventorySystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\InventorySystem.cpp.obj -c F:\Simple3DGame\systems\InventorySystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\InventorySystem.cpp > CMakeFiles\Simple3DGame.dir\systems\InventorySystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\InventorySystem.cpp > CMakeFiles\Simple3DGame.dir\systems\InventorySystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\InventorySystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\InventorySystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\InventorySystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\InventorySystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj: F:/Simple3DGame/systems/BuildingSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\BuildingSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\BuildingSystem.cpp.obj -c F:\Simple3DGame\systems\BuildingSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\BuildingSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\BuildingSystem.cpp.obj -c F:\Simple3DGame\systems\BuildingSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\BuildingSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\BuildingSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\BuildingSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\BuildingSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\BuildingSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\BuildingSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\BuildingSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\BuildingSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj: F:/Simple3DGame/systems/StorageSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\StorageSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\StorageSystem.cpp.obj -c F:\Simple3DGame\systems\StorageSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\StorageSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\StorageSystem.cpp.obj -c F:\Simple3DGame\systems\StorageSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\StorageSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\StorageSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\StorageSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\StorageSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\StorageSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\StorageSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\StorageSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\StorageSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj: F:/Simple3DGame/systems/TestSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\TestSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\TestSystem.cpp.obj -c F:\Simple3DGame\systems\TestSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\TestSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\TestSystem.cpp.obj -c F:\Simple3DGame\systems\TestSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\TestSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\TestSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\TestSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\TestSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\TestSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\TestSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\TestSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\TestSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj: F:/Simple3DGame/systems/UISystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\UISystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\UISystem.cpp.obj -c F:\Simple3DGame\systems\UISystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\UISystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\UISystem.cpp.obj -c F:\Simple3DGame\systems\UISystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\UISystem.cpp > CMakeFiles\Simple3DGame.dir\systems\UISystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\UISystem.cpp > CMakeFiles\Simple3DGame.dir\systems\UISystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\UISystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\UISystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\UISystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\UISystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj: F:/Simple3DGame/systems/TimeCycleSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\TimeCycleSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\TimeCycleSystem.cpp.obj -c F:\Simple3DGame\systems\TimeCycleSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\TimeCycleSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\TimeCycleSystem.cpp.obj -c F:\Simple3DGame\systems\TimeCycleSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\TimeCycleSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\TimeCycleSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\TimeCycleSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\TimeCycleSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\TimeCycleSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\TimeCycleSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\TimeCycleSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\TimeCycleSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: F:/Simple3DGame/systems/NeedsSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\NeedsSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\NeedsSystem.cpp.obj -c F:\Simple3DGame\systems\NeedsSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\NeedsSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\NeedsSystem.cpp.obj -c F:\Simple3DGame\systems\NeedsSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\NeedsSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\NeedsSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\NeedsSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\NeedsSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\NeedsSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\NeedsSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\NeedsSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\NeedsSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj: F:/Simple3DGame/systems/CraftingSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\CraftingSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\CraftingSystem.cpp.obj -c F:\Simple3DGame\systems\CraftingSystem.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\CraftingSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\CraftingSystem.cpp.obj -c F:\Simple3DGame\systems\CraftingSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\CraftingSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\CraftingSystem.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\systems\CraftingSystem.cpp > CMakeFiles\Simple3DGame.dir\systems\CraftingSystem.cpp.i
 
 CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\CraftingSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\CraftingSystem.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\systems\CraftingSystem.cpp -o CMakeFiles\Simple3DGame.dir\systems\CraftingSystem.cpp.s
 
 CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj: F:/Simple3DGame/components/ResourceComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\ResourceComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\ResourceComponent.cpp.obj -c F:\Simple3DGame\components\ResourceComponent.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\ResourceComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\ResourceComponent.cpp.obj -c F:\Simple3DGame\components\ResourceComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\ResourceComponent.cpp > CMakeFiles\Simple3DGame.dir\components\ResourceComponent.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\ResourceComponent.cpp > CMakeFiles\Simple3DGame.dir\components\ResourceComponent.cpp.i
 
 CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\ResourceComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\ResourceComponent.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\ResourceComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\ResourceComponent.cpp.s
 
 CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj: F:/Simple3DGame/components/InteractionComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\InteractionComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\InteractionComponent.cpp.obj -c F:\Simple3DGame\components\InteractionComponent.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\InteractionComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\InteractionComponent.cpp.obj -c F:\Simple3DGame\components\InteractionComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\InteractionComponent.cpp > CMakeFiles\Simple3DGame.dir\components\InteractionComponent.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\InteractionComponent.cpp > CMakeFiles\Simple3DGame.dir\components\InteractionComponent.cpp.i
 
 CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\InteractionComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\InteractionComponent.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\InteractionComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\InteractionComponent.cpp.s
 
 CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj: F:/Simple3DGame/components/InventoryComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\InventoryComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\InventoryComponent.cpp.obj -c F:\Simple3DGame\components\InventoryComponent.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\InventoryComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\InventoryComponent.cpp.obj -c F:\Simple3DGame\components\InventoryComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\InventoryComponent.cpp > CMakeFiles\Simple3DGame.dir\components\InventoryComponent.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\InventoryComponent.cpp > CMakeFiles\Simple3DGame.dir\components\InventoryComponent.cpp.i
 
 CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\InventoryComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\InventoryComponent.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\InventoryComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\InventoryComponent.cpp.s
 
 CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj: F:/Simple3DGame/components/StatsComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\StatsComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\StatsComponent.cpp.obj -c F:\Simple3DGame\components\StatsComponent.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\StatsComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\StatsComponent.cpp.obj -c F:\Simple3DGame\components\StatsComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\StatsComponent.cpp > CMakeFiles\Simple3DGame.dir\components\StatsComponent.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\StatsComponent.cpp > CMakeFiles\Simple3DGame.dir\components\StatsComponent.cpp.i
 
 CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\StatsComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\StatsComponent.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\StatsComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\StatsComponent.cpp.s
 
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj: F:/Simple3DGame/components/BuildingComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\BuildingComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\BuildingComponent.cpp.obj -c F:\Simple3DGame\components\BuildingComponent.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\BuildingComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\BuildingComponent.cpp.obj -c F:\Simple3DGame\components\BuildingComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\BuildingComponent.cpp > CMakeFiles\Simple3DGame.dir\components\BuildingComponent.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\BuildingComponent.cpp > CMakeFiles\Simple3DGame.dir\components\BuildingComponent.cpp.i
 
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\BuildingComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\BuildingComponent.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\BuildingComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\BuildingComponent.cpp.s
 
 CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj: F:/Simple3DGame/components/SkillsComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\SkillsComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\SkillsComponent.cpp.obj -c F:\Simple3DGame\components\SkillsComponent.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\SkillsComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\SkillsComponent.cpp.obj -c F:\Simple3DGame\components\SkillsComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\SkillsComponent.cpp > CMakeFiles\Simple3DGame.dir\components\SkillsComponent.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\SkillsComponent.cpp > CMakeFiles\Simple3DGame.dir\components\SkillsComponent.cpp.i
 
 CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\SkillsComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\SkillsComponent.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\SkillsComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\SkillsComponent.cpp.s
 
 CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj: F:/Simple3DGame/components/PositionComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\PositionComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\PositionComponent.cpp.obj -c F:\Simple3DGame\components\PositionComponent.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\PositionComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\PositionComponent.cpp.obj -c F:\Simple3DGame\components\PositionComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\PositionComponent.cpp > CMakeFiles\Simple3DGame.dir\components\PositionComponent.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\PositionComponent.cpp > CMakeFiles\Simple3DGame.dir\components\PositionComponent.cpp.i
 
 CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\PositionComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\PositionComponent.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\PositionComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\PositionComponent.cpp.s
 
 CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj: F:/Simple3DGame/components/TreeComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\TreeComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\TreeComponent.cpp.obj -c F:\Simple3DGame\components\TreeComponent.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\TreeComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\TreeComponent.cpp.obj -c F:\Simple3DGame\components\TreeComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\TreeComponent.cpp > CMakeFiles\Simple3DGame.dir\components\TreeComponent.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\TreeComponent.cpp > CMakeFiles\Simple3DGame.dir\components\TreeComponent.cpp.i
 
 CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\TreeComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\TreeComponent.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\TreeComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\TreeComponent.cpp.s
 
 CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj: F:/Simple3DGame/components/EquipmentComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\EquipmentComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\EquipmentComponent.cpp.obj -c F:\Simple3DGame\components\EquipmentComponent.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\EquipmentComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\EquipmentComponent.cpp.obj -c F:\Simple3DGame\components\EquipmentComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\EquipmentComponent.cpp > CMakeFiles\Simple3DGame.dir\components\EquipmentComponent.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\EquipmentComponent.cpp > CMakeFiles\Simple3DGame.dir\components\EquipmentComponent.cpp.i
 
 CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\EquipmentComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\EquipmentComponent.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\EquipmentComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\EquipmentComponent.cpp.s
 
 CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj: F:/Simple3DGame/entities/PlayerCharacter.cpp
 CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj -MF CMakeFiles\Simple3DGame.dir\entities\PlayerCharacter.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\entities\PlayerCharacter.cpp.obj -c F:\Simple3DGame\entities\PlayerCharacter.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj -MF CMakeFiles\Simple3DGame.dir\entities\PlayerCharacter.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\entities\PlayerCharacter.cpp.obj -c F:\Simple3DGame\entities\PlayerCharacter.cpp
 
 CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\entities\PlayerCharacter.cpp > CMakeFiles\Simple3DGame.dir\entities\PlayerCharacter.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\entities\PlayerCharacter.cpp > CMakeFiles\Simple3DGame.dir\entities\PlayerCharacter.cpp.i
 
 CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\entities\PlayerCharacter.cpp -o CMakeFiles\Simple3DGame.dir\entities\PlayerCharacter.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\entities\PlayerCharacter.cpp -o CMakeFiles\Simple3DGame.dir\entities\PlayerCharacter.cpp.s
 
 CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj: F:/Simple3DGame/entities/Ant.cpp
 CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj -MF CMakeFiles\Simple3DGame.dir\entities\Ant.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\entities\Ant.cpp.obj -c F:\Simple3DGame\entities\Ant.cpp
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj -MF CMakeFiles\Simple3DGame.dir\entities\Ant.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\entities\Ant.cpp.obj -c F:\Simple3DGame\entities\Ant.cpp
 
 CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.i"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\entities\Ant.cpp > CMakeFiles\Simple3DGame.dir\entities\Ant.cpp.i
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\entities\Ant.cpp > CMakeFiles\Simple3DGame.dir\entities\Ant.cpp.i
 
 CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.s"
-	F:\11\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\entities\Ant.cpp -o CMakeFiles\Simple3DGame.dir\entities\Ant.cpp.s
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\entities\Ant.cpp -o CMakeFiles\Simple3DGame.dir\entities\Ant.cpp.s
 
 # Object files for target Simple3DGame
 Simple3DGame_OBJECTS = \

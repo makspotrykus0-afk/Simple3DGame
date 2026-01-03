@@ -33,6 +33,10 @@ public:
 
   // Draws UI overlays (must be called outside 3D mode)
   void RenderGUI();
+  bool HasSelection() const { return m_selectedObject != nullptr; }
+
+  // Custom Editors (PUBLIC)
+  void StartFpsArmEdit(Settler* settler);
 
   // Logging
   void LogChange(const std::string &objectName, const std::string &changeType,
@@ -56,9 +60,6 @@ private:
 
   // Internal Helpers
   std::unique_ptr<EditorObjectWrapper> CreateWrapper(GameEntity *entity);
-  
-  // Custom Editors
-  void StartFpsArmEdit(Settler* settler);
 
 private:
   // State

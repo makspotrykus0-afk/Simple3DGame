@@ -1,10 +1,9 @@
----
-description: Build project using CMake and MinGW
+﻿---
+description: Build project using CMake and MinGW (Turbo Mode)
 ---
 // turbo-all
-1. Prepare build directory: `cmake -B build -G "MinGW Makefiles"`
-2. Build project (CMake): `cmake --build build --config Debug`
-3. Build project (Make): `mingw32-make -C build`
-4. Alternative build: `cd build; cmake --build . --config Debug`
-5. Manual build: `mingw32-make`
-6. Build and Run: `cd build; mingw32-make; ./Simple3DGame`
+# /build - Protokół Kompilacji
+
+1. Generowanie plików projektu (jeśli brak `/build`): `cmake -B build -G "MinGW Makefiles"`
+2. Kompilacja równoległa: `cmake --build build -j 8`
+3. Silent Fix: Jeśli wystąpi błąd, przejdź automatycznie do `/debug`.
