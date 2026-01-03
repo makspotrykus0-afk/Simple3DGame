@@ -228,10 +228,14 @@ void Terrain::render() {
     }
 }
 
-void Terrain::update() {
+void Terrain::update(float deltaTime) {
     auto it = m_trees.begin();
     while (it != m_trees.end()) {
         Tree* tree = it->get();
+        
+        // Update physics/animation
+        tree->update(deltaTime);
+        
         if (tree->shouldBeRemoved()) {
              if (auto interactionSystem = GameEngine::getInstance().getSystem<InteractionSystem>()) {
                 interactionSystem->unregisterInteractableObject(tree);
@@ -245,7 +249,7 @@ void Terrain::update() {
     auto resIt = m_resourceNodes.begin();
     while (resIt != m_resourceNodes.end()) {
         ResourceNode* node = resIt->get();
-        node->update(0.016f);
+        node->update(deltaTime);
         
         if (node->isDepleted()) {
              if (auto interactionSystem = GameEngine::getInstance().getSystem<InteractionSystem>()) {

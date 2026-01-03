@@ -29,7 +29,7 @@
 
 class Tree;
 class BuildingInstance;
-class WorldItem;
+#include "WorldItem.h"
 class Bush;
 class Animal;
 class Item;
@@ -91,7 +91,9 @@ enum class SettlerState {
   MOVING_TO_SKIN,
   FETCHING_RESOURCE,
   SOCIAL,
-  MOVING_TO_SOCIAL
+  MOVING_TO_SOCIAL,
+  MORNING_STRETCH,
+  SOCIAL_LOOKOUT
 };
 enum class TaskType {
   MOVE,
@@ -330,7 +332,7 @@ public:
 
   // Building Logic
   void ProcessActiveBuildTask(float deltaTime,
-                              const std::vector<BuildingInstance *> &buildings);
+                              const std::vector<BuildingInstance *> &buildings, std::vector<WorldItem> &worldItems);
 
 private:
   float m_shootCooldownTimer = 0.0f;
@@ -464,6 +466,7 @@ private:
     
     // Internal state for social/waiting
     float m_socialTimer = 0.0f;
+    float m_stretchTimer = 0.0f;  // [NEW] Timer dla Morning Stretch
     bool m_hasGreetedMorning = false;
 };
 #endif // SIMPLE3DGAME_GAME_SETTLER_H

@@ -14,7 +14,7 @@ public:
 
     void generate(int width, int height, float tileSize);
     void render();
-    void update();
+    void update(float deltaTime);
     void cleanup();
 
     float getHeightAt(int x, int y) const;

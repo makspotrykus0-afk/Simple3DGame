@@ -32,18 +32,7 @@ class Settler; // Forward declaration of Settler (defined in Settler.h)
 #include "ColonyAI.h" // Include full definition for unique_ptr
 
 
-// Structure representing an item dropped in the world
-class WorldItem {
-public:
-    Vector3 position;
-    std::unique_ptr<Item> item;
-    float dropTime;
-    bool pendingRemoval = false;
-    int amount = 1;
-
-    WorldItem(Vector3 pos, std::unique_ptr<Item> it, float time, bool pending, int amt)
-        : position(pos), item(std::move(it)), dropTime(time), pendingRemoval(pending), amount(amt) {}
-};
+#include "WorldItem.h"
 
 // Structure representing a bush
 class Bush {

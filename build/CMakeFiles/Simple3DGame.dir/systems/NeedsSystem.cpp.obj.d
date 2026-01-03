@@ -202,7 +202,8 @@ CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tree.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
- F:/Simple3DGame/game/Bed.h F:/Simple3DGame/systems/BuildingSystem.h \
+ F:/Simple3DGame/game/WorldItem.h F:/Simple3DGame/game/Bed.h \
+ F:/Simple3DGame/systems/BuildingSystem.h \
  F:/Simple3DGame/game/BuildingBlueprint.h \
  F:/Simple3DGame/systems/ResourceTypes.h \
  F:/Simple3DGame/game/BuildingInstance.h \

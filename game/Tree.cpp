@@ -70,10 +70,20 @@ float Tree::harvest(float amount) {
   return taken;
 }
 void Tree::chopDown(bool dropItems) {
-  if (m_isStump)
+  if (m_isStump || m_isFalling)
     return;
 
-  m_isStump = true;
+  m_isFalling = true;
+  m_fallAngle = 0.0f;
+  m_fallSpeed = 0.0f;
+  
+  // Random fall direction
+  float randomAngle = (float)(rand() % 360) * DEG2RAD;
+  m_fallAxis = {cosf(randomAngle), 0.0f, sinf(randomAngle)};
+  
+  // m_woodAmount = 0; // Wait until fallen to clear? Or clear now?
+  // Let's keep woodAmount until it falls to prevent ghost harvesting, 
+  // but isActive() checks woodAmount. So clear it now to prevent further chops.
   m_woodAmount = 0;
 
   // Clear reservation when chopped
@@ -98,6 +108,21 @@ void Tree::chopDown(bool dropItems) {
   }
 }
 
+void Tree::update(float deltaTime) {
+    if (m_isFalling) {
+        m_fallSpeed += 300.0f * deltaTime; // Gravity acceleration
+        m_fallAngle += m_fallSpeed * deltaTime;
+        
+        if (m_fallAngle >= 90.0f) {
+            m_fallAngle = 90.0f;
+            m_isFalling = false;
+            m_isStump = true; // Final state
+            
+            // Screenshake or dust effect here?
+        }
+    }
+}
+
 void Tree::render() {
   Vector3 pos = getPosition();
 
@@ -112,6 +137,12 @@ void Tree::render() {
     rlPushMatrix();
     rlTranslatef(pos.x, pos.y, pos.z);
     rlRotatef(m_rotation, 0, 1, 0);
+    
+    // Impact Physics Fall
+    if (m_isFalling) {
+        rlRotatef(m_fallAngle, m_fallAxis.x, m_fallAxis.y, m_fallAxis.z);
+    }
+    
     rlTranslatef(-pos.x, -pos.y, -pos.z);
 
     // Trunk

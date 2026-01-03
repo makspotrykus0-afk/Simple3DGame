@@ -283,13 +283,14 @@ Dla konkretnych zadań:
 - **UI**: `systems/UISystem.cpp`
 - **Potrzeby**: `systems/NeedsSystem.cpp`, `systems/FoodSystem.cpp`
 
-## 14. Standardy Pracy AI (Antigravity DNA 3.5 - Advanced Awareness)
+## 14. Standardy Pracy AI (Antigravity DNA 6.0 - Simple3DGame)
 
-Projekt wykorzystuje najwyższy stopień autonomii AI (Partner Ekspert):
+Projekt wykorzystuje najwyższy stopień autonomii AI (Partner Ekspert - KONSTYTUCJA 6.0):
 - **Role i Tożsamość:** Agent działa jako **[ARCHITEKT]** / **[PROJEKTANT]** / **[DEBUGGER]** z pełną odpowiedzialnością za projekt.
+- **Źródło Prawdy:** Reguły zdefiniowane w `.agent/rules/` (`00identity.md`, `01automation.md`, `02visuals.md`, `03cppengineering.md`).
 - **Protokół "Red Team":** Automatyczna autokrytyka i symulacja błędów przed wdrożeniem zmian.
-- **Protokół "Juice Advisor":** Proaktywne sugerowanie ulepszeń wizualnych, animacji i efektów "Wow Factor".
-- **Protokół "R&D Sandbox":** Samodzielne prototypowanie nowych mechanik w plikach `.experimental`.
+- **Protokół "Visual Parity 110%":** Implementacja musi przewyższać koncept estetycznie.
+- **Protokół "R&D Sandbox":** Samodzielne prototypowanie nowych mechanik.
 - **Decyzyjność:** Obowiązkowa analiza **Pros & Cons** dla każdej istotnej zmiany architektonicznej.
 - **Wizualizacja:** Obowiązkowe schematy (`generate_image`) dla zadań o PredictedTaskSize > 5.
 - **Turbo:** Pełna autonomia terminalowa i protokół Silent Fix.

@@ -2837,7 +2837,8 @@ CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj: F:/Simple3DGame/game/Animal.cpp
   F:/Simple3DGame/game/Projectile.h \
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
-  F:/Simple3DGame/game/Tree.h
+  F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h
 
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj: F:/Simple3DGame/game/Bed.cpp \
   F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -3443,7 +3444,8 @@ CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj: F:/Simple3DGame/game/
   F:/Simple3DGame/game/Projectile.h \
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
-  F:/Simple3DGame/game/Tree.h
+  F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h
 
 CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.obj: F:/Simple3DGame/game/BuildingTask.cpp \
   F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -3865,7 +3867,8 @@ CMakeFiles/Simple3DGame.dir/game/Colony.cpp.obj: F:/Simple3DGame/game/Colony.cpp
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Terrain.h \
-  F:/Simple3DGame/game/Tree.h
+  F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h
 
 CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj: F:/Simple3DGame/game/ColonyAI.cpp \
   F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -4116,6 +4119,7 @@ CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj: F:/Simple3DGame/game/ColonyAI
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h \
   F:/Simple3DGame/raylib/src/raylib.h \
   F:/Simple3DGame/raylib/src/raymath.h \
   F:/Simple3DGame/raylib/src/rlgl.h \
@@ -4373,7 +4377,8 @@ CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj: F:/Simple3DGame/game/Debu
   F:/Simple3DGame/game/Projectile.h \
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
-  F:/Simple3DGame/game/Tree.h
+  F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h
 
 CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj: F:/Simple3DGame/game/Door.cpp \
   F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -4613,7 +4618,8 @@ CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj: F:/Simple3DGame/game/Door.cpp \
   F:/Simple3DGame/game/Projectile.h \
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
-  F:/Simple3DGame/game/Tree.h
+  F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h
 
 CMakeFiles/Simple3DGame.dir/game/GatheringTask.cpp.obj: F:/Simple3DGame/game/GatheringTask.cpp \
   F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -5386,6 +5392,7 @@ CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj: F:/Simple3DGame/game/Na
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h \
   F:/Simple3DGame/raylib/src/raylib.h \
   F:/Simple3DGame/raylib/src/raymath.h \
   F:/Simple3DGame/raylib/src/rlgl.h \
@@ -5958,7 +5965,8 @@ CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: F:/Simple3DGame/game/Settler.c
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Terrain.h \
-  F:/Simple3DGame/game/Tree.h
+  F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h
 
 CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.obj: F:/Simple3DGame/game/Terrain.cpp \
   F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -6207,6 +6215,7 @@ CMakeFiles/Simple3DGame.dir/game/Terrain.cpp.obj: F:/Simple3DGame/game/Terrain.c
   F:/Simple3DGame/game/Projectile.h \
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
+  F:/Simple3DGame/game/WorldItem.h \
   F:/Simple3DGame/raylib/src/raylib.h \
   F:/Simple3DGame/raylib/src/raymath.h \
   F:/Simple3DGame/raylib/src/rlgl.h \
@@ -6713,6 +6722,7 @@ CMakeFiles/Simple3DGame.dir/src/main.cpp.obj: F:/Simple3DGame/src/main.cpp \
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Terrain.h \
   F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h \
   F:/Simple3DGame/raylib/src/raylib.h \
   F:/Simple3DGame/raylib/src/raymath.h \
   F:/Simple3DGame/raylib/src/rlgl.h \
@@ -6980,6 +6990,7 @@ CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj: F:/Simple3DGame/syst
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Terrain.h \
   F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h \
   F:/Simple3DGame/raylib/src/raylib.h \
   F:/Simple3DGame/raylib/src/raymath.h \
   F:/Simple3DGame/raylib/src/rlgl.h \
@@ -7243,6 +7254,7 @@ CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj: F:/Simple3DGame/syst
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Terrain.h \
   F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h \
   F:/Simple3DGame/raylib/src/raylib.h \
   F:/Simple3DGame/raylib/src/raymath.h \
   F:/Simple3DGame/raylib/src/rlgl.h \
@@ -7503,6 +7515,7 @@ CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj: F:/Simple3DGame/system
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h \
   F:/Simple3DGame/raylib/src/raylib.h \
   F:/Simple3DGame/raylib/src/raymath.h \
   F:/Simple3DGame/raylib/src/rlgl.h \
@@ -8145,6 +8158,7 @@ CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: F:/Simple3DGame/s
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h \
   F:/Simple3DGame/raylib/src/raylib.h \
   F:/Simple3DGame/raylib/src/raymath.h \
   F:/Simple3DGame/raylib/src/rlgl.h \
@@ -8596,6 +8610,7 @@ CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: F:/Simple3DGame/systems
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h \
   F:/Simple3DGame/raylib/src/raylib.h \
   F:/Simple3DGame/raylib/src/raymath.h \
   F:/Simple3DGame/raylib/src/rlgl.h \
@@ -9764,6 +9779,7 @@ CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj: F:/Simple3DGame/systems/UI
   F:/Simple3DGame/game/ResourceNode.h \
   F:/Simple3DGame/game/Settler.h \
   F:/Simple3DGame/game/Tree.h \
+  F:/Simple3DGame/game/WorldItem.h \
   F:/Simple3DGame/raylib/src/raylib.h \
   F:/Simple3DGame/raylib/src/raymath.h \
   F:/Simple3DGame/raylib/src/rlgl.h \
@@ -9836,6 +9852,8 @@ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/allocator.h:
 F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/legendre_function.tcc:
 
 F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_lockfree_defines.h:
+
+F:/Simple3DGame/game/WorldItem.h:
 
 F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_string.tcc:
 

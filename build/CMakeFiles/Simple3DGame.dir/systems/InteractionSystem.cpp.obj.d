@@ -241,8 +241,9 @@ CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: \
  F:/Simple3DGame/components/SkillsComponent.h \
  F:/Simple3DGame/systems/SkillTypes.h F:/Simple3DGame/game/Settler.h \
  F:/Simple3DGame/components/InventoryComponent.h \
- F:/Simple3DGame/game/ColonyAI.h F:/Simple3DGame/game/Door.h \
- F:/Simple3DGame/game/Colony.h F:/Simple3DGame/systems/BuildingSystem.h \
+ F:/Simple3DGame/game/WorldItem.h F:/Simple3DGame/game/ColonyAI.h \
+ F:/Simple3DGame/game/Door.h F:/Simple3DGame/game/Colony.h \
+ F:/Simple3DGame/systems/BuildingSystem.h \
  F:/Simple3DGame/core/GameSystem.h \
  F:/Simple3DGame/game/BuildingBlueprint.h \
  F:/Simple3DGame/game/BuildingInstance.h \

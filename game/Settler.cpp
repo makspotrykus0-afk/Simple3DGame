@@ -518,7 +518,7 @@ void Settler::Update(
       // CHECK 1: Are materials delivered?
       if (targetTask->hasAllResources()) {
         // YES -> Go Build
-        ProcessActiveBuildTask(deltaTime, buildings);
+        ProcessActiveBuildTask(deltaTime, buildings, worldItems);
         return;
       } else {
         // NO -> Check if I have materials in inventory
@@ -545,7 +545,7 @@ void Settler::Update(
           // YES -> Go Deliver (Build logic handles delivery)
           // std::cout << "[Settler] I have materials for " << neededRes << ".
           // Delivering." << std::endl;
-          ProcessActiveBuildTask(deltaTime, buildings);
+          ProcessActiveBuildTask(deltaTime, buildings, worldItems);
           return;
         } else {
           // NO -> Go Gather
@@ -553,7 +553,39 @@ void Settler::Update(
           // Going to Gather." << std::endl;
 
           if (neededRes == "Wood") {
-            // Find Tree
+            // PRIORITY 0: Check for WorldItems (Logs) on ground
+            float minItemDist = 50.0f;
+            int foundItemIdx = -1;
+            for(size_t i=0; i<worldItems.size(); ++i) {
+                if (worldItems[i].item && worldItems[i].item->getItemType() == ItemType::RESOURCE && !worldItems[i].isReserved()) {
+                    auto* resItem = dynamic_cast<ResourceItem*>(worldItems[i].item.get());
+                    if (resItem && resItem->getResourceType() == "Wood") {
+                    float d = Vector3Distance(position, worldItems[i].position);
+                    if (d < minItemDist) {
+                        minItemDist = d;
+                        foundItemIdx = (int)i;
+                    }
+                }
+            }
+            
+            if (foundItemIdx != -1) {
+                // Determine target object? WorldItem is not GameEntity...
+                // We need to use PICKUP task with position
+                // Reserve logic for WorldItem? WorldItem struct has 'reservedBy'?
+                // For now, let's just go pick it up.
+                worldItems[foundItemIdx].reserve(m_name);
+                clearTasks();
+                Action move = Action::Move(worldItems[foundItemIdx].position);
+                m_actionQueue.push_back(move);
+                Action pickup;
+                pickup.type = TaskType::PICKUP;
+                pickup.targetPosition = worldItems[foundItemIdx].position;
+                m_actionQueue.push_back(pickup);
+                ExecuteNextAction();
+                return;
+            }
+
+            // PRIORITY 1: Find Tree
             float minDist = 100.0f;
             Tree *nearest = nullptr;
             for (const auto &t : trees) {
@@ -612,7 +644,7 @@ void Settler::Update(
     UpdateMovement(deltaTime, trees, buildings, resourceNodes);
     // Continuous check for build range while moving
     if (m_currentBuildTask && m_currentBuildTask->isActive()) {
-      ProcessActiveBuildTask(deltaTime, buildings);
+      ProcessActiveBuildTask(deltaTime, buildings, worldItems);
     }
     break;
   case SettlerState::MOVING_TO_STORAGE:
@@ -863,6 +895,34 @@ void Settler::render(bool isFps) {
       float pitch = s_fpsPitch; // More Horizontal/Forward (Was -60)
       float yaw   = s_fpsYaw;  // LEFT / INWARD (Was -20)
       
+      // ANIMATION INTERPOLATION FOR FPS ATTACK
+      if (m_attackAnimTimer > 0.0f && isHoldingAxe) {
+          // Swing logic
+          // Normal: Pitch -85, Yaw -5
+          // Windup (0.7-1.0): Raise Axe -> Pitch -110, Yaw +20
+          // Swing (0.2-0.7): Slam Down -> Pitch -20, Yaw -20
+          // Recovery (0.0-0.2): Return -> Pitch -85
+          
+          if (m_attackAnimTimer > 0.7f) {
+             float t = (1.0f - m_attackAnimTimer) / 0.3f; // 0->1
+             // Windup
+             pitch = Lerp(s_fpsPitch, s_fpsPitch - 40.0f, t); 
+             yaw = Lerp(s_fpsYaw, s_fpsYaw + 20.0f, t);
+          } 
+          else if (m_attackAnimTimer > 0.25f) {
+             float t = (0.7f - m_attackAnimTimer) / 0.45f; // 0->1
+             // SWING!
+             pitch = Lerp(s_fpsPitch - 40.0f, -10.0f, t); // Slam to almost vertical down
+             yaw = Lerp(s_fpsYaw + 20.0f, s_fpsYaw - 30.0f, t);
+          }
+          else {
+             float t = (0.25f - m_attackAnimTimer) / 0.25f; // 0->1
+             // Recovery
+             pitch = Lerp(-10.0f, s_fpsPitch, t);
+             yaw = Lerp(s_fpsYaw - 30.0f, s_fpsYaw, t);
+          }
+      }
+
       rlRotatef(yaw, 0, 1, 0);
       rlRotatef(pitch, 1, 0, 0);
       
@@ -1022,7 +1082,7 @@ void Settler::render(bool isFps) {
 
 // --- BUILD PROCESS HELPER ---
 void Settler::ProcessActiveBuildTask(
-    float deltaTime, const std::vector<BuildingInstance *> &buildings) {
+    float deltaTime, const std::vector<BuildingInstance *> &buildings, std::vector<WorldItem> &worldItems) {
   // 1. Validation
   if (!m_currentBuildTask || !m_currentBuildTask->isActive()) {
     // std::cout << "[Settler] Build task invalid or finished." << std::endl;
@@ -1052,7 +1112,19 @@ void Settler::ProcessActiveBuildTask(
     targetPos = Vector3Add(m_currentBuildTask->getPosition(), rotatedOffset);
   } else {
     // Fallback for simple buildings: Closest point on box
-    targetPos = Vector3Clamp(position, buildBox.min, buildBox.max);
+    // FIX: Don't target center or inside. Target a point slightly OUTSIDE the box.
+    Vector3 center = Vector3Scale(Vector3Add(buildBox.min, buildBox.max), 0.5f);
+    Vector3 dirToSettler = Vector3Subtract(position, center);
+    dirToSettler.y = 0; // Flatten
+    if (Vector3Length(dirToSettler) < 0.1f) dirToSettler = {1, 0, 0}; // Handle excessive overlap
+    dirToSettler = Vector3Normalize(dirToSettler);
+    
+    // Calculate size radius approx
+    float size = std::max(buildBox.max.x - buildBox.min.x, buildBox.max.z - buildBox.min.z);
+    targetPos = Vector3Add(center, Vector3Scale(dirToSettler, size * 0.6f)); // 60% of size out
+    
+    // Clamp Y to terrain roughly (simple fix for flying targets)
+    targetPos.y = position.y; 
   }
 
   // 2. RESOURCE DELIVERY LOGIC
@@ -1094,6 +1166,43 @@ void Settler::ProcessActiveBuildTask(
         }
 
         if (!neededRes.empty()) {
+            // PRIORITY 0: Check for WorldItems (Logs) on ground
+            // This prevents "chop -> drop -> ignore -> fail" loop
+             if (neededRes == "Wood") { 
+                float minItemDist = 50.0f; 
+                int foundItemIdx = -1;
+                for(size_t i=0; i<worldItems.size(); ++i) {
+                    if (worldItems[i].item && worldItems[i].item->getItemType() == ItemType::RESOURCE && !worldItems[i].isReserved()) {
+                         auto* resItem = dynamic_cast<ResourceItem*>(worldItems[i].item.get());
+                         if (resItem && resItem->getResourceType() == neededRes) {
+                         float d = Vector3Distance(position, worldItems[i].position);
+                         if (d < minItemDist) {
+                             minItemDist = d;
+                             foundItemIdx = (int)i;
+                         }
+                    }
+                }
+                
+                if (foundItemIdx != -1) {
+                    worldItems[foundItemIdx].reserve(m_name);
+                    // Switch to Pickup Task
+                     Action move = Action::Move(worldItems[foundItemIdx].position);
+                     // Clear previous move actions but keep build task commitment? 
+                     // No, ExecuteNextAction handles queue. 
+                     // We need to stop building momentarily to pick up.
+                     clearTasks();
+                     m_actionQueue.push_back(move);
+                     Action pickup;
+                     pickup.type = TaskType::PICKUP;
+                     pickup.targetPosition = worldItems[foundItemIdx].position;
+                     m_actionQueue.push_back(pickup);
+                     
+                     std::cout << "[Settler] Found material on ground: " << neededRes << ". Going to pickup." << std::endl;
+                     ExecuteNextAction();
+                     return;
+                }
+             }
+
              m_targetStorage = FindNearestStorageWithResource(buildings, neededRes); 
              
              if (m_targetStorage) {
@@ -1215,6 +1324,11 @@ std::string Settler::GetStateString() const {
   case SettlerState::CRAFTING:
     return "Tworzy";
 
+    case SettlerState::SOCIAL: return "SOCIAL";
+    case SettlerState::MOVING_TO_SOCIAL: return "MOVING_TO_SOCIAL";
+    case SettlerState::MORNING_STRETCH: return "MORNING_STRETCH";
+    case SettlerState::SOCIAL_LOOKOUT: return "SOCIAL_LOOKOUT";
+
   case SettlerState::SKINNING:
     return "Skoruje";
 
@@ -1222,7 +1336,7 @@ std::string Settler::GetStateString() const {
     return "Idzie do ciala";
 
   default:
-    return "Nieznany";
+    return "UNKNOWN";
   }
 
 } // koniec GetStateString
@@ -2914,7 +3028,7 @@ Bush *Settler::FindNearestFood(const std::vector<Bush *> &bushes) {
 }
 void Settler::UpdateChopping(float deltaTime) {
 
-  if (!m_currentTree || !m_currentTree->isActive()) {
+  if (!m_currentTree || (!m_currentTree->isActive() && !m_currentTree->isFalling())) {
 
     m_state = SettlerState::IDLE;
 
@@ -2979,8 +3093,11 @@ void Settler::UpdateChopping(float deltaTime) {
     }
 
     float woodAmount = m_currentTree->harvest(chopPower);
-
-    (void)woodAmount;
+    if (woodAmount > 0.0f) {
+        auto wood = std::make_unique<ResourceItem>("Wood", "Wood Log", "Freshly chopped wood.");
+        m_inventory.addItem(std::move(wood), (int)ceil(woodAmount)); 
+        // std::cout << "[Settler] Got " << (int)ceil(woodAmount) << " wood from chopping." << std::endl;
+    }
 
     if (m_currentTree->isStump()) {
 

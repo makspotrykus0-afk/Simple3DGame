@@ -244,4 +244,5 @@ CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj: \
  F:/Simple3DGame/components/SkillsComponent.h \
  F:/Simple3DGame/systems/SkillTypes.h F:\Simple3DGame\game\Settler.h \
  F:/Simple3DGame/components/InventoryComponent.h \
- F:\Simple3DGame\game\ColonyAI.h F:/Simple3DGame/raylib/src/rlgl.h
+ F:\Simple3DGame\game\WorldItem.h F:\Simple3DGame\game\ColonyAI.h \
+ F:/Simple3DGame/raylib/src/rlgl.h

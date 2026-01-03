@@ -243,7 +243,8 @@ CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj: \
  F:/Simple3DGame/components/SkillsComponent.h \
  F:/Simple3DGame/game/Settler.h \
  F:/Simple3DGame/components/InventoryComponent.h \
- F:/Simple3DGame/game/ColonyAI.h F:\Simple3DGame\systems\StorageSystem.h \
+ F:/Simple3DGame/game/WorldItem.h F:/Simple3DGame/game/ColonyAI.h \
+ F:\Simple3DGame\systems\StorageSystem.h \
  F:\Simple3DGame\systems\ResourceSystem.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/atomic \
  F:/Simple3DGame/systems/BuildingSystem.h \

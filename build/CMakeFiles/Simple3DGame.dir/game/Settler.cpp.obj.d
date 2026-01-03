@@ -200,8 +200,8 @@ CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/parse_numbers.h \
  F:/Simple3DGame/components/StatsComponent.h \
  F:/Simple3DGame/components/SkillsComponent.h \
- F:/Simple3DGame/systems/SkillTypes.h F:\Simple3DGame\game\Terrain.h \
- F:\Simple3DGame\game\Tree.h \
+ F:/Simple3DGame/systems/SkillTypes.h F:\Simple3DGame\game\WorldItem.h \
+ F:\Simple3DGame\game\Terrain.h F:\Simple3DGame\game\Tree.h \
  F:/Simple3DGame/components/PositionComponent.h \
  F:\Simple3DGame\game\BuildingInstance.h \
  F:/Simple3DGame/game/BuildingBlueprint.h \

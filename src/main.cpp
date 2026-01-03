@@ -1084,7 +1084,7 @@ int main() {
   while (!WindowShouldClose()) {
     deltaTime = GetFrameTime();
     processInput();
-    terrain.update();
+    terrain.update(deltaTime);
     float scaledDeltaTime = deltaTime * globalTimeScale;
     float gameTime = g_timeSystem ? g_timeSystem->getCurrentTime() : 0.0f;
     colony.update(scaledDeltaTime, gameTime, terrain.getTrees(),

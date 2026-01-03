@@ -232,6 +232,6 @@ CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/_timeval.h \
  F:/11/x86_64-w64-mingw32/include/pthread_time.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/parse_numbers.h \
- F:\Simple3DGame\game\ColonyAI.h \
+ F:\Simple3DGame\game\WorldItem.h F:\Simple3DGame\game\ColonyAI.h \
  F:/Simple3DGame/systems/TimeCycleSystem.h \
  F:/Simple3DGame/game/ResourceNode.h

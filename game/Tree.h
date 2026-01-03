@@ -42,10 +42,12 @@ public:
   // If wood runs out, tree becomes a stump.
   float harvest(float amount);
 
-  void chopDown(bool dropItems = true); // Forces tree to become a stump
+  void chopDown(bool dropItems = true); // Triggers falling animation
+  void update(float deltaTime); // Updates falling animation
   void render();
 
   bool isStump() const { return m_isStump; }
+  bool isFalling() const { return m_isFalling; } // Getter for falling state
   bool shouldBeRemoved() const { return false; } // Pniaki zostają
 
   // Reservation System
@@ -89,6 +91,12 @@ private:
   bool m_isStump;
   Vector3 m_fixedPosition; // Przechowuje pozycję niezależnie od komponentów
   float m_rotation = 0.0f; // Rotation in degrees
+
+  // Falling Physics
+  bool m_isFalling = false;
+  float m_fallAngle = 0.0f;
+  Vector3 m_fallAxis = {1.0f, 0.0f, 0.0f};
+  float m_fallSpeed = 0.0f;
 
   // Reservation
   bool m_isReserved;
