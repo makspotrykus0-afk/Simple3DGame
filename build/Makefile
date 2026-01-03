@@ -242,6 +242,30 @@ update_mappings/fast:
 	$(MAKE) $(MAKESILENT) -f raylib\raylib\external\glfw\src\CMakeFiles\update_mappings.dir\build.make raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
+components/ActionComponent.obj: components/ActionComponent.cpp.obj
+.PHONY : components/ActionComponent.obj
+
+# target to build an object file
+components/ActionComponent.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj
+.PHONY : components/ActionComponent.cpp.obj
+
+components/ActionComponent.i: components/ActionComponent.cpp.i
+.PHONY : components/ActionComponent.i
+
+# target to preprocess a source file
+components/ActionComponent.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.i
+.PHONY : components/ActionComponent.cpp.i
+
+components/ActionComponent.s: components/ActionComponent.cpp.s
+.PHONY : components/ActionComponent.s
+
+# target to generate assembly for a file
+components/ActionComponent.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.s
+.PHONY : components/ActionComponent.cpp.s
+
 components/BuildingComponent.obj: components/BuildingComponent.cpp.obj
 .PHONY : components/BuildingComponent.obj
 
@@ -337,6 +361,54 @@ components/InventoryComponent.s: components/InventoryComponent.cpp.s
 components/InventoryComponent.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.s
 .PHONY : components/InventoryComponent.cpp.s
+
+components/NavComponent.obj: components/NavComponent.cpp.obj
+.PHONY : components/NavComponent.obj
+
+# target to build an object file
+components/NavComponent.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj
+.PHONY : components/NavComponent.cpp.obj
+
+components/NavComponent.i: components/NavComponent.cpp.i
+.PHONY : components/NavComponent.i
+
+# target to preprocess a source file
+components/NavComponent.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.i
+.PHONY : components/NavComponent.cpp.i
+
+components/NavComponent.s: components/NavComponent.cpp.s
+.PHONY : components/NavComponent.s
+
+# target to generate assembly for a file
+components/NavComponent.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.s
+.PHONY : components/NavComponent.cpp.s
+
+components/NeedComponent.obj: components/NeedComponent.cpp.obj
+.PHONY : components/NeedComponent.obj
+
+# target to build an object file
+components/NeedComponent.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj
+.PHONY : components/NeedComponent.cpp.obj
+
+components/NeedComponent.i: components/NeedComponent.cpp.i
+.PHONY : components/NeedComponent.i
+
+# target to preprocess a source file
+components/NeedComponent.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.i
+.PHONY : components/NeedComponent.cpp.i
+
+components/NeedComponent.s: components/NeedComponent.cpp.s
+.PHONY : components/NeedComponent.s
+
+# target to generate assembly for a file
+components/NeedComponent.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.s
+.PHONY : components/NeedComponent.cpp.s
 
 components/PositionComponent.obj: components/PositionComponent.cpp.obj
 .PHONY : components/PositionComponent.obj
@@ -818,6 +890,30 @@ game/Door.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Door.cpp.s
 .PHONY : game/Door.cpp.s
 
+game/Faction.obj: game/Faction.cpp.obj
+.PHONY : game/Faction.obj
+
+# target to build an object file
+game/Faction.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Faction.cpp.obj
+.PHONY : game/Faction.cpp.obj
+
+game/Faction.i: game/Faction.cpp.i
+.PHONY : game/Faction.i
+
+# target to preprocess a source file
+game/Faction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Faction.cpp.i
+.PHONY : game/Faction.cpp.i
+
+game/Faction.s: game/Faction.cpp.s
+.PHONY : game/Faction.s
+
+# target to generate assembly for a file
+game/Faction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Faction.cpp.s
+.PHONY : game/Faction.cpp.s
+
 game/GatheringTask.obj: game/GatheringTask.cpp.obj
 .PHONY : game/GatheringTask.obj
 
@@ -938,6 +1034,30 @@ game/Projectile.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.s
 .PHONY : game/Projectile.cpp.s
 
+game/Region.obj: game/Region.cpp.obj
+.PHONY : game/Region.obj
+
+# target to build an object file
+game/Region.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Region.cpp.obj
+.PHONY : game/Region.cpp.obj
+
+game/Region.i: game/Region.cpp.i
+.PHONY : game/Region.i
+
+# target to preprocess a source file
+game/Region.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Region.cpp.i
+.PHONY : game/Region.cpp.i
+
+game/Region.s: game/Region.cpp.s
+.PHONY : game/Region.s
+
+# target to generate assembly for a file
+game/Region.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Region.cpp.s
+.PHONY : game/Region.cpp.s
+
 game/ResourceNode.obj: game/ResourceNode.cpp.obj
 .PHONY : game/ResourceNode.obj
 
@@ -985,6 +1105,30 @@ game/ResourceTypes.s: game/ResourceTypes.cpp.s
 game/ResourceTypes.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/ResourceTypes.cpp.s
 .PHONY : game/ResourceTypes.cpp.s
+
+game/Settlement.obj: game/Settlement.cpp.obj
+.PHONY : game/Settlement.obj
+
+# target to build an object file
+game/Settlement.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Settlement.cpp.obj
+.PHONY : game/Settlement.cpp.obj
+
+game/Settlement.i: game/Settlement.cpp.i
+.PHONY : game/Settlement.i
+
+# target to preprocess a source file
+game/Settlement.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Settlement.cpp.i
+.PHONY : game/Settlement.cpp.i
+
+game/Settlement.s: game/Settlement.cpp.s
+.PHONY : game/Settlement.s
+
+# target to generate assembly for a file
+game/Settlement.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Settlement.cpp.s
+.PHONY : game/Settlement.cpp.s
 
 game/Settler.obj: game/Settler.cpp.obj
 .PHONY : game/Settler.obj
@@ -1057,6 +1201,30 @@ game/Tree.s: game/Tree.cpp.s
 game/Tree.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Tree.cpp.s
 .PHONY : game/Tree.cpp.s
+
+game/WorldManager.obj: game/WorldManager.cpp.obj
+.PHONY : game/WorldManager.obj
+
+# target to build an object file
+game/WorldManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/WorldManager.cpp.obj
+.PHONY : game/WorldManager.cpp.obj
+
+game/WorldManager.i: game/WorldManager.cpp.i
+.PHONY : game/WorldManager.i
+
+# target to preprocess a source file
+game/WorldManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/WorldManager.cpp.i
+.PHONY : game/WorldManager.cpp.i
+
+game/WorldManager.s: game/WorldManager.cpp.s
+.PHONY : game/WorldManager.s
+
+# target to generate assembly for a file
+game/WorldManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/WorldManager.cpp.s
+.PHONY : game/WorldManager.cpp.s
 
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
@@ -1437,6 +1605,9 @@ help:
 	@echo ... Simple3DGame
 	@echo ... glfw
 	@echo ... raylib
+	@echo ... components/ActionComponent.obj
+	@echo ... components/ActionComponent.i
+	@echo ... components/ActionComponent.s
 	@echo ... components/BuildingComponent.obj
 	@echo ... components/BuildingComponent.i
 	@echo ... components/BuildingComponent.s
@@ -1449,6 +1620,12 @@ help:
 	@echo ... components/InventoryComponent.obj
 	@echo ... components/InventoryComponent.i
 	@echo ... components/InventoryComponent.s
+	@echo ... components/NavComponent.obj
+	@echo ... components/NavComponent.i
+	@echo ... components/NavComponent.s
+	@echo ... components/NeedComponent.obj
+	@echo ... components/NeedComponent.i
+	@echo ... components/NeedComponent.s
 	@echo ... components/PositionComponent.obj
 	@echo ... components/PositionComponent.i
 	@echo ... components/PositionComponent.s
@@ -1509,6 +1686,9 @@ help:
 	@echo ... game/Door.obj
 	@echo ... game/Door.i
 	@echo ... game/Door.s
+	@echo ... game/Faction.obj
+	@echo ... game/Faction.i
+	@echo ... game/Faction.s
 	@echo ... game/GatheringTask.obj
 	@echo ... game/GatheringTask.i
 	@echo ... game/GatheringTask.s
@@ -1524,12 +1704,18 @@ help:
 	@echo ... game/Projectile.obj
 	@echo ... game/Projectile.i
 	@echo ... game/Projectile.s
+	@echo ... game/Region.obj
+	@echo ... game/Region.i
+	@echo ... game/Region.s
 	@echo ... game/ResourceNode.obj
 	@echo ... game/ResourceNode.i
 	@echo ... game/ResourceNode.s
 	@echo ... game/ResourceTypes.obj
 	@echo ... game/ResourceTypes.i
 	@echo ... game/ResourceTypes.s
+	@echo ... game/Settlement.obj
+	@echo ... game/Settlement.i
+	@echo ... game/Settlement.s
 	@echo ... game/Settler.obj
 	@echo ... game/Settler.i
 	@echo ... game/Settler.s
@@ -1539,6 +1725,9 @@ help:
 	@echo ... game/Tree.obj
 	@echo ... game/Tree.i
 	@echo ... game/Tree.s
+	@echo ... game/WorldManager.obj
+	@echo ... game/WorldManager.i
+	@echo ... game/WorldManager.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 #include <algorithm>
+#include <functional>
 #include "IGameSystem.h" // Include full definition for dynamic_cast
 #include "EventSystem.h"
 #include "../game/Item.h" // Include for Item definitions
@@ -76,12 +77,13 @@ public:
     
     // Better approach for this codebase:
     // We will declare a static function pointer that main.cpp can set.
-    using DropItemCallback = void(*)(Vector3 position, Item* item);
+    // We will declare a static function wrapper that main.cpp can set.
+    using DropItemCallback = std::function<void(Vector3 position, Item* item, int quantity)>;
     static DropItemCallback dropItemCallback;
     
-    static void spawnItem(Vector3 position, Item* item) {
+    static void spawnItem(Vector3 position, Item* item, int quantity = 1) {
         if (dropItemCallback) {
-            dropItemCallback(position, item);
+            dropItemCallback(position, item, quantity);
         }
     }
 };

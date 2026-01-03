@@ -23,6 +23,10 @@ add_executable(Simple3DGame
     core/DIContainer.cpp
     game/Terrain.cpp
     game/Colony.cpp
+    game/WorldManager.cpp
+    game/Region.cpp
+    game/Faction.cpp
+    game/Settlement.cpp
     game/BuildingTask.cpp
     game/GatheringTask.cpp
     game/ResourceNode.cpp
@@ -58,6 +62,9 @@ add_executable(Simple3DGame
     components/InteractionComponent.cpp
     components/InventoryComponent.cpp
     components/StatsComponent.cpp
+    components/NeedComponent.cpp
+    components/NavComponent.cpp
+    components/ActionComponent.cpp
     components/BuildingComponent.cpp
     components/SkillsComponent.cpp
     components/PositionComponent.cpp

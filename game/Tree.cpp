@@ -7,7 +7,7 @@
 #include <iostream>
 
 Tree::Tree(const PositionComponent &position, float health, float woodAmount)
-    : GameEntity("Tree"), m_woodAmount(woodAmount), m_isStump(false),
+    : GameEntity("Tree"), m_woodAmount(woodAmount), m_maxWoodAmount(woodAmount), m_isStump(false),
       m_isReserved(false), m_rotation(0.0f) {
 
   m_fixedPosition = position.getPosition();
@@ -81,9 +81,6 @@ void Tree::chopDown(bool dropItems) {
   float randomAngle = (float)(rand() % 360) * DEG2RAD;
   m_fallAxis = {cosf(randomAngle), 0.0f, sinf(randomAngle)};
   
-  // m_woodAmount = 0; // Wait until fallen to clear? Or clear now?
-  // Let's keep woodAmount until it falls to prevent ghost harvesting, 
-  // but isActive() checks woodAmount. So clear it now to prevent further chops.
   m_woodAmount = 0;
 
   // Clear reservation when chopped
@@ -96,15 +93,15 @@ void Tree::chopDown(bool dropItems) {
   std::cout << "[Tree] Chopped down, spawning wood log at (" << pos.x << ", "
             << pos.y << ", " << pos.z << ")" << std::endl;
 
-  if (dropItems && GameEngine::dropItemCallback) {
-    // Only drop item if explicitly requested (e.g. destroyed by damage, not
-    // harvested) Or maybe drop a small amount if destroyed? For now, sticking
-    // to logic: if harvested fully, no drop. If destroyed, drop 1 log.
+  if (dropItems) {
+    // Only drop item if explicitly requested. 
+    // We now drop ONE log containing the MAX wood amount of the tree.
+    int dropQty = (int)m_maxWoodAmount;
+    if (dropQty <= 0) dropQty = 1;
+
     Item *log = new ResourceItem("Wood", "Wood Log", "Freshly chopped wood.");
-    GameEngine::dropItemCallback(pos, log);
-  } else if (dropItems) {
-    std::cout << "[Tree] WARNING: dropItemCallback is null, log not spawned."
-              << std::endl;
+    // Pass quantity to callback
+    GameEngine::spawnItem(pos, log, dropQty);
   }
 }
 

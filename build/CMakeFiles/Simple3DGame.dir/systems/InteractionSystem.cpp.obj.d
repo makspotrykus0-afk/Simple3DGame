@@ -214,6 +214,11 @@ CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_laguerre.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/riemann_zeta.tcc \
  F:/Simple3DGame/game/Colony.h \
+ F:/Simple3DGame/components/SkillsComponent.h \
+ F:/Simple3DGame/systems/SkillTypes.h F:/Simple3DGame/core/GameEntity.h \
+ F:/Simple3DGame/entities/GameEntity.h F:/Simple3DGame/game/Bed.h \
+ F:/Simple3DGame/game/Projectile.h F:/Simple3DGame/game/ResourceNode.h \
+ F:/Simple3DGame/systems/ResourceTypes.h F:/Simple3DGame/game/Tree.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ios \
@@ -234,14 +239,9 @@ CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/istream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/istream.tcc \
- F:/Simple3DGame/game/Tree.h F:/Simple3DGame/entities/GameEntity.h \
- F:/Simple3DGame/game/Bed.h F:/Simple3DGame/core/GameEntity.h \
- F:/Simple3DGame/game/Projectile.h F:/Simple3DGame/game/ResourceNode.h \
- F:/Simple3DGame/systems/ResourceTypes.h \
- F:/Simple3DGame/components/SkillsComponent.h \
- F:/Simple3DGame/systems/SkillTypes.h F:/Simple3DGame/game/Settler.h \
+ F:/Simple3DGame/game/ColonyAI.h F:/Simple3DGame/game/Settler.h \
  F:/Simple3DGame/components/InventoryComponent.h \
- F:/Simple3DGame/game/WorldItem.h F:/Simple3DGame/game/ColonyAI.h \
+ F:/Simple3DGame/game/SettlerTypes.h F:/Simple3DGame/game/WorldItem.h \
  F:/Simple3DGame/game/Door.h F:/Simple3DGame/game/Colony.h \
  F:/Simple3DGame/systems/BuildingSystem.h \
  F:/Simple3DGame/core/GameSystem.h \

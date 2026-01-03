@@ -6,6 +6,7 @@
 #include "../game/DebugConsole.h"
 #include "../game/Item.h"
 #include "../game/NavigationGrid.h"
+#include "../game/WorldManager.h"
 #include "../systems/BuildingSystem.h"
 #include "../systems/CraftingSystem.h"
 #include "../systems/EditorSystem.h" // [EDITOR]
@@ -16,6 +17,7 @@
 #include "../systems/TimeCycleSystem.h"
 #include "../systems/UISystem.h"
 #include "Colony.h"
+#include "EventBusValidator.h" // VALIDATION INCLUDE
 #include "Terrain.h"
 #include "Tree.h"
 #include "raylib.h"
@@ -74,6 +76,18 @@ public:
       m_pitch = asinf(dir.y / radius);
     }
   }
+
+  // [CAMERA SYNC] Sync internal state from current camera transform
+  void syncFromCamera() {
+    Vector3 dir = Vector3Subtract(m_camera->position, m_camera->target);
+    m_radius = Vector3Length(dir);
+    if (m_radius > 0.0f) {
+      m_yaw = atan2f(dir.x, dir.z);
+      m_pitch = asinf(dir.y / m_radius);
+    }
+    // std::cout << "[CAMERA SYNC] Synced to Radius: " << m_radius << std::endl;
+  }
+
   void update(float deltaTime) {
     // [CAMERA MOVE] DEBUG: Początek update()
     // std::cout << "[CAMERA MOVE] update() called, dt=" << deltaTime
@@ -340,7 +354,7 @@ void renderScene() {
   colony.render(currentCameraMode == CameraViewMode::FPS, controlledSettler);
   const std::vector<WorldItem> &droppedItems = colony.getDroppedItems();
   for (const auto &wItem : droppedItems) {
-    if (wItem.item) {
+    if (wItem.item && !wItem.pendingRemoval) {
       Vector3 itemPos = wItem.position;
       itemPos.y += 0.25f; // Lift from ground
 
@@ -528,6 +542,80 @@ void renderScene() {
   // [EDITOR] Render Editor GUI (2D) - Must be outside BeginMode3D
   g_editorSystem.RenderGUI();
 }
+void UpdateCameraSystem(float deltaTime) {
+  // Camera controller updates based on current mode
+  if (currentCameraMode == CameraViewMode::ISOMETRIC) {
+    if (freeCameraController)
+      freeCameraController->update(deltaTime);
+  } else if (currentCameraMode == CameraViewMode::TPS && controlledSettler) {
+    // Third-person camera: orbiting around settler
+    Vector3 settlerPos = controlledSettler->getPosition();
+
+    // --- TPS CAMERA MATH ---
+    // Base Pivot: Head height
+    Vector3 pivotBase = Vector3Add(settlerPos, {0.0f, 1.5f, 0.0f});
+
+    // Angle calculations
+    float viewX = sinf(tpsYaw);
+    float viewZ = cosf(tpsYaw);
+    Vector3 viewDir = {viewX, 0.0f, viewZ};
+    Vector3 viewRight = Vector3CrossProduct(viewDir, {0.0f, 1.0f, 0.0f});
+
+    // Offsets for OTS (Over-The-Shoulder) feel
+    float offsetRight = -0.8f;
+    float offsetUp = 0.6f;
+
+    Vector3 pivotOffset = Vector3Scale(viewRight, offsetRight);
+    pivotOffset.y += offsetUp;
+
+    Vector3 finalPivot = Vector3Add(pivotBase, pivotOffset);
+
+    // SMOOTHING
+    float lerpFactor = 15.0f * deltaTime;
+    smoothCamTarget = Vector3Lerp(smoothCamTarget, finalPivot, lerpFactor);
+
+    // Calculate Position (Orbit)
+    float xz = tpsRadius * cosf(tpsPitch);
+    Vector3 orbitPos;
+    orbitPos.x = smoothCamTarget.x + xz * sinf(tpsYaw);
+    orbitPos.y = smoothCamTarget.y + tpsRadius * sinf(tpsPitch);
+    orbitPos.z = smoothCamTarget.z + xz * cosf(tpsYaw);
+
+    sceneCamera.position = orbitPos;
+    sceneCamera.target = smoothCamTarget;
+
+    // Sync for transitions
+    smoothCamPos = orbitPos;
+
+  } else if (currentCameraMode == CameraViewMode::FPS && controlledSettler) {
+    // First-person camera: from settler's eyes
+    Vector3 settlerPos = controlledSettler->getPosition();
+    float settlerRot = controlledSettler->getRotation();
+
+    // Eye Position
+    Vector3 eyePos = settlerPos;
+    eyePos.y += 1.45f; // Eye height
+
+    // Look Direction
+    Vector3 lookDir;
+    lookDir.x = sinf(settlerRot * DEG2RAD) * cosf(fpsPitch);
+    lookDir.y = -sinf(fpsPitch);
+    lookDir.z = cosf(settlerRot * DEG2RAD) * cosf(fpsPitch);
+
+    // Forward Offset (slightly in front of face to avoid clipping head)
+    Vector3 flatForward = {sinf(settlerRot * DEG2RAD), 0.0f,
+                           cosf(settlerRot * DEG2RAD)};
+    Vector3 faceOffset = Vector3Scale(flatForward, 0.25f);
+
+    sceneCamera.position = Vector3Add(eyePos, faceOffset);
+    sceneCamera.target = Vector3Add(sceneCamera.position, lookDir);
+
+    // Sync for transitions
+    smoothCamPos = sceneCamera.position;
+    smoothCamTarget = sceneCamera.target;
+  }
+}
+
 void processInput() {
   // Debug Console Toggle
   if (IsKeyPressed(KEY_GRAVE) || IsKeyPressed(KEY_F1)) { // Tilde or F1
@@ -535,7 +623,8 @@ void processInput() {
   }
 
   if (IsKeyPressed(KEY_TAB)) {
-    if (g_uiSystem) g_uiSystem->toggleColonyStats();
+    if (g_uiSystem)
+      g_uiSystem->toggleColonyStats();
   }
 
   if (DebugConsole::getInstance().isVisible()) {
@@ -603,9 +692,11 @@ void processInput() {
       const_cast<std::vector<Settler *> &>(colony.getSettlers());
   std::vector<BuildingInstance *> buildings =
       g_buildingSystem->getAllBuildings();
-  std::vector<BuildTask *> activeBuildTasks = g_buildingSystem->getActiveBuildTasks();
+  std::vector<BuildTask *> activeBuildTasks =
+      g_buildingSystem->getActiveBuildTasks();
 
-  g_editorSystem.Update(sceneCamera, settlers, trees, buildings, activeBuildTasks);
+  g_editorSystem.Update(sceneCamera, settlers, trees, buildings,
+                        activeBuildTasks);
 
   // Building mode toggle
   if (IsKeyPressed(KEY_B)) {
@@ -695,6 +786,11 @@ void processInput() {
             << std::endl;
       }
       controlledSettler = nullptr;
+
+      // Sync RTS camera to current view to avoid snapping
+      if (freeCameraController) {
+        freeCameraController->syncFromCamera();
+      }
     }
   }
 
@@ -702,12 +798,12 @@ void processInput() {
   if (IsKeyPressed(KEY_F3)) {
     g_drawDebugGrid = !g_drawDebugGrid;
   }
-  
+
   // FPS ARM EDITOR (F2)
   if (IsKeyPressed(KEY_F2)) {
-      if (controlledSettler) {
-          g_editorSystem.StartFpsArmEdit(controlledSettler);
-      }
+    if (controlledSettler) {
+      g_editorSystem.StartFpsArmEdit(controlledSettler);
+    }
   }
 
   // Player input for settler control in TPS/FPS modes
@@ -811,10 +907,11 @@ void processInput() {
 
       if (bestIdx != -1) {
         // Pickup!
+        int amount = dropped[bestIdx].amount; // Capture quantity before taking
         std::unique_ptr<Item> item = colony.takeDroppedItem(bestIdx);
         if (item) {
-          std::cout << "[Player] Picked up: " << item->getDisplayName()
-                    << std::endl;
+          std::cout << "[Player] Picked up: " << item->getDisplayName() << " x"
+                    << amount << std::endl;
 
           // Auto-equip if hands empty
           if (controlledSettler->getHeldItem() == nullptr) {
@@ -822,7 +919,7 @@ void processInput() {
                       << std::endl;
             controlledSettler->setHeldItem(std::move(item));
           } else {
-            controlledSettler->getInventory().addItem(std::move(item));
+            controlledSettler->getInventory().addItem(std::move(item), amount);
           }
         }
       }
@@ -857,57 +954,61 @@ void processInput() {
     // Apply movement with SLIDING COLLISION
     if (Vector3Length(moveDir) > 0.001f) {
       moveDir = Vector3Normalize(moveDir);
-      
+
       // Separate axes for sliding
-      Vector3 moveX = { moveDir.x * moveSpeed, 0, 0 };
-      Vector3 moveZ = { 0, 0, moveDir.z * moveSpeed };
-      
+      Vector3 moveX = {moveDir.x * moveSpeed, 0, 0};
+      Vector3 moveZ = {0, 0, moveDir.z * moveSpeed};
+
       Vector3 finalPos = currentSettlerPos;
       bool moved = false;
 
       // Define Collision Checker Helper locally for captured scope
       auto IsPositionFree = [&](Vector3 testPos) -> bool {
-          // 1. Check Buildings (Increased radius to 10.0f to catch large buildings)
-          if (g_buildingSystem) {
-              auto buildings = g_buildingSystem->getBuildingsInRange(testPos, 10.0f);
-              for (auto* b : buildings) {
-                  if (b->getBlueprintId() == "floor") continue;
-                  if (b->CheckCollision(testPos, 0.4f)) {
-                      // std::cout << "[Collision] Blocked by building: " << b->getBlueprintId() << std::endl;
-                      return false; 
-                  }
-              }
+        // 1. Check Buildings (Increased radius to 10.0f to catch large
+        // buildings)
+        if (g_buildingSystem) {
+          auto buildings =
+              g_buildingSystem->getBuildingsInRange(testPos, 10.0f);
+          for (auto *b : buildings) {
+            if (b->getBlueprintId() == "floor")
+              continue;
+            if (b->CheckCollision(testPos, 0.4f)) {
+              // std::cout << "[Collision] Blocked by building: " <<
+              // b->getBlueprintId() << std::endl;
+              return false;
+            }
           }
-           // 2. Check Trees
-           const auto& trees = terrain.getTrees();
-           for(const auto& t : trees) {
-               if(t->isActive() && !t->isStump()) {
-                   if(CheckCollisionBoxSphere(t->getBoundingBox(), testPos, 0.4f)) {
-                       // std::cout << "[Collision] Blocked by tree" << std::endl;
-                       return false;
-                   }
-               }
-           }
-           return true;
+        }
+        // 2. Check Trees
+        const auto &trees = terrain.getTrees();
+        for (const auto &t : trees) {
+          if (t->isActive() && !t->isStump()) {
+            if (CheckCollisionBoxSphere(t->getBoundingBox(), testPos, 0.4f)) {
+              // std::cout << "[Collision] Blocked by tree" << std::endl;
+              return false;
+            }
+          }
+        }
+        return true;
       };
 
       // Try X Movement
       if (IsPositionFree(Vector3Add(finalPos, moveX))) {
-          finalPos = Vector3Add(finalPos, moveX);
-          moved = true;
+        finalPos = Vector3Add(finalPos, moveX);
+        moved = true;
       }
-      
+
       // Try Z Movement
       if (IsPositionFree(Vector3Add(finalPos, moveZ))) {
-          finalPos = Vector3Add(finalPos, moveZ);
-          moved = true;
+        finalPos = Vector3Add(finalPos, moveZ);
+        moved = true;
       }
 
       if (moved) {
-          controlledSettler->setPosition(finalPos);
-          controlledSettler->setState(SettlerState::MOVING);
+        controlledSettler->setPosition(finalPos);
+        controlledSettler->setState(SettlerState::MOVING);
       } else {
-          controlledSettler->setState(SettlerState::IDLE);
+        controlledSettler->setState(SettlerState::IDLE);
       }
 
     } else {
@@ -915,95 +1016,7 @@ void processInput() {
     }
   }
 
-  // Camera controller updates based on current mode
-  if (currentCameraMode == CameraViewMode::ISOMETRIC) {
-    if (freeCameraController)
-      freeCameraController->update(deltaTime);
-  } else if (currentCameraMode == CameraViewMode::TPS && controlledSettler) {
-    // Third-person camera: orbiting around settler
-    Vector3 settlerPos = controlledSettler->getPosition();
-    // Base Pivot: Head height
-    Vector3 pivotBase = Vector3Add(settlerPos, {0.0f, 1.5f, 0.0f});
-
-    // --- OFFSETS for "Bottom-Left" Settler Position ---
-    // To put settler on Left: Camera must move Right.
-    // To put settler on Bottom: Camera must move Up.
-
-    // Calculate Camera Basis
-    // Forward is (Pivot -> Camera) inverted? No, usually Camera Forward is
-    // (Target - Pos). Let's use our Orbit Yaw to determine "Right" relative to
-    // the view. tpsYaw is angle around Y. View Direction (Orbit):
-    float viewX = sinf(tpsYaw);
-    float viewZ = cosf(tpsYaw);
-    Vector3 viewDir = {viewX, 0.0f, viewZ}; // Flattened view dir
-    Vector3 viewRight =
-        Vector3CrossProduct(viewDir, {0.0f, 1.0f, 0.0f}); // Right vector
-
-    // Apply Offsets to the PIVOT (The point we look AT)
-    // Actually, if we want the settler to be Left, we should look at a point to
-    // the RIGHT of the settler. If we look at (Settler + Right * Offset), the
-    // Settler appears to the Left.
-    float offsetRight =
-        -0.8f; // OTS Offset Right (Negative because viewRight is inverted/Left)
-    float offsetUp = 0.6f; // OTS Offset Up (look slightly above head)
-
-    Vector3 pivotOffset = Vector3Scale(viewRight, offsetRight);
-    pivotOffset.y += offsetUp;
-
-    Vector3 finalPivot = Vector3Add(pivotBase, pivotOffset);
-
-    // Calculate Desired Camera Position based on Orbit around FINAL PIVOT
-    // SMOOTHING:
-    // Only smooth the target (Pivot). Do not smooth the resulting rotation to
-    // prevent input lag.
-    float lerpFactor = 15.0f * deltaTime; // Responsiveness
-    smoothCamTarget = Vector3Lerp(smoothCamTarget, finalPivot, lerpFactor);
-
-    // Calculate Camera Position based on SMOOTHED PIVOT + RAW ROTATION
-    float xz = tpsRadius * cosf(tpsPitch);
-    Vector3 orbitPos;
-    orbitPos.x = smoothCamTarget.x + xz * sinf(tpsYaw);
-    orbitPos.y = smoothCamTarget.y + tpsRadius * sinf(tpsPitch);
-    orbitPos.z = smoothCamTarget.z + xz * cosf(tpsYaw);
-
-    sceneCamera.position = orbitPos;
-    sceneCamera.target = smoothCamTarget;
-
-    // Sync smoothCamPos for transitions
-    smoothCamPos = orbitPos;
-  } else if (currentCameraMode == CameraViewMode::FPS && controlledSettler) {
-    // First-person camera: from settler's eyes
-    Vector3 settlerPos = controlledSettler->getPosition();
-    float settlerRot = controlledSettler->getRotation();
-
-    // Camera at settler's eye height
-    Vector3 eyePos = settlerPos;
-    eyePos.y += 1.4f; // CORRECTED: Eye level (Body 0.5 + Neck/Head 0.82 ~ 1.32 + offset)
-                     // 1.6 was top of head. 1.4 is eyes.
-
-    // Look direction calculated from settler rotation and fpsPitch
-    Vector3 lookDir;
-    // Correct forward calculation (sync with getForwardVector)
-    // Fixed: Remove negative signs to look FORWARD relative to body rotation
-    lookDir.x = sinf(settlerRot * DEG2RAD) * cosf(fpsPitch);
-    lookDir.y = -sinf(fpsPitch); // Up/Down
-    lookDir.z = cosf(settlerRot * DEG2RAD) * cosf(fpsPitch);
-
-    // Apply backward offset to see more of the arms/body
-    Vector3 flatForward = {sinf(settlerRot * DEG2RAD), 0.0f,
-                           cosf(settlerRot * DEG2RAD)};
-    
-    // User complaint: "Too far behind head". Removed -0.35f offset.
-    // Now exactly at eye position (or slightly forward if needed)
-    Vector3 backOffset = Vector3Scale(flatForward, 0.2f); // Slightly FORWARD (Eyes in front of neck) 
-
-    sceneCamera.position = Vector3Add(eyePos, backOffset);
-    sceneCamera.target = Vector3Add(sceneCamera.position, lookDir);
-
-    // Sync smoothers so when we switch back to TPS it's ready
-    smoothCamPos = sceneCamera.position;
-    smoothCamTarget = sceneCamera.target;
-  }
+  // Camera Logic has been moved to UpdateCameraSystem()
 }
 
 int main() {
@@ -1011,13 +1024,13 @@ int main() {
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Simple 3D Game");
   SetTargetFPS(60);
   // Initialize cameras
-  sceneCamera = {0};
+  sceneCamera = {};
   sceneCamera.position = Vector3{10.0f, 10.0f, 10.0f};
   sceneCamera.target = Vector3{0.0f, 0.0f, 0.0f};
   sceneCamera.up = Vector3{0.0f, 1.0f, 0.0f};
   sceneCamera.fovy = 45.0f;
   sceneCamera.projection = CAMERA_PERSPECTIVE;
-  settlerCamera = {0};
+  settlerCamera = {};
   settlerCamera.position = Vector3{0.0f, 5.0f, 10.0f};
   settlerCamera.target = Vector3{0.0f, 0.0f, 0.0f};
   settlerCamera.up = Vector3{0.0f, 1.0f, 0.0f};
@@ -1062,10 +1075,12 @@ int main() {
   colony.initialize();
   g_colony = &colony;
   // Set drop item callback for trees
-  GameEngine::dropItemCallback = [](Vector3 position, Item *item) {
-    colony.addDroppedItem(std::unique_ptr<Item>(item), position);
+  GameEngine::dropItemCallback = [](Vector3 position, Item *item,
+                                    int quantity) {
+    colony.addDroppedItem(std::unique_ptr<Item>(item), position, quantity);
     std::cout << "[GameEngine] Dropped item at (" << position.x << ", "
-              << position.y << ", " << position.z << ")" << std::endl;
+              << position.y << ", " << position.z << ") x" << quantity
+              << std::endl;
   };
   if (g_interactionSystem) {
     g_interactionSystem->setColony(&colony);
@@ -1079,11 +1094,21 @@ int main() {
     std::cout << "[DEBUG] UISystem colony set." << std::endl;
   }
   engine.initialize();
+
+  // [WORLD MANAGER] Initialize
+  WorldManager::GetInstance()->Initialize();
+
+  // [EVENT BUS] Validation
+  EventBusValidator eventValidator;
+  eventValidator.Initialize();
+  eventValidator.TriggerTest();
+
   // Main loop
   // Main loop
   while (!WindowShouldClose()) {
     deltaTime = GetFrameTime();
     processInput();
+    UpdateCameraSystem(deltaTime);
     terrain.update(deltaTime);
     float scaledDeltaTime = deltaTime * globalTimeScale;
     float gameTime = g_timeSystem ? g_timeSystem->getCurrentTime() : 0.0f;
@@ -1108,12 +1133,19 @@ int main() {
       navigationGrid.UpdateGrid(buildings, treePtrs, resources);
     }
 
+    // [WORLD MANAGER] Update
+    // Pass 0.0f for player y, assuming flat grid for now or use full Vector3
+    WorldManager::GetInstance()->Update(
+        scaledDeltaTime, controlledSettler ? controlledSettler->getPosition()
+                                           : sceneCamera.position);
+
     engine.update(scaledDeltaTime);
     BeginDrawing();
     ClearBackground(RAYWHITE);
     renderScene();
     engine.render();
-    // Note: All UI is now handled by UISystem::render() called from engine.render() above
+    // Note: All UI is now handled by UISystem::render() called from
+    // engine.render() above
     if (freeCameraController && freeCameraController->isDebugEnabled()) {
       freeCameraController->renderDebug();
     }
@@ -1122,19 +1154,34 @@ int main() {
     DebugConsole::getInstance().render();
 
     // --- FORCE CURSOR LOCK ---
-    // Aggressively re-apply cursor lock every frame if it should be hidden.
-    if (wantCursorHidden) { // Use our persistent state
+    if (wantCursorHidden) {
       if (!IsCursorHidden())
         DisableCursor();
-
-      // NUCLEAR OPTION: Force cursor to center to prevent escaping
-      // Only if we are focused
       if (IsWindowFocused()) {
         SetMousePosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
       }
     }
 
+    // [UI] Draw Camera Mode Indicator
+    const char *modeText = "MODE: RTS (Isometric)";
+    Color modeColor = SKYBLUE;
+    if (currentCameraMode == CameraViewMode::TPS) {
+      modeText = "MODE: TPS (Third Person)";
+      modeColor = GREEN;
+    } else if (currentCameraMode == CameraViewMode::FPS) {
+      modeText = "MODE: FPS (First Person)";
+      modeColor = ORANGE;
+    }
+
+    DrawText(modeText, 20, SCREEN_HEIGHT - 40, 20, modeColor);
+    DrawText("[V] Switch View   [TAB] Cycle Units", 20, SCREEN_HEIGHT - 20, 10,
+             LIGHTGRAY);
+
     EndDrawing();
   }
+
+  // [WORLD MANAGER] Shutdown
+  WorldManager::GetInstance()->Shutdown();
+
   engine.shutdown();
 }

@@ -149,7 +149,7 @@ float ResourceNode::harvest(float amount) {
         
         if (!resType.empty() && GameEngine::dropItemCallback) {
              Item* droppedItem = new ResourceItem(resType, resName, "Harvested resource.");
-             GameEngine::dropItemCallback(pos, droppedItem);
+             GameEngine::dropItemCallback(pos, droppedItem, 1);
              std::cout << "[ResourceNode] Dropped " << resName << " at (" << pos.x << "," << pos.y << "," << pos.z << ")" << std::endl;
         }
     }

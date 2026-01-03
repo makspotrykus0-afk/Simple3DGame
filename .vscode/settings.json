@@ -1,5 +1,6 @@
 {
     "git.ignoreLimitWarning": true,
+    "git.autorefresh": false,
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -27,5 +28,7 @@
     "lldb.displayFormat": "auto",
     "lldb.showDisassembly": "auto",
     "lldb.dereferencePointers": true,
-    "lldb.consoleMode": "commands"
+    "lldb.consoleMode": "commands",
+    "markdown.validate.enabled": false,
+    "editor.mouseWheelZoom": true
 }

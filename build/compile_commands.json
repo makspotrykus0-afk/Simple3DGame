@@ -43,6 +43,30 @@
 },
 {
   "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\WorldManager.cpp.obj -c F:\\Simple3DGame\\game\\WorldManager.cpp",
+  "file": "F:/Simple3DGame/game/WorldManager.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/WorldManager.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Region.cpp.obj -c F:\\Simple3DGame\\game\\Region.cpp",
+  "file": "F:/Simple3DGame/game/Region.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Region.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Faction.cpp.obj -c F:\\Simple3DGame\\game\\Faction.cpp",
+  "file": "F:/Simple3DGame/game/Faction.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Faction.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Settlement.cpp.obj -c F:\\Simple3DGame\\game\\Settlement.cpp",
+  "file": "F:/Simple3DGame/game/Settlement.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Settlement.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
   "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\BuildingTask.cpp.obj -c F:\\Simple3DGame\\game\\BuildingTask.cpp",
   "file": "F:/Simple3DGame/game/BuildingTask.cpp",
   "output": "CMakeFiles/Simple3DGame.dir/game/BuildingTask.cpp.obj"
@@ -250,6 +274,24 @@
   "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\StatsComponent.cpp.obj -c F:\\Simple3DGame\\components\\StatsComponent.cpp",
   "file": "F:/Simple3DGame/components/StatsComponent.cpp",
   "output": "CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\NeedComponent.cpp.obj -c F:\\Simple3DGame\\components\\NeedComponent.cpp",
+  "file": "F:/Simple3DGame/components/NeedComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\NavComponent.cpp.obj -c F:\\Simple3DGame\\components\\NavComponent.cpp",
+  "file": "F:/Simple3DGame/components/NavComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\ActionComponent.cpp.obj -c F:\\Simple3DGame\\components\\ActionComponent.cpp",
+  "file": "F:/Simple3DGame/components/ActionComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj"
 },
 {
   "directory": "F:/Simple3DGame/build",

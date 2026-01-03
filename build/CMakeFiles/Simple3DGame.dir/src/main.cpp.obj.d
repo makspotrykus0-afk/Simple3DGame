@@ -211,6 +211,7 @@ CMakeFiles/Simple3DGame.dir/src/main.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
  F:/Simple3DGame/game/NavigationGrid.h \
+ F:/Simple3DGame/game/WorldManager.h \
  F:/Simple3DGame/systems/BuildingSystem.h \
  F:/Simple3DGame/game/BuildingInstance.h \
  F:/Simple3DGame/entities/GameEntity.h \
@@ -220,6 +221,11 @@ CMakeFiles/Simple3DGame.dir/src/main.cpp.obj: \
  F:/Simple3DGame/game/Bed.h F:/Simple3DGame/game/InteractableObject.h \
  F:/Simple3DGame/core/GameEntity.h F:/Simple3DGame/game/Door.h \
  F:/Simple3DGame/game/Colony.h \
+ F:/Simple3DGame/components/PositionComponent.h \
+ F:/Simple3DGame/components/SkillsComponent.h \
+ F:/Simple3DGame/systems/SkillTypes.h F:/Simple3DGame/game/Animal.h \
+ F:/Simple3DGame/core/Entity.h F:/Simple3DGame/game/Projectile.h \
+ F:/Simple3DGame/game/ResourceNode.h F:/Simple3DGame/game/Tree.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ios \
@@ -240,14 +246,9 @@ CMakeFiles/Simple3DGame.dir/src/main.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/istream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/istream.tcc \
- F:/Simple3DGame/game/Tree.h \
- F:/Simple3DGame/components/PositionComponent.h \
- F:/Simple3DGame/game/Animal.h F:/Simple3DGame/core/Entity.h \
- F:/Simple3DGame/game/Projectile.h F:/Simple3DGame/game/ResourceNode.h \
- F:/Simple3DGame/components/SkillsComponent.h \
- F:/Simple3DGame/systems/SkillTypes.h F:/Simple3DGame/game/Settler.h \
+ F:/Simple3DGame/game/ColonyAI.h F:/Simple3DGame/game/Settler.h \
  F:/Simple3DGame/components/InventoryComponent.h \
- F:/Simple3DGame/game/WorldItem.h F:/Simple3DGame/game/ColonyAI.h \
+ F:/Simple3DGame/game/SettlerTypes.h F:/Simple3DGame/game/WorldItem.h \
  F:/Simple3DGame/raylib/src/rlgl.h F:/Simple3DGame/game/BuildingTask.h \
  F:/Simple3DGame/systems/InteractionSystem.h \
  F:/Simple3DGame/systems/CraftingSystem.h \
@@ -258,7 +259,8 @@ CMakeFiles/Simple3DGame.dir/src/main.cpp.obj: \
  F:/Simple3DGame/systems/NeedsSystem.h F:/Simple3DGame/game/Settler.h \
  F:/Simple3DGame/systems/TimeCycleSystem.h \
  F:/Simple3DGame/systems/UISystem.h F:/Simple3DGame/game/Colony.h \
- F:/Simple3DGame/game/Colony.h F:/Simple3DGame/game/Terrain.h \
+ F:/Simple3DGame/game/Colony.h F:/Simple3DGame/core/EventBusValidator.h \
+ F:/Simple3DGame/game/Terrain.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/random \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/random.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/opt_random.h \

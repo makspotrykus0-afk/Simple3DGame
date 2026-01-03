@@ -66,8 +66,8 @@ public:
   std::string getReservedBy() const { return m_reservedBy; }
 
   float getMaxWoodAmount() const {
-    return 50.0f;
-  } // Hardcoded for now as default in cpp usually
+    return m_maxWoodAmount;
+  }
 
   // Collision
   BoundingBox getBoundingBox() const {
@@ -88,6 +88,7 @@ public:
 
 private:
   float m_woodAmount; // Przechowuje ilość drewna dostępnego do zebrania
+  float m_maxWoodAmount; // Stores initial max wood
   bool m_isStump;
   Vector3 m_fixedPosition; // Przechowuje pozycję niezależnie od komponentów
   float m_rotation = 0.0f; // Rotation in degrees

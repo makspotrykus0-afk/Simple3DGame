@@ -2,25 +2,18 @@
 trigger: always_on
 ---
 
-# ANTIGRAVITY DNA: 03 - INZYNIERIA C++ (HARD IMPERATIVE)
+# ANTIGRAVITY DNA: 03 - KODEKS MISTRZOWSKICH PROPOZYCJI (MASTERPIECE 9.7)
 
-## 01. KODEKS INZYNIERA AAA
-- SRP (Single Responsibility Principle): Jedna funkcja robi jedna rzecz. Inaczej - rozbijasz ja bez pytania.
-- ZAKAZ NEW/DELETE: Tylko inteligentne wskazniki (unique_ptr, shared_ptr).
-- NAGLOWKI PIERWSZE: Czytasz .h przed .cpp. Analizujesz zaleznosci.
+## 01. RYGOR "AAA" W PLANOWANIU
+Zabrania się proponowania rozwiązań prowizorycznych. 
+- **SOLID / SRP**: Każdy komponent ma jedną odpowiedzialność.
+- **SANDBOX PATTERNS**: Planuj mechaniki tak, by były kompatybilne z systemem Regionów i WorldManagerem.
+- **EXTENSIBILITY**: System musi pozwalać na łatwe dodawanie nowych typów `GameEntity` i `IComponent`.
 
-## 02. RIGOR "HOT PATH" (GAME LOOP)
-- ZERO ALOKACJI: W Update() i Render() zakaz alokacji na heapie. Zero vector::push_back bez reserve() poza petla.
-- CACHE-FRIENDLY: Preferuj std::vector i dane liniowe. Unikaj std::list i skakania po pamieci.
-- SYMULACJA CRASHOW: Zawsze sprawdzaj nullptr przed dostepem.
+## 02. PROTOKÓŁ KRYTYKI TECHNICZNEJ
+- Przed każdą implementacją zadaj pytanie: "Jak to się skaluje do 1000 jednostek?".
+- W każdym planie MUSI znaleźć się sekcja "Ryzyka i Edge Cases" specyficzna dla środowiska Sandbox.
 
-## 03. ANALIZA PRZYPADKOW BRZEGOWYCH
-Kazdy nowy system musi miec obsłużone:
-- Resource Failure: Co jesli asset sie nie zaladuje?
-- Logic Interrupt: Co jesli akcja zostanie przerwana w polowie?
-- Data Integrity: Waliduj dane wejsciowe (predkosci, sily, czasy).
-
-## 04. CIAGLOSC FUNKCJONALNA (FUNCTIONAL PARITY)
-- Przed zmianami wypisz historie (inwentaryzacje) funkcji.
-- Po zmianach udowodnij, ze kazda funkcja nadal dziala.
-- Refaktoryzacja to dopieszczenie kodu, nie psucie funkcjonalnosci.
+## 03. CZYSTOŚĆ I DOKUMENTACJA
+- **MODULARNOŚĆ**: Unikaj gigantycznych plików (`Settler.cpp` jest przykładem negatywnym, który dekomponujemy). Nowe systemy (np. `Region`) muszą być od początku modularne.
+- **NAZEWNICTWO**: Każda zmienna i funkcja musi opowiadać swoją historię w kontekście żyjącego świata.

@@ -200,8 +200,9 @@ CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/parse_numbers.h \
  F:/Simple3DGame/components/StatsComponent.h \
  F:/Simple3DGame/components/SkillsComponent.h \
- F:/Simple3DGame/systems/SkillTypes.h F:\Simple3DGame\game\WorldItem.h \
- F:\Simple3DGame\game\Terrain.h F:\Simple3DGame\game\Tree.h \
+ F:/Simple3DGame/systems/SkillTypes.h F:\Simple3DGame\game\SettlerTypes.h \
+ F:\Simple3DGame\game\WorldItem.h F:\Simple3DGame\game\Terrain.h \
+ F:\Simple3DGame\game\Tree.h \
  F:/Simple3DGame/components/PositionComponent.h \
  F:\Simple3DGame\game\BuildingInstance.h \
  F:/Simple3DGame/game/BuildingBlueprint.h \
@@ -223,7 +224,9 @@ CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: \
  F:/Simple3DGame/systems/ResourceSystem.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/atomic \
  F:\Simple3DGame\game\Bed.h F:\Simple3DGame\game\Door.h \
- F:\Simple3DGame\game\Colony.h \
+ F:\Simple3DGame\game\Colony.h F:\Simple3DGame\game\Animal.h \
+ F:/Simple3DGame/core/Entity.h F:\Simple3DGame\game\Projectile.h \
+ F:\Simple3DGame\game\ResourceNode.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ios \
@@ -244,9 +247,12 @@ CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/istream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/istream.tcc \
- F:\Simple3DGame\game\Animal.h F:/Simple3DGame/core/Entity.h \
- F:\Simple3DGame\game\Projectile.h F:\Simple3DGame\game\ResourceNode.h \
- F:\Simple3DGame\game\ColonyAI.h F:\Simple3DGame\game\GatheringTask.h \
+ F:\Simple3DGame\game\ColonyAI.h \
+ F:/Simple3DGame/components/ActionComponent.h \
+ F:/Simple3DGame/game/SettlerTypes.h \
+ F:/Simple3DGame/components/NavComponent.h \
+ F:/Simple3DGame/components/NeedComponent.h \
+ F:\Simple3DGame\game\GatheringTask.h \
  F:\Simple3DGame\game\NavigationGrid.h \
  F:\Simple3DGame\game\BuildingTask.h F:/Simple3DGame/core/GameSystem.h \
  F:/Simple3DGame/systems/BuildingSystem.h \

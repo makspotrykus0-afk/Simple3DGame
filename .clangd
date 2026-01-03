@@ -1,0 +1,23 @@
+CompileFlags:
+  CompilationDatabase: build
+  Add: [-Wall, -Wextra]
+
+Index:
+  Background: true
+  BackgroundThreads: 2
+  External:
+    File: build/compile_commands.json
+    MountPoint: .
+
+Diagnostics:
+  UnusedIncludes: Strict
+
+# Wykluczenie ciężkich folderów z indeksowania tła, aby oszczędzić RAM
+# vcpkg, build i raylib to ponad 1GB kodu, którego nie musimy indeksować w całości w locie
+---
+If:
+  PathMatch: [vcpkg/.*, build/.*, raylib/.*, vendor/.*, assets/.*]
+Index:
+  Background: Skip
+Diagnostics:
+  Suppress: ["*"]

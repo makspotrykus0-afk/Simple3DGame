@@ -202,8 +202,8 @@ CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tree.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
- F:/Simple3DGame/game/WorldItem.h F:/Simple3DGame/game/Bed.h \
- F:/Simple3DGame/systems/BuildingSystem.h \
+ F:/Simple3DGame/game/SettlerTypes.h F:/Simple3DGame/game/WorldItem.h \
+ F:/Simple3DGame/game/Bed.h F:/Simple3DGame/systems/BuildingSystem.h \
  F:/Simple3DGame/game/BuildingBlueprint.h \
  F:/Simple3DGame/systems/ResourceTypes.h \
  F:/Simple3DGame/game/BuildingInstance.h \
@@ -223,6 +223,10 @@ CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: \
  F:/Simple3DGame/systems/ResourceSystem.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/atomic \
  F:/Simple3DGame/game/Door.h F:/Simple3DGame/game/Colony.h \
+ F:/Simple3DGame/components/PositionComponent.h \
+ F:/Simple3DGame/game/Animal.h F:/Simple3DGame/core/Entity.h \
+ F:/Simple3DGame/game/Projectile.h F:/Simple3DGame/game/ResourceNode.h \
+ F:/Simple3DGame/game/Tree.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ios \
@@ -243,10 +247,6 @@ CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/istream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/istream.tcc \
- F:/Simple3DGame/game/Tree.h \
- F:/Simple3DGame/components/PositionComponent.h \
- F:/Simple3DGame/game/Animal.h F:/Simple3DGame/core/Entity.h \
- F:/Simple3DGame/game/Projectile.h F:/Simple3DGame/game/ResourceNode.h \
- F:/Simple3DGame/game/Settler.h F:/Simple3DGame/game/ColonyAI.h \
+ F:/Simple3DGame/game/ColonyAI.h F:/Simple3DGame/game/Settler.h \
  F:/Simple3DGame/raylib/src/rlgl.h F:/Simple3DGame/game/BuildingTask.h \
  F:/Simple3DGame/systems/InteractionSystem.h

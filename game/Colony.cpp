@@ -1,4 +1,5 @@
 #include "Colony.h"
+#include "../core/EventSystem.h"
 #include "../core/GameEngine.h"
 #include "../core/GameSystem.h"
 #include "../game/BuildingInstance.h"
@@ -11,6 +12,7 @@
 #include "raymath.h"
 #include <cstdlib>
 #include <iostream>
+
 
 // Access global building system to check for collisions on spawn
 extern BuildingSystem *g_buildingSystem;
@@ -171,9 +173,9 @@ void Colony::initialize() {
               settler->performBuilding = true; // Ensure he builds it
               // FORCE hasHouse = true. We know it's being built.
               // This is critical so ColonyAI doesn't spam new builds.
-              settler->hasHouse = true; 
+              settler->hasHouse = true;
               settler->myHousePos() = housePos;
-              
+
               std::cout << "Initialized PENDING house task for "
                         << settler->getName() << " at (" << housePos.x << ", "
                         << housePos.z << ")" << std::endl;
@@ -185,10 +187,45 @@ void Colony::initialize() {
         }
       }
     }
-    // Initialize ColonyAI
     m_ai = std::make_unique<ColonyAI>(this, g_buildingSystem);
     std::cout << "Colony initialized with " << settlers.size()
               << " settlers and animals." << std::endl;
+
+    // [EVENT BUS] Subscribe to Storage Changes
+    EventBus::registerHandler<ItemAddedToStorageEvent>(
+        [this](const std::any &e) {
+          try {
+            const auto &event =
+                std::any_cast<const ItemAddedToStorageEvent &>(e);
+            if (event.resourceType == Resources::ResourceType::Wood)
+              m_cachedWood += event.amount;
+            else if (event.resourceType == Resources::ResourceType::Stone)
+              m_cachedStone += event.amount;
+            else if (event.resourceType == Resources::ResourceType::Food)
+              m_cachedFood += event.amount;
+          } catch (...) {
+          }
+        },
+        "Colony_AddResource");
+
+    EventBus::registerHandler<ItemRemovedFromStorageEvent>(
+        [this](const std::any &e) {
+          try {
+            const auto &event =
+                std::any_cast<const ItemRemovedFromStorageEvent &>(e);
+            if (event.resourceType == Resources::ResourceType::Wood)
+              m_cachedWood -= event.amount;
+            else if (event.resourceType == Resources::ResourceType::Stone)
+              m_cachedStone -= event.amount;
+            else if (event.resourceType == Resources::ResourceType::Food)
+              m_cachedFood -= event.amount;
+          } catch (...) {
+          }
+        },
+        "Colony_RemoveResource");
+
+    // Initial cache refresh
+    refreshResourceCache();
   }
 }
 void Colony::cleanup() {
@@ -214,8 +251,8 @@ void Colony::update(float deltaTime, float currentTime,
 
   for (auto *settler : settlers) {
     // Pass our own resources to settler
-    settler->Update(deltaTime, currentTime, trees, m_droppedItemsStorage, bushes, buildings,
-                    m_animals, m_resourceNodes);
+    settler->Update(deltaTime, currentTime, trees, m_droppedItemsStorage,
+                    bushes, buildings, m_animals, m_resourceNodes);
   }
   // Update animals
   for (auto &animal : m_animals) {
@@ -249,6 +286,12 @@ void Colony::update(float deltaTime, float currentTime,
       }
     }
   }
+  // cleanup dropped items marked for removal
+  m_droppedItemsStorage.erase(
+      std::remove_if(m_droppedItemsStorage.begin(), m_droppedItemsStorage.end(),
+                     [](const WorldItem &item) { return item.pendingRemoval; }),
+      m_droppedItemsStorage.end());
+
   // Remove inactive projectiles
   m_projectiles.erase(std::remove_if(m_projectiles.begin(), m_projectiles.end(),
                                      [](const std::unique_ptr<Projectile> &p) {
@@ -296,16 +339,18 @@ void Colony::render(bool isFPSMode, Settler *selectedSettler) {
   static int debugFrame = 0;
   debugFrame++;
   if (debugFrame % 300 == 0) { // Log every ~5 seconds
-      std::cout << "[Colony::render] isFPS: " << isFPSMode 
-                << " Ptr: " << selectedSettler << std::endl;
+    std::cout << "[Colony::render] isFPS: " << isFPSMode
+              << " Ptr: " << selectedSettler << std::endl;
   }
 
   for (auto *settler : settlers) {
     // Render FPS view for selected settler
     if (isFPSMode && settler == selectedSettler) {
-       if (debugFrame % 300 == 0) std::cout << " -> Rendering FPS for " << settler->getName() << std::endl;
-       settler->render(true); // Unified render (hides head, applies FPS offsets)
-       continue;
+      if (debugFrame % 300 == 0)
+        std::cout << " -> Rendering FPS for " << settler->getName()
+                  << std::endl;
+      settler->render(true); // Unified render (hides head, applies FPS offsets)
+      continue;
     }
     settler->render();
   }
@@ -493,9 +538,10 @@ void Colony::addResource(const std::string &resourceName, int amount) {
   std::cout << "Colony gained resource: " << resourceName << " x" << amount
             << std::endl;
 }
-void Colony::addDroppedItem(std::unique_ptr<Item> item, Vector3 position) {
+void Colony::addDroppedItem(std::unique_ptr<Item> item, Vector3 position,
+                            int amount) {
   m_droppedItemsStorage.push_back(
-      WorldItem(position, std::move(item), (float)GetTime(), false, 1));
+      WorldItem(position, std::move(item), (float)GetTime(), false, amount));
 }
 void Colony::registerStorageBuilding(BuildingInstance *b) {
   if (!b)
@@ -558,6 +604,7 @@ std::unique_ptr<Item> Colony::takeDroppedItem(size_t index) {
 
   // Move item out
   std::unique_ptr<Item> item = std::move(m_droppedItemsStorage[index].item);
+  m_droppedItemsStorage[index].pendingRemoval = true;
 
   // Remove from vector (swap and pop for efficiency, but order might change...
   // acceptable for loose items) Actually, std::remove_if logic in update cleans
@@ -621,76 +668,68 @@ Vector3 Colony::FindValidTreeSpawnPos() {
 }
 
 float Colony::getEfficiencyModifier(Vector3 pos, SettlerState state) const {
-    float modifier = 1.0f;
-    bool hasGlobalBlacksmith = false;
+  float modifier = 1.0f;
+  bool hasGlobalBlacksmith = false;
 
-    // Pobierz wszystkie budynki z BuildingSystem (przez extern lub DI)
-    if (!g_buildingSystem) return 1.0f;
+  // Pobierz wszystkie budynki z BuildingSystem (przez extern lub DI)
+  if (!g_buildingSystem)
+    return 1.0f;
 
-    // Optymalizacja: Sprawdzamy budynki w relatywnie dużym zasięgu (max zdefiniowany to 40m dla sawmill)
-    auto nearbyBuildings = g_buildingSystem->getBuildingsInRange(pos, 45.0f);
+  // Optymalizacja: Sprawdzamy budynki w relatywnie dużym zasięgu (max
+  // zdefiniowany to 40m dla sawmill)
+  auto nearbyBuildings = g_buildingSystem->getBuildingsInRange(pos, 45.0f);
 
-    for (auto* building : nearbyBuildings) {
-        if (!building->isBuilt()) continue;
+  for (auto *building : nearbyBuildings) {
+    if (!building->isBuilt())
+      continue;
 
-        std::string bid = building->getBlueprintId();
-        float dist = Vector3Distance(pos, building->getPosition());
+    std::string bid = building->getBlueprintId();
+    float dist = Vector3Distance(pos, building->getPosition());
 
-        // 1. TARTAK (Sawmill) -> Bonus do wycinania
-        if (bid == "sawmill" && state == SettlerState::CHOPPING && dist < 40.0f) {
-            modifier += 0.5f;
-        }
-
-        // 2. KUŹNIA (Blacksmith) -> Bonus globalny (sprawdzamy zasięg 100m dla "globalności" w tej skali mapy)
-        if (bid == "blacksmith") {
-            hasGlobalBlacksmith = true; // Flaga, żeby nie dodawać wielokrotnie
-        }
-
-        // 3. STUDNIA (Well) -> Bonus do regeneracji (używamy flagi dla Update)
-        if (bid == "well" && dist < 25.0f) {
-            modifier += 0.1f; // Mały bonus do modifiera, żeby Update wiedziało o Studni
-        }
+    // 1. TARTAK (Sawmill) -> Bonus do wycinania
+    if (bid == "sawmill" && state == SettlerState::CHOPPING && dist < 40.0f) {
+      modifier += 0.5f;
     }
 
-    if (hasGlobalBlacksmith && (state == SettlerState::CHOPPING || state == SettlerState::MINING)) {
-        modifier += 0.2f;
+    // 2. KUŹNIA (Blacksmith) -> Bonus globalny (sprawdzamy zasięg 100m dla
+    // "globalności" w tej skali mapy)
+    if (bid == "blacksmith") {
+      hasGlobalBlacksmith = true; // Flaga, żeby nie dodawać wielokrotnie
     }
 
-    return modifier;
+    // 3. STUDNIA (Well) -> Bonus do regeneracji (używamy flagi dla Update)
+    if (bid == "well" && dist < 25.0f) {
+      modifier +=
+          0.1f; // Mały bonus do modifiera, żeby Update wiedziało o Studni
+    }
+  }
+
+  if (hasGlobalBlacksmith &&
+      (state == SettlerState::CHOPPING || state == SettlerState::MINING)) {
+    modifier += 0.2f;
+  }
+
+  return modifier;
 }
 
-int Colony::getWood() const {
-    StorageSystem* storageSys = GameEngine::getInstance().getSystem<StorageSystem>();
-    if (!storageSys) return 0;
-    int total = 0;
-    for (auto* b : m_storageBuildings) {
-        if (!b->getStorageId().empty()) {
-            total += storageSys->getResourceAmount(b->getStorageId(), Resources::ResourceType::Wood);
-        }
-    }
-    return total;
-}
+void Colony::refreshResourceCache() {
+  StorageSystem *storageSys =
+      GameEngine::getInstance().getSystem<StorageSystem>();
+  if (!storageSys)
+    return;
 
-int Colony::getStone() const {
-    StorageSystem* storageSys = GameEngine::getInstance().getSystem<StorageSystem>();
-    if (!storageSys) return 0;
-    int total = 0;
-    for (auto* b : m_storageBuildings) {
-        if (!b->getStorageId().empty()) {
-            total += storageSys->getResourceAmount(b->getStorageId(), Resources::ResourceType::Stone);
-        }
-    }
-    return total;
-}
+  m_cachedWood = 0;
+  m_cachedStone = 0;
+  m_cachedFood = 0;
 
-int Colony::getFood() const {
-    StorageSystem* storageSys = GameEngine::getInstance().getSystem<StorageSystem>();
-    if (!storageSys) return 0;
-    int total = 0;
-    for (auto* b : m_storageBuildings) {
-        if (!b->getStorageId().empty()) {
-            total += storageSys->getResourceAmount(b->getStorageId(), Resources::ResourceType::Food);
-        }
+  for (auto *b : m_storageBuildings) {
+    if (!b->getStorageId().empty()) {
+      m_cachedWood += storageSys->getResourceAmount(
+          b->getStorageId(), Resources::ResourceType::Wood);
+      m_cachedStone += storageSys->getResourceAmount(
+          b->getStorageId(), Resources::ResourceType::Stone);
+      m_cachedFood += storageSys->getResourceAmount(
+          b->getStorageId(), Resources::ResourceType::Food);
     }
-    return total;
+  }
 }

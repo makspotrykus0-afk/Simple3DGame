@@ -145,7 +145,9 @@ CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/stdarg.h \
  F:/11/x86_64-w64-mingw32/include/stdarg.h \
  F:/11/x86_64-w64-mingw32/include/_mingw_stdarg.h \
- F:\Simple3DGame\game\Colony.h F:/Simple3DGame/raylib/src/raymath.h \
+ F:\Simple3DGame\game\Colony.h \
+ F:/Simple3DGame/components/PositionComponent.h \
+ F:/Simple3DGame/raylib/src/raymath.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/math.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cmath \
  F:/11/x86_64-w64-mingw32/include/math.h \
@@ -162,6 +164,37 @@ CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_hermite.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_laguerre.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/riemann_zeta.tcc \
+ F:/Simple3DGame/core/IComponent.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/typeindex \
+ F:/Simple3DGame/components/SkillsComponent.h \
+ F:/Simple3DGame/systems/SkillTypes.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/map \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tree.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
+ F:/Simple3DGame/components/StatsComponent.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/algorithm \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/glue_algorithm_defs.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/execution_defs.h \
+ F:/Simple3DGame/core/GameEntity.h F:/Simple3DGame/entities/GameEntity.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/memory \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_raw_storage_iter.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ranges_uninitialized.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/concurrence.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/unique_ptr.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr_base.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/allocated_ptr.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr_atomic.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_base.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_lockfree_defines.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/backward/auto_ptr.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/glue_memory_defs.h \
+ F:\Simple3DGame\game\Animal.h F:/Simple3DGame/core/Entity.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/any \
+ F:\Simple3DGame\game\Bed.h F:\Simple3DGame\game\Item.h \
+ F:\Simple3DGame\game\Projectile.h F:\Simple3DGame\game\ResourceNode.h \
+ F:/Simple3DGame/systems/ResourceTypes.h F:\Simple3DGame\game\Tree.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ios \
@@ -185,39 +218,7 @@ CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/istream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/istream.tcc \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/memory \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_raw_storage_iter.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ranges_uninitialized.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/concurrence.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/unique_ptr.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr_base.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/allocated_ptr.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr_atomic.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_base.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_lockfree_defines.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/backward/auto_ptr.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/glue_memory_defs.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/execution_defs.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/algorithm \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/glue_algorithm_defs.h \
- F:\Simple3DGame\game\Item.h F:\Simple3DGame\game\Tree.h \
- F:/Simple3DGame/components/PositionComponent.h \
- F:/Simple3DGame/core/IComponent.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/typeindex \
- F:/Simple3DGame/components/StatsComponent.h \
- F:/Simple3DGame/entities/GameEntity.h F:\Simple3DGame\game\Animal.h \
- F:/Simple3DGame/core/Entity.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/any \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/map \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tree.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
- F:\Simple3DGame\game\Bed.h F:/Simple3DGame/core/GameEntity.h \
- F:\Simple3DGame\game\Projectile.h F:\Simple3DGame\game\ResourceNode.h \
- F:/Simple3DGame/systems/ResourceTypes.h \
- F:/Simple3DGame/components/SkillsComponent.h \
- F:/Simple3DGame/systems/SkillTypes.h F:\Simple3DGame\game\Settler.h \
+ F:\Simple3DGame\game\ColonyAI.h F:\Simple3DGame\game\Settler.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/deque \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_deque.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/deque.tcc \
@@ -229,5 +230,5 @@ CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/_timeval.h \
  F:/11/x86_64-w64-mingw32/include/pthread_time.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/parse_numbers.h \
- F:\Simple3DGame\game\WorldItem.h F:\Simple3DGame\game\ColonyAI.h \
+ F:\Simple3DGame\game\SettlerTypes.h F:\Simple3DGame\game\WorldItem.h \
  F:/Simple3DGame/raylib/src/rlgl.h

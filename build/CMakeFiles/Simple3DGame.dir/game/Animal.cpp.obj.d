@@ -189,6 +189,12 @@ CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/backward/auto_ptr.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/glue_memory_defs.h \
  F:\Simple3DGame\game\Colony.h \
+ F:/Simple3DGame/components/SkillsComponent.h \
+ F:/Simple3DGame/systems/SkillTypes.h F:/Simple3DGame/core/GameEntity.h \
+ F:/Simple3DGame/entities/GameEntity.h F:\Simple3DGame\game\Bed.h \
+ F:\Simple3DGame\game\Item.h F:\Simple3DGame\game\Projectile.h \
+ F:\Simple3DGame\game\ResourceNode.h \
+ F:/Simple3DGame/systems/ResourceTypes.h F:\Simple3DGame\game\Tree.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ios \
@@ -212,13 +218,7 @@ CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/istream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/istream.tcc \
- F:\Simple3DGame\game\Item.h F:\Simple3DGame\game\Tree.h \
- F:/Simple3DGame/entities/GameEntity.h F:\Simple3DGame\game\Bed.h \
- F:/Simple3DGame/core/GameEntity.h F:\Simple3DGame\game\Projectile.h \
- F:\Simple3DGame\game\ResourceNode.h \
- F:/Simple3DGame/systems/ResourceTypes.h \
- F:/Simple3DGame/components/SkillsComponent.h \
- F:/Simple3DGame/systems/SkillTypes.h F:\Simple3DGame\game\Settler.h \
+ F:\Simple3DGame\game\ColonyAI.h F:\Simple3DGame\game\Settler.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/deque \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_deque.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/deque.tcc \
@@ -230,5 +230,5 @@ CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/_timeval.h \
  F:/11/x86_64-w64-mingw32/include/pthread_time.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/parse_numbers.h \
- F:\Simple3DGame\game\WorldItem.h F:\Simple3DGame\game\ColonyAI.h \
+ F:\Simple3DGame\game\SettlerTypes.h F:\Simple3DGame\game\WorldItem.h \
  F:/Simple3DGame/raylib/src/rlgl.h

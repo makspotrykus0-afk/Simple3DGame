@@ -22,8 +22,12 @@
 #include "../components/InventoryComponent.h"
 
 #include "../components/StatsComponent.h"
-
 #include "../components/SkillsComponent.h"
+#include "SettlerTypes.h"
+
+class NeedComponent;
+class NavComponent;
+class ActionComponent;
 
 // Forward declarations
 
@@ -36,118 +40,9 @@ class Item;
 class ResourceNode;
 class BuildTask;
 class GatheringTask;
-class Projectile;
-struct CraftingTask; // Forward decl
-enum class SettlerProfession {
-  NONE,
 
-  BUILDER,
-
-  GATHERER,
-
-  HUNTER,
-
-  CRAFTER
-
-};
-enum class SettlerState {
-  IDLE,
-
-  MOVING,
-
-  GATHERING,
-
-  CHOPPING,
-
-  MINING,
-
-  BUILDING,
-
-  SLEEPING,
-
-  HUNTING,
-
-  HAULING,
-
-  MOVING_TO_STORAGE,
-
-  DEPOSITING,
-
-  SEARCHING_FOR_FOOD,
-
-  MOVING_TO_FOOD,
-
-  EATING,
-
-  MOVING_TO_BED,
-
-  PICKING_UP,
-
-  WANDER,
-
-  WAITING,
-  CRAFTING,
-  SKINNING,
-  MOVING_TO_SKIN,
-  FETCHING_RESOURCE,
-  SOCIAL,
-  MOVING_TO_SOCIAL,
-  MORNING_STRETCH,
-  SOCIAL_LOOKOUT
-};
-enum class TaskType {
-  MOVE,
-
-  GATHER,
-
-  CHOP_TREE,
-
-  MINE_ROCK,
-
-  BUILD,
-
-  ATTACK,
-
-  WAIT,
-
-  DEPOSIT,
-
-  PICKUP
-
-};
-struct Action {
-  TaskType type;
-  GameEntity *targetEntity = nullptr;
-  Bush *targetBush = nullptr;
-  Animal *targetAnimal = nullptr;
-  Tree *targetTree = nullptr;
-  BuildingInstance *targetBuilding = nullptr;
-  WorldItem *targetWorldItem = nullptr;
-  ResourceNode *targetResourceNode = nullptr;
-  Vector3 targetPosition = {0, 0, 0};
-  float duration = 0.0f;
-  bool completed = false;
-  static Action Move(Vector3 pos) {
-    Action a;
-    a.type = TaskType::MOVE;
-    a.targetPosition = pos;
-    return a;
-  }
-  static Action Pickup(Vector3 pos) {
-    Action a;
-    a.type = TaskType::PICKUP;
-    a.targetPosition = pos;
-    return a;
-  }
-};
-struct SavedTask {
-  TaskType type;
-  Vector3 targetPosition;
-  int targetEntityId;
-  float duration;
-  bool hasTarget;
-};
 class Settler : public GameEntity, public InteractableObject {
+  friend class ActionComponent;
 public:
   Settler(const std::string &name, const Vector3 &pos,
           SettlerProfession profession);
@@ -171,8 +66,8 @@ public:
   }
   float getInteractionRange() const override { return 2.0f; }
   bool canInteract(GameEntity * /*player*/) const override { return true; }
-  SettlerState getState() const { return m_state; }
-  void setState(SettlerState newState) { m_state = newState; }
+  SettlerState getState() const;
+  void setState(SettlerState newState);
   std::string GetStateString() const;
   SettlerProfession getProfession() const { return m_profession; }
   void setProfession(SettlerProfession newProfession) {
@@ -181,20 +76,20 @@ public:
   std::string GetProfessionString() const;
   void assignTask(TaskType type, GameEntity *target, Vector3 pos);
   void clearTasks();
-  bool hasTasks() const { return !m_actionQueue.empty(); }
-  const std::deque<Action> &getTaskQueue() const { return m_actionQueue; }
+  bool hasTasks() const;
+  const std::deque<Action> &getTaskQueue() const;
   void MoveTo(Vector3 destination);
   void setMoveSpeed(float speed) { m_moveSpeed = speed; }
   float getMoveSpeed() const { return m_moveSpeed; }
   bool isMoving() const { return m_state == SettlerState::MOVING; }
   Vector3 getTargetPosition() const { return m_targetPosition; }
   void Stop();
-  InventoryComponent &getInventory() { return m_inventory; }
-  const InventoryComponent &getInventory() const { return m_inventory; }
-  StatsComponent &getStats() { return m_stats; }
-  const StatsComponent &getStats() const { return m_stats; }
-  SkillsComponent &getSkills() { return m_skills; }
-  const SkillsComponent &getSkills() const { return m_skills; }
+  InventoryComponent &getInventory() { return *m_inventory; }
+  const InventoryComponent &getInventory() const { return *m_inventory; }
+  StatsComponent &getStats() { return *m_stats; }
+  const StatsComponent &getStats() const { return *m_stats; }
+  SkillsComponent &getSkills() { return *m_skills; }
+  const SkillsComponent &getSkills() const { return *m_skills; }
   void setName(const std::string &newName) { m_name = newName; }
   bool isSelected() const { return m_isSelected; }
   void setSelected(bool sel) { m_isSelected = sel; }
@@ -214,11 +109,8 @@ public:
   float getWorkProgress() const { return 0.0f; }
   void setWorkProgress(float /*progress*/) {}
   void setPath(const std::vector<Vector3> &newPath);
-  bool hasPath() const { return !m_currentPath.empty(); }
-  void clearPath() {
-    m_currentPath.clear();
-    m_currentPathIndex = 0;
-  }
+  bool hasPath() const;
+  void clearPath();
   SavedTask serializeCurrentTask() const;
   void deserializeTask(const SavedTask &savedTask);
   float getDistanceTo(Vector3 point) const;
@@ -227,8 +119,14 @@ public:
   bool needsFood() const;
   bool needsSleep() const;
   void takeDamage(float damage);
-  bool isDead() const { return m_stats.getCurrentHealth() <= 0; }
+  bool isDead() const { return m_stats->getCurrentHealth() <= 0; }
   void assignBed(BuildingInstance *bed);
+  BuildingInstance *getAssignedBed() const { return m_assignedBed; }
+  
+  // [ARCHITEKT] Dekompozycja: Dostęp do komponentów ruchu
+  NavComponent* getNav() const { return m_navComponent.get(); }
+  ActionComponent* getActions() const { return m_actionComponent.get(); }
+
   void assignBuildTask(BuildTask *task);
   void clearBuildTask();
   void assignToChop(GameEntity *tree);
@@ -361,22 +259,18 @@ public:
 
 private:
   std::string m_name;
-  SettlerState m_state;
   SettlerProfession m_profession;
   bool m_isSelected;
   Vector3 position;
-  InventoryComponent m_inventory;
-  StatsComponent m_stats;
-  SkillsComponent m_skills;
+  std::shared_ptr<InventoryComponent> m_inventory;
+  std::shared_ptr<StatsComponent> m_stats;
+  std::shared_ptr<SkillsComponent> m_skills;
   float m_moveSpeed;
   Vector3 m_targetPosition;
   float m_rotation;
   bool m_isPlayerControlled = false;
   bool m_isScoping = false;
   float m_adsLerp = 0.0f; // 0.0 = Hip, 1.0 = ADS
-  std::vector<Vector3> m_currentPath;
-  int m_currentPathIndex;
-  std::deque<Action> m_actionQueue;
   BuildTask *m_currentBuildTask;
   GatheringTask *m_currentGatherTask;
   BuildingInstance *m_targetStorage;
@@ -420,14 +314,14 @@ public:
   bool m_prevTendCrops = false;
   bool m_isMovingToCriticalTarget = false;
   bool m_pendingReevaluation = false;
-  Vector3 m_lastPathTarget = {0, 0, 0};
-  bool m_lastPathValid = false;
-  // Wykrywanie utknięcia
-  float m_stuckTimer = 0.0f; // czas, przez który osadnik jest "utknięty"
-  Vector3 m_lastPosition = {0, 0,
-                            0}; // ostatnia pozycja do wykrywania braku ruchu
   float m_sleepCooldownTimer =
       0.0f; // Blokada ponownego snu przez X sekund po obudzeniu
+  
+  // [ARCHITEKT] Dekompozycja 9.4: Podmioty odpowiedzialne za stany
+  std::unique_ptr<NeedComponent> m_needComponent;
+  std::unique_ptr<NavComponent> m_navComponent;
+  std::unique_ptr<ActionComponent> m_actionComponent;
+
   float m_eatingCooldownTimer = 0.0f;
   float m_sleepEnterThreshold = 30.0f;
   float m_sleepExitThreshold = 80.0f;
@@ -454,9 +348,6 @@ public:
   Bush *FindNearestFood(const std::vector<Bush *> &bushes);
 
 private:
-    // Circadian Rhythm
-    void UpdateCircadianRhythm(float deltaTime, float currentTime, const std::vector<BuildingInstance *> &buildings);
-    BuildingInstance* FindNearestBuildingByBlueprint(const std::string& blueprintId, const std::vector<BuildingInstance *> &buildings);
 
     // Time Constants
     const float TIME_WAKE_UP = 6.0f;
@@ -468,5 +359,10 @@ private:
     float m_socialTimer = 0.0f;
     float m_stretchTimer = 0.0f;  // [NEW] Timer dla Morning Stretch
     bool m_hasGreetedMorning = false;
+
+    // [DEPRECATED] These will be fully migrated to ActionComponent in next phases.
+    // For now, they are kept for backward compatibility with existing method implementations.
+    SettlerState m_state;
+    std::deque<Action> m_actionQueue;
 };
 #endif // SIMPLE3DGAME_GAME_SETTLER_H
