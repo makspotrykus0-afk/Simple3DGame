@@ -89,7 +89,9 @@ enum class SettlerState {
   CRAFTING,
   SKINNING,
   MOVING_TO_SKIN,
-  FETCHING_RESOURCE
+  FETCHING_RESOURCE,
+  SOCIAL,
+  MOVING_TO_SOCIAL
 };
 enum class TaskType {
   MOVE,
@@ -148,7 +150,7 @@ public:
   Settler(const std::string &name, const Vector3 &pos,
           SettlerProfession profession);
   virtual ~Settler();
-  void Update(float deltaTime, const std::vector<std::unique_ptr<Tree>> &trees,
+  void Update(float deltaTime, float currentTime, const std::vector<std::unique_ptr<Tree>> &trees,
               std::vector<WorldItem> &worldItems,
               const std::vector<Bush *> &bushes,
               const std::vector<BuildingInstance *> &buildings,
@@ -448,5 +450,20 @@ public:
   bool CheckForJobFlagActivation();
   void InterruptCurrentAction();
   Bush *FindNearestFood(const std::vector<Bush *> &bushes);
+
+private:
+    // Circadian Rhythm
+    void UpdateCircadianRhythm(float deltaTime, float currentTime, const std::vector<BuildingInstance *> &buildings);
+    BuildingInstance* FindNearestBuildingByBlueprint(const std::string& blueprintId, const std::vector<BuildingInstance *> &buildings);
+
+    // Time Constants
+    const float TIME_WAKE_UP = 6.0f;
+    const float TIME_WORK_START = 8.0f;
+    const float TIME_WORK_END = 18.0f;
+    const float TIME_SLEEP = 22.0f;
+    
+    // Internal state for social/waiting
+    float m_socialTimer = 0.0f;
+    bool m_hasGreetedMorning = false;
 };
 #endif // SIMPLE3DGAME_GAME_SETTLER_H

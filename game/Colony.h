@@ -97,7 +97,7 @@ void cleanup();
 
 // FIX: Changed buildings parameter to match std::vector<BuildingInstance*> used in main/BuildingSystem
 // BuildingSystem stores raw pointers now (vector<BuildingInstance*>) based on main.cpp and other system files
-void update(float deltaTime, const std::vector<std::unique_ptr<Tree>>& trees, const std::vector<BuildingInstance*>& buildings);
+void update(float deltaTime, float currentTime, const std::vector<std::unique_ptr<Tree>>& trees, const std::vector<BuildingInstance*>& buildings);
 
 const std::vector<WorldItem>& getDroppedItems() const { return m_droppedItemsStorage; }
 void addDroppedItem(std::unique_ptr<Item> item, Vector3 position);

@@ -6,5 +6,5 @@ CXX_DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
 
 CXX_INCLUDES = @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 
-CXX_FLAGS = -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic
+CXX_FLAGS = -g -std=c++17 -Wall -Wextra -Wpedantic
 

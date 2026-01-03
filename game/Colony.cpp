@@ -195,7 +195,7 @@ void Colony::cleanup() {
   bushes.clear();
   m_animals.clear();
 }
-void Colony::update(float deltaTime,
+void Colony::update(float deltaTime, float currentTime,
                     const std::vector<std::unique_ptr<Tree>> &trees,
                     const std::vector<BuildingInstance *> &buildings) {
   // Auto-test for Concurrency & Stone & Inventory - REMOVED after verification
@@ -214,7 +214,7 @@ void Colony::update(float deltaTime,
 
   for (auto *settler : settlers) {
     // Pass our own resources to settler
-    settler->Update(deltaTime, trees, m_droppedItemsStorage, bushes, buildings,
+    settler->Update(deltaTime, currentTime, trees, m_droppedItemsStorage, bushes, buildings,
                     m_animals, m_resourceNodes);
   }
   // Update animals

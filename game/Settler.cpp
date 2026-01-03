@@ -275,6 +275,7 @@ void Settler::useHeldItem(Vector3 targetPos) {
 
 void Settler::Update(
     float deltaTime,
+    float currentTime, // [CIRCADIAN] Added time parameter
 
     const std::vector<std::unique_ptr<Tree>> &trees,
 
@@ -349,6 +350,9 @@ void Settler::Update(
   }
 
   m_stats.update(deltaTime);
+
+  // [CIRCADIAN] Apply time-of-day logic
+  UpdateCircadianRhythm(deltaTime, currentTime, buildings);
 
   // LOGISTYKA: Bonus Studni (Well) - regeneracja energii
   if (g_colony && m_stats.getCurrentEnergy() < 100.0f) {
@@ -640,6 +644,23 @@ void Settler::Update(
       m_gatherTimer = 0.0f;
     }
     break;
+  case SettlerState::MOVING_TO_SOCIAL:
+     UpdateMovement(deltaTime, trees, buildings, resourceNodes);
+     // Check if arrived (handled in UpdateMovement -> IDLE)
+     if (m_state == SettlerState::IDLE) {
+         // Re-check proximity to social spot to be sure?
+         m_state = SettlerState::SOCIAL; // Transitions to social once arrived
+         m_socialTimer = 10.0f + (rand() % 20); // Hang out for a while
+         std::cout << "[Settler] Arrived at Social Spot. Relaxing." << std::endl;
+     }
+     break;
+  case SettlerState::SOCIAL:
+     m_socialTimer -= deltaTime;
+     if (m_socialTimer <= 0.0f) {
+         m_state = SettlerState::IDLE;
+         std::cout << "[Settler] Socializing finished." << std::endl;
+     }
+     break;
   default:
     break;
   }
@@ -3789,11 +3810,96 @@ void Settler::UpdateFetchingResource(float deltaTime, const std::vector<Building
                      m_state = SettlerState::IDLE;
                 }
             } else {
-                std::cout << "[Settler] Unknown resource type string: " << m_resourceToFetch << std::endl;
-                m_state = SettlerState::IDLE;
+                 m_state = SettlerState::IDLE;
             }
         } else {
              m_state = SettlerState::IDLE;
         }
     }
+}
+
+void Settler::UpdateCircadianRhythm(float deltaTime, float currentTime, const std::vector<BuildingInstance *> &buildings) {
+    if (m_isPlayerControlled) return;
+
+    // NIGHT LOGIC (22:00 - 06:00)
+    bool isNight = (currentTime >= TIME_SLEEP) || (currentTime < TIME_WAKE_UP);
+    
+    if (isNight) {
+        if (m_state != SettlerState::SLEEPING && m_state != SettlerState::MOVING_TO_BED) {
+            // Force sleep if not doing critical survival or eating
+            if (m_state != SettlerState::EATING && m_state != SettlerState::MOVING_TO_FOOD && m_state != SettlerState::SEARCHING_FOR_FOOD) {
+                 if (m_assignedBed) {
+                    m_state = SettlerState::MOVING_TO_BED;
+                    MoveTo(m_assignedBed->getPosition());
+                    m_isMovingToCriticalTarget = true; 
+                 }
+            }
+        }
+        return; 
+    }
+
+    // MORNING LOGIC (06:00 - 08:00)
+    if (currentTime >= TIME_WAKE_UP && currentTime < TIME_WORK_START) {
+        if (m_state == SettlerState::SLEEPING) {
+             m_state = SettlerState::IDLE; // Wake up
+             m_hasGreetedMorning = false;
+        }
+        
+        // Social stretch / Idle
+        if (m_state == SettlerState::IDLE && !m_hasGreetedMorning) {
+             m_state = SettlerState::WAITING;
+             m_gatherTimer = 2.0f; // Stretch duration
+             m_hasGreetedMorning = true;
+        }
+        return;
+    }
+
+    // EVENING LOGIC (18:00 - 22:00)
+    if (currentTime >= TIME_WORK_END && currentTime < TIME_SLEEP) {
+         // Stop working
+         bool isWorking = (m_state == SettlerState::CHOPPING || m_state == SettlerState::MINING || 
+                           m_state == SettlerState::BUILDING || m_state == SettlerState::CRAFTING ||
+                           m_state == SettlerState::GATHERING);
+         
+         if (isWorking) {
+             m_state = SettlerState::IDLE; // Stop work
+             InterruptCurrentAction();
+         }
+
+         if (m_state == SettlerState::IDLE || m_state == SettlerState::WANDER) {
+             // Go to Campfire
+             BuildingInstance* socialSpot = FindNearestBuildingByBlueprint("campfire", buildings);
+             if (!socialSpot) socialSpot = FindNearestBuildingByBlueprint("taverna", buildings); // Fallback
+
+             if (socialSpot) {
+                 float dist = Vector3Distance(position, socialSpot->getPosition());
+                 if (dist > 5.0f) {
+                     m_state = SettlerState::MOVING_TO_SOCIAL;
+                     MoveTo(socialSpot->getPosition());
+                 } else {
+                     m_state = SettlerState::SOCIAL;
+                     m_socialTimer = 5.0f + (float)(rand() % 10); 
+                     // Look at fire
+                     Vector3 dir = Vector3Subtract(socialSpot->getPosition(), position);
+                     float angle = atan2f(dir.x, dir.z) * RAD2DEG;
+                     setRotation(angle);
+                 }
+             }
+         }
+    }
+}
+
+BuildingInstance* Settler::FindNearestBuildingByBlueprint(const std::string& blueprintId, const std::vector<BuildingInstance *> &buildings) {
+    BuildingInstance* nearest = nullptr;
+    float minDist = 9999.0f;
+    for (auto* b : buildings) {
+        if (b->getBlueprintId() == blueprintId && b->isBuilt()) {
+            float d = Vector3Distance(position, b->getPosition());
+            if (d < minDist) {
+                minDist = d;
+                nearest = b;
+            }
+        }
+    }
+    return nearest;
 }

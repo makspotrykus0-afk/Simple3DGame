@@ -64,6 +64,7 @@ private:
 private:
   // State
   std::unique_ptr<EditorObjectWrapper> m_selectedObject;
+  bool m_areGizmosEnabled = true; // Enabled by default until F3 toggled
 
   // Gizmo State
   int m_processAxis = -1; // -1: None, 0: X, 1: Y, 2: Z

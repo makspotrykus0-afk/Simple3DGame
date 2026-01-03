@@ -187,6 +187,21 @@ void EditorSystem::Update(const Camera3D &camera,
                           std::vector<BuildingInstance *> &buildings,
                           std::vector<BuildTask *> &buildTasks) {
 
+  // 0. Toggle Editor
+  if (IsKeyPressed(KEY_F3)) {
+      m_areGizmosEnabled = !m_areGizmosEnabled;
+      // Also clear selection when disabling to avoid confusion
+      if (!m_areGizmosEnabled) {
+          m_selectedObject = nullptr;
+          m_processAxis = -1;
+          m_isDragging = false;
+      }
+      std::cout << "[EditorSystem] Gizmos Toggled: " << (m_areGizmosEnabled ? "ON" : "OFF") << std::endl;
+  }
+
+  // If Disabled, do nothing
+  if (!m_areGizmosEnabled) return;
+
   // VALIDATION: Check if selected object (Task) is still alive
   if (m_selectedObject && m_selectedObject->GetType() == EditorObjectType::Construction) {
       BuildTaskWrapper* wrapper = static_cast<BuildTaskWrapper*>(m_selectedObject.get());
@@ -437,6 +452,8 @@ void EditorSystem::HandleGizmoInput(const Ray &ray) {
 }
 
 void EditorSystem::Render3D(const Camera3D &camera) {
+  if (!m_areGizmosEnabled) return; // Toggle Guard
+
   if (m_selectedObject) {
     rlDisableDepthTest();
     DrawGizmos(camera);
@@ -445,6 +462,7 @@ void EditorSystem::Render3D(const Camera3D &camera) {
 }
 
 void EditorSystem::RenderGUI() {
+  if (!m_areGizmosEnabled) return; // Toggle Guard
   if (!m_selectedObject) return;
 
   // MUTEX: If HUD is active for any settler, or colony stats/crafting is visible,
