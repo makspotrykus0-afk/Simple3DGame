@@ -133,6 +133,12 @@
 },
 {
   "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\Player.cpp.obj -c F:\\Simple3DGame\\game\\Player.cpp",
+  "file": "F:/Simple3DGame/game/Player.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/game/Player.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
   "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\game\\BuildingInstance.cpp.obj -c F:\\Simple3DGame\\game\\BuildingInstance.cpp",
   "file": "F:/Simple3DGame/game/BuildingInstance.cpp",
   "output": "CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj"
@@ -292,6 +298,12 @@
   "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\ActionComponent.cpp.obj -c F:\\Simple3DGame\\components\\ActionComponent.cpp",
   "file": "F:/Simple3DGame/components/ActionComponent.cpp",
   "output": "CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj"
+},
+{
+  "directory": "F:/Simple3DGame/build",
+  "command": "F:\\11\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles/Simple3DGame.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\Simple3DGame.dir\\components\\TraitsComponent.cpp.obj -c F:\\Simple3DGame\\components\\TraitsComponent.cpp",
+  "file": "F:/Simple3DGame/components/TraitsComponent.cpp",
+  "output": "CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.obj"
 },
 {
   "directory": "F:/Simple3DGame/build",

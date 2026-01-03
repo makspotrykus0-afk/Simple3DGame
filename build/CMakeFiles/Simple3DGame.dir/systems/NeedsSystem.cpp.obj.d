@@ -195,13 +195,13 @@ CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/_timeval.h \
  F:/11/x86_64-w64-mingw32/include/pthread_time.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/parse_numbers.h \
- F:/Simple3DGame/components/StatsComponent.h \
  F:/Simple3DGame/components/SkillsComponent.h \
  F:/Simple3DGame/systems/SkillTypes.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/map \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tree.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
+ F:/Simple3DGame/components/StatsComponent.h \
  F:/Simple3DGame/game/SettlerTypes.h F:/Simple3DGame/game/WorldItem.h \
  F:/Simple3DGame/game/Bed.h F:/Simple3DGame/systems/BuildingSystem.h \
  F:/Simple3DGame/game/BuildingBlueprint.h \

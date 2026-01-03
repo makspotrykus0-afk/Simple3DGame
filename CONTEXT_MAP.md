@@ -1,5 +1,8 @@
 # Mapa Kontekstu Projektu Simple3DGame
 
+> [!IMPORTANT]
+> **GŁÓWNE ZRÓDŁO KONTEKSTU**: Pełna wizja, DNA 9.7 i architektura znajdują się w [MASTER_CONTEXT.md](file:///f:/Simple3DGame/context_hub/MASTER_CONTEXT.md).
+
 ## 1. Opis Projektu
 
 Simple3DGame to zaawansowana gra symulacyjna 3D z mechanikami kolonii, w której gracze zarządzają osadnikami (Settlers), budują struktury, zbierają zasoby i eksplorują świat. Gra wykorzystuje architekturę ECS (Entity-Component-System) i framework graficzny Raylib.

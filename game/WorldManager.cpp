@@ -2,6 +2,7 @@
 #include "Faction.h"
 #include "Region.h"
 #include "Settlement.h"
+#include "raymath.h"
 #include <cmath>
 #include <iostream>
 

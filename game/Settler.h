@@ -21,13 +21,14 @@
 
 #include "../components/InventoryComponent.h"
 
-#include "../components/StatsComponent.h"
 #include "../components/SkillsComponent.h"
+#include "../components/StatsComponent.h"
 #include "SettlerTypes.h"
 
 class NeedComponent;
 class NavComponent;
 class ActionComponent;
+class TraitsComponent;
 
 // Forward declarations
 
@@ -43,11 +44,13 @@ class GatheringTask;
 
 class Settler : public GameEntity, public InteractableObject {
   friend class ActionComponent;
+
 public:
   Settler(const std::string &name, const Vector3 &pos,
           SettlerProfession profession);
   virtual ~Settler();
-  void Update(float deltaTime, float currentTime, const std::vector<std::unique_ptr<Tree>> &trees,
+  void Update(float deltaTime, float currentTime,
+              const std::vector<std::unique_ptr<Tree>> &trees,
               std::vector<WorldItem> &worldItems,
               const std::vector<Bush *> &bushes,
               const std::vector<BuildingInstance *> &buildings,
@@ -122,10 +125,10 @@ public:
   bool isDead() const { return m_stats->getCurrentHealth() <= 0; }
   void assignBed(BuildingInstance *bed);
   BuildingInstance *getAssignedBed() const { return m_assignedBed; }
-  
+
   // [ARCHITEKT] Dekompozycja: Dostęp do komponentów ruchu
-  NavComponent* getNav() const { return m_navComponent.get(); }
-  ActionComponent* getActions() const { return m_actionComponent.get(); }
+  NavComponent *getNav() const { return m_navComponent.get(); }
+  ActionComponent *getActions() const { return m_actionComponent.get(); }
 
   void assignBuildTask(BuildTask *task);
   void clearBuildTask();
@@ -169,14 +172,16 @@ public:
   void UpdateMovingToSkin(
       float deltaTime, const std::vector<BuildingInstance *> &buildings,
       const std::vector<std::unique_ptr<ResourceNode>> &resourceNodes);
-  void UpdateFetchingResource(float deltaTime, const std::vector<BuildingInstance *> &buildings);
+  void UpdateFetchingResource(float deltaTime,
+                              const std::vector<BuildingInstance *> &buildings);
   void CraftTool(const std::string &toolName);
   bool PickupItem(Item *item);
   void DropItem(int slotIndex);
   BuildingInstance *
   FindNearestStorage(const std::vector<BuildingInstance *> &buildings);
-  BuildingInstance *
-  FindNearestStorageWithResource(const std::vector<BuildingInstance *> &buildings, const std::string& resourceType);
+  BuildingInstance *FindNearestStorageWithResource(
+      const std::vector<BuildingInstance *> &buildings,
+      const std::string &resourceType);
   BuildingInstance *
   FindNearestWorkshop(const std::vector<BuildingInstance *> &buildings);
   void ignoreStorage(const std::string &storageId);
@@ -195,7 +200,7 @@ public:
   BuildTask *getPrivateBuildTask() const { return m_myPrivateBuildTask; }
   void setPrivateBuildTask(BuildTask *task) { m_myPrivateBuildTask = task; }
   BuildTask *getCurrentBuildTask() const { return m_currentBuildTask; }
-  
+
   // Task commitment - prevents premature task switching
   bool isCommittedToTask() const;
 
@@ -230,7 +235,8 @@ public:
 
   // Building Logic
   void ProcessActiveBuildTask(float deltaTime,
-                              const std::vector<BuildingInstance *> &buildings, std::vector<WorldItem> &worldItems);
+                              const std::vector<BuildingInstance *> &buildings,
+                              std::vector<WorldItem> &worldItems);
 
 private:
   float m_shootCooldownTimer = 0.0f;
@@ -257,7 +263,20 @@ public:
   bool tendCrops = false;
   Item *pendingDropItem = nullptr;
 
+  // Squad / Leadership
+  void JoinSquad(int leaderID);
+  void LeaveSquad();
+  bool IsExternalControlled() const {
+    return m_isInSquad || m_isPlayerControlled;
+  }
+  bool IsInSquad() const { return m_isInSquad; }
+  void SetSquadOrder(int orderType, Vector3 target);
+
 private:
+  bool m_isInSquad = false;
+  int m_squadLeaderID = -1;
+  // TODO: Full SquadComponent integration later, for now internal members
+
   std::string m_name;
   SettlerProfession m_profession;
   bool m_isSelected;
@@ -288,7 +307,7 @@ private:
   float m_gatherInterval;
   std::string m_currentCraftTarget;
   int m_currentCraftTaskId = -1; // ID aktualnego zadania craftingu
-  
+
   // Resource Fetching
   std::string m_resourceToFetch = "";
   int m_resourceFetchAmount = 0;
@@ -316,11 +335,18 @@ public:
   bool m_pendingReevaluation = false;
   float m_sleepCooldownTimer =
       0.0f; // Blokada ponownego snu przez X sekund po obudzeniu
-  
+
+  // ... (In includes)
+  // (TraitsComponent include removed from here)
+  // ...
+
   // [ARCHITEKT] Dekompozycja 9.4: Podmioty odpowiedzialne za stany
   std::unique_ptr<NeedComponent> m_needComponent;
   std::unique_ptr<NavComponent> m_navComponent;
   std::unique_ptr<ActionComponent> m_actionComponent;
+  std::unique_ptr<TraitsComponent> m_traitsComponent;
+
+  TraitsComponent *getTraits() const { return m_traitsComponent.get(); }
 
   float m_eatingCooldownTimer = 0.0f;
   float m_sleepEnterThreshold = 30.0f;
@@ -348,21 +374,21 @@ public:
   Bush *FindNearestFood(const std::vector<Bush *> &bushes);
 
 private:
+  // Time Constants
+  const float TIME_WAKE_UP = 6.0f;
+  const float TIME_WORK_START = 8.0f;
+  const float TIME_WORK_END = 18.0f;
+  const float TIME_SLEEP = 22.0f;
 
-    // Time Constants
-    const float TIME_WAKE_UP = 6.0f;
-    const float TIME_WORK_START = 8.0f;
-    const float TIME_WORK_END = 18.0f;
-    const float TIME_SLEEP = 22.0f;
-    
-    // Internal state for social/waiting
-    float m_socialTimer = 0.0f;
-    float m_stretchTimer = 0.0f;  // [NEW] Timer dla Morning Stretch
-    bool m_hasGreetedMorning = false;
+  // Internal state for social/waiting
+  float m_socialTimer = 0.0f;
+  float m_stretchTimer = 0.0f; // [NEW] Timer dla Morning Stretch
+  bool m_hasGreetedMorning = false;
 
-    // [DEPRECATED] These will be fully migrated to ActionComponent in next phases.
-    // For now, they are kept for backward compatibility with existing method implementations.
-    SettlerState m_state;
-    std::deque<Action> m_actionQueue;
+  // [DEPRECATED] These will be fully migrated to ActionComponent in next
+  // phases. For now, they are kept for backward compatibility with existing
+  // method implementations.
+  SettlerState m_state;
+  std::deque<Action> m_actionQueue;
 };
 #endif // SIMPLE3DGAME_GAME_SETTLER_H

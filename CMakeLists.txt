@@ -37,7 +37,10 @@ add_executable(Simple3DGame
     game/Door.cpp
     game/Tree.cpp
     game/Animal.cpp
+    game/Tree.cpp
+    game/Animal.cpp
     game/ColonyAI.cpp
+    game/Player.cpp
     game/BuildingInstance.cpp
     game/Bed.cpp
     game/Settler.cpp
@@ -65,6 +68,7 @@ add_executable(Simple3DGame
     components/NeedComponent.cpp
     components/NavComponent.cpp
     components/ActionComponent.cpp
+    components/TraitsComponent.cpp
     components/BuildingComponent.cpp
     components/SkillsComponent.cpp
     components/PositionComponent.cpp

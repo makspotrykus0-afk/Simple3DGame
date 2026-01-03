@@ -1,5 +1,6 @@
 #include "ActionComponent.h"
 #include "../components/NavComponent.h"
+#include "../components/TraitsComponent.h"
 #include "../core/GameEngine.h"
 #include "../game/Animal.h"
 #include "../game/BuildingInstance.h"
@@ -10,10 +11,10 @@
 #include "../game/WorldItem.h"
 #include "../systems/BuildingSystem.h"
 #include "../systems/StorageSystem.h"
+#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <typeinfo>
-
 
 ActionComponent::ActionComponent(Settler *owner)
     : m_owner(owner), m_currentState(SettlerState::IDLE) {}
@@ -217,10 +218,103 @@ void ActionComponent::UpdateIdleDecision(
   // Fallback: Delegate back to Settler's public helper to keep this file
   // concise for now Actually, let's keep it here to show Phase 4 completion.
 
-  // [Simplified Master Strategy]
+  // [Simplified Master Strategy - REPLACED BY UTILITY AI]
   // 1. If has BuildTask -> Update it
   if (m_owner->getCurrentBuildTask()) {
     setState(SettlerState::BUILDING);
+    return; // Forced task priority
+  }
+
+  // Run Utility AI
+  EvaluateAndChooseAction(deltaTime, trees, worldItems, bushes, buildings,
+                          animals, resourceNodes);
+}
+
+void ActionComponent::EvaluateAndChooseAction(
+    float deltaTime, const std::vector<std::unique_ptr<Tree>> &trees,
+    std::vector<WorldItem> &worldItems, const std::vector<Bush *> &bushes,
+    const std::vector<BuildingInstance *> &buildings,
+    const std::vector<std::unique_ptr<Animal>> &animals,
+    const std::vector<std::unique_ptr<ResourceNode>> &resourceNodes) {
+
+  if (!m_owner)
+    return;
+
+  std::vector<ScoredAction> options;
+
+  // 1. IDLE (Base Score)
+  options.push_back({SettlerState::IDLE, 10.0f, "Base Loop"});
+
+  // 2. SURVIVAL NEEDS (High Priority)
+  float hunger = m_owner->getStats().getCurrentHunger();
+  float energy = m_owner->getStats().getCurrentEnergy();
+
+  if (hunger < 40.0f) {
+    float hungerScore =
+        (100.0f - hunger) * 2.0f; // Rapidly increases as hunger drops
+    options.push_back(
+        {SettlerState::SEARCHING_FOR_FOOD, hungerScore, "Hungry"});
+  }
+
+  if (energy < 30.0f) {
+    float tiredScore = (100.0f - energy) * 2.5f; // Sleep is critical
+    options.push_back({SettlerState::MOVING_TO_BED, tiredScore, "Tired"});
+  }
+
+  // 3. WORK NEEDS (Medium Priority)
+  // Only if well fed and rested
+  if (hunger > 40.0f && energy > 30.0f) {
+    // GATHERING
+    if (m_owner->gatherWood) {
+      options.push_back({SettlerState::CHOPPING, 40.0f, "Job: Chop Wood"});
+    }
+    if (m_owner->gatherStone) {
+      options.push_back({SettlerState::MINING, 40.0f, "Job: Mine Stone"});
+    }
+
+    // BUILDING (Higher priority than gathering if materials available)
+    if (m_owner->performBuilding && m_owner->getCurrentBuildTask()) {
+      options.push_back({SettlerState::BUILDING, 60.0f, "Job: Construct"});
+    }
+
+    // HAULING (If inventory full)
+    if (m_owner->getInventory().isFull()) {
+      options.push_back(
+          {SettlerState::MOVING_TO_STORAGE, 70.0f, "Inventory Full"});
+    }
+
+    // CLEANUP (If items on ground near)
+    if (!worldItems.empty() && m_owner->isHandFree()) {
+      // Simple distance check could go here
+      options.push_back(
+          {SettlerState::PICKING_UP, 15.0f, "Opportunistic Haul"});
+    }
+  }
+
+  // Sort options by score (Descending)
+  std::sort(options.begin(), options.end(),
+            [](const ScoredAction &a, const ScoredAction &b) {
+              return a.score > b.score;
+            });
+
+  // Execute best option
+  if (!options.empty()) {
+    ScoredAction best = options[0];
+
+    // Log decision changes for debugging (9.7 Log Hygiene)
+    if (best.actionState != m_currentState &&
+        best.actionState != SettlerState::IDLE) {
+      // std::cout << "[UtilityAI] " << m_owner->getName() << " chose "
+      //           << best.debugReason << " (Score: " << best.score << ")" <<
+      //           std::endl;
+    }
+
+    setState(best.actionState);
+
+    // Setup state if needed (Transition logic)
+    if (best.actionState == SettlerState::SEARCHING_FOR_FOOD) {
+      m_owner->m_isMovingToCriticalTarget = true;
+    }
   }
 }
 

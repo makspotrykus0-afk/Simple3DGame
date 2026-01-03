@@ -6,6 +6,7 @@
 #include "../game/DebugConsole.h"
 #include "../game/Item.h"
 #include "../game/NavigationGrid.h"
+#include "../game/Player.h"
 #include "../game/WorldManager.h"
 #include "../systems/BuildingSystem.h"
 #include "../systems/CraftingSystem.h"
@@ -60,6 +61,7 @@ Vector3 smoothCamTarget = {0.0f, 0.0f, 0.0f};
 
 // [EDITOR] Global Editor System
 EditorSystem g_editorSystem;
+std::unique_ptr<Player> g_player;
 
 class CameraController {
 public:
@@ -588,31 +590,24 @@ void UpdateCameraSystem(float deltaTime) {
     smoothCamPos = orbitPos;
 
   } else if (currentCameraMode == CameraViewMode::FPS && controlledSettler) {
-    // First-person camera: from settler's eyes
-    Vector3 settlerPos = controlledSettler->getPosition();
-    float settlerRot = controlledSettler->getRotation();
-
-    // Eye Position
-    Vector3 eyePos = settlerPos;
-    eyePos.y += 1.45f; // Eye height
-
-    // Look Direction
-    Vector3 lookDir;
-    lookDir.x = sinf(settlerRot * DEG2RAD) * cosf(fpsPitch);
-    lookDir.y = -sinf(fpsPitch);
-    lookDir.z = cosf(settlerRot * DEG2RAD) * cosf(fpsPitch);
-
-    // Forward Offset (slightly in front of face to avoid clipping head)
-    Vector3 flatForward = {sinf(settlerRot * DEG2RAD), 0.0f,
-                           cosf(settlerRot * DEG2RAD)};
-    Vector3 faceOffset = Vector3Scale(flatForward, 0.25f);
-
-    sceneCamera.position = Vector3Add(eyePos, faceOffset);
-    sceneCamera.target = Vector3Add(sceneCamera.position, lookDir);
-
-    // Sync for transitions
-    smoothCamPos = sceneCamera.position;
-    smoothCamTarget = sceneCamera.target;
+    if (g_player) {
+      // [ANTIGRAVITY FIX] Use Player's internal camera
+      sceneCamera = g_player->getCamera();
+      smoothCamPos = sceneCamera.position;
+      smoothCamTarget = sceneCamera.target;
+    } else {
+      // Fallback if g_player somehow invalid
+      Vector3 settlerPos = controlledSettler->getPosition();
+      float settlerRot = controlledSettler->getRotation();
+      Vector3 eyePos = settlerPos;
+      eyePos.y += 1.45f;
+      Vector3 lookDir;
+      lookDir.x = sinf(settlerRot * DEG2RAD) * cosf(fpsPitch);
+      lookDir.y = -sinf(fpsPitch);
+      lookDir.z = cosf(settlerRot * DEG2RAD) * cosf(fpsPitch);
+      sceneCamera.position = Vector3Add(eyePos, {0, 0, 0}); // simplified
+      sceneCamera.target = Vector3Add(sceneCamera.position, lookDir);
+    }
   }
 }
 
@@ -773,9 +768,20 @@ void processInput() {
       currentCameraMode = CameraViewMode::FPS;
       DisableCursor();         // ensure hidden
       wantCursorHidden = true; // Lock cursor for FPS
+
+      // [ANTIGRAVITY FIX] Initialize Player Controller
+      if (controlledSettler) {
+        // Create player instance at settler's position, passing global
+        // sceneCamera
+        g_player = std::make_unique<Player>(controlledSettler->getName(),
+                                            controlledSettler->getPosition(),
+                                            sceneCamera);
+      }
+
       std::cout << "[CAMERA] Switched to FPS mode" << std::endl;
     } else if (currentCameraMode == CameraViewMode::FPS) {
       currentCameraMode = CameraViewMode::ISOMETRIC;
+      g_player.reset();         // [ANTIGRAVITY FIX] Cleanup Player Controller
       EnableCursor();           // Show mouse back
       wantCursorHidden = false; // Release cursor for Isometric
       // Disable player control
@@ -811,208 +817,201 @@ void processInput() {
        currentCameraMode == CameraViewMode::FPS) &&
       controlledSettler) {
 
-    // --- SENSITIVITY & AIMING ---
-    float baseSens = 0.002f; // Reduced from 0.005f
-    if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
-      baseSens *= 0.3f; // 30% sensitivity when aiming
-    }
-    Vector2 delta = GetMouseDelta();
-
-    // --- MOUSE LOOK ---
-    // --- MOUSE LOOK ---
-    // Handle Cursor Lock State
-    // Persistent state to know if we WANT the cursor hidden
-    // wantCursorHidden is now GLOBAL
-
-    // Toggle Menu Mode with ALT
-    if (IsKeyPressed(KEY_LEFT_ALT)) {
-      wantCursorHidden = !wantCursorHidden;
-      if (wantCursorHidden)
-        DisableCursor();
-      else
-        EnableCursor();
-    }
-
-    // Force strict state (If we want it hidden, ensure it IS hidden)
-    if (wantCursorHidden) {
-      if (!IsCursorHidden())
-        DisableCursor();
-
-      // TPS: Always rotate camera with mouse movement
-      if (currentCameraMode == CameraViewMode::TPS) {
-        tpsYaw -= delta.x * baseSens;
-        tpsPitch += delta.y * baseSens;
-        tpsPitch = Clamp(tpsPitch, -0.4f, 1.2f); // Limit vertical orbit
-
-        controlledSettler->setRotationFromMouse((tpsYaw + PI) * RAD2DEG);
-      }
-
-      // FPS: Mouse look
-      if (currentCameraMode == CameraViewMode::FPS) {
-        float yawChangeDeg = -delta.x * baseSens * RAD2DEG;
-        controlledSettler->setRotationFromMouse(
-            controlledSettler->getRotation() + yawChangeDeg);
-
-        fpsPitch += delta.y * baseSens;
-        fpsPitch = Clamp(fpsPitch, -1.4f, 1.4f); // Limit up/down
-      }
-    }
-    // ------------------
-    // ------------------
-
-    // Scope/Zoom handling with Right Mouse Button
-    static float currentFov = 45.0f;
-    float targetFov = 45.0f;
-
-    if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
-      targetFov = 10.0f; // Stronger zoom (4.5x)
-      controlledSettler->setScoping(true);
+    // [ANTIGRAVITY FIX] FPS Override
+    if (currentCameraMode == CameraViewMode::FPS && g_player) {
+      controlledSettler->setPosition(g_player->getPosition());
+      controlledSettler->setRotationFromMouse((g_player->getYaw() + PI) *
+                                              RAD2DEG);
     } else {
-      targetFov = 45.0f;
-      controlledSettler->setScoping(false);
-    }
+      // [LEGACY/TPS LOGIC]
+      float baseSens = 0.002f; // Reduced from 0.005f
+      if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+        baseSens *= 0.3f; // 30% sensitivity when aiming
+      }
+      Vector2 delta = GetMouseDelta();
 
-    // Shooting (LMB)
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-      Vector3 targetPoint = {0, 0, 0};
+      // --- MOUSE LOOK ---
+      // Handle Cursor Lock State
+      // Persistent state to know if we WANT the cursor hidden
+      // wantCursorHidden is now GLOBAL
 
-      // RAYCAST to find aim point (same logic as crosshair)
-      Ray camRay;
-      camRay.position = currentCam.position;
-      camRay.direction = Vector3Normalize(
-          Vector3Subtract(currentCam.target, currentCam.position));
-
-      // Use existing helper
-      WorldRaycastHit aimHit = RaycastWorld(camRay, 200.0f);
-      targetPoint = aimHit.point;
-
-      controlledSettler->useHeldItem(targetPoint);
-    }
-
-    // Interaction (Pickup) 'E'
-    if (IsKeyPressed(KEY_E)) {
-      // Find nearest dropped item
-      const auto &dropped = colony.getDroppedItems();
-      int bestIdx = -1;
-      float minDist = 2.0f; // Pickup range
-
-      for (size_t i = 0; i < dropped.size(); ++i) {
-        float d = Vector3Distance(controlledSettler->getPosition(),
-                                  dropped[i].position);
-        if (d < minDist) {
-          minDist = d;
-          bestIdx = (int)i;
-        }
+      // Toggle Menu Mode with ALT
+      if (IsKeyPressed(KEY_LEFT_ALT)) {
+        wantCursorHidden = !wantCursorHidden;
+        if (wantCursorHidden)
+          DisableCursor();
+        else
+          EnableCursor();
       }
 
-      if (bestIdx != -1) {
-        // Pickup!
-        int amount = dropped[bestIdx].amount; // Capture quantity before taking
-        std::unique_ptr<Item> item = colony.takeDroppedItem(bestIdx);
-        if (item) {
-          std::cout << "[Player] Picked up: " << item->getDisplayName() << " x"
-                    << amount << std::endl;
+      // Force strict state (If we want it hidden, ensure it IS hidden)
+      if (wantCursorHidden) {
+        if (!IsCursorHidden())
+          DisableCursor();
 
-          // Auto-equip if hands empty
-          if (controlledSettler->getHeldItem() == nullptr) {
-            std::cout << "[Player] Auto-equipped: " << item->getDisplayName()
-                      << std::endl;
-            controlledSettler->setHeldItem(std::move(item));
-          } else {
-            controlledSettler->getInventory().addItem(std::move(item), amount);
+        // TPS: Always rotate camera with mouse movement
+        if (currentCameraMode == CameraViewMode::TPS) {
+          tpsYaw -= delta.x * baseSens;
+          tpsPitch += delta.y * baseSens;
+          tpsPitch = Clamp(tpsPitch, -0.4f, 1.2f); // Limit vertical orbit
+
+          controlledSettler->setRotationFromMouse((tpsYaw + PI) * RAD2DEG);
+        }
+      }
+      // ------------------
+
+      // Scope/Zoom handling with Right Mouse Button
+      static float currentFov = 45.0f;
+      float targetFov = 45.0f;
+
+      if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+        targetFov = 10.0f; // Stronger zoom (4.5x)
+        controlledSettler->setScoping(true);
+      } else {
+        targetFov = 45.0f;
+        controlledSettler->setScoping(false);
+      }
+
+      // Shooting (LMB)
+      if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        Vector3 targetPoint = {0, 0, 0};
+
+        // RAYCAST to find aim point (same logic as crosshair)
+        Ray camRay;
+        camRay.position = sceneCamera.position; // Use CURRENT camera
+        camRay.direction = Vector3Normalize(
+            Vector3Subtract(sceneCamera.target, sceneCamera.position));
+
+        // Use existing helper
+        WorldRaycastHit aimHit = RaycastWorld(camRay, 200.0f);
+        targetPoint = aimHit.point;
+
+        controlledSettler->useHeldItem(targetPoint);
+      }
+
+      // Interaction (Pickup) 'E'
+      if (IsKeyPressed(KEY_E)) {
+        // Find nearest dropped item
+        const auto &dropped = colony.getDroppedItems();
+        int bestIdx = -1;
+        float minDist = 2.0f; // Pickup range
+
+        for (size_t i = 0; i < dropped.size(); ++i) {
+          float d = Vector3Distance(controlledSettler->getPosition(),
+                                    dropped[i].position);
+          if (d < minDist) {
+            minDist = d;
+            bestIdx = (int)i;
           }
         }
-      }
-    }
 
-    // Płynne FOV (Lerp)
-    currentFov += (targetFov - currentFov) * 10.0f * deltaTime;
-    sceneCamera.fovy = currentFov;
+        if (bestIdx != -1) {
+          // Pickup!
+          int amount =
+              dropped[bestIdx].amount; // Capture quantity before taking
+          std::unique_ptr<Item> item = colony.takeDroppedItem(bestIdx);
+          if (item) {
+            std::cout << "[Player] Picked up: " << item->getDisplayName()
+                      << " x" << amount << std::endl;
 
-    // WASD movement for settler
-    Vector3 currentSettlerPos = controlledSettler->getPosition();
-    Vector3 moveDir = {0, 0, 0};
-    float moveSpeed = 5.0f * deltaTime;
-
-    // Calculate direction relative to camera view
-    Vector3 camForward = Vector3Normalize(
-        Vector3Subtract(sceneCamera.target, sceneCamera.position));
-    camForward.y = 0.0f; // Flatten to ground plane
-    camForward = Vector3Normalize(camForward);
-    Vector3 camRight =
-        Vector3Normalize(Vector3CrossProduct(camForward, {0.0f, 1.0f, 0.0f}));
-
-    if (IsKeyDown(KEY_W))
-      moveDir = Vector3Add(moveDir, camForward);
-    if (IsKeyDown(KEY_S))
-      moveDir = Vector3Subtract(moveDir, camForward);
-    if (IsKeyDown(KEY_A))
-      moveDir = Vector3Subtract(moveDir, camRight);
-    if (IsKeyDown(KEY_D))
-      moveDir = Vector3Add(moveDir, camRight);
-
-    // Apply movement with SLIDING COLLISION
-    if (Vector3Length(moveDir) > 0.001f) {
-      moveDir = Vector3Normalize(moveDir);
-
-      // Separate axes for sliding
-      Vector3 moveX = {moveDir.x * moveSpeed, 0, 0};
-      Vector3 moveZ = {0, 0, moveDir.z * moveSpeed};
-
-      Vector3 finalPos = currentSettlerPos;
-      bool moved = false;
-
-      // Define Collision Checker Helper locally for captured scope
-      auto IsPositionFree = [&](Vector3 testPos) -> bool {
-        // 1. Check Buildings (Increased radius to 10.0f to catch large
-        // buildings)
-        if (g_buildingSystem) {
-          auto buildings =
-              g_buildingSystem->getBuildingsInRange(testPos, 10.0f);
-          for (auto *b : buildings) {
-            if (b->getBlueprintId() == "floor")
-              continue;
-            if (b->CheckCollision(testPos, 0.4f)) {
-              // std::cout << "[Collision] Blocked by building: " <<
-              // b->getBlueprintId() << std::endl;
-              return false;
+            // Auto-equip if hands empty
+            if (controlledSettler->getHeldItem() == nullptr) {
+              std::cout << "[Player] Auto-equipped: " << item->getDisplayName()
+                        << std::endl;
+              controlledSettler->setHeldItem(std::move(item));
+            } else {
+              controlledSettler->getInventory().addItem(std::move(item),
+                                                        amount);
             }
           }
         }
-        // 2. Check Trees
-        const auto &trees = terrain.getTrees();
-        for (const auto &t : trees) {
-          if (t->isActive() && !t->isStump()) {
-            if (CheckCollisionBoxSphere(t->getBoundingBox(), testPos, 0.4f)) {
-              // std::cout << "[Collision] Blocked by tree" << std::endl;
-              return false;
+      }
+
+      // Płynne FOV (Lerp)
+      currentFov += (targetFov - currentFov) * 10.0f * deltaTime;
+      sceneCamera.fovy = currentFov;
+
+      // WASD movement for settler
+      Vector3 currentSettlerPos = controlledSettler->getPosition();
+      Vector3 moveDir = {0, 0, 0};
+      float moveSpeed = 5.0f * deltaTime;
+
+      // Calculate direction relative to camera view
+      Vector3 camForward = Vector3Normalize(
+          Vector3Subtract(sceneCamera.target, sceneCamera.position));
+      camForward.y = 0.0f; // Flatten to ground plane
+      camForward = Vector3Normalize(camForward);
+      Vector3 camRight =
+          Vector3Normalize(Vector3CrossProduct(camForward, {0.0f, 1.0f, 0.0f}));
+
+      if (IsKeyDown(KEY_W))
+        moveDir = Vector3Add(moveDir, camForward);
+      if (IsKeyDown(KEY_S))
+        moveDir = Vector3Subtract(moveDir, camForward);
+      if (IsKeyDown(KEY_A))
+        moveDir = Vector3Subtract(moveDir, camRight);
+      if (IsKeyDown(KEY_D))
+        moveDir = Vector3Add(moveDir, camRight);
+
+      // Apply movement with SLIDING COLLISION
+      if (Vector3Length(moveDir) > 0.001f) {
+        moveDir = Vector3Normalize(moveDir);
+
+        // Separate axes for sliding
+        Vector3 moveX = {moveDir.x * moveSpeed, 0, 0};
+        Vector3 moveZ = {0, 0, moveDir.z * moveSpeed};
+
+        Vector3 finalPos = currentSettlerPos;
+        bool moved = false;
+
+        // Define Collision Checker Helper locally for captured scope
+        auto IsPositionFree = [&](Vector3 testPos) -> bool {
+          // 1. Check Buildings
+          if (g_buildingSystem) {
+            auto buildings =
+                g_buildingSystem->getBuildingsInRange(testPos, 10.0f);
+            for (auto *b : buildings) {
+              if (b->getBlueprintId() == "floor")
+                continue;
+              if (b->CheckCollision(testPos, 0.4f)) {
+                return false;
+              }
             }
           }
+          // 2. Check Trees
+          const auto &trees = terrain.getTrees();
+          for (const auto &t : trees) {
+            if (t->isActive() && !t->isStump()) {
+              if (CheckCollisionBoxSphere(t->getBoundingBox(), testPos, 0.4f)) {
+                return false;
+              }
+            }
+          }
+          return true;
+        };
+
+        // Try X Movement
+        if (IsPositionFree(Vector3Add(finalPos, moveX))) {
+          finalPos = Vector3Add(finalPos, moveX);
+          moved = true;
         }
-        return true;
-      };
 
-      // Try X Movement
-      if (IsPositionFree(Vector3Add(finalPos, moveX))) {
-        finalPos = Vector3Add(finalPos, moveX);
-        moved = true;
-      }
+        // Try Z Movement
+        if (IsPositionFree(Vector3Add(finalPos, moveZ))) {
+          finalPos = Vector3Add(finalPos, moveZ);
+          moved = true;
+        }
 
-      // Try Z Movement
-      if (IsPositionFree(Vector3Add(finalPos, moveZ))) {
-        finalPos = Vector3Add(finalPos, moveZ);
-        moved = true;
-      }
+        if (moved) {
+          controlledSettler->setPosition(finalPos);
+          controlledSettler->setState(SettlerState::MOVING);
+        } else {
+          controlledSettler->setState(SettlerState::IDLE);
+        }
 
-      if (moved) {
-        controlledSettler->setPosition(finalPos);
-        controlledSettler->setState(SettlerState::MOVING);
       } else {
         controlledSettler->setState(SettlerState::IDLE);
       }
-
-    } else {
-      controlledSettler->setState(SettlerState::IDLE);
     }
   }
 
@@ -1108,6 +1107,14 @@ int main() {
   while (!WindowShouldClose()) {
     deltaTime = GetFrameTime();
     processInput();
+
+    // [ANTIGRAVITY FIX] Update Player Logic
+    if (g_player && currentCameraMode == CameraViewMode::FPS) {
+      // Player handles its own input and physics
+      // We pass terrain for height checks
+      g_player->update(deltaTime);
+    }
+
     UpdateCameraSystem(deltaTime);
     terrain.update(deltaTime);
     float scaledDeltaTime = deltaTime * globalTimeScale;
@@ -1134,7 +1141,8 @@ int main() {
     }
 
     // [WORLD MANAGER] Update
-    // Pass 0.0f for player y, assuming flat grid for now or use full Vector3
+    // Pass 0.0f for player y, assuming flat grid for now or use full
+    // Vector3
     WorldManager::GetInstance()->Update(
         scaledDeltaTime, controlledSettler ? controlledSettler->getPosition()
                                            : sceneCamera.position);

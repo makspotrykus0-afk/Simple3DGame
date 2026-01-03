@@ -156,15 +156,13 @@ CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cerrno \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/charconv.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_string.tcc \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/map \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tree.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
+ F:/Simple3DGame/game/Player.h F:/Simple3DGame/entities/GameEntity.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/typeindex \
  F:/Simple3DGame/raylib/src/raylib.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/stdarg.h \
  F:/11/x86_64-w64-mingw32/include/stdarg.h \
  F:/11/x86_64-w64-mingw32/include/_mingw_stdarg.h \
- F:/Simple3DGame/raylib/src/raymath.h \
+ F:/Simple3DGame/core/IComponent.h F:/Simple3DGame/raylib/src/raymath.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/math.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cmath \
  F:/11/x86_64-w64-mingw32/include/math.h \
@@ -181,13 +179,15 @@ CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_hermite.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_laguerre.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/riemann_zeta.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/map \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tree.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
  F:/Simple3DGame/raylib/src/rlgl.h F:\Simple3DGame\game\Settler.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/deque \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_deque.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/deque.tcc \
- F:/Simple3DGame/core/GameEntity.h F:/Simple3DGame/entities/GameEntity.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/typeindex \
- F:/Simple3DGame/core/IComponent.h \
+ F:/Simple3DGame/core/GameEntity.h \
  F:\Simple3DGame\game\InteractableObject.h \
  F:/Simple3DGame/components/InventoryComponent.h \
  F:/Simple3DGame/game/Item.h \
@@ -198,11 +198,11 @@ CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/_timeval.h \
  F:/11/x86_64-w64-mingw32/include/pthread_time.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/parse_numbers.h \
- F:/Simple3DGame/components/StatsComponent.h \
  F:/Simple3DGame/components/SkillsComponent.h \
- F:/Simple3DGame/systems/SkillTypes.h F:\Simple3DGame\game\SettlerTypes.h \
- F:\Simple3DGame\game\WorldItem.h F:\Simple3DGame\game\Terrain.h \
- F:\Simple3DGame\game\Tree.h \
+ F:/Simple3DGame/systems/SkillTypes.h \
+ F:/Simple3DGame/components/StatsComponent.h \
+ F:\Simple3DGame\game\SettlerTypes.h F:\Simple3DGame\game\WorldItem.h \
+ F:\Simple3DGame\game\Terrain.h F:\Simple3DGame\game\Tree.h \
  F:/Simple3DGame/components/PositionComponent.h \
  F:\Simple3DGame\game\BuildingInstance.h \
  F:/Simple3DGame/game/BuildingBlueprint.h \
@@ -252,6 +252,7 @@ CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: \
  F:/Simple3DGame/game/SettlerTypes.h \
  F:/Simple3DGame/components/NavComponent.h \
  F:/Simple3DGame/components/NeedComponent.h \
+ F:/Simple3DGame/components/TraitsComponent.h \
  F:\Simple3DGame\game\GatheringTask.h \
  F:\Simple3DGame\game\NavigationGrid.h \
  F:\Simple3DGame\game\BuildingTask.h F:/Simple3DGame/core/GameSystem.h \

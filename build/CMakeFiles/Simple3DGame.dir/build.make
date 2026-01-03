@@ -401,11 +401,26 @@ CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.s"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\ColonyAI.cpp -o CMakeFiles\Simple3DGame.dir\game\ColonyAI.cpp.s
 
+CMakeFiles/Simple3DGame.dir/game/Player.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
+CMakeFiles/Simple3DGame.dir/game/Player.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
+CMakeFiles/Simple3DGame.dir/game/Player.cpp.obj: F:/Simple3DGame/game/Player.cpp
+CMakeFiles/Simple3DGame.dir/game/Player.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Player.cpp.obj"
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Player.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Player.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Player.cpp.obj -c F:\Simple3DGame\game\Player.cpp
+
+CMakeFiles/Simple3DGame.dir/game/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/game/Player.cpp.i"
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\game\Player.cpp > CMakeFiles\Simple3DGame.dir\game\Player.cpp.i
+
+CMakeFiles/Simple3DGame.dir/game/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/game/Player.cpp.s"
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\game\Player.cpp -o CMakeFiles\Simple3DGame.dir\game\Player.cpp.s
+
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj: F:/Simple3DGame/game/BuildingInstance.cpp
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\BuildingInstance.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\BuildingInstance.cpp.obj -c F:\Simple3DGame\game\BuildingInstance.cpp
 
 CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.i: cmake_force
@@ -420,7 +435,7 @@ CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj: F:/Simple3DGame/game/Bed.cpp
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Bed.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Bed.cpp.obj -c F:\Simple3DGame\game\Bed.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Bed.cpp.i: cmake_force
@@ -435,7 +450,7 @@ CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: CMakeFiles/Simple3DGame.dir/fl
 CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: F:/Simple3DGame/game/Settler.cpp
 CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Settler.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Settler.cpp.obj -c F:\Simple3DGame\game\Settler.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Settler.cpp.i: cmake_force
@@ -450,7 +465,7 @@ CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj: CMakeFiles/Simple3DGame.d
 CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj: F:/Simple3DGame/game/DebugConsole.cpp
 CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\DebugConsole.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\DebugConsole.cpp.obj -c F:\Simple3DGame\game\DebugConsole.cpp
 
 CMakeFiles/Simple3DGame.dir/game/DebugConsole.cpp.i: cmake_force
@@ -465,7 +480,7 @@ CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj: CMakeFiles/Simple3DGame.dir
 CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj: F:/Simple3DGame/game/Projectile.cpp
 CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\Projectile.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\Projectile.cpp.obj -c F:\Simple3DGame\game\Projectile.cpp
 
 CMakeFiles/Simple3DGame.dir/game/Projectile.cpp.i: cmake_force
@@ -480,7 +495,7 @@ CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj: CMakeFiles/Simple3DGame
 CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj: F:/Simple3DGame/game/NavigationGrid.cpp
 CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.obj -MF CMakeFiles\Simple3DGame.dir\game\NavigationGrid.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\game\NavigationGrid.cpp.obj -c F:\Simple3DGame\game\NavigationGrid.cpp
 
 CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.i: cmake_force
@@ -495,7 +510,7 @@ CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj: CMakeFiles/Simple3DGam
 CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj: F:/Simple3DGame/systems/EditorSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\EditorSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\EditorSystem.cpp.obj -c F:\Simple3DGame\systems\EditorSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/EditorSystem.cpp.i: cmake_force
@@ -510,7 +525,7 @@ CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj: CMakeFiles/Simple3DG
 CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj: F:/Simple3DGame/systems/ResourceSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\ResourceSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\ResourceSystem.cpp.obj -c F:\Simple3DGame\systems\ResourceSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/ResourceSystem.cpp.i: cmake_force
@@ -525,7 +540,7 @@ CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj: CMakeFiles/Simple3DGam
 CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj: F:/Simple3DGame/systems/SkillsSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\SkillsSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\SkillsSystem.cpp.obj -c F:\Simple3DGame\systems\SkillsSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/SkillsSystem.cpp.i: cmake_force
@@ -540,7 +555,7 @@ CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj: CMakeFiles/Simple3D
 CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj: F:/Simple3DGame/systems/EquipmentSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\EquipmentSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\EquipmentSystem.cpp.obj -c F:\Simple3DGame\systems\EquipmentSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/EquipmentSystem.cpp.i: cmake_force
@@ -555,7 +570,7 @@ CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj: CMakeFiles/Simple3DGame.
 CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj: F:/Simple3DGame/systems/FoodSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\FoodSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\FoodSystem.cpp.obj -c F:\Simple3DGame\systems\FoodSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/FoodSystem.cpp.i: cmake_force
@@ -570,7 +585,7 @@ CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: CMakeFiles/Simple
 CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: F:/Simple3DGame/systems/InteractionSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\InteractionSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\InteractionSystem.cpp.obj -c F:\Simple3DGame\systems\InteractionSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/InteractionSystem.cpp.i: cmake_force
@@ -585,7 +600,7 @@ CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj: CMakeFiles/Simple3D
 CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj: F:/Simple3DGame/systems/InventorySystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\InventorySystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\InventorySystem.cpp.obj -c F:\Simple3DGame\systems\InventorySystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/InventorySystem.cpp.i: cmake_force
@@ -600,7 +615,7 @@ CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj: CMakeFiles/Simple3DG
 CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj: F:/Simple3DGame/systems/BuildingSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\BuildingSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\BuildingSystem.cpp.obj -c F:\Simple3DGame\systems\BuildingSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/BuildingSystem.cpp.i: cmake_force
@@ -615,7 +630,7 @@ CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj: CMakeFiles/Simple3DGa
 CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj: F:/Simple3DGame/systems/StorageSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\StorageSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\StorageSystem.cpp.obj -c F:\Simple3DGame\systems\StorageSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/StorageSystem.cpp.i: cmake_force
@@ -630,7 +645,7 @@ CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj: CMakeFiles/Simple3DGame.
 CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj: F:/Simple3DGame/systems/TestSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\TestSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\TestSystem.cpp.obj -c F:\Simple3DGame\systems\TestSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/TestSystem.cpp.i: cmake_force
@@ -645,7 +660,7 @@ CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj: CMakeFiles/Simple3DGame.di
 CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj: F:/Simple3DGame/systems/UISystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\UISystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\UISystem.cpp.obj -c F:\Simple3DGame\systems\UISystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/UISystem.cpp.i: cmake_force
@@ -660,7 +675,7 @@ CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj: CMakeFiles/Simple3D
 CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj: F:/Simple3DGame/systems/TimeCycleSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\TimeCycleSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\TimeCycleSystem.cpp.obj -c F:\Simple3DGame\systems\TimeCycleSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/TimeCycleSystem.cpp.i: cmake_force
@@ -675,7 +690,7 @@ CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: CMakeFiles/Simple3DGame
 CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: F:/Simple3DGame/systems/NeedsSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\NeedsSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\NeedsSystem.cpp.obj -c F:\Simple3DGame\systems\NeedsSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/NeedsSystem.cpp.i: cmake_force
@@ -690,7 +705,7 @@ CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj: CMakeFiles/Simple3DG
 CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj: F:/Simple3DGame/systems/CraftingSystem.cpp
 CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.obj -MF CMakeFiles\Simple3DGame.dir\systems\CraftingSystem.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\systems\CraftingSystem.cpp.obj -c F:\Simple3DGame\systems\CraftingSystem.cpp
 
 CMakeFiles/Simple3DGame.dir/systems/CraftingSystem.cpp.i: cmake_force
@@ -705,7 +720,7 @@ CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj: CMakeFiles/Sim
 CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj: F:/Simple3DGame/components/ResourceComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\ResourceComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\ResourceComponent.cpp.obj -c F:\Simple3DGame\components\ResourceComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/ResourceComponent.cpp.i: cmake_force
@@ -720,7 +735,7 @@ CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj: CMakeFiles/
 CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj: F:/Simple3DGame/components/InteractionComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\InteractionComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\InteractionComponent.cpp.obj -c F:\Simple3DGame\components\InteractionComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/InteractionComponent.cpp.i: cmake_force
@@ -735,7 +750,7 @@ CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj: CMakeFiles/Si
 CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj: F:/Simple3DGame/components/InventoryComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\InventoryComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\InventoryComponent.cpp.obj -c F:\Simple3DGame\components\InventoryComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/InventoryComponent.cpp.i: cmake_force
@@ -750,7 +765,7 @@ CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj: CMakeFiles/Simple
 CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj: F:/Simple3DGame/components/StatsComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\StatsComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\StatsComponent.cpp.obj -c F:\Simple3DGame\components\StatsComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.i: cmake_force
@@ -765,7 +780,7 @@ CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj: CMakeFiles/Simple3
 CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj: F:/Simple3DGame/components/NeedComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\NeedComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\NeedComponent.cpp.obj -c F:\Simple3DGame\components\NeedComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.i: cmake_force
@@ -780,7 +795,7 @@ CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj: CMakeFiles/Simple3D
 CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj: F:/Simple3DGame/components/NavComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\NavComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\NavComponent.cpp.obj -c F:\Simple3DGame\components\NavComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.i: cmake_force
@@ -795,7 +810,7 @@ CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: CMakeFiles/Simpl
 CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: F:/Simple3DGame/components/ActionComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\ActionComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\ActionComponent.cpp.obj -c F:\Simple3DGame\components\ActionComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.i: cmake_force
@@ -806,11 +821,26 @@ CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.s"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\ActionComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\ActionComponent.cpp.s
 
+CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
+CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
+CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.obj: F:/Simple3DGame/components/TraitsComponent.cpp
+CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.obj"
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\TraitsComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\TraitsComponent.cpp.obj -c F:\Simple3DGame\components\TraitsComponent.cpp
+
+CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.i"
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\Simple3DGame\components\TraitsComponent.cpp > CMakeFiles\Simple3DGame.dir\components\TraitsComponent.cpp.i
+
+CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.s"
+	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\Simple3DGame\components\TraitsComponent.cpp -o CMakeFiles\Simple3DGame.dir\components\TraitsComponent.cpp.s
+
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/flags.make
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj: F:/Simple3DGame/components/BuildingComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\BuildingComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\BuildingComponent.cpp.obj -c F:\Simple3DGame\components\BuildingComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.i: cmake_force
@@ -825,7 +855,7 @@ CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj: CMakeFiles/Simpl
 CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj: F:/Simple3DGame/components/SkillsComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\SkillsComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\SkillsComponent.cpp.obj -c F:\Simple3DGame\components\SkillsComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.i: cmake_force
@@ -840,7 +870,7 @@ CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj: CMakeFiles/Sim
 CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj: F:/Simple3DGame/components/PositionComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\PositionComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\PositionComponent.cpp.obj -c F:\Simple3DGame\components\PositionComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.i: cmake_force
@@ -855,7 +885,7 @@ CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj: CMakeFiles/Simple3
 CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj: F:/Simple3DGame/components/TreeComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\TreeComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\TreeComponent.cpp.obj -c F:\Simple3DGame\components\TreeComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/TreeComponent.cpp.i: cmake_force
@@ -870,7 +900,7 @@ CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj: CMakeFiles/Si
 CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj: F:/Simple3DGame/components/EquipmentComponent.cpp
 CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.obj -MF CMakeFiles\Simple3DGame.dir\components\EquipmentComponent.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\components\EquipmentComponent.cpp.obj -c F:\Simple3DGame\components\EquipmentComponent.cpp
 
 CMakeFiles/Simple3DGame.dir/components/EquipmentComponent.cpp.i: cmake_force
@@ -885,7 +915,7 @@ CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj: CMakeFiles/Simple3
 CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj: F:/Simple3DGame/entities/PlayerCharacter.cpp
 CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.obj -MF CMakeFiles\Simple3DGame.dir\entities\PlayerCharacter.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\entities\PlayerCharacter.cpp.obj -c F:\Simple3DGame\entities\PlayerCharacter.cpp
 
 CMakeFiles/Simple3DGame.dir/entities/PlayerCharacter.cpp.i: cmake_force
@@ -900,7 +930,7 @@ CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj: CMakeFiles/Simple3DGame.dir/fl
 CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj: CMakeFiles/Simple3DGame.dir/includes_CXX.rsp
 CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj: F:/Simple3DGame/entities/Ant.cpp
 CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj: CMakeFiles/Simple3DGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj"
 	F:\11\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.obj -MF CMakeFiles\Simple3DGame.dir\entities\Ant.cpp.obj.d -o CMakeFiles\Simple3DGame.dir\entities\Ant.cpp.obj -c F:\Simple3DGame\entities\Ant.cpp
 
 CMakeFiles/Simple3DGame.dir/entities/Ant.cpp.i: cmake_force
@@ -935,6 +965,7 @@ Simple3DGame_OBJECTS = \
 "CMakeFiles/Simple3DGame.dir/game/Tree.cpp.obj" \
 "CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj" \
 "CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj" \
+"CMakeFiles/Simple3DGame.dir/game/Player.cpp.obj" \
 "CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj" \
 "CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj" \
 "CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj" \
@@ -962,6 +993,7 @@ Simple3DGame_OBJECTS = \
 "CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj" \
 "CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj" \
 "CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj" \
+"CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.obj" \
 "CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj" \
 "CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj" \
 "CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj" \
@@ -995,6 +1027,7 @@ Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/game/Door.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/game/Tree.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/game/Animal.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/game/ColonyAI.cpp.obj
+Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/game/Player.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/game/BuildingInstance.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/game/Bed.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/game/Settler.cpp.obj
@@ -1022,6 +1055,7 @@ Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/components/NeedComponent.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/components/NavComponent.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj
+Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/components/BuildingComponent.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/components/SkillsComponent.cpp.obj
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/components/PositionComponent.cpp.obj
@@ -1034,7 +1068,7 @@ Simple3DGame.exe: raylib/raylib/libraylib.a
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/linkLibs.rsp
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/objects1.rsp
 Simple3DGame.exe: CMakeFiles/Simple3DGame.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Linking CXX executable Simple3DGame.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=F:\Simple3DGame\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Linking CXX executable Simple3DGame.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Simple3DGame.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -1,7 +1,16 @@
 CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: \
  F:\Simple3DGame\components\ActionComponent.cpp \
  F:\Simple3DGame\components\ActionComponent.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/vector \
+ F:/Simple3DGame/game/SettlerTypes.h F:/Simple3DGame/raylib/src/raylib.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/stdarg.h \
+ F:/11/x86_64-w64-mingw32/include/stdarg.h \
+ F:/11/x86_64-w64-mingw32/include/_mingw_stdarg.h \
+ F:/11/x86_64-w64-mingw32/include/vadefs.h \
+ F:/11/x86_64-w64-mingw32/include/_mingw.h \
+ F:/11/x86_64-w64-mingw32/include/_mingw_mac.h \
+ F:/11/x86_64-w64-mingw32/include/_mingw_secapi.h \
+ F:/11/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/deque \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_algobase.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
@@ -35,11 +44,6 @@ CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/stddef.h \
  F:/11/x86_64-w64-mingw32/include/crtdefs.h \
  F:/11/x86_64-w64-mingw32/include/corecrt.h \
- F:/11/x86_64-w64-mingw32/include/_mingw.h \
- F:/11/x86_64-w64-mingw32/include/_mingw_mac.h \
- F:/11/x86_64-w64-mingw32/include/_mingw_secapi.h \
- F:/11/x86_64-w64-mingw32/include/vadefs.h \
- F:/11/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/typeinfo \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/hash_bytes.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/nested_exception.h \
@@ -48,24 +52,16 @@ CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_uninitialized.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/alloc_traits.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/alloc_traits.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_vector.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_deque.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/initializer_list \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_bvector.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/functional_hash.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/range_access.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/iterator_concepts.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/concepts \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/range_cmp.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/vector.tcc \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/deque \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_deque.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/deque.tcc \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/memory \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tempbuf.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_raw_storage_iter.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ranges_uninitialized.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iosfwd \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/string \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stringfwd.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/char_traits.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/postypes.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cwchar \
  F:/11/x86_64-w64-mingw32/include/wchar.h \
@@ -75,12 +71,27 @@ CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/_mingw_stat64.h \
  F:/11/x86_64-w64-mingw32/include/swprintf.inl \
  F:/11/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdint \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/stdint.h \
+ F:/11/x86_64-w64-mingw32/include/stdint.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/localefwd.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/clocale \
+ F:/11/x86_64-w64-mingw32/include/locale.h \
+ F:/11/x86_64-w64-mingw32/include/stdio.h \
+ F:/11/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iosfwd \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cctype \
+ F:/11/x86_64-w64-mingw32/include/ctype.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream_insert.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/cxxabi_forced.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_function.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/backward/binders.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_string.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/atomicity.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
  F:/11/x86_64-w64-mingw32/include/pthread.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/stdint.h \
- F:/11/x86_64-w64-mingw32/include/stdint.h \
  F:/11/x86_64-w64-mingw32/include/errno.h \
  F:/11/x86_64-w64-mingw32/include/sys/types.h \
  F:/11/x86_64-w64-mingw32/include/process.h \
@@ -95,9 +106,31 @@ CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/pthread_compat.h \
  F:/11/x86_64-w64-mingw32/include/pthread_unistd.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/string_view \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/functional_hash.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/string_view.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/string_conversions.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdlib \
+ F:/11/x86_64-w64-mingw32/include/stdlib.h \
+ F:/11/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/stdlib.h \
+ F:/11/x86_64-w64-mingw32/include/malloc.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/std_abs.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdio \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cerrno \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/charconv.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_string.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/vector \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_vector.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_bvector.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/vector.tcc \
+ F:/Simple3DGame/core/IComponent.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/typeindex \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/memory \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tempbuf.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_raw_storage_iter.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ranges_uninitialized.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/concurrence.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_function.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/backward/binders.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/uses_allocator.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/unique_ptr.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/utility \
@@ -114,42 +147,33 @@ CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_base.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_lockfree_defines.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/backward/auto_ptr.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdint \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/glue_memory_defs.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/execution_defs.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/typeindex \
- F:/Simple3DGame/core/IComponent.h F:/Simple3DGame/game/SettlerTypes.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/string \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/char_traits.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/localefwd.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/clocale \
- F:/11/x86_64-w64-mingw32/include/locale.h \
- F:/11/x86_64-w64-mingw32/include/stdio.h \
- F:/11/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cctype \
- F:/11/x86_64-w64-mingw32/include/ctype.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream_insert.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/cxxabi_forced.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_string.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/string_view \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/string_view.tcc \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/string_conversions.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdlib \
- F:/11/x86_64-w64-mingw32/include/stdlib.h \
- F:/11/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/stdlib.h \
- F:/11/x86_64-w64-mingw32/include/malloc.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/std_abs.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdio \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cerrno \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/charconv.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_string.tcc \
- F:/Simple3DGame/raylib/src/raylib.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/stdarg.h \
- F:/11/x86_64-w64-mingw32/include/stdarg.h \
- F:/11/x86_64-w64-mingw32/include/_mingw_stdarg.h \
  F:/Simple3DGame/components/NavComponent.h \
+ F:/Simple3DGame/components/TraitsComponent.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ostream \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ios \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ios_base.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/locale_classes.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/locale_classes.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/system_error \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/stdexcept \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/streambuf \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/streambuf.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_ios.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/locale_facets.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cwctype \
+ F:/11/x86_64-w64-mingw32/include/wctype.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/streambuf_iterator.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/locale_facets.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_ios.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/istream \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/istream.tcc \
  F:/Simple3DGame/core/GameEngine.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/algorithm \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_algo.h \
@@ -180,9 +204,6 @@ CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/_timeval.h \
  F:/11/x86_64-w64-mingw32/include/pthread_time.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/parse_numbers.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/system_error \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/stdexcept \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/std_mutex.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/unique_lock.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/shared_mutex \
@@ -225,26 +246,6 @@ CMakeFiles/Simple3DGame.dir/components/ActionComponent.cpp.obj: \
  F:/Simple3DGame/components/SkillsComponent.h \
  F:/Simple3DGame/systems/SkillTypes.h F:/Simple3DGame/game/Projectile.h \
  F:/Simple3DGame/game/ResourceNode.h F:/Simple3DGame/game/Tree.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ostream \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ios \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ios_base.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/locale_classes.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/locale_classes.tcc \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/streambuf \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/streambuf.tcc \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_ios.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/locale_facets.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cwctype \
- F:/11/x86_64-w64-mingw32/include/wctype.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/streambuf_iterator.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/locale_facets.tcc \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_ios.tcc \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream.tcc \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/istream \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/istream.tcc \
  F:/Simple3DGame/game/ColonyAI.h F:/Simple3DGame/game/Settler.h \
  F:/Simple3DGame/components/InventoryComponent.h \
  F:/Simple3DGame/game/SettlerTypes.h F:/Simple3DGame/game/WorldItem.h \

@@ -6,8 +6,12 @@
 
 #include <string>
 
+#include "../game/Player.h" // [ANTIGRAVITY] Needed for Squad Logic
 #include <map>
 #include <raylib.h>
+
+extern std::unique_ptr<Player> g_player;
+
 #include <raymath.h>
 #include <rlgl.h> // Matrix rotation
 
@@ -23,6 +27,7 @@
 #include "../components/NeedComponent.h"
 #include "../components/SkillsComponent.h"
 #include "../components/StatsComponent.h"
+#include "../components/TraitsComponent.h"
 #include "Colony.h"
 
 #include "Bed.h"
@@ -117,6 +122,17 @@ Settler::Settler(const std::string &name, const Vector3 &pos,
       m_sleepEnterThreshold(30.0f), m_sleepExitThreshold(80.0f),
       m_hungerEnterThreshold(40.0f), m_hungerExitThreshold(80.0f),
       m_isIndependentBuilder(false), m_myPrivateBuildTask(nullptr) {
+
+  m_traitsComponent = std::make_unique<TraitsComponent>(this);
+  m_traitsComponent->initialize();
+  // Default Trait for prototype
+  if (GetRandomValue(0, 100) < 30) {
+    m_traitsComponent->addTrait(TraitType::LAZY);
+    std::cout << "[Settler] " << m_name << " is LAZY!" << std::endl;
+  } else if (GetRandomValue(0, 100) < 30) {
+    m_traitsComponent->addTrait(TraitType::HARDWORKING);
+    std::cout << "[Settler] " << m_name << " is HARDWORKING!" << std::endl;
+  }
 
   position = pos;
 
@@ -390,11 +406,14 @@ void Settler::Update(
       m_pendingReevaluation = true;
     }
   }
-  bool isCriticalTask = (m_state == SettlerState::EATING) ||
-                        (m_state == SettlerState::SLEEPING) ||
-                        (m_state == SettlerState::SEARCHING_FOR_FOOD) ||
-                        (m_state == SettlerState::MOVING_TO_BED) ||
-                        (m_state == SettlerState::MOVING_TO_FOOD);
+  bool isCriticalTask =
+      (m_state == SettlerState::EATING) ||
+      (m_state == SettlerState::SLEEPING) ||
+      (m_state == SettlerState::SEARCHING_FOR_FOOD) ||
+      (m_state == SettlerState::MOVING_TO_BED) ||
+      (m_state == SettlerState::MOVING_TO_FOOD) ||
+      (m_state == SettlerState::FOLLOWING) || // [FIX] Squad takes priority
+      (m_state == SettlerState::GUARDING);    // [FIX] Squad takes priority
 
   if (!isCriticalTask && m_sleepCooldownTimer <= 0.0f &&
       m_stats->getCurrentEnergy() <= m_sleepEnterThreshold) {
@@ -428,6 +447,28 @@ void Settler::Update(
     break;
   case SettlerState::HAULING:
     UpdateHauling(deltaTime, buildings, worldItems);
+    break;
+  // [Antigravity] Squad Hooks
+  case SettlerState::FOLLOWING:
+    if (m_squadLeaderID != -1 && g_player) {
+      // Verify we are following player (ID check skipped for prototype)
+      Vector3 leaderPos = g_player->getPosition();
+      float dist = Vector3Distance(position, leaderPos);
+
+      if (dist > 3.0f) {
+        MoveTo(leaderPos);
+      } else {
+        Stop();
+        // Look at leader
+        Vector3 dir = Vector3Subtract(leaderPos, position);
+        float angle = atan2f(dir.x, dir.z) * RAD2DEG;
+        setRotation(angle);
+      }
+    }
+    break;
+  case SettlerState::GUARDING:
+    // Just stand still and rotate to look for threats?
+    // For now, IDLE behavior but strictly holding pos
     break;
   case SettlerState::HUNTING:
     UpdateHunting(deltaTime, animals, buildings, resourceNodes);
@@ -4131,4 +4172,44 @@ bool Settler::hasPath() const {
     return m_navComponent->isMoving();
   }
   return false; // !m_currentPath.empty();
+}
+
+// Squad Implementation
+void Settler::JoinSquad(int leaderID) {
+  m_isInSquad = true;
+  m_squadLeaderID = leaderID;
+  // Clear existing tasks?
+  clearTasks();
+  m_state = SettlerState::FOLLOWING; // Default to following
+  std::cout << "[Settler] Joined Squad (Leader: " << leaderID << ")"
+            << std::endl;
+}
+
+void Settler::LeaveSquad() {
+  m_isInSquad = false;
+  m_squadLeaderID = -1;
+  m_state = SettlerState::IDLE;
+  std::cout << "[Settler] Left Squad" << std::endl;
+}
+
+void Settler::SetSquadOrder(int orderType, Vector3 target) {
+  if (!m_isInSquad)
+    return;
+
+  // 0: Follow, 1: Hold, 2: MoveTo
+  switch (orderType) {
+  case 0: // FOLLOW
+    m_state = SettlerState::FOLLOWING;
+    // Target position will be updated continuously by Player logic or
+    // UpdateFollowing
+    break;
+  case 1: // HOLD
+    m_state = SettlerState::GUARDING;
+    Stop();
+    break;
+  case 2:                           // MOVE_TO
+    m_state = SettlerState::MOVING; // Or custom squad move state
+    MoveTo(target);
+    break;
+  }
 }

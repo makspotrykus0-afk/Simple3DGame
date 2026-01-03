@@ -296,7 +296,7 @@ int32_t StorageSystem::addResourceToStorage(
     event.playerId = playerId;
     event.amount = addedTotal;
     event.playerId = playerId;
-    notifyStorageEvent(event); // ENABLED
+    EventBus::send(event);
   }
 
   if (addedTotal == 0) {
@@ -346,7 +346,7 @@ int32_t StorageSystem::removeResourceFromStorage(
     event.playerId = playerId;
     event.amount = removedTotal;
     event.playerId = playerId;
-    notifyStorageEvent(event); // ENABLED
+    EventBus::send(event);
   }
 
   return removedTotal;

@@ -153,6 +153,8 @@ CMakeFiles/Simple3DGame.dir/game/WorldManager.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/charconv.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_string.tcc \
  F:\Simple3DGame\game\Region.h F:\Simple3DGame\game\Settlement.h \
+ F:/Simple3DGame/raylib/src/raymath.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/math.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cmath \
  F:/11/x86_64-w64-mingw32/include/math.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/specfun.h \

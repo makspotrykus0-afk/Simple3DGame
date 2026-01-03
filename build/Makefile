@@ -506,6 +506,30 @@ components/StatsComponent.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/StatsComponent.cpp.s
 .PHONY : components/StatsComponent.cpp.s
 
+components/TraitsComponent.obj: components/TraitsComponent.cpp.obj
+.PHONY : components/TraitsComponent.obj
+
+# target to build an object file
+components/TraitsComponent.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.obj
+.PHONY : components/TraitsComponent.cpp.obj
+
+components/TraitsComponent.i: components/TraitsComponent.cpp.i
+.PHONY : components/TraitsComponent.i
+
+# target to preprocess a source file
+components/TraitsComponent.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.i
+.PHONY : components/TraitsComponent.cpp.i
+
+components/TraitsComponent.s: components/TraitsComponent.cpp.s
+.PHONY : components/TraitsComponent.s
+
+# target to generate assembly for a file
+components/TraitsComponent.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/components/TraitsComponent.cpp.s
+.PHONY : components/TraitsComponent.cpp.s
+
 components/TreeComponent.obj: components/TreeComponent.cpp.obj
 .PHONY : components/TreeComponent.obj
 
@@ -1009,6 +1033,30 @@ game/NavigationGrid.s: game/NavigationGrid.cpp.s
 game/NavigationGrid.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/NavigationGrid.cpp.s
 .PHONY : game/NavigationGrid.cpp.s
+
+game/Player.obj: game/Player.cpp.obj
+.PHONY : game/Player.obj
+
+# target to build an object file
+game/Player.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Player.cpp.obj
+.PHONY : game/Player.cpp.obj
+
+game/Player.i: game/Player.cpp.i
+.PHONY : game/Player.i
+
+# target to preprocess a source file
+game/Player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Player.cpp.i
+.PHONY : game/Player.cpp.i
+
+game/Player.s: game/Player.cpp.s
+.PHONY : game/Player.s
+
+# target to generate assembly for a file
+game/Player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Simple3DGame.dir\build.make CMakeFiles/Simple3DGame.dir/game/Player.cpp.s
+.PHONY : game/Player.cpp.s
 
 game/Projectile.obj: game/Projectile.cpp.obj
 .PHONY : game/Projectile.obj
@@ -1638,6 +1686,9 @@ help:
 	@echo ... components/StatsComponent.obj
 	@echo ... components/StatsComponent.i
 	@echo ... components/StatsComponent.s
+	@echo ... components/TraitsComponent.obj
+	@echo ... components/TraitsComponent.i
+	@echo ... components/TraitsComponent.s
 	@echo ... components/TreeComponent.obj
 	@echo ... components/TreeComponent.i
 	@echo ... components/TreeComponent.s
@@ -1701,6 +1752,9 @@ help:
 	@echo ... game/NavigationGrid.obj
 	@echo ... game/NavigationGrid.i
 	@echo ... game/NavigationGrid.s
+	@echo ... game/Player.obj
+	@echo ... game/Player.i
+	@echo ... game/Player.s
 	@echo ... game/Projectile.obj
 	@echo ... game/Projectile.i
 	@echo ... game/Projectile.s

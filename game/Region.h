@@ -5,7 +5,6 @@
 #include <memory>
 #include <vector>
 
-
 // Forward declarations
 class Colony;
 class Terrain;
@@ -18,6 +17,7 @@ class BuildingInstance;
  */
 enum class RegionState {
   UNINITIALIZED, // Just created, no data
+  BACKGROUND,    // Distant simulation (very low frequency)
   PASSIVE,       // Background simulation (abstract)
   ACTIVE         // Full simulation (all game objects)
 };
@@ -67,9 +67,11 @@ public:
 
   // Lifecycle
   void ActivateFullSimulation();
+  void SetState(RegionState newState);
   void DeactivateToPassive();
   void Update(float deltaTime);
   void PassiveTick(float deltaTime);
+  void BackgroundTick(float deltaTime);
   void Render();
 
   // State queries
@@ -81,6 +83,9 @@ public:
   // Access to game objects (only valid when ACTIVE)
   Colony *GetColony() { return colony.get(); }
   Terrain *GetTerrain() { return terrain.get(); }
+  const std::vector<ResourceNode *> &GetResourceNodes() const {
+    return resourceNodesInRegion;
+  }
 
   // Debug
   void DrawDebugBounds();

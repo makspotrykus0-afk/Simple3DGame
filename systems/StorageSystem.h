@@ -11,7 +11,6 @@
 #include <unordered_map>
 #include <vector>
 
-
 /**
  * @brief Typy magazynów
  */
@@ -338,7 +337,6 @@ private:
                             const Resources::Resource *resourceInfo);
   int32_t removeResourceFromSlot(StorageInstance &storage, int32_t slotIndex,
                                  int32_t amount);
-  void notifyStorageEvent(const std::any &event) {} // logic moved to call sites
 
   struct StorageCache {
     std::unordered_map<std::string, std::vector<Resources::ResourceType>>

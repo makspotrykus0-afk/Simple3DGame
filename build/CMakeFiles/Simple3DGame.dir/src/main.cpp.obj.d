@@ -210,11 +210,11 @@ CMakeFiles/Simple3DGame.dir/src/main.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tree.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
- F:/Simple3DGame/game/NavigationGrid.h \
+ F:/Simple3DGame/game/NavigationGrid.h F:/Simple3DGame/game/Player.h \
+ F:/Simple3DGame/entities/GameEntity.h \
  F:/Simple3DGame/game/WorldManager.h \
  F:/Simple3DGame/systems/BuildingSystem.h \
  F:/Simple3DGame/game/BuildingInstance.h \
- F:/Simple3DGame/entities/GameEntity.h \
  F:/Simple3DGame/systems/StorageSystem.h \
  F:/Simple3DGame/systems/ResourceSystem.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/atomic \

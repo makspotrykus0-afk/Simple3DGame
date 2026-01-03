@@ -121,23 +121,31 @@ CMakeFiles/Simple3DGame.dir/game/Settlement.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_bvector.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/vector.tcc \
  F:\Simple3DGame\game\Faction.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/map \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tree.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/aligned_buffer.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/node_handle.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/optional \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/utility \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_relops.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/enable_special_members.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tuple \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/array \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/uses_allocator.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/invoke.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/erase_if.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/memory \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tempbuf.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_raw_storage_iter.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ranges_uninitialized.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/concurrence.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/uses_allocator.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/unique_ptr.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/utility \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_relops.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tuple \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/array \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/invoke.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr_base.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/allocated_ptr.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/refwrap.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/aligned_buffer.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr_atomic.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_base.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_lockfree_defines.h \
@@ -156,11 +164,7 @@ CMakeFiles/Simple3DGame.dir/game/Settlement.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/unordered_map \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/hashtable.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/hashtable_policy.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/node_handle.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/optional \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/enable_special_members.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/unordered_map.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/erase_if.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ios \

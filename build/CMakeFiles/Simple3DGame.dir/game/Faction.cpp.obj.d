@@ -9,7 +9,8 @@ CMakeFiles/Simple3DGame.dir/game/Faction.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/_mingw_mac.h \
  F:/11/x86_64-w64-mingw32/include/_mingw_secapi.h \
  F:/11/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/memory \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/map \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tree.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_algobase.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
@@ -47,10 +48,32 @@ CMakeFiles/Simple3DGame.dir/game/Faction.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/hash_bytes.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/nested_exception.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/memoryfwd.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_construct.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_uninitialized.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_function.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/backward/binders.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/alloc_traits.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/alloc_traits.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_construct.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/aligned_buffer.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/node_handle.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/optional \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/utility \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_relops.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/initializer_list \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/functional_hash.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/enable_special_members.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_map.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tuple \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/array \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/range_access.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/iterator_concepts.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/concepts \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/range_cmp.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/uses_allocator.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/invoke.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_multimap.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/erase_if.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/memory \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_uninitialized.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tempbuf.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_raw_storage_iter.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ranges_uninitialized.h \
@@ -86,26 +109,11 @@ CMakeFiles/Simple3DGame.dir/game/Faction.cpp.obj: \
  F:/11/x86_64-w64-mingw32/include/pthread_unistd.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/concurrence.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_function.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/backward/binders.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/uses_allocator.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/unique_ptr.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/utility \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_relops.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/initializer_list \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tuple \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/array \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/range_access.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/iterator_concepts.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/concepts \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/range_cmp.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/invoke.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/functional_hash.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr_base.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/allocated_ptr.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/refwrap.h \
- F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/aligned_buffer.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/shared_ptr_atomic.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_base.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_lockfree_defines.h \
@@ -143,7 +151,24 @@ CMakeFiles/Simple3DGame.dir/game/Faction.cpp.obj: \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_vector.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_bvector.h \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/vector.tcc \
- F:\Simple3DGame\game\Settlement.h \
+ F:\Simple3DGame\game\Settlement.h F:/Simple3DGame/raylib/src/raymath.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/math.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cmath \
+ F:/11/x86_64-w64-mingw32/include/math.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/specfun.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/limits \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/gamma.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/special_function_util.h \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/bessel_function.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/beta_function.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/ell_integral.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/exp_integral.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/hypergeometric.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/legendre_function.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/modified_bessel_func.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_hermite.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_laguerre.tcc \
+ F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/riemann_zeta.tcc \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ostream \
  F:/11/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ios \
