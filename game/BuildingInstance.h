@@ -11,7 +11,6 @@
 #include <string>
 #include <vector>
 
-
 // Forward declaration
 class Door;
 class Bed;
@@ -38,6 +37,7 @@ public:
   // Getters
   std::string getBlueprintId() const { return m_blueprintId; }
   float getRotation() const { return m_rotation; }
+  void setRotation(float rot) { m_rotation = rot; }
   float getConstructionProgress() const { return m_constructionProgress; }
   bool isBuilt() const { return m_isBuilt; }
   float getHealth() const { return m_health; }
@@ -181,6 +181,10 @@ public:
 
   bool CheckCollision(Vector3 pos, float radius) const {
     // Use local m_position to avoid base class ambiguity
+    // FIX: Don't collide with unbuilt structures (blueprints)
+    if (!m_isBuilt)
+      return false;
+
     BoundingBox box = getBoundingBox();
     return CheckCollisionBoxSphere(box, pos, radius);
   }
@@ -189,8 +193,13 @@ public:
 
   Bed *getBed() const { return m_bed.get(); }
 
+  void setVisible(bool visible) { m_isVisible = visible; }
+  bool isVisible() const { return m_isVisible; }
+
   // Render (simple placeholder if not handled by a system)
   void render() override {
+    if (!m_isVisible) return; // Skip rendering if invisible
+
     Vector3 pos = getPosition();
     if (m_isBuilt) {
       // Main model rendering is handled by BuildingSystem
@@ -207,6 +216,7 @@ public:
   }
 
 private:
+  bool m_isVisible = true; // Default to visible
   std::string m_blueprintId;
   float m_rotation;
   float m_constructionProgress;

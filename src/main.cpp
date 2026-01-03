@@ -8,6 +8,7 @@
 #include "../game/NavigationGrid.h"
 #include "../systems/BuildingSystem.h"
 #include "../systems/CraftingSystem.h"
+#include "../systems/EditorSystem.h" // [EDITOR]
 #include "../systems/InteractionSystem.h"
 #include "../systems/InventorySystem.h"
 #include "../systems/NeedsSystem.h"
@@ -54,6 +55,10 @@ bool tpsIsRotating = false; // TPS Camera Orbit State
 float g_fovyZoom = 45.0f;   // Camera FOV for Zoom/Scope
 Vector3 smoothCamPos = {0.0f, 0.0f, 0.0f};
 Vector3 smoothCamTarget = {0.0f, 0.0f, 0.0f};
+
+// [EDITOR] Global Editor System
+EditorSystem g_editorSystem;
+
 class CameraController {
 public:
   CameraController(Camera3D *camera)
@@ -115,19 +120,11 @@ public:
         Vector3Normalize(Vector3CrossProduct(flatForward, {0.0f, 1.0f, 0.0f}));
     Vector3 up = {0.0f, 1.0f, 0.0f};
     if (IsKeyDown(KEY_W)) {
-      std::cout << "[CAMERA MOVE] W pressed, before move pos=("
-                << m_camera->position.x << "," << m_camera->position.y << ","
-                << m_camera->position.z << "), flatForward=(" << flatForward.x
-                << "," << flatForward.y << "," << flatForward.z << ")"
-                << std::endl;
+      // std::cout << "[CAMERA MOVE] W pressed" << std::endl;
       move = Vector3Add(move, flatForward);
     }
     if (IsKeyDown(KEY_S)) {
-      std::cout << "[CAMERA MOVE] S pressed, before move pos=("
-                << m_camera->position.x << "," << m_camera->position.y << ","
-                << m_camera->position.z << "), flatForward=(" << flatForward.x
-                << "," << flatForward.y << "," << flatForward.z << ")"
-                << std::endl;
+      // std::cout << "[CAMERA MOVE] S pressed" << std::endl;
       move = Vector3Subtract(move, flatForward);
     }
     if (IsKeyDown(KEY_A))
@@ -143,10 +140,7 @@ public:
       move = Vector3Scale(move, speed);
       m_camera->position = Vector3Add(m_camera->position, move);
       m_camera->target = Vector3Add(m_camera->target, move);
-      std::cout << "[CAMERA MOVE] after move pos=(" << m_camera->position.x
-                << "," << m_camera->position.y << "," << m_camera->position.z
-                << "), move=(" << move.x << "," << move.y << "," << move.z
-                << ")" << std::endl;
+      // std::cout << "[CAMERA MOVE] Moved" << std::endl;
     }
     // Obrót kamery TYLKO na ŚRODKOWY przycisk myszy – prawdziwa orbita
     // równoległa do terenu
@@ -241,6 +235,7 @@ bool hasCommandTarget = false;
 float cameraFollowSpeed = 5.0f;
 Vector3 cameraTargetPosition;
 Vector3 cameraTargetTarget;
+bool wantCursorHidden = false; // Default false (Isometric)
 // Helper: Raycast against everything (Terrain + Buildings)
 struct WorldRaycastHit {
   bool hit;
@@ -404,6 +399,12 @@ void renderScene() {
   if (g_drawDebugGrid) {
     DrawGrid(20, 1.0f);
   }
+
+  // [EDITOR] Render Editor Gizmos on top (depth test handling is inside Render)
+  // [EDITOR] Render Editor Gizmos on top (depth test handling is inside
+  // Render3D)
+  g_editorSystem.Render3D(sceneCamera);
+
   EndMode3D();
 
   // Health Bars 2D for World Objects
@@ -434,7 +435,8 @@ void renderScene() {
     }
   }
 
-  // 3. Building Tasks Labels
+  // 3. Building Tasks Labels - REMOVED to avoid clutter with modular buildings
+  /*
   if (g_buildingSystem) {
     auto tasks = g_buildingSystem->getActiveBuildTasks();
     for (auto *task : tasks) {
@@ -454,6 +456,7 @@ void renderScene() {
       }
     }
   }
+  */
   // Call UI render (debug)
   if (g_interactionSystem) {
     g_interactionSystem->renderUI(currentCam);
@@ -521,6 +524,9 @@ void renderScene() {
   rlMatrixMode(RL_PROJECTION);
   rlPopMatrix();
   rlMatrixMode(RL_MODELVIEW);
+
+  // [EDITOR] Render Editor GUI (2D) - Must be outside BeginMode3D
+  g_editorSystem.RenderGUI();
 }
 void processInput() {
   // Debug Console Toggle
@@ -575,6 +581,28 @@ void processInput() {
                 << " (4x speed)" << std::endl;
     }
   }
+
+  // [EDITOR] Update Editor System
+  // Pass lists. We need non-const unique_ptr<Tree> for modification,
+  // but terrain.getTrees() surely returns const reference?
+  // Let's assume we can access them.
+  // Actually terrain.getTrees() returns const
+  // std::vector<std::unique_ptr<Tree>>&. Casting away const for editor is
+  // acceptable in this context but dangerous. Better: Add non-const getter to
+  // Terrain or just simple cast for now. We'll use const_cast since we know we
+  // own them.
+
+  // NOTE: This assumes Terrain has standard getters.
+  std::vector<std::unique_ptr<Tree>> &trees =
+      const_cast<std::vector<std::unique_ptr<Tree>> &>(terrain.getTrees());
+  std::vector<Settler *> &settlers =
+      const_cast<std::vector<Settler *> &>(colony.getSettlers());
+  std::vector<BuildingInstance *> buildings =
+      g_buildingSystem->getAllBuildings();
+  std::vector<BuildTask *> activeBuildTasks = g_buildingSystem->getActiveBuildTasks();
+
+  g_editorSystem.Update(sceneCamera, settlers, trees, buildings, activeBuildTasks);
+
   // Building mode toggle
   if (IsKeyPressed(KEY_B)) {
     isBuildingMode = !isBuildingMode;
@@ -642,16 +670,19 @@ void processInput() {
         controlledSettler->setPlayerControlled(true);
         // TPS Mode: Hide cursor for mouse look
         DisableCursor();
+        wantCursorHidden = true; // Lock cursor for TPS
         std::cout << "[CAMERA] Switched to TPS mode - Controlling: "
                   << controlledSettler->getName() << std::endl;
       }
     } else if (currentCameraMode == CameraViewMode::TPS) {
       currentCameraMode = CameraViewMode::FPS;
-      DisableCursor(); // ensure hidden
+      DisableCursor();         // ensure hidden
+      wantCursorHidden = true; // Lock cursor for FPS
       std::cout << "[CAMERA] Switched to FPS mode" << std::endl;
     } else if (currentCameraMode == CameraViewMode::FPS) {
       currentCameraMode = CameraViewMode::ISOMETRIC;
-      EnableCursor(); // Show mouse back
+      EnableCursor();           // Show mouse back
+      wantCursorHidden = false; // Release cursor for Isometric
       // Disable player control
       if (controlledSettler) {
         controlledSettler->setPlayerControlled(false);
@@ -667,6 +698,15 @@ void processInput() {
   if (IsKeyPressed(KEY_F3)) {
     g_drawDebugGrid = !g_drawDebugGrid;
   }
+  
+  // FPS ARM EDITOR (F2) - Disabled
+  // if (IsKeyPressed(KEY_F2)) {
+  //     if (controlledSettler) {
+  //         g_editorSystem.StartFpsArmEdit(controlledSettler);
+  //     } else {
+  //         std::cout << "[Main] Cannot edit Arm: No settler controlled!" << std::endl;
+  //     }
+  // }
 
   // Player input for settler control in TPS/FPS modes
   if ((currentCameraMode == CameraViewMode::TPS ||
@@ -681,37 +721,45 @@ void processInput() {
     Vector2 delta = GetMouseDelta();
 
     // --- MOUSE LOOK ---
-    // TPS: Always rotate camera with mouse movement (Cursor is locked/hidden)
-    if (currentCameraMode == CameraViewMode::TPS) {
-      // FIXED: Mouse Right should Look Right -> Camera moves Left (Decrease
-      // Yaw)
-      tpsYaw -= delta.x * baseSens;
-      // FIXED: Mouse Down (Positive Y) should Look Down -> Camera Moves Up
-      // (Increase Pitch) -> "Normal"
-      tpsPitch += delta.y * baseSens;
-      tpsPitch = Clamp(tpsPitch, -0.4f, 1.2f); // Limit vertical orbit
+    // --- MOUSE LOOK ---
+    // Handle Cursor Lock State
+    // Persistent state to know if we WANT the cursor hidden
+    // wantCursorHidden is now GLOBAL
 
-      // Sync settler rotation with camera yaw
-      // Camera Look Direction = tpsYaw + PI (Opposite to Camera Pos)
-      // Settler should face Camera Look Direction
-      controlledSettler->setRotationFromMouse(tpsYaw - PI);
+    // Toggle Menu Mode with ALT
+    if (IsKeyPressed(KEY_LEFT_ALT)) {
+      wantCursorHidden = !wantCursorHidden;
+      if (wantCursorHidden)
+        DisableCursor();
+      else
+        EnableCursor();
     }
 
-    // FPS: Mouse look (Cursor is locked/hidden)
-    if (currentCameraMode == CameraViewMode::FPS) {
-      Vector2 mouseDelta = GetMouseDelta();
-      if (mouseDelta.x != 0 || mouseDelta.y != 0) {
-        // Yaw rotates the settler body - inverted sense to match mouse movement
-        float yawChange = -mouseDelta.x * baseSens;
-        controlledSettler->setRotationFromMouse(
-            (controlledSettler->getRotation() * DEG2RAD) + yawChange);
+    // Force strict state (If we want it hidden, ensure it IS hidden)
+    if (wantCursorHidden) {
+      if (!IsCursorHidden())
+        DisableCursor();
 
-        // Pitch rotates only the camera view - inverted sign to match mouse
-        // movement
-        fpsPitch += mouseDelta.y * baseSens;
+      // TPS: Always rotate camera with mouse movement
+      if (currentCameraMode == CameraViewMode::TPS) {
+        tpsYaw -= delta.x * baseSens;
+        tpsPitch += delta.y * baseSens;
+        tpsPitch = Clamp(tpsPitch, -0.4f, 1.2f); // Limit vertical orbit
+
+        controlledSettler->setRotationFromMouse((tpsYaw + PI) * RAD2DEG);
+      }
+
+      // FPS: Mouse look
+      if (currentCameraMode == CameraViewMode::FPS) {
+        float yawChangeDeg = -delta.x * baseSens * RAD2DEG;
+        controlledSettler->setRotationFromMouse(
+            controlledSettler->getRotation() + yawChangeDeg);
+
+        fpsPitch += delta.y * baseSens;
         fpsPitch = Clamp(fpsPitch, -1.4f, 1.4f); // Limit up/down
       }
     }
+    // ------------------
     // ------------------
 
     // Scope/Zoom handling with Right Mouse Button
@@ -804,19 +852,62 @@ void processInput() {
     if (IsKeyDown(KEY_D))
       moveDir = Vector3Add(moveDir, camRight);
 
-    // Apply movement
+    // Apply movement with SLIDING COLLISION
     if (Vector3Length(moveDir) > 0.001f) {
       moveDir = Vector3Normalize(moveDir);
-      Vector3 newPos =
-          Vector3Add(currentSettlerPos, Vector3Scale(moveDir, moveSpeed));
-      controlledSettler->setPosition(newPos);
+      
+      // Separate axes for sliding
+      Vector3 moveX = { moveDir.x * moveSpeed, 0, 0 };
+      Vector3 moveZ = { 0, 0, moveDir.z * moveSpeed };
+      
+      Vector3 finalPos = currentSettlerPos;
+      bool moved = false;
 
-      // In TPS, we already sync rotation with mouse look above.
-      // But if we wanted "move direction" rotation when NOT aiming, we'd change
-      // it here. User asked for "standard TPS", usually means "Look Direction"
-      // is forward. The mouse look code above handles rotation.
+      // Define Collision Checker Helper locally for captured scope
+      auto IsPositionFree = [&](Vector3 testPos) -> bool {
+          // 1. Check Buildings (Increased radius to 10.0f to catch large buildings)
+          if (g_buildingSystem) {
+              auto buildings = g_buildingSystem->getBuildingsInRange(testPos, 10.0f);
+              for (auto* b : buildings) {
+                  if (b->getBlueprintId() == "floor") continue;
+                  if (b->CheckCollision(testPos, 0.4f)) {
+                      // std::cout << "[Collision] Blocked by building: " << b->getBlueprintId() << std::endl;
+                      return false; 
+                  }
+              }
+          }
+           // 2. Check Trees
+           const auto& trees = terrain.getTrees();
+           for(const auto& t : trees) {
+               if(t->isActive() && !t->isStump()) {
+                   if(CheckCollisionBoxSphere(t->getBoundingBox(), testPos, 0.4f)) {
+                       // std::cout << "[Collision] Blocked by tree" << std::endl;
+                       return false;
+                   }
+               }
+           }
+           return true;
+      };
 
-      controlledSettler->setState(SettlerState::MOVING);
+      // Try X Movement
+      if (IsPositionFree(Vector3Add(finalPos, moveX))) {
+          finalPos = Vector3Add(finalPos, moveX);
+          moved = true;
+      }
+      
+      // Try Z Movement
+      if (IsPositionFree(Vector3Add(finalPos, moveZ))) {
+          finalPos = Vector3Add(finalPos, moveZ);
+          moved = true;
+      }
+
+      if (moved) {
+          controlledSettler->setPosition(finalPos);
+          controlledSettler->setState(SettlerState::MOVING);
+      } else {
+          controlledSettler->setState(SettlerState::IDLE);
+      }
+
     } else {
       controlledSettler->setState(SettlerState::IDLE);
     }
@@ -885,7 +976,8 @@ void processInput() {
 
     // Camera at settler's eye height
     Vector3 eyePos = settlerPos;
-    eyePos.y += 1.7f; // Eye height
+    eyePos.y += 1.4f; // CORRECTED: Eye level (Body 0.5 + Neck/Head 0.82 ~ 1.32 + offset)
+                     // 1.6 was top of head. 1.4 is eyes.
 
     // Look direction calculated from settler rotation and fpsPitch
     Vector3 lookDir;
@@ -895,8 +987,16 @@ void processInput() {
     lookDir.y = -sinf(fpsPitch); // Up/Down
     lookDir.z = cosf(settlerRot * DEG2RAD) * cosf(fpsPitch);
 
-    sceneCamera.position = eyePos;
-    sceneCamera.target = Vector3Add(eyePos, lookDir);
+    // Apply backward offset to see more of the arms/body
+    Vector3 flatForward = {sinf(settlerRot * DEG2RAD), 0.0f,
+                           cosf(settlerRot * DEG2RAD)};
+    
+    // User complaint: "Too far behind head". Removed -0.35f offset.
+    // Now exactly at eye position (or slightly forward if needed)
+    Vector3 backOffset = Vector3Scale(flatForward, 0.2f); // Slightly FORWARD (Eyes in front of neck) 
+
+    sceneCamera.position = Vector3Add(eyePos, backOffset);
+    sceneCamera.target = Vector3Add(sceneCamera.position, lookDir);
 
     // Sync smoothers so when we switch back to TPS it's ready
     smoothCamPos = sceneCamera.position;
@@ -1031,6 +1131,19 @@ int main() {
 
     // Draw Debug Console Overlay
     DebugConsole::getInstance().render();
+
+    // --- FORCE CURSOR LOCK ---
+    // Aggressively re-apply cursor lock every frame if it should be hidden.
+    if (wantCursorHidden) { // Use our persistent state
+      if (!IsCursorHidden())
+        DisableCursor();
+
+      // NUCLEAR OPTION: Force cursor to center to prevent escaping
+      // Only if we are focused
+      if (IsWindowFocused()) {
+        SetMousePosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+      }
+    }
 
     EndDrawing();
   }

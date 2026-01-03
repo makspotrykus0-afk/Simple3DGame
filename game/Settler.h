@@ -88,8 +88,8 @@ enum class SettlerState {
   WAITING,
   CRAFTING,
   SKINNING,
-  MOVING_TO_SKIN
-
+  MOVING_TO_SKIN,
+  FETCHING_RESOURCE
 };
 enum class TaskType {
   MOVE,
@@ -155,7 +155,8 @@ public:
               const std::vector<std::unique_ptr<Animal>> &animals,
               const std::vector<std::unique_ptr<ResourceNode>> &resourceNodes);
   void render() override;
-  void renderFPS(); // Special render for FPS hands/weapon
+  void render(bool isFps); // Overload for FPS mode
+  // renderFPS removed
   Vector3 getPosition() const override { return position; }
   void setPosition(const Vector3 &pos) override { position = pos; }
   InteractionResult interact(GameEntity * /*player*/) override;
@@ -266,11 +267,14 @@ public:
   void UpdateMovingToSkin(
       float deltaTime, const std::vector<BuildingInstance *> &buildings,
       const std::vector<std::unique_ptr<ResourceNode>> &resourceNodes);
+  void UpdateFetchingResource(float deltaTime, const std::vector<BuildingInstance *> &buildings);
   void CraftTool(const std::string &toolName);
   bool PickupItem(Item *item);
   void DropItem(int slotIndex);
   BuildingInstance *
   FindNearestStorage(const std::vector<BuildingInstance *> &buildings);
+  BuildingInstance *
+  FindNearestStorageWithResource(const std::vector<BuildingInstance *> &buildings, const std::string& resourceType);
   BuildingInstance *
   FindNearestWorkshop(const std::vector<BuildingInstance *> &buildings);
   void ignoreStorage(const std::string &storageId);
@@ -288,6 +292,7 @@ public:
   bool isIndependent() const { return m_isIndependentBuilder; }
   BuildTask *getPrivateBuildTask() const { return m_myPrivateBuildTask; }
   void setPrivateBuildTask(BuildTask *task) { m_myPrivateBuildTask = task; }
+  BuildTask *getCurrentBuildTask() const { return m_currentBuildTask; }
 
   void ForceGatherTarget(GameEntity *target) { forceGatherTarget(target); }
   void AssignBuildTask(BuildTask *task) { assignBuildTask(task); }
@@ -382,8 +387,19 @@ private:
   float m_gatherInterval;
   std::string m_currentCraftTarget;
   int m_currentCraftTaskId = -1; // ID aktualnego zadania craftingu
+  
+  // Resource Fetching
+  std::string m_resourceToFetch = "";
+  int m_resourceFetchAmount = 0;
 
 public:
+  // FPS Editor Variables (Static) - Made Public for EditorSystem
+  static float s_fpsUserFwd;   // X
+  static float s_fpsUserRight; // Z
+  static float s_fpsUserUp;    // Y
+  static float s_fpsYaw;
+  static float s_fpsPitch;
+
   int getCraftingTaskId() const { return m_currentCraftTaskId; }
   std::vector<std::string>
       m_ignoredStorages; // Job State History (to detect toggle)

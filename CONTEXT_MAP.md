@@ -16,6 +16,7 @@ Simple3DGame/
 ├── src/            Główna aplikacja (main.cpp, pętla gry)
 ├── events/         System zdarzeń (InteractionEvents.h)
 ├── docs/           Dokumentacja projektu
+├── tests/          Testy jednostkowe i integracyjne
 ├── resources/      Zasoby (tekstury, modele, dźwięki)
 ├── raylib/         Framework graficzny Raylib
 └── vendor/         Biblioteki zewnętrzne
@@ -68,23 +69,27 @@ Simple3DGame/
 ### 3.4 Game - Klasy Logiki Gry
 
 #### Świat i Środowisko
+
 - **Terrain** (`game/Terrain.h/cpp`) - Generator terenu, zarządza wysokościami, drzewami i resource nodes
 - **Colony** (`game/Colony.h/cpp`) - Kolonia, zarządza osadnikami, zasobami, budynkami i AI
 - **ColonyAI** (`game/ColonyAI.h/cpp`) - Sztuczna inteligencja kolonii
 - **NavigationGrid** (`game/NavigationGrid.h/cpp`) - Pathfinding i nawigacja (A*)
 
 #### Postacie i Zwierzęta
+
 - **Settler** (`game/Settler.h/cpp`) - Osadnik z profesjami, zadaniami, stanami (IDLE, CHOPPING, MINING, BUILDING, etc.)
 - **Animal** (`game/Animal.h/cpp`) - Zwierzęta (króliki, jelenie)
 - **Spider** (`game/Spider.h/cpp`) - Pająki (wrogowie)
 
 #### Zasoby i Obiekty
+
 - **ResourceNode** (`game/ResourceNode.h/cpp`) - Węzły zasobów (kamień, ruda)
 - **Tree** (`game/Tree.h/cpp`) - Drzewa do wycinania
 - **Bush** (`game/Colony.h`) - Krzewy z owocami
 - **WorldItem** (`game/Colony.h`) - Przedmioty upuszczone w świecie
 
 #### Budynki i Konstrukcje
+
 - **BuildingBlueprint** (`game/BuildingBlueprint.h/cpp`) - Szablon budynku
 - **BuildingInstance** (`game/BuildingInstance.h`) - Instancja budynku w świecie
 - **BuildingTask** (`game/BuildingTask.h/cpp`) - Zadanie budowy
@@ -92,6 +97,7 @@ Simple3DGame/
 - **Bed** (`game/Bed.h/cpp`) - Łóżka dla osadników
 
 #### Pozostałe
+
 - **Item** (`game/Item.h/cpp`) - Przedmioty (narzędzia, jedzenie, materiały)
 - **Projectile** (`game/Projectile.h/cpp`) - Pociski (łuki, kamienie)
 - **GatheringTask** (`game/GatheringTask.h/cpp`) - Zadania zbierania zasobów
@@ -111,35 +117,42 @@ Simple3DGame/
 ## 4. Główne Mechaniki Gry
 
 ### 4.1 System Osadników (Settlers)
+
 - **Profesje**: BUILDER, GATHERER, MINER, FARMER, CRAFTER
 - **Stany**: IDLE, MOVING, CHOPPING, MINING, GATHERING, BUILDING, CRAFTING, EATING, SLEEPING
 - **AI**: Autonomiczne szukanie zadań, pathfinding, zarządzanie potrzebami
 
 ### 4.2 System Zasobów
+
 - **Typy**: Drewno, Kamień, Żelazo, Złoto, Jedzenie, Fibra
 - **Zbieranie**: Wyklinanie drzew, kopanie kamieni, zbieranie z krzewów
 - **Magazynowanie**: Ekwipunek osadników, budynki magazynowe
 
 ### 4.3 System Budowania
+
 - **Typy budynków**: Ściany, podłogi, drzwi, magazyny, łóżka, furnace, workbench
 - **Mechanika**: Planowanie → Zlecanie zadania → Gromadzenie zasobów → Budowa
 - **Collision detection**: Sprawdzanie wolnej przestrzeni przed spawnem obiektów
 
 ### 4.4 System Craftingu
+
 - **Receptury**: Definiowane przepisy (np. drewno → deski)
 - **Stacje robocze**: Workbench, Furnace
 - **Dependency**: Osadnicy szukają materiałów w magazynach
 
 ### 4.5 System Potrzeb (Needs)
+
 - **Głód**: Osadnicy muszą jeść (berries, cooked meat)
 - **Energia**: Regeneracja przez sen w łóżkach
 - **Zdrowie**: Regeneracja przy niskim głodzie
 
 ### 4.6 System Umiejętności
+
 - Rozwój umiejętności przez działania
 - Zwiększone efektywności (szybsze zbieranie, budowanie)
 
 ### 4.7 System Interakcji
+
 - **Raycast**: Wykrywanie kliknięć na obiekty
 - **Selekcja**: Selekcja osadników (single, box)
 - **Polecenia**: Ruchy, budowa, wycinanie, attack
@@ -159,6 +172,7 @@ ColonyAI → przydziela → [GatheringTasks, BuildingTasks]
 ## 6. Przepływ Danych
 
 ### Inicjalizacja (main.cpp)
+
 1. Inicjalizacja Raylib
 2. Tworzenie `Terrain` i generowanie świata
 3. Tworzenie `Colony` i dodanie osadników
@@ -166,6 +180,7 @@ ColonyAI → przydziela → [GatheringTasks, BuildingTasks]
 5. Rejestracja blueprintów budynków
 
 ### Pętla Gry (main loop)
+
 1. **Input**: `processInput()` - obsługa klawiszy, myszy, selekcji
 2. **Update**:
    - `colony.update(deltaTime, trees, buildings)`
@@ -178,6 +193,7 @@ ColonyAI → przydziela → [GatheringTasks, BuildingTasks]
    - Renderowanie ścieżek, UI, debugów
 
 ### AI Osadnika (Settler.Update)
+
 1. Sprawdzenie potrzeb (głód, energia)
 2. Jeśli brak zadań → szukanie nowych (przez ColonyAI)
 3. Wykonywanie obecnego zadania (MOVE → GATHER → DEPOSIT)
@@ -204,21 +220,25 @@ ColonyAI → przydziela → [GatheringTasks, BuildingTasks]
 ## 9. Architektura Kodu
 
 ### Smart Pointers
+
 - `std::unique_ptr` - dla własności obiektów (Trees, ResourceNodes, Buildings)
 - `std::shared_ptr` - w przypadkach współdzielonej własności
 - Raw pointers - dla odniesień nieposiadających (Colony.settlers)
 
 ### Pamięć
+
 - RAII - automatyczne zarządzanie zasobami
 - Move semantics - transferowanie własności (std::move)
 
 ## 10. Ostatnie Zmiany (z historii konwersacji)
 
 ### Collision Checks dla Resources (31.12.2024)
+
 - Zmodyfikowano `Terrain.cpp`: spawning drzew i kamieni sprawdza kolizje z budynkami
 - Zapobiega spawowaniu resources wewnątrz budynków
 
 ### Stone Search Fix (31.12.2024)
+
 - Naprawiono bug: osadnicy nie mogli znaleźć kamieni
 - Fix: użycie prawidłowego parametru `resourceNodes` w `Settler::FindNearestResourceNode()`
 - Dodano logi debugujące
@@ -245,6 +265,7 @@ ColonyAI → przydziela → [GatheringTasks, BuildingTasks]
 ## 13. Kluczowe Pliki do Edycji
 
 Dla konkretnych zadań:
+
 - **Terrain/World**: `game/Terrain.cpp`, `game/NavigationGrid.cpp`
 - **AI Osadników**: `game/Settler.cpp`, `game/ColonyAI.cpp`
 - **Budowanie**: `systems/BuildingSystem.cpp`, `game/BuildingBlueprint.cpp`

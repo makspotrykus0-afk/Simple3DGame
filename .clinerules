@@ -1,39 +1,34 @@
-# C++ Game Dev Expert Guidelines
+# Antigravity Game Dev Rules - Simple3DGame
 
-Jesteś ekspertem programowania gier w C++ (Game Dev). Twoim celem jest pisanie działającego, wydajnego kodu.
+## 1. Komunikacja i Język
+- **Domyślny Język:** Zawsze pisz do użytkownika po polsku (rozmowa w czacie).
+- **Kod C++:** Wyjątek - kod źródłowy, komentarze techniczne w kodzie oraz logi w konsoli (`std::cout`) pozostają po angielsku.
+- **Artefakty:** Wszystkie pliki dokumentujące pracę (`task.md`, `implementation_plan.md`, `walkthrough.md`) MUSZĄ być tworzone w języku polskim.
 
-ZASADY KRYTYCZNE (Musisz ich przestrzegać):
-1.  **Analiza Struktury:** Zanim zmodyfikujesz plik .cpp, ZAWSZE najpierw przeczytaj odpowiadający mu plik nagłówkowy (.h).
-2.  **Kompilacja:** Po każdej edycji kodu, spróbuj go skompilować (jeśli masz dostęp do terminala) lub przeanalizuj pod kątem błędów linkera.
-3.  **Pętla Gry:** Jeśli dodajesz nową logikę (np. Update/Draw), upewnij się, że jest ona wywoływana w głównej pętli gry (np. w Game.cpp).
-4.  **Debugowanie:** Jeśli kod nie działa, nie zgaduj. Dodaj std::cout lub logi, aby sprawdzić, czy funkcja jest w ogóle wywoływana.
-5.  **Smart Pointers:** Preferuj std::unique_ptr i std::shared_ptr zamiast surowych wskaźników (new/delete), chyba że jest to wymóg silnika.
-6.  **Jedna zmiana na raz:** Nie zmieniaj wszystkiego naraz. Skup się na obecnym zadaniu.
+## 2. Protokół TURBO (Pełna Automatyzacja)
+- **Terminal:** Workspace ma włączone Turbo poprzez `.agent/workflows/`.
+- **Auto-Run:** Zawsze ustawiaj `SafeToAutoRun: true` w narzędziu `run_command` dla komend kompilacji, budowania (CMake/Make), testów oraz operacji Git.
+- **Bez zbędnych pytań:** Nie proś użytkownika o akceptację komend terminalowych, chyba że ich skutek jest nieodwracalny i niebezpieczny (np. usuwanie całych katalogów poza `build/`).
 
-Jeśli użytkownik zgłasza, że "nie ma efektu", Twoim priorytetem jest dodanie logów debugujących (print), a nie ślepa zmiana kodu.
-# TOKEN & TOOL EFFICIENCY PROTOCOL
+## 3. Standardy Pracy Antigravity (Agentic Mode)
+- **Granice Zadań:** Każdy etap pracy rozpoczynaj od `task_boundary`.
+- **Planowanie:** Przed większą edycją kodu stwórz i przedstaw `implementation_plan.md` (po polsku).
+- **Ścieżki:** Zawsze używaj ścieżek absolutnych w wywołaniach narzędzi.
+- **Weryfikacja:** Po każdej edycji kodu podejmij próbę kompilacji (używając Turbo), aby wyłapać błędy przed oddaniem zadania.
 
-1. **NO BLIND SEARCH:** Do not use `list_files` or `search` tools recursively. Ask user to provide file paths if specific context is missing.
-2. **NO GUESSING:** Do not edit .cpp files without having the corresponding .h file in context.
-3. **STOP LOOPING:** If a compilation error persists after 2 attempts, STOP. Do not try a 3rd time. Instead, analyze the error log, list potential root causes, and ask the user for guidance.
-4. **COMPACT RESPONSES:** Be concise. Do not rewrite the whole file if only 3 lines changed. Use `replace` blocks effectively.
-5. **PLAN FIRST:** For complex logic (physics, AI), outline the algorithm in pseudocode before writing C++ code.
+## 4. Zasady C++ Game Dev
+- **Najpierw Analiza:** Zanim zmodyfikujesz `.cpp`, ZAWSZE przeczytaj plik nagłówkowy `.h`, aby zrozumieć strukturę klasy.
+- **Debugowanie over Zgadywanie:** Jeśli funkcjonalność nie działa, priorytetem jest dodanie logów (`std::cout`) w celu diagnostyki, a nie próba naprawy "na oślep". Porób breakpointy i wywołaj debug z instrukcja dla user
+- **Zarządzanie Pamięcią:** Preferuj Standard Library i Smart Pointery (`std::unique_ptr`, `std::shared_ptr`).
+- **Pętla Gry:** Dodając nową logikę, upewnij się, że jest ona poprawnie wpięta w pętlę `Update/Draw`.
+- **Jedna rzecz na raz:** Skup się na obecnym celu, unikaj edycji plików niezwiązanych z zadaniem.
 
-# TOOLS & MCP PROTOCOL
+## 5. Pamięć Projektowa i Kontekst
+- **Mapa Kontekstu:** Po każdej istotnej zmianie struktury projektu (nowe systemy, pliki) zaktualizuj plik `CONTEXT_MAP.md`.
+- **Zadania (task.md):** Utrzymuj listę zadań w `<appDataDir>/brain/` jako główne źródło prawdy o postępie.
+- **Plany:** Zawsze twórz `implementation_plan.md` przed edycją kodu.
 
-1.  **NATIVE FILE TOOLS ONLY:** Do not use any external `filesystem` MCP tools. ALWAYS use Roo Code's native `read_file`, `write_to_file`, `list_files`, `apply_diff`.
-    * *Reason:* Prevents conflicts and path errors.
-
-2.  **SEQUENTIAL THINKING USAGE:**
-    * **DEFAULT:** Do NOT use the `sequentialthinking` tool for regular coding tasks, simple edits, or standard implementation. Use internal monologue (text explanation) instead.
-    * **EXCEPTION:** You MAY use `sequentialthinking` ONLY if:
-        a) The user explicitly asks for "deep analysis" or "step-by-step thinking".
-        b) You have failed to fix a bug twice in a row and need to re-evaluate your assumptions.
-        c) The task involves complex architectural design affecting multiple files.
-
-3.  **TOKEN ECONOMY:** Before calling any tool, ask: "Is this tool call absolutely necessary to fulfill the request?" If the information is already in context, do not call a tool.
-4.  **NO REDUNDANT READS (IMPORTANT):**
-    * Do NOT call `read_file` on a file immediately after using `write_to_file`  on it.
-    * Assume the edit was successful if the tool did not return an error.
-    * The file content in your internal context is sufficient; do not waste tokens re-reading what you just wrote.
-    apply_diff rób pojedynczo i przekazuj to w kolejnych task
+## 6. Assety i Debugowanie
+- **Generator Assetów:** Używaj `generate_image` do ikon/tekstur, zapisuj w `./assets/concepts/`.
+- **Workflow /log:** Stosuj do szybkiej diagnostyki, usuwaj logi przed commitem.
+- **Interakcja z Użytkownikiem:** Jeśli potrzebujesz breakpointa, podaj użytkownikowi dokładną linię i instrukcję co ma sprawdzić.

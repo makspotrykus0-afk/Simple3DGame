@@ -153,17 +153,18 @@ void BuildTask::advanceConstruction(float amount) {
 
   m_progress += amount;
 
-  // Log progress occasionally (every 20%)
-  static float lastLogProgress = 0.0f;
-  if (m_progress - lastLogProgress > 20.0f) {
-    std::cout << "[BuildTask] Construction progress: " << (int)m_progress << "%"
-              << std::endl;
-    lastLogProgress = m_progress;
+  // Check completion first to clamp progress
+  float maxProgress = m_blueprint->getBuildTime() * 100.0f;
+  if (m_progress >= maxProgress) {
+    m_progress = maxProgress;
+    m_state = BuildState::COMPLETED;
   }
 
-  if (m_progress >= m_blueprint->getBuildTime() * 100.0f) {
-    m_progress = m_blueprint->getBuildTime() * 100.0f;
-    m_state = BuildState::COMPLETED;
+  // Log progress occasionally (every 20%)
+  if (m_progress - m_lastLogProgress > 20.0f) {
+    std::cout << "[BuildTask] Construction progress: " << (int)m_progress << "%"
+              << std::endl;
+    m_lastLogProgress = m_progress;
   }
 }
 
@@ -288,9 +289,19 @@ void BuildingSystem::ensureBlueprintExists(const std::string &blueprintId) {
 
       house->addCost(Resources::ResourceType::Wood, size * 15 + 5);
 
+      // FIX: Set correct physical size for the bounding box
+      // Width/Length are in "grid units" (2.0f world units each)
+      // Height is standard wall height (3.0f)
+      house->setSize({(float)width * 2.0f, 3.0f, (float)length * 2.0f});
+
+      // Update collision box to match new size (Centered at 0, local)
+      float halfW = (float)width * 1.0f;
+      float halfL = (float)length * 1.0f;
+      house->setCollisionBox({{-halfW, 0.0f, -halfL}, {halfW, 3.0f, halfL}});
+
       registerBlueprint(std::move(house));
       std::cout << "BuildingSystem: Generated dynamic blueprint " << blueprintId
-                << " with Bed" << std::endl;
+                << " with Size=" << width * 2 << "x" << length * 2 << std::endl;
 
     } catch (...) {
       std::cerr << "BuildingSystem: Failed to parse dynamic blueprint ID: "
@@ -402,6 +413,48 @@ BuildTask *BuildingSystem::startBuilding(const std::string &blueprintId,
   BuildingBlueprint *bp = it->second.get();
   std::cout << "BuildingSystem: Found blueprint " << blueprintId
             << ", components: " << bp->getComponents().size() << std::endl;
+
+  // Handle composite blueprints (like houses) by creating individual tasks for
+  // parts This allows modular construction (floors, walls) instead of one big
+  // task
+  if (!instant && !bp->getComponents().empty()) {
+    std::cout << "BuildingSystem: Exploding composite blueprint " << blueprintId
+              << " into parts." << std::endl;
+    bool anyFail = false;
+    for (const auto &comp : bp->getComponents()) {
+      // Calculate world position and rotation for the component
+      Vector3 rotatedOffset = Vector3RotateByAxisAngle(
+          comp.localPosition, {0.0f, 1.0f, 0.0f}, rotation * DEG2RAD);
+      Vector3 partPos = Vector3Add(position, rotatedOffset);
+      float partRot = rotation + comp.localRotation;
+
+      bool partSuccess = false;
+      // Recursively start building the part (forcing no snap to ensure it stays
+      // relative to parent) We pass 'true' for forceNoSnap because we
+      // calculated the exact world position
+      startBuilding(comp.blueprintId, partPos, builder, partRot, true,
+                    ignoreCollision, instant, &partSuccess);
+      if (!partSuccess) {
+        std::cerr << "BuildingSystem: Failed to spawn part " << comp.blueprintId
+                  << std::endl;
+        anyFail = true;
+      }
+    }
+
+    // CRITICAL FIX: Create a placeholder "Master" BuildingInstance for the
+    // composite setup. This ensures ColonyAI sees that a "house" exists (or is
+    // under construction) and stops trying to spawn infinite copies of it.
+    auto placeholder =
+        std::make_unique<BuildingInstance>(blueprintId, position, rotation);
+    placeholder->setBuilt(false); // Mark as under construction
+    placeholder->setVisible(false); // CRITICAL: Hide it! It's just a logical container.
+    m_buildings.push_back(std::move(placeholder));
+
+    if (outSuccess)
+      *outSuccess = !anyFail;
+    return nullptr; // Return null as there is no single task for the composite
+  }
+
   if (instant) {
 
     auto building =
@@ -690,6 +743,9 @@ void BuildingSystem::cancelBuilding(BuildTask *task) {
 
 void BuildingSystem::render() {
   for (const auto &building : m_buildings) {
+    // CRITICAL: Skip invisible buildings (like composite placeholders)
+    if (!building->isVisible()) continue;
+
     auto it = m_blueprints.find(building->getBlueprintId());
     if (it != m_blueprints.end() && it->second) {
       const auto &blueprint = it->second;
@@ -798,6 +854,65 @@ void BuildingSystem::render() {
     float alpha = 0.5f + 0.3f * sinf(GetTime() * 2.0f);
     Color color = {200, 200, 200, (unsigned char)(alpha * 255)};
 
+    // Draw Construction Site Outline (Yellow Box) - REMOVED for modular clutter
+    // reduction BoundingBox bbox = task->getBoundingBox();
+    // DrawBoundingBox(bbox, YELLOW);
+
+    // Draw "Foundation" Grid - REMOVED
+    // DrawGrid(10, 1.0f);
+    /*
+    rlPushMatrix();
+    rlTranslatef(pos.x, pos.y + 0.05f, pos.z);
+    DrawPlane({0, 0, 0}, {blueprint->getSize().x, blueprint->getSize().z},
+              {255, 255, 0, 50});
+    rlPopMatrix();
+    */
+
+    // RENDER DEPOSITED RESOURCES
+    const auto &collected = task->getCollectedResources();
+    int itemCounter = 0;
+
+    // Visualization settings
+    float itemSize = 0.25f;
+    float spacing = 0.35f;
+    int itemsPerRow = 3;
+
+    for (const auto &kv : collected) {
+      std::string resName = kv.first;
+      int count = kv.second;
+      Color resColor = BROWN; // Default Wood
+      if (resName == "Stone")
+        resColor = GRAY;
+      else if (resName == "Wood")
+        resColor = {139, 69, 19, 255};
+      else if (resName == "Gold")
+        resColor = GOLD;
+
+      for (int i = 0; i < count; ++i) {
+        if (itemCounter > 50)
+          break; // Limit to avoid clutter
+
+        // Stack logic: 3x3 piles
+        int stackIndex = itemCounter / 9; // Layer
+        int floorIndex = itemCounter % 9; // Position in 3x3
+        int row = floorIndex / 3;
+        int col = floorIndex % 3;
+
+        // Position relative to build center, but offset to side or corner?
+        // Let's put them inside the bounding box but scattered.
+
+        Vector3 itemPos = pos;
+        // Offset to fit inside standard building footprint
+        itemPos.x += (col - 1) * spacing;
+        itemPos.z += (row - 1) * spacing;
+        itemPos.y += stackIndex * itemSize + (itemSize / 2.0f);
+
+        DrawCube(itemPos, itemSize, itemSize, itemSize, resColor);
+        DrawCubeWires(itemPos, itemSize, itemSize, itemSize, BLACK);
+        itemCounter++;
+      }
+    }
+
     // Draw Building Name
     std::string name = blueprint->getName();
     // Simple 3D feedback for started build
@@ -805,7 +920,8 @@ void BuildingSystem::render() {
     // Visual indicator (Box where text would be, or just the bars are enough if
     // clear) But let's actually make the bars better.
 
-    // 3D Progress Bars with Backgrounds
+    // REMOVED: 3D Progress Bars (too cluttered with modular buildings)
+    /*
     float barWidth = 2.0f;
     float barHeight = 0.2f;
     float barDepth = 0.1f;
@@ -833,11 +949,19 @@ void BuildingSystem::render() {
                           {(constProgress - 1.0f) * barWidth * 0.5f, 0, 0.01f}),
                constProgress * barWidth, barHeight * 0.9f, barDepth, GREEN);
     }
+    */
 
     // Fallback rendering logic for tasks
     if (!blueprint->getComponents().empty()) {
-      // Detailed ghost view for multi-component buildings
-      for (const auto &comp : blueprint->getComponents()) {
+      // Detailed view: Finished components are solid, others are ghost
+      float totalWork = blueprint->getBuildTime() * 100.0f;
+      int builtLimit = (int)((task->getProgress() / totalWork) *
+                             (float)blueprint->getComponents().size());
+
+      for (int i = 0; i < (int)blueprint->getComponents().size(); ++i) {
+        const auto &comp = blueprint->getComponents()[i];
+        bool isBuilt = (i < builtLimit);
+
         auto compIt = m_blueprints.find(comp.blueprintId);
         if (compIt != m_blueprints.end() && compIt->second) {
           const auto &compBp = compIt->second;
@@ -848,16 +972,23 @@ void BuildingSystem::render() {
           Vector3 compPos = Vector3Add(pos, rotatedOffset);
           float compRot = rotation + comp.localRotation;
 
-          // Use the ghost color (pulsing)
-          Color ghostColor = color;
-          // Optional: make floors slightly darker or different if needed, but
-          // uniform ghost is usually fine
+          // Solid or Ghost?
+          Color renderColor = isBuilt ? WHITE : color;
+          if (isBuilt &&
+              (comp.blueprintId == "wall" || isFloor(comp.blueprintId)))
+            renderColor = BROWN;
+
+          // FIX: Handle transparency properly for ghost parts
+          bool isGhost = !isBuilt;
+          if (isGhost) {
+             rlDisableDepthMask(); // Disable depth write for transparent ghosts
+          }
 
           if (model && model->meshCount > 0 && model->materialCount > 0) {
             DrawModelEx(*model, compPos, {0.0f, 1.0f, 0.0f}, compRot,
-                        {1.0f, 1.0f, 1.0f}, ghostColor);
+                        {1.0f, 1.0f, 1.0f}, renderColor);
           } else {
-            // Fallback cube for ghost component
+            // Fallback cube for component
             Vector3 fallbackPos = compPos;
             fallbackPos.y += compBp->getSize().y / 2.0f;
 
@@ -865,27 +996,43 @@ void BuildingSystem::render() {
             rlTranslatef(fallbackPos.x, fallbackPos.y, fallbackPos.z);
             rlRotatef(compRot, 0.0f, 1.0f, 0.0f);
             DrawCube(Vector3{0, 0, 0}, compBp->getSize().x, compBp->getSize().y,
-                     compBp->getSize().z, ghostColor);
+                     compBp->getSize().z, renderColor);
+            rlPopMatrix();
+
+            // Always draw wires for fallback visibility
+            rlPushMatrix();
+            rlTranslatef(fallbackPos.x, fallbackPos.y, fallbackPos.z);
+            rlRotatef(compRot, 0.0f, 1.0f, 0.0f);
             DrawCubeWires(Vector3{0, 0, 0}, compBp->getSize().x,
                           compBp->getSize().y, compBp->getSize().z,
-                          GREEN); // Keep wires green or make them match
+                          isBuilt ? BLACK : GREEN);
             rlPopMatrix();
+          }
+
+          if (isGhost) {
+             rlEnableDepthMask(); // Re-enable depth write
           }
         }
       }
-    } else if (blueprint->getModel() && blueprint->getModel()->meshCount > 0) {
-      DrawModelEx(*blueprint->getModel(), pos, {0.0f, 1.0f, 0.0f}, rotation,
-                  {1.0f, 1.0f, 1.0f}, color);
     } else {
-      Vector3 size = blueprint->getSize();
-      Vector3 renderPos = pos;
-      renderPos.y += size.y / 2.0f;
+      // Simple building (no components) - ALWAYS GHOST until finished
+      rlDisableDepthMask(); // Fix for transparency Z-fighting
 
-      rlPushMatrix();
-      rlTranslatef(renderPos.x, renderPos.y, renderPos.z);
-      rlRotatef(rotation, 0.0f, 1.0f, 0.0f);
-      DrawCube(Vector3{0, 0, 0}, size.x, size.y, size.z, color);
-      rlPopMatrix();
+      if (blueprint->getModel() && blueprint->getModel()->meshCount > 0) {
+        DrawModelEx(*blueprint->getModel(), pos, {0.0f, 1.0f, 0.0f}, rotation,
+                    {1.0f, 1.0f, 1.0f}, color);
+      } else {
+        Vector3 size = blueprint->getSize();
+        Vector3 renderPos = pos;
+        renderPos.y += size.y / 2.0f;
+
+        rlPushMatrix();
+        rlTranslatef(renderPos.x, renderPos.y, renderPos.z);
+        rlRotatef(rotation, 0.0f, 1.0f, 0.0f);
+        DrawCube(Vector3{0, 0, 0}, size.x, size.y, size.z, color);
+        rlPopMatrix();
+      }
+      rlEnableDepthMask();
     }
   }
 
@@ -968,7 +1115,7 @@ void BuildingSystem::renderStorageContents(BuildingInstance *building) {
     // vSlot.scale.z, YELLOW); // Less visual noise
     rlPopMatrix();
   }
-  rlEnableBackfaceCulling();
+  rlDisableBackfaceCulling();
 }
 
 void BuildingSystem::renderPreview(const std::string &blueprintId,

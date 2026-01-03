@@ -1,0 +1,1 @@
+-IF:/Simple3DGame/raylib/src/external/glfw/include -IF:/Simple3DGame/raylib/src/external/glfw/src -IF:/Simple3DGame/build/raylib/raylib/external/glfw/src

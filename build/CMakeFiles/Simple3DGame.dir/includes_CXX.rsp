@@ -1,0 +1,1 @@
+-IF:/Simple3DGame/src -IF:/Simple3DGame/core -IF:/Simple3DGame/systems -IF:/Simple3DGame/components -IF:/Simple3DGame/entities -IF:/Simple3DGame/game -IF:/Simple3DGame/raylib/src

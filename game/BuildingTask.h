@@ -30,11 +30,16 @@ public:
   // Getters
   BuildingBlueprint *getBlueprint() const { return m_blueprint; }
   Vector3 getPosition() const { return m_position; }
+  void setPosition(Vector3 pos) { m_position = pos; } // Added for Editor
   float getRotation() const { return m_rotation; }
+  void setRotation(float rot) { m_rotation = rot; } // Added for Editor
   GameEntity *getBuilder() const { return m_builder; }
   float getProgress() const { return m_progress; }
   float
   getMaterialProgress01() const; // Added for delivery progress visualization
+  const std::unordered_map<std::string, int> &getCollectedResources() const {
+    return m_collectedResources;
+  }
   BuildState getState() const { return m_state; }
   std::vector<ResourceRequirement> getMissingResources() const;
 
@@ -65,4 +70,5 @@ private:
 
   std::unordered_map<std::string, int> m_collectedResources;
   std::vector<Settler *> m_workers;
+  float m_lastLogProgress = 0.0f;
 };

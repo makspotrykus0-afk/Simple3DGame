@@ -47,19 +47,17 @@ void Door::checkAutoOpen() {
     bool anyoneNear = false;
     float triggerDistance = 2.5f; 
 
-    // Check settlers
-    // Colony::getSettlers returns vector of Settler* which are defined in Colony.h
+    // Check ALL settlers (including player-controlled settlers)
     const auto& settlers = m_colony->getSettlers();
     for (const auto* settler : settlers) {
         float dist = Vector3Distance(settler->getPosition(), m_position);
         if (dist < triggerDistance) {
-            // std::cout << "Door open triggered by " << settler->getName() << " at dist " << dist << std::endl;
             anyoneNear = true;
             break;
         }
     }
 
-    // Auto open/close logic
+    // Auto open/close logic  
     if (anyoneNear && !m_isOpen) {
         setOpen(true);
     } else if (!anyoneNear && m_isOpen) {

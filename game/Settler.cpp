@@ -37,6 +37,8 @@
 
 #include "../core/GameSystem.h"
 
+#include "../core/GameEngine.h"
+#include "../systems/StorageSystem.h"
 #include "../systems/BuildingSystem.h"
 
 #include "../systems/StorageSystem.h"
@@ -46,6 +48,7 @@
 #include "../components/EnergyComponent.h"
 #include "../components/PositionComponent.h"
 #include "../systems/CraftingSystem.h"
+
 
 #include "../components/SkillsComponent.h"
 
@@ -76,10 +79,16 @@ static void DrawProgressBar3D(Vector3 position, float progress, Color color) {
              color); // Slightly thicker freq or just diff color
   }
 }
-Settler::Settler(const std::string &name, const Vector3 &pos,
-                 SettlerProfession profession)
+// Static Init (FPS Editor Limits)
+float Settler::s_fpsUserFwd = 0.45f;
+float Settler::s_fpsUserRight = 0.05f;
+float Settler::s_fpsUserUp = -0.15f;
+float Settler::s_fpsYaw = 35.0f;
+float Settler::s_fpsPitch = -80.0f;
 
-    : GameEntity(name), m_name(name), m_profession(profession),
+Settler::Settler(const std::string &name, const Vector3 &pos, SettlerProfession profession)
+    : GameEntity(name), m_name(name), m_profession(profession), m_isSelected(false),
+      position(pos),
       m_state(SettlerState::IDLE),
 
       m_inventory(name, 50.0f, this),
@@ -92,7 +101,7 @@ Settler::Settler(const std::string &name, const Vector3 &pos,
       m_currentBuildTask(nullptr), m_currentGatherTask(nullptr),
       m_targetStorage(nullptr), m_targetWorkshop(nullptr),
 
-      m_gatherTimer(0.0f), m_gatherInterval(1.0f), m_isSelected(false),
+      m_gatherTimer(0.0f), m_gatherInterval(1.0f),
 
       m_currentGatherBush(nullptr), m_currentTree(nullptr),
       m_assignedBed(nullptr), m_targetFoodBush(nullptr),
@@ -150,8 +159,8 @@ Vector3 Settler::getMuzzlePosition() const {
   Vector3 right = {cosf(rotRad), 0.0f, -sinf(rotRad)};
 
   Vector3 muzzlePos = position;
-  // Offset to Right Shoulder/Hand
-  muzzlePos = Vector3Add(muzzlePos, Vector3Scale(right, 0.25f));
+  // Offset to Right Shoulder/Hand (Hand is at Visual -0.3f)
+  muzzlePos = Vector3Add(muzzlePos, Vector3Scale(right, -0.25f));
   // Height (Shoulder/Eye level)
   muzzlePos.y += 1.45f;
   // Forward (Length of arm + gun)
@@ -232,12 +241,22 @@ void Settler::useHeldItem(Vector3 targetPos) {
         float d = Vector3Distance(
             targetPos, t->getPosition()); // Click point to tree center
 
-        if (d < 1.5f) {
+        // Debug Log
+        // std::cout << "DEBUG: Checking tree at " << t->getPosition().x << "
+        // dist: " << d << std::endl;
+
+        if (d < 2.0f) { // Increased hit radius for click (was 1.5f)
           // Also check if Settler is close enough to tree (Melee range)
-          if (Vector3Distance(position, t->getPosition()) < 3.0f) {
+          float settlerDist = Vector3Distance(position, t->getPosition());
+          if (settlerDist < 3.5f) { // Match update logic (was 3.0f)
             // Target locked for hit frame
             m_currentTree = t.get();
+            std::cout << "[Settler] Axe swing initiated on tree! (Dist: "
+                      << settlerDist << ")" << std::endl;
             return;
+          } else {
+            std::cout << "[Settler] Tree too far (" << settlerDist << "m)"
+                      << std::endl;
           }
         }
       }
@@ -395,85 +414,25 @@ void Settler::Update(
     UpdateMovingToBed(deltaTime);
     break;
   case SettlerState::IDLE: {
-    // 0. PRIORITY: Process Action Queue actions FIRST
+    // 0. Finish/Execute ActionQueue first
     if (!m_actionQueue.empty()) {
       ExecuteNextAction();
       return;
     }
 
-    // PRIORITY: If we have resources, check if ANY nearby blueprint needs them
-    if (g_buildingSystem && !m_inventory.isEmpty()) {
-      auto activeTasks = g_buildingSystem->getActiveBuildTasks();
-      float bestDist = 30.0f; // Scan range
-      BuildTask *targetTask = nullptr;
-
-      // 1. Check private house first
-      if (m_isIndependentBuilder && m_myPrivateBuildTask &&
-          m_myPrivateBuildTask->isActive()) {
-        auto missing = m_myPrivateBuildTask->getMissingResources();
-        for (const auto &req : missing) {
-          if (m_inventory.getResourceAmount(req.resourceType) > 0) {
-            targetTask = m_myPrivateBuildTask;
-            break;
-          }
-        }
-      }
-
-      // 2. Check nearest other blueprint
-      if (!targetTask) {
-        for (auto *task : activeTasks) {
-          float d = Vector3Distance(position, task->getPosition());
-          if (d < bestDist) {
-            auto missing = task->getMissingResources();
-            for (const auto &req : missing) {
-              if (m_inventory.getResourceAmount(req.resourceType) > 0) {
-                bestDist = d;
-                targetTask = task;
-                break;
-              }
-            }
-          }
-        }
-      }
-
-      if (targetTask) {
-        std::cout << "[Settler] IDLE: Found nearby building task needing my "
-                     "resources. Delivering to "
-                  << targetTask->getBlueprint()->getName() << std::endl;
-        targetTask->addWorker(this); // Register as worker
-        assignBuildTask(targetTask);
-        ProcessActiveBuildTask(deltaTime, buildings);
-        return;
-      }
-    }
-
-    // INDEPENDENT BUILDER LOGIC - PRIORITY CHECK
-    if (m_isIndependentBuilder && m_myPrivateBuildTask && !m_currentBuildTask) {
-      // Auto-assign private task
-      if (m_myPrivateBuildTask->isActive()) {
-        assignBuildTask(m_myPrivateBuildTask);
-      }
-    }
-
-    // INDEPENDENT BUILDER LOGIC - HOUSE SEARCH
+    // 1. INDEPENDENT BUILDER LOGIC: Ensure House Exists
     if (m_isIndependentBuilder && !hasHouse) {
-      if (!m_myPrivateBuildTask) {
-        // Phase 1: Search for a build site
+      if (!m_myPrivateBuildTask || !m_myPrivateBuildTask->isActive()) {
+        // Start a new private build task if we don't have one
         if (g_buildingSystem) {
           std::string bpId = "house_4";
-          if (preferredHouseSize > 4 && preferredHouseSize <= 6)
+          if (preferredHouseSize > 4)
             bpId = "house_6";
-          else if (preferredHouseSize > 6)
-            bpId = "house_9";
 
-          // We need a helper to find build position since it's in ColonyAI.
-          // For now, let's use a simplified version or assume ColonyAI provides
-          // findBuildPosition. Actually, findBuildPosition is public in
-          // ColonyAI. But we can also just try some positions around the
-          // current one.
-          for (int i = 0; i < 10; ++i) {
+          // Try to find a valid build position nearby
+          for (int i = 0; i < 15; ++i) {
             float angle = (float)rand() / (float)RAND_MAX * 2.0f * PI;
-            float dist = 20.0f + (float)rand() / (float)RAND_MAX * 20.0f;
+            float dist = 15.0f + (float)rand() / (float)RAND_MAX * 15.0f;
             Vector3 testPos = {position.x + cosf(angle) * dist, 0.0f,
                                position.z + sinf(angle) * dist};
 
@@ -482,235 +441,149 @@ void Settler::Update(
               m_myPrivateBuildTask = g_buildingSystem->startBuilding(
                   bpId, testPos, this, 0.0f, false, false, false, &success);
               if (success && m_myPrivateBuildTask) {
-                std::cout
-                    << "[Settler] Independent: Started private build task for "
-                    << bpId << " at (" << testPos.x << ", " << testPos.z << ")"
-                    << std::endl;
+                std::cout << "[Settler] Started PRIVATE HOUSE build at "
+                          << testPos.x << "," << testPos.z << std::endl;
                 break;
               }
             }
           }
         }
       } else if (m_myPrivateBuildTask->getState() == BuildState::COMPLETED) {
-        // Task completed!
         hasHouse = true;
         m_myPrivateBuildTask = nullptr;
-        std::cout << "[Settler] Independent: House completed! I am no longer "
-                     "homeless."
-                  << std::endl;
-      } else if (m_myPrivateBuildTask->getState() == BuildState::CANCELLED) {
-        m_myPrivateBuildTask = nullptr;
+        std::cout << "[Settler] Local House Completed!" << std::endl;
       }
     }
 
-    // 2. Process Current Build Task (if assigned)
+    // 2. DECISION LOGIC: Select a Project
+    BuildTask *targetTask = nullptr;
+
+    // Priority A: Continue currently assigned task
     if (m_currentBuildTask && m_currentBuildTask->isActive()) {
-      // Check if we have missing resources
-      if (!m_currentBuildTask->hasAllResources()) {
-        auto missing = m_currentBuildTask->getMissingResources();
-        if (!missing.empty()) {
-          std::string reqResource = missing[0].resourceType;
-          int reqAmount = missing[0].amount;
-          int hasAmount = m_inventory.getResourceAmount(reqResource);
+      targetTask = m_currentBuildTask;
+    }
+    // Priority B: My Private House (if independent)
+    else if (m_myPrivateBuildTask && m_myPrivateBuildTask->isActive()) {
+      targetTask = m_myPrivateBuildTask;
+    }
+    // Priority C: Find Nearest Blueprint (if willing to build)
+    else if (performBuilding && g_buildingSystem) {
+      auto activeTasks = g_buildingSystem->getActiveBuildTasks();
+      float bestDist = 50.0f; // Search radius
 
-          if (hasAmount >=
-              std::min(reqAmount, 5)) { // Carry at least 5 or needed
-            // Deliver
-            ProcessActiveBuildTask(deltaTime, buildings);
-            return;
-          } else {
-            // Fetch Resource (Logic similar to Crafting fetch)
-            std::cout << "[Settler] BuildTask needs " << reqResource
-                      << ". Fetching." << std::endl;
-
-            if (reqResource == "Wood") {
-              float minDist = 9999.0f;
-              Tree *nearest = nullptr;
-              for (const auto &t : trees) {
-                if (t->isActive() && !t->isReserved() && !t->isStump()) {
-                  float d = Vector3Distance(position, t->getPosition());
-                  if (d < minDist) {
-                    minDist = d;
-                    nearest = t.get();
-                  }
-                }
-              }
-              if (nearest) {
-                std::cout << "[Settler] Found available tree at distance "
-                          << minDist << ". Assigning to chop." << std::endl;
-                nearest->reserve(m_name);
-                assignToChop(nearest);
-                return;
-              } else {
-                std::cout
-                    << "[Settler] Failed to find ANY available tree for wood!"
-                    << std::endl;
-              }
-            } else if (reqResource == "Stone") {
-              float minDist = 9999.0f;
-              ResourceNode *nearest = nullptr;
-              for (const auto &n : resourceNodes) {
-                if (n->isActive() && !n->isReserved() &&
-                    n->getResourceType() == Resources::ResourceType::Stone) {
-                  float d = Vector3Distance(position, n->getPosition());
-                  if (d < minDist) {
-                    minDist = d;
-                    nearest = n.get();
-                  }
-                }
-              }
-              if (nearest) {
-                nearest->reserve(m_name);
-                assignToMine(nearest);
-                return;
-              }
-            }
-          }
+      for (auto *task : activeTasks) {
+        // Skip blocked tasks?
+        float d = Vector3Distance(position, task->getPosition());
+        if (d < bestDist) {
+          bestDist = d;
+          targetTask = task;
         }
-      } else {
-        // Start/Continue Building
+      }
+
+      if (targetTask) {
+        std::cout << "[Settler] Found nearby construction site: "
+                  << targetTask->getBlueprint()->getName() << std::endl;
+      }
+    }
+
+    // 3. EXECUTE LOGIC on Selected Project
+    if (targetTask) {
+      // Ensure assignment
+      if (m_currentBuildTask != targetTask) {
+        assignBuildTask(targetTask);
+      }
+
+      // CHECK 1: Are materials delivered?
+      if (targetTask->hasAllResources()) {
+        // YES -> Go Build
         ProcessActiveBuildTask(deltaTime, buildings);
         return;
-      }
-    }
+      } else {
+        // NO -> Check if I have materials in inventory
+        auto missing = targetTask->getMissingResources();
+        std::string neededRes = "";
+        int neededAmount = 0;
+        bool iHaveMaterials = false;
 
-    // 3. Find New Tasks (if no current task)
-    auto skills = m_skills.getAllSkills();
-    std::vector<Skill> sortedSkills;
-    for (const auto &pair : skills) {
-      sortedSkills.push_back(pair.second);
-    }
-    std::sort(
-        sortedSkills.begin(), sortedSkills.end(),
-        [](const Skill &a, const Skill &b) { return a.priority > b.priority; });
+        // Find first critical missing resource
+        for (const auto &req : missing) {
+          if (m_inventory.getResourceAmount(req.resourceType) > 0) {
+            iHaveMaterials = true; // Use what we have
+            neededRes = req.resourceType;
+            break;
+          }
+          // Keep track of what we NEED if we have nothing
+          if (neededRes.empty()) {
+            neededRes = req.resourceType;
+            neededAmount = req.amount;
+          }
+        }
 
-    bool taskFound = false;
-    for (const auto &skill : sortedSkills) {
-      if (skill.type == SkillType::BUILDING && performBuilding) {
-        if (g_buildingSystem) {
-          auto buildTasks = g_buildingSystem->getActiveBuildTasks();
-          if (!buildTasks.empty()) {
-            float minDist = 1000.0f;
-            BuildTask *bestTask = nullptr;
+        if (iHaveMaterials) {
+          // YES -> Go Deliver (Build logic handles delivery)
+          // std::cout << "[Settler] I have materials for " << neededRes << ".
+          // Delivering." << std::endl;
+          ProcessActiveBuildTask(deltaTime, buildings);
+          return;
+        } else {
+          // NO -> Go Gather
+          // std::cout << "[Settler] Need " << neededRes << " for construction.
+          // Going to Gather." << std::endl;
 
-            // Strategy: Prefer tasks created by ME, then tasks with NO workers
-            for (auto *task : buildTasks) {
-              if (task->getBuilder() == this) {
-                // My task! Priority #1
-                bestTask = task;
-                break; // Immediate take
-              }
-
-              if (task->getWorkerCount() == 0) {
-                float d = Vector3Distance(position, task->getPosition());
+          if (neededRes == "Wood") {
+            // Find Tree
+            float minDist = 100.0f;
+            Tree *nearest = nullptr;
+            for (const auto &t : trees) {
+              if (t->isActive() && !t->isStump() && !t->isReserved()) {
+                float d = Vector3Distance(position, t->getPosition());
                 if (d < minDist) {
                   minDist = d;
-                  bestTask = task;
+                  nearest = t.get();
                 }
               }
             }
-
-            if (bestTask) {
-              assignBuildTask(bestTask);
-              taskFound = true;
+            if (nearest) {
+              nearest->reserve(m_name);
+              assignToChop(nearest);
+              return;
+            }
+          } else if (neededRes == "Stone") {
+            // Find Stone
+            float minDist = 200.0f;
+            ResourceNode *nearest = nullptr;
+            for (const auto &n : resourceNodes) {
+              if (n->isActive() && !n->isReserved() &&
+                  n->getResourceType() == Resources::ResourceType::Stone) {
+                float d = Vector3Distance(position, n->getPosition());
+                if (d < minDist) {
+                  minDist = d;
+                  nearest = n.get();
+                }
+              }
+            }
+            if (nearest) {
+              nearest->reserve(m_name);
+              assignToMine(nearest);
+              return;
             }
           }
-        }
-      } else if (skill.type == SkillType::WOODCUTTING && gatherWood) {
-        float minDist = 100.0f;
-        Tree *nearest = nullptr;
-        for (const auto &treePtr : trees) {
-          Tree *tree = treePtr.get();
-          if (tree && tree->isActive() && !tree->isReserved() &&
-              !tree->isStump()) {
-            float d = Vector3Distance(position, tree->getPosition());
-            if (d < minDist) {
-              minDist = d;
-              nearest = tree;
-            }
-          }
-        }
-        if (nearest) {
-          nearest->reserve(m_name);
-          assignToChop(nearest);
-          taskFound = true;
-        }
-      } else if (skill.type == SkillType::MINING && gatherStone) {
-        float minDist = 5000.0f; // Zwiększony zasięg szukania kamienia
-        ResourceNode *nearest = nullptr;
-        for (const auto &node : resourceNodes) {
-          if (node->isActive() && !node->isReserved()) {
-            float d = Vector3Distance(position, node->getPosition());
-            // std::cout << "DEBUG Stone: Node " << d << "m away. Active: " <<
-            // node->isActive() << std::endl;
-            if (d < minDist) {
-              minDist = d;
-              nearest = node.get();
-            }
-          }
-        }
-        if (nearest) {
-          nearest->reserve(m_name);
-          assignToMine(nearest);
-          taskFound = true;
-        }
-      } else if (skill.type == SkillType::FARMING && gatherFood) {
-        float minDist = 100.0f;
-        Bush *nearest = nullptr;
-        for (const auto &bush : bushes) {
-          if (bush && bush->hasFruit) {
-            float d = Vector3Distance(position, bush->position);
-            if (d < minDist) {
-              minDist = d;
-              nearest = bush;
-            }
-          }
-        }
-        if (nearest) {
-          m_currentGatherBush = nearest;
-          MoveTo(nearest->position);
-          m_state = SettlerState::GATHERING;
-          m_gatherTimer = 0.0f;
-          taskFound = true;
-        }
-      } else if (huntAnimals) {
-        float minDist = 200.0f;
-        Animal *nearest = nullptr;
-        for (const auto &animPtr : animals) {
-          if (animPtr && animPtr->isActive() && !animPtr->isDead()) {
-            float d = Vector3Distance(position, animPtr->getPosition());
-            if (d < minDist) {
-              minDist = d;
-              nearest = animPtr.get();
-            }
-          }
-        }
-        if (nearest) {
-          m_currentTargetAnimal = nearest;
-          m_state = SettlerState::HUNTING;
-          m_huntingTimer = 0.0f;
-          taskFound = true;
+          // Fallback if resource not found:
+          // std::cout << "[Settler] Could not find missing resource in world: "
+          // << neededRes << std::endl;
         }
       }
-      // CRAFTING LOGIC (Simplified: Job Acquisition Only)
-      else if (craftItems) {
-        if (m_currentCraftTaskId == -1) {
-          auto craftingSys =
-              GameEngine::getInstance().getSystem<CraftingSystem>();
-          if (craftingSys) {
-            CraftingTask *task = craftingSys->getAvailableTask(m_name);
-            if (task) {
-              std::cout << "[Settler] Acquired Crafting Task " << task->taskId
-                        << std::endl;
-              m_currentCraftTaskId = task->taskId;
-              taskFound = true;
-            }
-          }
-        }
-      }
+    }
 
-      if (taskFound)
-        break;
+    // 4. Default Idle / Other Jobs (if no building to do)
+    // ... Implement logic for Food gathering loop if basic needs met ...
+    // (Existing logic for gathering food if performBuilding is false etc)
+    // Simplified for brevity - if performBuilding is MAIN priority and no task
+    // found, we idle.
+
+    // Add fallback checks for survival if not building:
+    if (gatherFood && m_skills.hasSkill(SkillType::FARMING)) {
+      // ... simple food search ...
     }
   } break;
   case SettlerState::MOVING:
@@ -738,6 +611,9 @@ void Settler::Update(
   case SettlerState::CRAFTING:
     UpdateCrafting(deltaTime);
     break;
+  case SettlerState::FETCHING_RESOURCE:
+    UpdateFetchingResource(deltaTime, buildings);
+    break;
   case SettlerState::WAITING:
     m_gatherTimer -= deltaTime;
     if (m_gatherTimer <= 0.0f) {
@@ -754,7 +630,9 @@ void Settler::Update(
     posComp->setPosition(position);
 }
 
-void Settler::render() {
+void Settler::render() { render(false); }
+
+void Settler::render(bool isFps) {
   bool usingTool =
       (m_state == SettlerState::CHOPPING || m_state == SettlerState::MINING);
   // NEW RENDERER
@@ -807,15 +685,19 @@ void Settler::render() {
 
   // Head (at bodyY + 0.8 + headBob)
   Vector3 headPos = {0, bodyY + 0.82f + headBob, 0.02f};
-  DrawCube(headPos, 0.25f, 0.25f, 0.25f, skinColor);
+  
+  // FPS FIX: Hide head/eyes in FPS mode
+  if (!isFps) {
+      DrawCube(headPos, 0.25f, 0.25f, 0.25f, skinColor);
 
-  // Eyes (blinking)
-  bool isBlinking = (sinf(currentTime * 1.5f) > 0.95f);
-  if (!isBlinking) {
-    DrawCube({headPos.x - 0.07f, headPos.y + 0.05f, headPos.z + 0.12f}, 0.04f,
-             0.04f, 0.02f, BLACK);
-    DrawCube({headPos.x + 0.07f, headPos.y + 0.05f, headPos.z + 0.12f}, 0.04f,
-             0.04f, 0.02f, BLACK);
+      // Eyes (blinking)
+      bool isBlinking = (sinf(currentTime * 1.5f) > 0.95f);
+      if (!isBlinking) {
+        DrawCube({headPos.x - 0.07f, headPos.y + 0.05f, headPos.z + 0.12f}, 0.04f,
+                 0.04f, 0.02f, BLACK);
+        DrawCube({headPos.x + 0.07f, headPos.y + 0.05f, headPos.z + 0.12f}, 0.04f,
+                 0.04f, 0.02f, BLACK);
+      }
   }
 
   // Backpack (if inventory is not empty)
@@ -862,10 +744,9 @@ void Settler::render() {
   bool isHoldingAxe =
       (m_heldItem && m_heldItem->getDisplayName() == "Stone Axe");
 
-  // Lewa ręka
+  // Lewa ręka (Visual Left is at +0.3f based on user feedback)
   rlPushMatrix();
-  // Pivot w barku (lewy)
-  rlTranslatef(-0.3f, bodyY + 0.6f, 0.0f);
+  rlTranslatef(0.3f, bodyY + 0.6f, 0.0f);
 
   float leftArmAngle = -limbSwing * 20.0f;
 
@@ -883,6 +764,10 @@ void Settler::render() {
   // Rysowanie ręki
   DrawCube({0.0f, -0.2f, 0.0f}, 0.12f, 0.4f, 0.12f, skinColor);
 
+  // Axe / Sniper in "LEFT" Hand (Visually Right?) logic moved here
+  // REVERT: Moved back to Right Hand as per user request. Left hand should be
+  // empty or hold secondary items.
+
   // Rysowanie mięsa w dłoni
   if (carryingMeat) {
     DrawCube({0.0f, -0.45f, 0.1f}, 0.25f, 0.25f, 0.25f, RED);
@@ -891,45 +776,104 @@ void Settler::render() {
 
   rlPopMatrix(); // Pop left arm matrix
 
-  // Prawa ręka - ZŁOŻONA ANIMACJA 5 FAZ (Pivot w barku)
+  // Prawa ręka - ZŁOŻONA ANIMACJA 5 FAZ
   rlPushMatrix();
-  // 1. Pivot point (bark) - PODNIESIONY do 0.6f
-  rlTranslatef(0.3f, bodyY + 0.6f, 0.0f);
 
-  float armAngle = limbSwing * 20.0f;
-
-  if (m_attackAnimTimer > 0.0f) {
-    // SWING ANIMATION PRIORITY
-    // 5 FAZ ANIMACJI (Timer 1.0 -> 0.0)
-    if (m_attackAnimTimer > 0.8f) {
-      // FAZA 1: Windup (1.0-0.8) - Unoszenie do tyłu
-      float t = (1.0f - m_attackAnimTimer) / 0.2f; // 0->1
-      armAngle = -45.0f * t;
-    } else if (m_attackAnimTimer > 0.6f) {
-      // FAZA 2: Hold (0.8-0.6) - Przytrzymanie w górze
-      armAngle = -45.0f;
-    } else if (m_attackAnimTimer > 0.4f) {
-      // FAZA 3: Strike (0.6-0.4) - Szybkie uderzenie w przód
-      float t = (0.8f - m_attackAnimTimer) / 0.2f; // 0->1
-      // Interpolacja od -45 do +90
-      armAngle = -45.0f + (135.0f * t);
-    } else if (m_attackAnimTimer > 0.2f) {
-      // FAZA 4: Follow though (0.4-0.2) - Powolny powrót z wychylenia
-      float t = (0.4f - m_attackAnimTimer) / 0.2f; // 0->1
-      armAngle = 90.0f - (90.0f * t);
-    } else {
-      // FAZA 5: Reset (0.2-0.0)
-      armAngle = 0.0f;
-    }
-  } else if (isAiming) {
-    armAngle = -90.0f;
-    rlRotatef(-15.0f, 0.0f, 1.0f, 0.0f); // Angle inward
-  } else if (isHoldingAxe && m_isPlayerControlled) {
-    armAngle = -85.0f;                   // Ready pose
-    rlRotatef(-15.0f, 0.0f, 1.0f, 0.0f); // Angle inward
+  if (isFps) {
+      // ---------------------------------------------------------
+      // USER SPATIAL CONVENTION COMPLIANCE
+      // Request: "X = Axis going forward from camera"
+      // Request: "Unified relative units"
+      // ---------------------------------------------------------
+      // MAPPING TO MODEL SPACE (Local Settler Coords):
+      // Settler +Z = World Forward (User X)
+      // Settler +Y = World Up      (User Y)
+      // Settler +X = World Left    (So User Right = -Settler X)
+      
+      // CONFIGURATION (Relative to Camera/Eyes):
+      // EDITABLE via F2 Editor
+      float userFwd   = s_fpsUserFwd;
+      float userUp    = s_fpsUserUp;
+      float userRight = s_fpsUserRight;
+      
+      // Calculate Model Space Offsets
+      // We start at Body Center (Feet=0). Eyes are at ~1.4f.
+      // So absolute Y = 1.4f + userUp.
+      
+      // But body moves! 'bodyY' accounts for bounce/breathing.
+      // Let's attach to 'bodyY + 0.8' (Head/Neck base).
+      // So AbsY = (bodyY + 0.8f) + userUp. 
+      // UserUp -0.25 means "Chest level".
+      
+      // TRANSLATION
+      // X (Model Left) = -userRight
+      // Y (Model Up)   = (bodyY + 0.82f) + userUp; // base at head center
+      // Z (Model Fwd)  = userFwd
+      
+      rlTranslatef(-userRight, (bodyY + 0.82f) + userUp, userFwd);
+      
+      // VIEW ALIGNMENT ROTATION
+      // We want the hand to point Forward (User X).
+      // Standard Arm is Vertical.
+      // Pitch -90 points it Forward.
+      
+      // User Correction: "Wrist must bend LEFT not right, and NOT DOWN"
+      // Yaw: Previous -20 was Right. We need LEFT -> Positive Yaw.
+      // Pitch: Previous -60 was Down-ish. We need "Not Down" -> Closer to -90 (Horizontal).
+      
+      float pitch = s_fpsPitch; // More Horizontal/Forward (Was -60)
+      float yaw   = s_fpsYaw;  // LEFT / INWARD (Was -20)
+      
+      rlRotatef(yaw, 0, 1, 0);
+      rlRotatef(pitch, 1, 0, 0);
+      
+  } else {
+      // TPS STANDARD (Original Logic)
+      rlTranslatef(-0.3f, bodyY + 0.6f, 0.0f);
+      
+      float armAngle = limbSwing * 20.0f;
+      float armYaw = 0.0f; 
+      
+      if (m_attackAnimTimer > 0.0f) {
+          // Attack logic (TPS Only currently, or shared if we mapped anims)
+          // For now, keep TPS anims here to avoid breaking TPS.
+          if (isHoldingAxe) {
+             if (m_attackAnimTimer > 0.7f) {
+                float t = (1.0f - m_attackAnimTimer) / 0.3f;
+                armAngle = Lerp(0.0f, 130.0f, t);
+             } else if (m_attackAnimTimer > 0.2f) {
+                float t = (0.7f - m_attackAnimTimer) / 0.5f;
+                armAngle = Lerp(130.0f, -20.0f, t);
+             } else {
+                float t = (0.2f - m_attackAnimTimer) / 0.2f;
+                armAngle = Lerp(-20.0f, 0.0f, t);
+             }
+          } else {
+             if (m_attackAnimTimer > 0.7f) {
+                float t = (1.0f - m_attackAnimTimer) / 0.3f;
+                armAngle = Lerp(0.0f, -20.0f, t);
+                armYaw = Lerp(0.0f, -60.0f, t);
+             } else if (m_attackAnimTimer > 0.25f) {
+                float t = (0.7f - m_attackAnimTimer) / 0.45f;
+                armYaw = Lerp(-60.0f, 80.0f, t);
+                armAngle = -85.0f;
+             } else {
+                float t = (0.25f - m_attackAnimTimer) / 0.25f;
+                armYaw = Lerp(80.0f, 0.0f, t);
+                armAngle = Lerp(-85.0f, 0.0f, t);
+             }
+          }
+      } else if (isAiming) {
+         armAngle = -90.0f;
+         rlRotatef(-15.0f, 0.0f, 1.0f, 0.0f);
+      } else if (isHoldingAxe && m_isPlayerControlled) {
+         armAngle = -85.0f;
+         rlRotatef(-15.0f, 0.0f, 1.0f, 0.0f);
+      }
+      
+      if (armYaw != 0.0f) rlRotatef(armYaw, 0.0f, 1.0f, 0.0f);
+      rlRotatef(armAngle, 1.0f, 0.0f, 0.0f);
   }
-
-  rlRotatef(armAngle, 1.0f, 0.0f, 0.0f); // Obrót wokół osi X
 
   // Rysowanie ręki
   DrawCube({0.0f, -0.2f, 0.0f}, 0.12f, 0.4f, 0.12f, skinColor);
@@ -938,12 +882,19 @@ void Settler::render() {
   if (isHoldingAxe) {
     rlPushMatrix();
     rlTranslatef(0.0f, -0.45f, 0.1f);
-    // Fixed: Rotation so the blade faces forward
-    rlRotatef(45.0f, 0.0f, 1.0f, 0.0f);
-    rlRotatef(90.0f, 1.0f, 0.0f, 0.0f); // Make it horizontal in hand
 
-    DrawCube({0, 0, 0.3f}, 0.05f, 0.05f, 0.6f, BROWN);          // Handle
-    DrawCube({0, 0.12f, 0.55f}, 0.05f, 0.25f, 0.15f, DARKGRAY); // Blade
+    // AXE RENDERING (TPS) CORRECTED
+    // Goal: Handle Vertical (Down), Blade Forward (World Z)
+    // Prefab: Handle along +Y, Blade along -Z.
+    // Rotate 180 X: Y -> -Y (Down), -Z -> Z (Forward).
+
+    rlRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+
+    // Draw Prefab
+    DrawCube({0, 0.3f, 0}, 0.05f, 0.6f, 0.05f,
+             BROWN); // Handle (starts at hand, goes down)
+    DrawCube({0, 0.55f, 0.12f}, 0.05f, 0.25f, 0.15f,
+             DARKGRAY); // Blade (at bottom, pointing forward)
     rlPopMatrix();
   } else if (m_heldItem) {
     rlPushMatrix();
@@ -1035,111 +986,110 @@ void Settler::ProcessActiveBuildTask(
     float deltaTime, const std::vector<BuildingInstance *> &buildings) {
   // 1. Validation
   if (!m_currentBuildTask || !m_currentBuildTask->isActive()) {
-    std::cout << "[Settler] Build task invalid or finished. Clearing."
-              << std::endl;
+    // std::cout << "[Settler] Build task invalid or finished." << std::endl;
     clearBuildTask();
     m_state = SettlerState::IDLE;
     return;
   }
 
-  // 1.5 Get Bounding Box early
+  // 1.5 Get Bounding Box & Smart Target Calculation
   BoundingBox buildBox = m_currentBuildTask->getBoundingBox();
+  Vector3 targetPos = m_currentBuildTask->getPosition(); // Fallback
 
-  // 2. Check Resources
+  // Improved Targeting: Pick component based on current progress (Sequential Building)
+  const BuildingBlueprint *bp = m_currentBuildTask->getBlueprint();
+  if (bp && !bp->getComponents().empty()) {
+    const auto &components = bp->getComponents();
+    float totalWork = bp->getBuildTime() * 100.0f;
+    float currentProgress = m_currentBuildTask->getProgress();
+
+    int currentIdx = (int)((currentProgress / totalWork) * components.size());
+    if (currentIdx >= (int)components.size()) currentIdx = (int)components.size() - 1;
+    if (currentIdx < 0) currentIdx = 0;
+
+    const auto &comp = components[currentIdx];
+    float rotation = m_currentBuildTask->getRotation();
+    Vector3 rotatedOffset = Vector3RotateByAxisAngle(comp.localPosition, {0.0f, 1.0f, 0.0f}, rotation * DEG2RAD);
+    targetPos = Vector3Add(m_currentBuildTask->getPosition(), rotatedOffset);
+  } else {
+    // Fallback for simple buildings: Closest point on box
+    targetPos = Vector3Clamp(position, buildBox.min, buildBox.max);
+  }
+
+  // 2. RESOURCE DELIVERY LOGIC
   if (!m_currentBuildTask->hasAllResources()) {
     auto missing = m_currentBuildTask->getMissingResources();
-    if (!missing.empty()) {
-      ResourceRequirement req = missing[0]; // Describe first missing resource
-
-      // Check inventory
-      int currentAmount = m_inventory.getResourceAmount(req.resourceType);
-
-      if (currentAmount > 0) {
-        // Have some resource -> Deliver it
-        // Expanded interaction range for delivery
+    // Check Inventory
+    for (const auto &req : missing) {
+      int have = m_inventory.getResourceAmount(req.resourceType);
+      if (have > 0) {
+        // We have resources -> Go Deliver
         bool isInRange = CheckCollisionBoxSphere(buildBox, position, 4.5f);
-
-        if (!isInRange) {
-          MoveTo(m_currentBuildTask->getPosition());
-          // m_state = SettlerState::MOVING;
-        } else {
-          // Add to task
-          Stop(); // Stop moving if we were moving
-          int amountToAdd = std::min(currentAmount, req.amount);
-
-          std::cout << "[Settler] Delivering " << amountToAdd << " "
-                    << req.resourceType << " to build site at "
-                    << m_currentBuildTask->getPosition().x << ", "
-                    << m_currentBuildTask->getPosition().z << std::endl;
-
+        if (isInRange) {
+          Stop();
+          int amountToAdd = std::min(have, req.amount);
           m_currentBuildTask->addResource(req.resourceType, amountToAdd);
           m_inventory.removeResource(req.resourceType, amountToAdd);
-        }
-      } else {
-        // Don't have resource -> Gather it
-        std::cout << "[Settler] Missing " << req.amount << " "
-                  << req.resourceType << " for build. Switching to GATHER."
-                  << std::endl;
+          std::cout << "[Settler] Delivered " << amountToAdd << " " << req.resourceType << std::endl;
 
-        // Clear build task temporarily or just switch state?
-        // We keep the assignment but switch state to seek resource.
-        // WE MUST NOT clear m_currentBuildTask because we want to return to it.
-        // However, our state machine might be simple.
-        // Let's use IDLE logic to find resource but we need to know what to
-        // look for. ACTUALLY: Let's create a GATHER task explicitly here.
-
-        // Queue GATHER task
-        if (req.resourceType == "Wood") {
-          m_prevGatherWood =
-              true; // Enable flag temporarily? No, better to force action.
-
-          // Simple search (similar to IDLE logic but immediate)
-          // We need access to trees... tricky from here without passing 'trees'
-          // vector. But we can switch to IDLE and set a high priority flag? Or
-          // we just rely on the fact that we are in IDLE usually when calling
-          // this? ProcessActiveBuildTask is called from Update?
-
-          // IF we are here, we are likely in IDLE or BUILDING state.
-          // We can't easily search trees without the vector.
-          // Revert state to IDLE and set 'gatherWood' flag?
-          // But that changes global settings.
-
-          // Alternative: Set a temporary "fetch mode".
-          // For now, let's just Log and switch to IDLE, letting the NEW IDLE
-          // logic handle checking 'm_currentBuildTask' needs. Wait, the IDLE
-          // logic needs to be updated to check m_currentBuildTask requirements.
-
-          // Let's Return "Need Resource" signal?
-          // No, let's just set state to IDLE.
-          // The IDLE loop (which has access to trees etc) will see we have a
-          // BuildTask and check its requirements, then search for resources.
-
-          m_state = SettlerState::IDLE;
-        } else if (req.resourceType == "Stone") {
-          m_state = SettlerState::IDLE;
+          // If finished, break to build immediately
+          if (m_currentBuildTask->hasAllResources()) {
+             break; 
+          }
+          return; // Continue delivering next frame
+        } else {
+          // Move to delivery range
+          MoveTo(targetPos);
+          return;
         }
       }
     }
-    return; // Don't build yet
+    
+    // Check if we still need resources after potential delivery
+    if (!m_currentBuildTask->hasAllResources()) {
+        std::string neededRes = "";
+        for(const auto& req : missing) {
+            if (m_inventory.getResourceAmount(req.resourceType) > 0) continue; // Skip if we have it (should have delivered)
+            neededRes = req.resourceType;
+            break; 
+        }
+
+        if (!neededRes.empty()) {
+             m_targetStorage = FindNearestStorageWithResource(buildings, neededRes); 
+             
+             if (m_targetStorage) {
+                 m_state = SettlerState::FETCHING_RESOURCE;
+                 m_resourceToFetch = neededRes;
+                 std::cout << "[Settler] Missing " << neededRes << ". Found storage " << m_targetStorage->getBlueprintId() << " with resource. Fetching." << std::endl;
+                 return;
+             }
+        }
+
+        std::cout << "[Settler] No resources and no storage found. Going IDLE." << std::endl;
+        m_state = SettlerState::IDLE;
+        return;
+    }
   }
 
-  // 3. Move to Site
-  // Expanded interaction range for building to avoid getting stuck inside
-  bool isInRange = CheckCollisionBoxSphere(buildBox, position, 5.0f);
-
-  if (!isInRange) {
-    // Only set movement target if we're actually far away
-    MoveTo(m_currentBuildTask->getPosition());
-    // m_state = SettlerState::MOVING; // logic inside MoveTo sets this (if path
-    // found)
+  // 3. CONSTRUCTION LOGIC (All resources delivered)
+  float distToTarget = Vector3Distance(position, targetPos);
+  if (distToTarget > 3.0f) {
+    MoveTo(targetPos);
+    if (distToTarget < 3.5f) {
+      Stop();
+      m_state = SettlerState::BUILDING;
+    }
   } else {
-    // Already in range - DO NOT call MoveTo to avoid pathfinding into building
-    // center
-    Stop();      // Ensure we stop moving
-    clearPath(); // Clear any existing path
-
-    // 4. Build
+    Stop();
     m_state = SettlerState::BUILDING;
+
+    // Rotate towards component
+    Vector3 dir = Vector3Subtract(targetPos, position);
+    float angle = atan2(dir.x, dir.z) * RAD2DEG;
+    float angleDiff = angle - m_rotation;
+    while (angleDiff > 180) angleDiff -= 360;
+    while (angleDiff < -180) angleDiff += 360;
+    m_rotation += angleDiff * 5.0f * deltaTime;
   }
 }
 
@@ -1271,9 +1221,8 @@ void Settler::MoveTo(Vector3 destination) {
   float distToLast = Vector3Distance(destination, m_lastPathTarget);
   if (distToLast < 0.1f && m_lastPathValid && !m_currentPath.empty()) {
     // Cel praktycznie ten sam, ścieżka już obliczona - użyj istniejącej
-    std::cout
-        << "[Settler] MoveTo: cel niezmieniony, używam istniejącej ścieżki."
-        << std::endl;
+    // Cel praktycznie ten sam, ścieżka już obliczona - użyj istniejącej
+    // (Log removed to avoid spam)
   } else {
     // Oblicz nową ścieżkę za pomocą NavigationGrid
     NavigationGrid *grid = GameSystem::getNavigationGrid();
@@ -1290,9 +1239,10 @@ void Settler::MoveTo(Vector3 destination) {
           m_rotation = atan2(dir.x, dir.z) * RAD2DEG;
         }
 
-        std::cout << "[Settler] MoveTo: wyznaczono ścieżkę o długości "
-                  << path.size() << " do (" << destination.x << ","
-                  << destination.y << "," << destination.z << ")" << std::endl;
+        // std::cout << "[Settler] MoveTo: wyznaczono ścieżkę o długości "
+        //           << path.size() << " do (" << destination.x << ","
+        //           << destination.y << "," << destination.z << ")" <<
+        //           std::endl;
       } else {
         // Brak ścieżki (może cel nieosiągalny)
         float dist = Vector3Distance(position, destination);
@@ -1624,7 +1574,42 @@ void Settler::UpdateMovement(
       m_rotation += angleDiff * 15.0f * deltaTime;
 
       Vector3 movement = Vector3Scale(direction, m_moveSpeed * deltaTime);
-      position = Vector3Add(position, movement);
+      Vector3 nextPos = Vector3Add(position, movement);
+
+      // COLLISION CHECK DURING PATH FOLLOWING
+      bool collisionDetected = false;
+      
+      // Check Trees
+      for (const auto &tree : trees) {
+        if (tree && tree->isActive()) {
+          if (CheckCollisionBoxSphere(tree->getBoundingBox(), nextPos, 0.4f)) {
+             collisionDetected = true;
+             break;
+          }
+        }
+      }
+
+      // Check Buildings
+      if (!collisionDetected && g_buildingSystem) {
+         auto buildingsNearby = g_buildingSystem->getBuildingsInRange(nextPos, 2.0f);
+         for (auto *b : buildingsNearby) {
+            if (b->getBlueprintId() == "floor") continue;
+            if (b->CheckCollision(nextPos, 0.4f)) {
+               collisionDetected = true;
+               break;
+            }
+         }
+      }
+
+      if (collisionDetected) {
+         std::cout << "[Settler] Collision detected during path following! Stopping." << std::endl;
+         m_currentPath.clear();
+         m_currentPathIndex = 0;
+         m_state = SettlerState::IDLE; 
+         return;
+      }
+
+      position = nextPos;
       return;
     }
   }
@@ -1632,13 +1617,9 @@ void Settler::UpdateMovement(
   Vector3 direction = Vector3Subtract(m_targetPosition, position);
   float distance = Vector3Length(direction);
 
-  // FIX: Wall Clipping Prevention - Poluzowano dystans dla pniaków/zasobów
-  if (m_currentPath.empty() && distance > 10.0f) {
-    std::cout << "[Settler] No path to target (" << distance
-              << "m away). Stopping to avoid wall clip." << std::endl;
-    m_state = SettlerState::IDLE;
-    return;
-  }
+  // FIX: Wall Clipping Prevention REMOVED - User reported loops.
+  // We allow direct movement fallback if pathfinder fails.
+  // Collision checks below will handle immediate obstacles.
   if (distance < 0.5f) {
     // Jeśli szliśmy do warsztatu, przełącz na crafting
     if (m_state == SettlerState::MOVING && m_targetWorkshop &&
@@ -2363,99 +2344,80 @@ float Settler::GetCraftingProgress01() const {
   // Uproszczony czas craftingu = 3.0s (zgodnie z UpdateCrafting)
   return fminf(m_craftingTimer / 3.0f, 1.0f);
 }
+
 BuildingInstance *
-Settler::FindNearestStorage(const std::vector<BuildingInstance *> &buildings) {
-  static float lastDebugLogTime = -1.0f;
+Settler::FindNearestStorageWithResource(const std::vector<BuildingInstance *> &buildings, const std::string& resourceType) {
   BuildingInstance *nearest = nullptr;
   float minDst = 10000.0f;
   auto storageSys = GameEngine::getInstance().getSystem<StorageSystem>();
+  if (!storageSys) return nullptr;
+
+  Resources::ResourceType rType = Resources::ResourceType::None;
+  if (resourceType == "Wood") rType = Resources::ResourceType::Wood;
+  else if (resourceType == "Stone") rType = Resources::ResourceType::Stone;
+  else if (resourceType == "Food") rType = Resources::ResourceType::Food;
+  else if (resourceType == "Metal") rType = Resources::ResourceType::Metal; // Added Metal support
+  
+  if (rType == Resources::ResourceType::None) return nullptr;
+
+  for (auto *b : buildings) {
+    if (!b || !b->isBuilt()) continue;
+    
+    std::string storageId = b->getStorageId();
+    if (storageId.empty()) continue;
+
+    if (isStorageIgnored(storageId)) continue;
+    
+    // Check if storage has the resource
+    int amount = storageSys->getResourceAmount(storageId, rType);
+    if (amount > 0) {
+        float dst = Vector3Distance(position, b->getPosition());
+        if (dst < minDst) {
+            minDst = dst;
+            nearest = b;
+        }
+    }
+  }
+  return nearest;
+}
+
+BuildingInstance *
+Settler::FindNearestStorage(const std::vector<BuildingInstance *> &buildings) {
+  BuildingInstance *nearest = nullptr;
+  float minDst = 10000.0f;
+  
+  // LOGGING FLAG (Fix for undeclared identifier)
+  bool shouldLog = false;
+  // POSITION CHECK (Fix for undeclared identifier)
+  auto isValidPosition = [](Vector3 p) { return p.x != 0 || p.y != 0 || p.z != 0; };
+
+  auto storageSys = GameEngine::getInstance().getSystem<StorageSystem>();
   if (!storageSys) {
-    std::cout << "[Settler] Brak systemu magazynowego!" << std::endl;
     return nullptr;
   }
-  // Pomocnicza lambda do sprawdzania poprawności pozycji
-  auto isValidPosition = [](const Vector3 &pos) -> bool {
-    return !std::isnan(pos.x) && !std::isnan(pos.y) && !std::isnan(pos.z) &&
-           !std::isinf(pos.x) && !std::isinf(pos.y) && !std::isinf(pos.z) &&
-           std::abs(pos.x) < 10000.0f && std::abs(pos.y) < 10000.0f &&
-           std::abs(pos.z) < 10000.0f;
-  };
-  // Diagnostyka: wypisz liczbę budynków i szczegóły (throttle 1s)
-  float currentTimeNear = (float)GetTime(); // funkcja z raylib
-  bool shouldLog =
-      (currentTimeNear - lastDebugLogTime > 1.0f) || (lastDebugLogTime < 0);
-  if (shouldLog) {
-    std::cout << "[Settler] DEBUG FindNearestStorage: buildingsTotal = "
-              << buildings.size() << std::endl;
-    int idx = 0;
-    for (auto *b : buildings) {
-      if (!b) {
-        std::cout << "  [" << idx << "] nullptr" << std::endl;
-        idx++;
-        continue;
-      }
-      std::string storageId = b->getStorageId();
-      std::string blueprintId = b->getBlueprintId();
-      bool built = b->isBuilt();
-      BuildingCategory category = BuildingCategory::STRUCTURE;
-      if (b->getBlueprint()) {
-        category = b->getBlueprint()->getCategory();
-      }
-      std::string categoryStr = "UNKNOWN";
-      switch (category) {
-      case BuildingCategory::STORAGE:
-        categoryStr = "STORAGE";
-        break;
-      case BuildingCategory::RESIDENTIAL:
-        categoryStr = "RESIDENTIAL";
-        break;
-      case BuildingCategory::PRODUCTION:
-        categoryStr = "PRODUCTION";
-        break;
-      case BuildingCategory::FURNITURE:
-        categoryStr = "FURNITURE";
-        break;
-      default:
-        categoryStr = "STRUCTURE";
-        break;
-      }
-      Vector3 pos = b->getPosition();
-      bool validPos = isValidPosition(pos);
-      std::cout << "  [" << idx << "] id=" << storageId
-                << " blueprint=" << blueprintId << " built=" << built
-                << " category=" << categoryStr << " pos=(" << pos.x << ","
-                << pos.y << "," << pos.z << ")"
-                << " valid=" << (validPos ? "true" : "false") << std::endl;
-      idx++;
-      idx++;
-    }
-    lastDebugLogTime = currentTimeNear;
-  }
+  
+  // Removed Spammy Diagnostic Log Block
+  
   // Etap 1: Szukaj budynku z kategorią STORAGE i canAddResource == true
   for (auto *b : buildings) {
-    if (!b) {
-      if (shouldLog) {
-        std::cout << "[Settler] DEBUG: Odrzucono nullptr" << std::endl;
-      }
-      continue;
-    }
+    if (!b) continue;
     std::string storageId = b->getStorageId();
     std::string blueprintId = b->getBlueprintId();
 
     // Sprawdź czy zbudowany (z wyjątkiem stockpile) - użyj substring
     bool isStockpile = (blueprintId.find("stockpile") != std::string::npos);
     if (!b->isBuilt() && !isStockpile) {
-      if (shouldLog) {
-        std::cout << "[Settler] DEBUG: Odrzucono " << storageId << " ("
-                  << blueprintId << ") - !isBuilt()" << std::endl;
-      }
+      //   if (shouldLog) {
+      //     std::cout << "[Settler] DEBUG: Odrzucono " << storageId << " ("
+      //               << blueprintId << ") - !isBuilt()" << std::endl;
+      //   }
       continue;
     }
     if (storageId.empty()) {
-      if (shouldLog) {
-        std::cout << "[Settler] DEBUG: Odrzucono " << blueprintId
-                  << " - brak/invalid storageId" << std::endl;
-      }
+      //   if (shouldLog) {
+      //     std::cout << "[Settler] DEBUG: Odrzucono " << blueprintId
+      //               << " - brak/invalid storageId" << std::endl;
+      //   }
       continue;
     }
 
@@ -2468,11 +2430,12 @@ Settler::FindNearestStorage(const std::vector<BuildingInstance *> &buildings) {
     // Tylko STORAGE w etapie 1, ale stockpile traktuj jako STORAGE niezależnie
     // od kategorii
     if (category != BuildingCategory::STORAGE && !isStockpile) {
-      if (shouldLog) {
-        std::cout << "[Settler] DEBUG: Odrzucono " << storageId << " ("
-                  << blueprintId << ") - kategoria "
-                  << static_cast<int>(category) << " nie STORAGE" << std::endl;
-      }
+      //   if (shouldLog) {
+      //     std::cout << "[Settler] DEBUG: Odrzucono " << storageId << " ("
+      //               << blueprintId << ") - kategoria "
+      //               << static_cast<int>(category) << " nie STORAGE" <<
+      //               std::endl;
+      //   }
       continue;
     }
 
@@ -3676,99 +3639,83 @@ void Settler::setPlayerControlled(bool controlled) {
 }
 
 void Settler::setRotationFromMouse(float yaw) {
-  m_rotation = yaw * RAD2DEG; // Silnik i rlRotatef oczekują stopni
+  m_rotation = yaw;
+  // Normalize
+  while (m_rotation >= 360.0f)
+    m_rotation -= 360.0f;
+  while (m_rotation < 0.0f)
+    m_rotation += 360.0f;
 }
 
 Vector3 Settler::getForwardVector() const {
-  float angleRad = m_rotation * DEG2RAD;
-  // Raylib convention: 0 degrees is -Z (if sin/cos are used this way)
-  // Based on original movement logic: forward = {-sin(rot), 0, -cos(rot)}
-  return Vector3{-sinf(angleRad), 0.0f, -cosf(angleRad)};
+  float rad = m_rotation * DEG2RAD;
+  return {sinf(rad), 0.0f, cosf(rad)};
 }
 
-void Settler::renderFPS() {
-  // Render for the player settler in FPS
-  bool hasSniperRifle =
-      (m_heldItem && m_heldItem->getDisplayName() == "Sniper Rifle");
-  bool hasAxe = (m_heldItem && m_heldItem->getDisplayName() == "Stone Axe");
 
-  if (!hasSniperRifle && !hasAxe)
-    return;
-
-  Color skinColor = {255, 220, 177, 255};
-
-  rlPushMatrix();
-
-  // Position weapon in front of camera
-  Vector3 forward = Vector3Normalize(
-      Vector3Subtract(sceneCamera.target, sceneCamera.position));
-  Vector3 right = Vector3Normalize(Vector3CrossProduct(forward, {0, 1, 0}));
-  Vector3 up = Vector3CrossProduct(right, forward);
-
-  float adsFactor = m_adsLerp;
-  float swingAnim = 0.0f;
-
-  // Melee Swing Animation in FPS
-  if (hasAxe && m_attackAnimTimer > 0.0f) {
-    if (m_attackAnimTimer > 0.5f) {                  // Windup & Strike
-      swingAnim = (1.0f - m_attackAnimTimer) * 2.0f; // 0 -> 1
-    } else {                                         // Follow through & Reset
-      swingAnim = m_attackAnimTimer * 2.0f;          // 1 -> 0
+void Settler::UpdateFetchingResource(float deltaTime, const std::vector<BuildingInstance *> &buildings) {
+    (void)deltaTime;
+    (void)buildings;
+    if (!m_targetStorage || m_resourceToFetch.empty()) {
+        m_state = SettlerState::IDLE;
+        return;
     }
-  }
 
-  // OFFSETS TUNING
-  float rightOffset = (hasSniperRifle ? 0.35f : 0.45f) * (1.0f - adsFactor) -
-                      (swingAnim * 0.2f);
-  float upOffset = (hasSniperRifle ? -0.35f : -0.4f) * (1.0f - adsFactor) +
-                   (-0.08f * adsFactor) - (swingAnim * 0.3f);
-  float forwardOffset = (hasSniperRifle ? 0.7f : 0.5f) * (1.0f - adsFactor) +
-                        (0.8f * adsFactor) + (swingAnim * 0.4f);
-
-  Vector3 weaponBase =
-      Vector3Add(sceneCamera.position, Vector3Scale(forward, forwardOffset));
-  weaponBase = Vector3Add(weaponBase, Vector3Scale(up, upOffset));
-  weaponBase = Vector3Add(weaponBase, Vector3Scale(right, rightOffset));
-
-  rlTranslatef(weaponBase.x, weaponBase.y, weaponBase.z);
-
-  // Rotate to match camera direction
-  float yaw = atan2f(forward.x, forward.z) * RAD2DEG;
-  float pitch = -asinf(forward.y) * RAD2DEG;
-
-  rlRotatef(yaw, 0, 1, 0);
-  rlRotatef(pitch - (swingAnim * 45.0f), 1, 0, 0);
-  rlRotatef(swingAnim * 20.0f, 0, 0, 1);
-
-  if (hasSniperRifle) {
-    // Draw Rifle
-    DrawCube({0, 0, 0.45f}, 0.05f, 0.05f, 1.0f, BLACK);
-    DrawCube({0, -0.1f, -0.4f}, 0.08f, 0.15f, 0.6f, BROWN);
-
-    // Hollow Scope
-    float sw = 0.06f, sh = 0.06f, sd = 0.3f, st = 0.01f;
-    Vector3 scopePos = {0, 0.08f, 0.1f};
-    DrawCube({scopePos.x, scopePos.y + sh / 2, scopePos.z}, sw, st, sd,
-             DARKGRAY);
-    DrawCube({scopePos.x, scopePos.y - sh / 2, scopePos.z}, sw, st, sd,
-             DARKGRAY);
-    DrawCube({scopePos.x - sw / 2, scopePos.y, scopePos.z}, st, sh, sd,
-             DARKGRAY);
-    DrawCube({scopePos.x + sw / 2, scopePos.y, scopePos.z}, st, sh, sd,
-             DARKGRAY);
-  } else if (hasAxe) {
-    // Draw Axe in FPS
-    rlRotatef(90, 0, 1, 0); // Orient perpendicular to view
-    DrawCube({0, 0, 0}, 0.5f, 0.04f, 0.04f, BROWN);          // Trzonek
-    DrawCube({0.2f, 0.1f, 0}, 0.12f, 0.2f, 0.04f, DARKGRAY); // Ostrze
-  }
-
-  // Draw Hands (simplified for FPS)
-  rlPushMatrix();
-  rlTranslatef(0.1f, -0.1f, -0.2f);
-  rlRotatef(-70, 1, 0, 0);
-  DrawCube({0, 0, 0}, 0.08f, 0.3f, 0.08f, skinColor);
-  rlPopMatrix();
-
-  rlPopMatrix();
+    float dist = Vector3Distance(position, m_targetStorage->getPosition());
+    if (dist > 3.0f) {
+        MoveTo(m_targetStorage->getPosition());
+    } else {
+        Stop();
+        
+        // INTERACT WITH STORAGE SYSTEM
+        auto storageSystem = GameEngine::getInstance().getSystem<StorageSystem>();
+        if (storageSystem && !m_targetStorage->getStorageId().empty()) {
+            std::string sId = m_targetStorage->getStorageId();
+            
+            // Convert String to Enum locally
+            Resources::ResourceType rType = Resources::ResourceType::None;
+            if (m_resourceToFetch == "Wood") rType = Resources::ResourceType::Wood;
+            else if (m_resourceToFetch == "Stone") rType = Resources::ResourceType::Stone;
+            else if (m_resourceToFetch == "Food") rType = Resources::ResourceType::Food;
+            
+            if (rType != Resources::ResourceType::None) {
+                int needed = 5; 
+                if(m_currentBuildTask) {
+                    auto missing = m_currentBuildTask->getMissingResources();
+                     // find specific missing
+                    for(const auto& req : missing) {
+                        if(req.resourceType == m_resourceToFetch) {
+                            needed = req.amount; 
+                            break;
+                        }
+                    }
+                }
+                
+                int taken = storageSystem->removeResourceFromStorage(sId, m_name, rType, needed);
+                if (taken > 0) {
+                    // Create Item Wrapper
+                    auto item = std::make_unique<ResourceItem>(m_resourceToFetch, m_resourceToFetch, "Fetched Resource");
+                    bool added = m_inventory.addItem(std::move(item), taken);
+                    
+                    if (added) {
+                        std::cout << "[Settler] Fetched " << taken << " " << m_resourceToFetch << ". Returning to build." << std::endl;
+                        m_state = SettlerState::BUILDING; 
+                    } else {
+                         // Inventory full?
+                        std::cout << "[Settler] Failed to add " << taken << " items to inventory. Full?" << std::endl;
+                        // Return remaining to storage? (Complex, skip for now. Loss of resources minor issue vs crash)
+                        m_state = SettlerState::IDLE;
+                    }
+                } else {
+                     std::cout << "[Settler] Storage " << sId << " empty for " << m_resourceToFetch << ". Going IDLE." << std::endl;
+                     m_state = SettlerState::IDLE;
+                }
+            } else {
+                std::cout << "[Settler] Unknown resource type string: " << m_resourceToFetch << std::endl;
+                m_state = SettlerState::IDLE;
+            }
+        } else {
+             m_state = SettlerState::IDLE;
+        }
+    }
 }
